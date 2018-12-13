@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>Zsh.md | Kuangcp Blog | Javaer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="目录 start  Zsh 为什么要使用 安装 配置 oh-my-zsh 插件 主题 自己定制          目录 end|2018-12-13 12:06| 码云 | CSDN | OSChina | cnblogs  Zsh arch zsh wiki  为什么要使用 知乎:mac 装了 oh my zsh 后比用 bash 具体好在哪儿？终极 Shell——ZSH  安装 debian系">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Zsh.md">
+<meta property="og:url" content="http://blog.kuangcp.top/2018/12/13/Memo-Linux-Tool-Zsh/index.html">
+<meta property="og:site_name" content="Kuangcp Blog">
+<meta property="og:description" content="目录 start  Zsh 为什么要使用 安装 配置 oh-my-zsh 插件 主题 自己定制          目录 end|2018-12-13 12:06| 码云 | CSDN | OSChina | cnblogs  Zsh arch zsh wiki  为什么要使用 知乎:mac 装了 oh my zsh 后比用 bash 具体好在哪儿？终极 Shell——ZSH  安装 debian系">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-12-13T11:53:28.395Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Zsh.md">
+<meta name="twitter:description" content="目录 start  Zsh 为什么要使用 安装 配置 oh-my-zsh 插件 主题 自己定制          目录 end|2018-12-13 12:06| 码云 | CSDN | OSChina | cnblogs  Zsh arch zsh wiki  为什么要使用 知乎:mac 装了 oh my zsh 后比用 bash 具体好在哪儿？终极 Shell——ZSH  安装 debian系">
+    
+        <link rel="alternate" type="application/atom+xml" title="Kuangcp Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Kuangcp</h5>
+          <a href="mailto:634206017@qq.com" title="634206017@qq.com" class="mail">634206017@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/">
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives">
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags">
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories">
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/kuangcp" target="_blank">
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/mythos" target="_blank">
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/custom">
+                <i class="icon icon-lg icon-link"></i>
+                测试
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Zsh.md</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Zsh.md</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-12-13T11:53:28.395Z" itemprop="datePublished" class="page-time">
+  2018-12-13
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Zsh"><span class="post-toc-number">1.</span> <span class="post-toc-text">Zsh</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#为什么要使用"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">为什么要使用</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#安装"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">安装</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#配置"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">配置</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#oh-my-zsh"><span class="post-toc-number">1.3.1.</span> <span class="post-toc-text">oh-my-zsh</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#插件"><span class="post-toc-number">1.3.1.1.</span> <span class="post-toc-text">插件</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#主题"><span class="post-toc-number">1.3.1.2.</span> <span class="post-toc-text">主题</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#自己定制"><span class="post-toc-number">1.3.1.2.1.</span> <span class="post-toc-text">自己定制</span></a></li></ol></li></ol></li></ol></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-Memo-Linux-Tool-Zsh" class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Zsh.md</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-12-13 19:53:28" datetime="2018-12-13T11:53:28.395Z" itemprop="datePublished">2018-12-13</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style="display:none">
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p><strong>目录 start</strong></p>
+<ol>
+<li><a href="#zsh">Zsh</a><ol>
+<li><a href="#为什么要使用">为什么要使用</a></li>
+<li><a href="#安装">安装</a></li>
+<li><a href="#配置">配置</a><ol>
+<li><a href="#oh-my-zsh">oh-my-zsh</a><ol>
+<li><a href="#插件">插件</a></li>
+<li><a href="#主题">主题</a><ol>
+<li><a href="#自己定制">自己定制</a></li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<p><strong>目录 end</strong>|<em>2018-12-13 12:06</em>| <a href="https://gitee.com/gin9" target="_blank" rel="noopener">码云</a> | <a href="http://blog.csdn.net/kcp606" target="_blank" rel="noopener">CSDN</a> | <a href="https://my.oschina.net/kcp1104" target="_blank" rel="noopener">OSChina</a> | <a href="http://www.cnblogs.com/kuangcp" target="_blank" rel="noopener">cnblogs</a></p>
+<hr>
+<h1 id="Zsh"><a href="#Zsh" class="headerlink" title="Zsh"></a>Zsh</h1><blockquote>
+<p><a href="https://wiki.archlinux.org/index.php/Zsh" target="_blank" rel="noopener">arch zsh wiki</a></p>
+</blockquote>
+<h2 id="为什么要使用"><a href="#为什么要使用" class="headerlink" title="为什么要使用"></a>为什么要使用</h2><blockquote>
+<p>知乎:<a href="https://www.zhihu.com/question/29977255" target="_blank" rel="noopener">mac 装了 oh my zsh 后比用 bash 具体好在哪儿？</a><br><a href="https://zhuanlan.zhihu.com/mactalk/19556676" target="_blank" rel="noopener">终极 Shell——ZSH</a></p>
+</blockquote>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><blockquote>
+<p>debian系 <code>apt install zsh</code>  </p>
+</blockquote>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><blockquote>
+<p><a href="https://github.com/lilydjwg/dotzsh" target="_blank" rel="noopener">某人的配置</a></p>
+</blockquote>
+<h3 id="oh-my-zsh"><a href="#oh-my-zsh" class="headerlink" title="oh-my-zsh"></a>oh-my-zsh</h3><blockquote>
+<p><a href="https://github.com/robbyrussell/oh-my-zsh" target="_blank" rel="noopener">Github</a> | <a href="https://segmentfault.com/a/1190000004695131" target="_blank" rel="noopener">参考博客进行安装</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://gitee.com/kcp1104/codes/gca14wtqvm67l9j5r0deb56#Zsh.md" target="_blank" rel="noopener">关于PS1环境变量的折腾</a> <code>因为含特殊字符GitBook构建通不过,只能放出去了</code></p>
+</blockquote>
+<ol>
+<li>安装好 zsh wget git</li>
+<li><code>sh -c &quot;$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)&quot;</code></li>
+<li><code>vi ~/.zshrc</code> 进行配置</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">plugins=(</span><br><span class="line">    git mvn gradle autojump</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<h4 id="插件"><a href="#插件" class="headerlink" title="插件"></a>插件</h4><blockquote>
+<p><a href="https://github.com/robbyrussell/oh-my-zsh/wiki/Plugins" target="_blank" rel="noopener">wiki: plugins</a><br><a href="https://hufangyun.com/2017/zsh-plugin/" target="_blank" rel="noopener">zsh oh-my-zsh 插件推荐 </a></p>
+</blockquote>
+<ul>
+<li>个人常用 git autojump go docker kubectl </li>
+</ul>
+<h4 id="主题"><a href="#主题" class="headerlink" title="主题"></a>主题</h4><blockquote>
+<p><a href="https://github.com/robbyrussell/oh-my-zsh/wiki/Themes" target="_blank" rel="noopener">官网主题列表</a> </p>
+<ul>
+<li>自带主题:<ul>
+<li>个人偏好 amuse clean wedisagree, muse也还好,就是没时间</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<p><em>额外安装</em></p>
+<blockquote>
+<p><a href="https://github.com/robbyrussell/oh-my-zsh/wiki/External-themes" target="_blank" rel="noopener">额外主题列表</a></p>
+</blockquote>
+<ul>
+<li><p>powerlevel9k</p>
+<ul>
+<li><a href="https://github.com/bhilburn/powerlevel9k/wiki/Install-Instructions#option-2-install-for-oh-my-zsh" target="_blank" rel="noopener">官方文档</a></li>
+<li><code>git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k</code></li>
+<li><code>powerlevel9k/powerlevel9k</code></li>
+</ul>
+</li>
+<li><p>Bullet Train (桌面在用) | <a href="https://github.com/caiogondim/bullet-train.zsh" target="_blank" rel="noopener">Github repo</a></p>
+<ul>
+<li>Source Code Pro for Powerline + Powerline + Awesonme 的 Bold 字体搭配最合适</li>
+</ul>
+</li>
+<li><p>spaceship</p>
+<ul>
+<li><a href="https://www.ctolib.com/denysdovhan-spaceship-zsh-theme.html" target="_blank" rel="noopener">地址</a></li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p><a href="https://github.com/caiogondim/bullet-train.zsh#for-oh-my-zsh-users" target="_blank" rel="noopener">安装步骤</a></p>
+<ol>
+<li>mkdir $ZSH_CUSTOM/themes/</li>
+<li>wget <a href="http://raw.github.com/caiogondim/bullet-train-oh-my-zsh-theme/master/bullet-train.zsh-theme" target="_blank" rel="noopener">http://raw.github.com/caiogondim/bullet-train-oh-my-zsh-theme/master/bullet-train.zsh-theme</a></li>
+<li>config .zshrc to <code>ZSH_THEME=&quot;bullet-train&quot;</code></li>
+</ol>
+</blockquote>
+<ul>
+<li>Maglev<ul>
+<li><a href="https://github.com/caiogondim/maglev" target="_blank" rel="noopener">Github地址</a></li>
+</ul>
+</li>
+</ul>
+<h5 id="自己定制"><a href="#自己定制" class="headerlink" title="自己定制"></a>自己定制</h5><blockquote>
+<p><a href="https://github.com/robbyrussell/oh-my-zsh/wiki/Customization" target="_blank" rel="noopener">Github doc</a></p>
+</blockquote>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2018-12-13T11:53:28.395Z" itemprop="dateUpdated">2018-12-13 19:53:28</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2018/12/13/Memo-Linux-Tool-Zsh/" target="_blank" rel="external">http://blog.kuangcp.top/2018/12/13/Memo-Linux-Tool-Zsh/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="http://blog.kuangcp.top">
+            <img src="/img/avatar.jpg" alt="Kuangcp">
+            Kuangcp
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.kuangcp.top/2018/12/13/Memo-Linux-Tool-Zsh/&title=《Zsh.md》 — Kuangcp Blog&pic=http://blog.kuangcp.top/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.kuangcp.top/2018/12/13/Memo-Linux-Tool-Zsh/&title=《Zsh.md》 — Kuangcp Blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.kuangcp.top/2018/12/13/Memo-Linux-Tool-Zsh/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Zsh.md》 — Kuangcp Blog&url=http://blog.kuangcp.top/2018/12/13/Memo-Linux-Tool-Zsh/&via=http://blog.kuangcp.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.kuangcp.top/2018/12/13/Memo-Linux-Tool-Zsh/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/12/13/Memo-FrontEnd-HTML5/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">HTML5.md</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/12/13/Memo-Java-Log/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Log.md</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check" data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style="display:none">
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style="display:none">
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Kuangcp &copy; 2015 - 2018</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.kuangcp.top/2018/12/13/Memo-Linux-Tool-Zsh/&title=《Zsh.md》 — Kuangcp Blog&pic=http://blog.kuangcp.top/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.kuangcp.top/2018/12/13/Memo-Linux-Tool-Zsh/&title=《Zsh.md》 — Kuangcp Blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.kuangcp.top/2018/12/13/Memo-Linux-Tool-Zsh/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Zsh.md》 — Kuangcp Blog&url=http://blog.kuangcp.top/2018/12/13/Memo-Linux-Tool-Zsh/&via=http://blog.kuangcp.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.kuangcp.top/2018/12/13/Memo-Linux-Tool-Zsh/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACL0lEQVR42u3aQW6DQAwF0Nz/0lTqqlIK+fZAJMxjFaUlzGNhjP+8XvGx/R5732x/jvdv3s89/s29/z/hwMDAuC1jOzz2Fl39fExNbtCHW4OBgfEAxnFBTC55XAN7BTc/FwMDA6NXWPP2EQMDA+M7BbcHyNtQDAwMjGq5TMZw1cnYl97FMTAwbsioBgPf/HxhvoGBgXETxlY88rN6sWhzVRgYGKMZ1fauuuWiGgasDOAwMDCmMo4LZW8Qll++FxVErSEGBsZQRr64PAaols48EvinKcTAwHgAIw8pr4M1r4KBgTGa0RuBJc1lL6NIloiBgfE0xnUvmetbwQphJwYGxgMYeYOYk3pNZ3Och4GBMZqRxwPVHVlnLS4vyhgYGFMZeXFMAsXqWC1/ST7tuYGBgXFDRlI681gxv3AvEohuCgYGxjhGL1bMQ82VLWjN1hADA2Mco/oSmwcJ1RFbEnl+eABgYGA8gNEbvZ0VSa6EChgYGE9gVF9oq5fsDeZWhncYGBiTGL0FVQt0HmHmWzHKdx0DA+PmjF6esF7je9sydgsuBgbGUEZe2nohZV5SqyW4MG7DwMC4OWP91TSPCnpnRX/FwMAYzegVu7yhXH8a9NpHDAyMeYz8dXSpA42ReSxamB1iYGCMYJw1DlsBrBR9DAwMjLw1TLZQVMd25d1tGBgYGKduoaiO5wp5LAYGxjhGvm1ivZVMxvrlNWBgYIxmrBTK48tUG8Ter2FgYIxm/ACp7mC+ws4wfAAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

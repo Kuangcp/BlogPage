@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>OraclePerformances.md | Kuangcp Blog | Javaer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="目录 start  1.Oracle的体系结构 因为太详细，但是没有一个给出各个模块之间的关系，显得特别凌乱，所以还要参考大二下的书 内存讲解 Oracle服务器  = 实例+进程 Oracle实例 数据库的文件： 与实例的连接 连接方式 一个服务器进程就拥有单独的不共享的PGA 程序全局区 共享池 数据库高速缓冲区 内存缓冲区顾问 重做日志缓冲区 大池和Java池 内存缓冲区     2. 3.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OraclePerformances.md">
+<meta property="og:url" content="http://blog.kuangcp.top/2018/12/13/Memo-Database-OraclePerformances/index.html">
+<meta property="og:site_name" content="Kuangcp Blog">
+<meta property="og:description" content="目录 start  1.Oracle的体系结构 因为太详细，但是没有一个给出各个模块之间的关系，显得特别凌乱，所以还要参考大二下的书 内存讲解 Oracle服务器  = 实例+进程 Oracle实例 数据库的文件： 与实例的连接 连接方式 一个服务器进程就拥有单独的不共享的PGA 程序全局区 共享池 数据库高速缓冲区 内存缓冲区顾问 重做日志缓冲区 大池和Java池 内存缓冲区     2. 3.">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-12-13T11:53:28.399Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="OraclePerformances.md">
+<meta name="twitter:description" content="目录 start  1.Oracle的体系结构 因为太详细，但是没有一个给出各个模块之间的关系，显得特别凌乱，所以还要参考大二下的书 内存讲解 Oracle服务器  = 实例+进程 Oracle实例 数据库的文件： 与实例的连接 连接方式 一个服务器进程就拥有单独的不共享的PGA 程序全局区 共享池 数据库高速缓冲区 内存缓冲区顾问 重做日志缓冲区 大池和Java池 内存缓冲区     2. 3.">
+    
+        <link rel="alternate" type="application/atom+xml" title="Kuangcp Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Kuangcp</h5>
+          <a href="mailto:634206017@qq.com" title="634206017@qq.com" class="mail">634206017@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/">
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives">
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags">
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories">
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/kuangcp" target="_blank">
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/mythos" target="_blank">
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/custom">
+                <i class="icon icon-lg icon-link"></i>
+                测试
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">OraclePerformances.md</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">OraclePerformances.md</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-12-13T11:53:28.399Z" itemprop="datePublished" class="page-time">
+  2018-12-13
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#1-Oracle的体系结构"><span class="post-toc-number">1.</span> <span class="post-toc-text">1.Oracle的体系结构</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#因为太详细，但是没有一个给出各个模块之间的关系，显得特别凌乱，所以还要参考大二下的书"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">因为太详细，但是没有一个给出各个模块之间的关系，显得特别凌乱，所以还要参考大二下的书</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#内存讲解"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">内存讲解</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Oracle服务器-实例-进程"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">Oracle服务器  = 实例+进程</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Oracle实例"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">Oracle实例</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#数据库的文件："><span class="post-toc-number">1.5.</span> <span class="post-toc-text">数据库的文件：</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#与实例的连接"><span class="post-toc-number">1.6.</span> <span class="post-toc-text">与实例的连接</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#连接方式"><span class="post-toc-number">1.7.</span> <span class="post-toc-text">连接方式</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#一个服务器进程就拥有单独的不共享的PGA-程序全局区"><span class="post-toc-number">1.8.</span> <span class="post-toc-text">一个服务器进程就拥有单独的不共享的PGA 程序全局区</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#共享池"><span class="post-toc-number">1.9.</span> <span class="post-toc-text">共享池</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#数据库高速缓冲区"><span class="post-toc-number">1.9.1.</span> <span class="post-toc-text">数据库高速缓冲区</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#内存缓冲区顾问"><span class="post-toc-number">1.9.2.</span> <span class="post-toc-text">内存缓冲区顾问</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#重做日志缓冲区"><span class="post-toc-number">1.9.3.</span> <span class="post-toc-text">重做日志缓冲区</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#大池和Java池"><span class="post-toc-number">1.9.4.</span> <span class="post-toc-text">大池和Java池</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#内存缓冲区"><span class="post-toc-number">1.9.5.</span> <span class="post-toc-text">内存缓冲区</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#2"><span class="post-toc-number">2.</span> <span class="post-toc-text">2.</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#3-Oracle实例的管理"><span class="post-toc-number">3.</span> <span class="post-toc-text">3.Oracle实例的管理</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#初始化参数文件"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">初始化参数文件</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#内容-："><span class="post-toc-number">3.1.0.1.</span> <span class="post-toc-text">内容 ：</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#静态参数文件-（文本文件）"><span class="post-toc-number">3.1.1.</span> <span class="post-toc-text">静态参数文件 （文本文件）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#动态参数文件-（二进制文件）"><span class="post-toc-number">3.1.2.</span> <span class="post-toc-text">动态参数文件 （二进制文件）</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-6-启动数据库"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">3.6 启动数据库</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-7-将数据库设为限制模式（杀死普通用户，利于维护）"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">3.7 将数据库设为限制模式（杀死普通用户，利于维护）</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-9-关闭数据库的四种方式："><span class="post-toc-number">3.4.</span> <span class="post-toc-text">3.9 关闭数据库的四种方式：</span></a></li></ol><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#4-数据字典和控制文件"><span class="post-toc-number">4.</span> <span class="post-toc-text">4 数据字典和控制文件</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#数据字典简介"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">数据字典简介</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#数据字典中存放的信息"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">数据字典中存放的信息</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#数据字典部分使用"><span class="post-toc-number">4.3.</span> <span class="post-toc-text">数据字典部分使用</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#动态视图-v-开头"><span class="post-toc-number">4.4.</span> <span class="post-toc-text">动态视图(v$开头)</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#移动控制文件的示例"><span class="post-toc-number">4.5.</span> <span class="post-toc-text">移动控制文件的示例</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#5-重做日志文件"><span class="post-toc-number">5.</span> <span class="post-toc-text">5.重做日志文件</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#5-2-重做日志组"><span class="post-toc-number">5.1.</span> <span class="post-toc-text">5.2 重做日志组</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#5-5-获取重做日志的信息"><span class="post-toc-number">5.2.</span> <span class="post-toc-text">5.5 获取重做日志的信息</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#5-11-重做日志应用示例"><span class="post-toc-number">5.3.</span> <span class="post-toc-text">5.11 重做日志应用示例</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-添加重做日志组"><span class="post-toc-number">5.3.0.1.</span> <span class="post-toc-text">1.添加重做日志组</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-重建原有的group-3（不活动状态）"><span class="post-toc-number">5.3.0.2.</span> <span class="post-toc-text">2.重建原有的group 3（不活动状态）</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#3-强制切换日志组-将当前组（group-1）多切换几次成inactive状态时再删除"><span class="post-toc-number">5.3.0.3.</span> <span class="post-toc-text">3.强制切换日志组 将当前组（group 1）多切换几次成inactive状态时再删除</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#4-操作原本的当前组，删除group-1-再添加1-不能修改1"><span class="post-toc-number">5.3.0.4.</span> <span class="post-toc-text">4.操作原本的当前组，删除group 1 再添加1 不能修改1</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#6-表空间和数据文件的管理"><span class="post-toc-number">5.4.</span> <span class="post-toc-text">6.表空间和数据文件的管理</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#6-5-创建本地管理的表空间"><span class="post-toc-number">5.4.1.</span> <span class="post-toc-text">6.5 创建本地管理的表空间</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#查询"><span class="post-toc-number">5.4.1.1.</span> <span class="post-toc-text">查询</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#6-8-默认临时表空间"><span class="post-toc-number">5.4.2.</span> <span class="post-toc-text">6.8 默认临时表空间</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#6-9-设置表空间脱机"><span class="post-toc-number">5.4.3.</span> <span class="post-toc-text">6.9 设置表空间脱机</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#6-10-设置只读表空间"><span class="post-toc-number">5.4.4.</span> <span class="post-toc-text">6.10 设置只读表空间</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#6-11-重置表空间的大小"><span class="post-toc-number">5.4.4.1.</span> <span class="post-toc-text">6.11 重置表空间的大小</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#6-13-移动数据文件的方法"><span class="post-toc-number">5.4.4.2.</span> <span class="post-toc-text">6.13 移动数据文件的方法</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#方法一："><span class="post-toc-number">5.4.4.2.1.</span> <span class="post-toc-text">方法一：</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#方法二："><span class="post-toc-number">5.4.4.2.2.</span> <span class="post-toc-text">方法二：</span></a></li></ol></li></ol></li></ol></li>
+        </nav>
+    </aside>
+
+
+<article id="post-Memo-Database-OraclePerformances" class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">OraclePerformances.md</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-12-13 19:53:28" datetime="2018-12-13T11:53:28.399Z" itemprop="datePublished">2018-12-13</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style="display:none">
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p><strong>目录 start</strong></p>
+<ol>
+<li><a href="#1oracle的体系结构">1.Oracle的体系结构</a><ol>
+<li><a href="#因为太详细但是没有一个给出各个模块之间的关系显得特别凌乱所以还要参考大二下的书">因为太详细，但是没有一个给出各个模块之间的关系，显得特别凌乱，所以还要参考大二下的书</a></li>
+<li><a href="#内存讲解">内存讲解</a></li>
+<li><a href="#oracle服务器--=-实例+进程">Oracle服务器  = 实例+进程</a></li>
+<li><a href="#oracle实例">Oracle实例</a></li>
+<li><a href="#数据库的文件">数据库的文件：</a></li>
+<li><a href="#与实例的连接">与实例的连接</a></li>
+<li><a href="#连接方式">连接方式</a></li>
+<li><a href="#一个服务器进程就拥有单独的不共享的pga-程序全局区">一个服务器进程就拥有单独的不共享的PGA 程序全局区</a></li>
+<li><a href="#共享池">共享池</a><ol>
+<li><a href="#数据库高速缓冲区">数据库高速缓冲区</a></li>
+<li><a href="#内存缓冲区顾问">内存缓冲区顾问</a></li>
+<li><a href="#重做日志缓冲区">重做日志缓冲区</a></li>
+<li><a href="#大池和java池">大池和Java池</a></li>
+<li><a href="#内存缓冲区">内存缓冲区</a></li>
+</ol>
+</li>
+</ol>
+</li>
+<li><a href="#2">2.</a></li>
+<li><a href="#3oracle实例的管理">3.Oracle实例的管理</a><ol>
+<li><a href="#初始化参数文件">初始化参数文件</a><pre><code>1. [内容 ：](#内容-)
+</code></pre><ol>
+<li><a href="#静态参数文件-（文本文件）">静态参数文件 （文本文件）</a></li>
+<li><a href="#动态参数文件-（二进制文件）">动态参数文件 （二进制文件）</a></li>
+</ol>
+</li>
+<li><a href="#36-启动数据库">3.6 启动数据库</a></li>
+<li><a href="#37-将数据库设为限制模式（杀死普通用户利于维护）">3.7 将数据库设为限制模式（杀死普通用户，利于维护）</a></li>
+<li><a href="#39-关闭数据库的四种方式">3.9 关闭数据库的四种方式：</a></li>
+</ol>
+</li>
+<li><a href="#4-数据字典和控制文件">4 数据字典和控制文件</a><ol>
+<li><a href="#数据字典简介">数据字典简介</a></li>
+<li><a href="#数据字典中存放的信息">数据字典中存放的信息</a></li>
+<li><a href="#数据字典部分使用">数据字典部分使用</a></li>
+<li><a href="#动态视图v$开头">动态视图(v$开头)</a></li>
+<li><a href="#移动控制文件的示例">移动控制文件的示例</a></li>
+</ol>
+</li>
+<li><a href="#5重做日志文件">5.重做日志文件</a><ol>
+<li><a href="#52-重做日志组">5.2 重做日志组</a></li>
+<li><a href="#55-获取重做日志的信息">5.5 获取重做日志的信息</a></li>
+<li><a href="#511-重做日志应用示例">5.11 重做日志应用示例</a><pre><code>1. [1.添加重做日志组](#1添加重做日志组)
+1. [2.重建原有的group 3（不活动状态）](#2重建原有的group-3（不活动状态）)
+1. [3.强制切换日志组 将当前组（group 1）多切换几次成inactive状态时再删除](#3强制切换日志组-将当前组（group-1）多切换几次成inactive状态时再删除)
+1. [4.操作原本的当前组，删除group 1 再添加1 不能修改1](#4操作原本的当前组删除group-1-再添加1-不能修改1)
+</code></pre></li>
+<li><a href="#6表空间和数据文件的管理">6.表空间和数据文件的管理</a><ol>
+<li><a href="#65-创建本地管理的表空间">6.5 创建本地管理的表空间</a><ol>
+<li><a href="#查询">查询</a></li>
+</ol>
+</li>
+<li><a href="#68-默认临时表空间">6.8 默认临时表空间</a></li>
+<li><a href="#69-设置表空间脱机">6.9 设置表空间脱机</a></li>
+<li><a href="#610-设置只读表空间">6.10 设置只读表空间</a><ol>
+<li><a href="#611-重置表空间的大小">6.11 重置表空间的大小</a></li>
+<li><a href="#613-移动数据文件的方法">6.13 移动数据文件的方法</a><ol>
+<li><a href="#方法一">方法一：</a></li>
+<li><a href="#方法二">方法二：</a></li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<p><strong>目录 end</strong>|<em>2018-12-13 12:06</em>| <a href="https://gitee.com/gin9" target="_blank" rel="noopener">码云</a> | <a href="http://blog.csdn.net/kcp606" target="_blank" rel="noopener">CSDN</a> | <a href="https://my.oschina.net/kcp1104" target="_blank" rel="noopener">OSChina</a> | <a href="http://www.cnblogs.com/kuangcp" target="_blank" rel="noopener">cnblogs</a></p>
+<hr>
+<h1 id="1-Oracle的体系结构"><a href="#1-Oracle的体系结构" class="headerlink" title="1.Oracle的体系结构"></a>1.Oracle的体系结构</h1><h2 id="因为太详细，但是没有一个给出各个模块之间的关系，显得特别凌乱，所以还要参考大二下的书"><a href="#因为太详细，但是没有一个给出各个模块之间的关系，显得特别凌乱，所以还要参考大二下的书" class="headerlink" title="因为太详细，但是没有一个给出各个模块之间的关系，显得特别凌乱，所以还要参考大二下的书"></a>因为太详细，但是没有一个给出各个模块之间的关系，显得特别凌乱，所以还要参考大二下的书</h2><h2 id="内存讲解"><a href="#内存讲解" class="headerlink" title="内存讲解"></a>内存讲解</h2><pre><code>理解计算机的基本知识
+</code></pre><h2 id="Oracle服务器-实例-进程"><a href="#Oracle服务器-实例-进程" class="headerlink" title="Oracle服务器  = 实例+进程"></a>Oracle服务器  = 实例+进程</h2><h2 id="Oracle实例"><a href="#Oracle实例" class="headerlink" title="Oracle实例"></a>Oracle实例</h2><ul>
+<li>有5个必须的后台进程：SMON PMON DBWR LGWR CKPT</li>
+</ul>
+<h2 id="数据库的文件："><a href="#数据库的文件：" class="headerlink" title="数据库的文件："></a>数据库的文件：</h2><ul>
+<li>控制文件</li>
+<li>重做日志文件</li>
+<li>数据文件</li>
+<li>初始化参数文件</li>
+<li>密码文件</li>
+<li>归档重做日志文件</li>
+</ul>
+<h2 id="与实例的连接"><a href="#与实例的连接" class="headerlink" title="与实例的连接"></a>与实例的连接</h2><ul>
+<li>输入用户名和密码，就是一个用户进程，通过用户进程连接服务器进程，再连接到Oracle数据库上</li>
+<li>一个用户可以同时拥有多个会话（用一套帐号登录多次）</li>
+</ul>
+<h2 id="连接方式"><a href="#连接方式" class="headerlink" title="连接方式"></a>连接方式</h2><ul>
+<li>基于主机 本地模式</li>
+<li>客户端 - 服务器模式</li>
+<li>客户端 - 应用服务器 - 服务器</li>
+</ul>
+<h2 id="一个服务器进程就拥有单独的不共享的PGA-程序全局区"><a href="#一个服务器进程就拥有单独的不共享的PGA-程序全局区" class="headerlink" title="一个服务器进程就拥有单独的不共享的PGA 程序全局区"></a>一个服务器进程就拥有单独的不共享的PGA 程序全局区</h2><ul>
+<li>排序区</li>
+<li>Cursor状态区</li>
+<li>会话信息区</li>
+<li>堆栈区</li>
+</ul>
+<h2 id="共享池"><a href="#共享池" class="headerlink" title="共享池"></a>共享池</h2><ul>
+<li>库高速缓存区（存放共享的SQL代码） LRU（least recently used）</li>
+<li>数据字典高速缓存区</li>
+</ul>
+<h3 id="数据库高速缓冲区"><a href="#数据库高速缓冲区" class="headerlink" title="数据库高速缓冲区"></a>数据库高速缓冲区</h3><h3 id="内存缓冲区顾问"><a href="#内存缓冲区顾问" class="headerlink" title="内存缓冲区顾问"></a>内存缓冲区顾问</h3><h3 id="重做日志缓冲区"><a href="#重做日志缓冲区" class="headerlink" title="重做日志缓冲区"></a>重做日志缓冲区</h3><h3 id="大池和Java池"><a href="#大池和Java池" class="headerlink" title="大池和Java池"></a>大池和Java池</h3><h3 id="内存缓冲区"><a href="#内存缓冲区" class="headerlink" title="内存缓冲区"></a>内存缓冲区</h3><hr>
+<h1 id="2"><a href="#2" class="headerlink" title="2."></a>2.</h1><h1 id="3-Oracle实例的管理"><a href="#3-Oracle实例的管理" class="headerlink" title="3.Oracle实例的管理"></a>3.Oracle实例的管理</h1><h2 id="初始化参数文件"><a href="#初始化参数文件" class="headerlink" title="初始化参数文件"></a>初始化参数文件</h2><ul>
+<li>pfile 静态参数文件（文本文件） 文件名： initSID.ora</li>
+<li>spfile 动态参数文件（二进制文件）文件名：spfileSID.ora</li>
+</ul>
+<h4 id="内容-："><a href="#内容-：" class="headerlink" title="内容 ："></a>内容 ：</h4><h3 id="静态参数文件-（文本文件）"><a href="#静态参数文件-（文本文件）" class="headerlink" title="静态参数文件 （文本文件）"></a>静态参数文件 （文本文件）</h3><h3 id="动态参数文件-（二进制文件）"><a href="#动态参数文件-（二进制文件）" class="headerlink" title="动态参数文件 （二进制文件）"></a>动态参数文件 （二进制文件）</h3><h2 id="3-6-启动数据库"><a href="#3-6-启动数据库" class="headerlink" title="3.6 启动数据库"></a>3.6 启动数据库</h2><p>startup <strong>[force]</strong>[restrict]<strong>[pfile=文件名]</strong><br>[ <strong>open[recover][database]</strong> | mount | <strong>nomount</strong>]</p>
+<h2 id="3-7-将数据库设为限制模式（杀死普通用户，利于维护）"><a href="#3-7-将数据库设为限制模式（杀死普通用户，利于维护）" class="headerlink" title="3.7 将数据库设为限制模式（杀死普通用户，利于维护）"></a>3.7 将数据库设为限制模式（杀死普通用户，利于维护）</h2><p>startup restrict 限制模式的启动<br>alter system enable restricted session 将已运行的实例切换成限制模式<br>alter system kill session 杀死用户进程</p>
+<h2 id="3-9-关闭数据库的四种方式："><a href="#3-9-关闭数据库的四种方式：" class="headerlink" title="3.9 关闭数据库的四种方式："></a>3.9 关闭数据库的四种方式：</h2><ul>
+<li>A shutdown abort 强制停库，启动需要做数据库恢复</li>
+<li>I shutdown immediate 中断事务，中断会话，关闭文件，启动需要恢复事务</li>
+<li>T shutdown transactional 中断会话，等待事务关闭，关闭文件</li>
+<li>N shutdown normal 等待会话，事务关闭，关闭文件</li>
+</ul>
+<h1 id="4-数据字典和控制文件"><a href="#4-数据字典和控制文件" class="headerlink" title="4 数据字典和控制文件"></a>4 数据字典和控制文件</h1><h2 id="数据字典简介"><a href="#数据字典简介" class="headerlink" title="数据字典简介"></a>数据字典简介</h2><ul>
+<li>数据字典是一组只读的系统表（AUD$开头的是可修改的），数据字典中存放了有关数据库和数据库对象的信息</li>
+</ul>
+<h2 id="数据字典中存放的信息"><a href="#数据字典中存放的信息" class="headerlink" title="数据字典中存放的信息"></a>数据字典中存放的信息</h2><ul>
+<li>数据库的逻辑结构和物理结构</li>
+<li>所有数据库对象定义的信息</li>
+<li>所有数据库对象的磁盘空间分配的信息</li>
+<li>Oracle用户名</li>
+<li>每个用户被授予的权限和角色</li>
+<li>完整性约束的信息</li>
+<li>列的默认值</li>
+<li>审计信息</li>
+</ul>
+<h2 id="数据字典部分使用"><a href="#数据字典部分使用" class="headerlink" title="数据字典部分使用"></a>数据字典部分使用</h2><ul>
+<li>user_tables </li>
+<li>all_tables</li>
+<li>user_catalog / cat</li>
+</ul>
+<h2 id="动态视图-v-开头"><a href="#动态视图-v-开头" class="headerlink" title="动态视图(v$开头)"></a>动态视图(v$开头)</h2><ul>
+<li><h2 id="移动控制文件的示例"><a href="#移动控制文件的示例" class="headerlink" title="移动控制文件的示例"></a>移动控制文件的示例</h2></li>
+<li>查看当前位置： select * from v$controlfile;</li>
+<li>修改数据库的参数文件映射到目标地址：alter system set contro_files=’路径1’,’路径2’ scope=spfile;</li>
+<li>停库 shutdown immediate</li>
+<li>使用命令复制 host copy ‘原地址’ ‘目标地址’ 或者直接快捷键</li>
+<li>启动数据库，再查看控制文件的位置</li>
+</ul>
+<h1 id="5-重做日志文件"><a href="#5-重做日志文件" class="headerlink" title="5.重做日志文件"></a>5.重做日志文件</h1><h2 id="5-2-重做日志组"><a href="#5-2-重做日志组" class="headerlink" title="5.2 重做日志组"></a>5.2 重做日志组</h2><ul>
+<li>Oracle至少需要两个重做日志文件组（每个组最少一个重做日志文件）</li>
+<li>重做日志写进程只能同时写一个组，写是循环写的<ul>
+<li>写满一个就切换下一个，写满的这个组就会复制到归档日志里保存</li>
+<li>称为两级日志结构</li>
+</ul>
+</li>
+</ul>
+<h2 id="5-5-获取重做日志的信息"><a href="#5-5-获取重做日志的信息" class="headerlink" title="5.5 获取重做日志的信息"></a>5.5 获取重做日志的信息</h2><ul>
+<li>重做日志组：</li>
+<li>select group#,sequence#,members,bytes,status,archived from v$log;</li>
+<li>重做日志组成员：</li>
+<li>select group#,status,type,member from v$logfile;</li>
+</ul>
+<hr>
+<h2 id="5-11-重做日志应用示例"><a href="#5-11-重做日志应用示例" class="headerlink" title="5.11 重做日志应用示例"></a>5.11 重做日志应用示例</h2><ul>
+<li>select * from v$logfile; 查看日志的状态</li>
+</ul>
+<h4 id="1-添加重做日志组"><a href="#1-添加重做日志组" class="headerlink" title="1.添加重做日志组"></a>1.添加重做日志组</h4><ul>
+<li>alter database add logfile(‘F:\DB\Oracle\Data\Log\REDO04A.log’,’F:\DB\Oracle\Data\Log\REDO04B.log’)size 10m;</li>
+</ul>
+<h4 id="2-重建原有的group-3（不活动状态）"><a href="#2-重建原有的group-3（不活动状态）" class="headerlink" title="2.重建原有的group 3（不活动状态）"></a>2.重建原有的group 3（不活动状态）</h4><ul>
+<li>alter database drop logfile group 3;</li>
+<li>alter database add logfile group 3(‘F:\DB\Oracle\Data\Log\REDO03A.log’,<br>‘F:\DB\Oracle\Data\Log\REDO03B.log’,’F:\DB\Oracle\Data\Log\REDO03C.log’)size 15m;</li>
+</ul>
+<h4 id="3-强制切换日志组-将当前组（group-1）多切换几次成inactive状态时再删除"><a href="#3-强制切换日志组-将当前组（group-1）多切换几次成inactive状态时再删除" class="headerlink" title="3.强制切换日志组 将当前组（group 1）多切换几次成inactive状态时再删除"></a>3.强制切换日志组 将当前组（group 1）多切换几次成inactive状态时再删除</h4><p>alter system switch logfile;</p>
+<h4 id="4-操作原本的当前组，删除group-1-再添加1-不能修改1"><a href="#4-操作原本的当前组，删除group-1-再添加1-不能修改1" class="headerlink" title="4.操作原本的当前组，删除group 1 再添加1 不能修改1"></a>4.操作原本的当前组，删除group 1 再添加1 不能修改1</h4><ul>
+<li>alter database drop logfile group 1;</li>
+<li>alter database add logfile group 1(‘F:\DB\Oracle\Data\Log\REDO01A.log’,<br>‘F:\DB\Oracle\Data\Log\REDO01B.log’,’F:\DB\Oracle\Data\Log\REDO01C.log’)size 15m;</li>
+</ul>
+<hr>
+<h2 id="6-表空间和数据文件的管理"><a href="#6-表空间和数据文件的管理" class="headerlink" title="6.表空间和数据文件的管理"></a>6.表空间和数据文件的管理</h2><h3 id="6-5-创建本地管理的表空间"><a href="#6-5-创建本地管理的表空间" class="headerlink" title="6.5 创建本地管理的表空间"></a>6.5 创建本地管理的表空间</h3><ul>
+<li>create tablespace 名字 </li>
+<li>datafile ‘’ size 50m,’’ size 30m </li>
+<li>extent management local </li>
+<li>uniform size 1m;</li>
+</ul>
+<h4 id="查询"><a href="#查询" class="headerlink" title="查询"></a>查询</h4><ul>
+<li>select tablespace_name,block_size,extent_management,segment_space_management from dba_tablespaces</li>
+<li>where tablespace_name like ‘myth%’;</li>
+</ul>
+<h3 id="6-8-默认临时表空间"><a href="#6-8-默认临时表空间" class="headerlink" title="6.8 默认临时表空间"></a>6.8 默认临时表空间</h3><ul>
+<li>oracle 是默认的temp表空间</li>
+<li>修改： alter database default temporary tablespace myth_temp;</li>
+<li><strong>注意</strong>：数据库只有一个默认的临时表空间，要根据实际需要来调整</li>
+</ul>
+<h3 id="6-9-设置表空间脱机"><a href="#6-9-设置表空间脱机" class="headerlink" title="6.9 设置表空间脱机"></a>6.9 设置表空间脱机</h3><ul>
+<li>alter tablespace myth offline;</li>
+</ul>
+<h3 id="6-10-设置只读表空间"><a href="#6-10-设置只读表空间" class="headerlink" title="6.10 设置只读表空间"></a>6.10 设置只读表空间</h3><ul>
+<li>alter tablespace myth read only ;</li>
+<li>alter tablespace myth read write; 正常状态</li>
+</ul>
+<h4 id="6-11-重置表空间的大小"><a href="#6-11-重置表空间的大小" class="headerlink" title="6.11 重置表空间的大小"></a>6.11 重置表空间的大小</h4><ul>
+<li>数据字典管理的表空间：<ul>
+<li>alter tablespace 名 [minimum extent 2[k|m]] | [default 存储子句]</li>
+</ul>
+</li>
+<li>本地管理的表空间：<ul>
+<li>不能更改存储设置，但是可以重置大小：</li>
+<li>改变数据文件的大小<ul>
+<li>创建表空间时使用autoextent on 自动改变数据文件的大小</li>
+<li>在创建表空间之后，使用带有autoextent on 选项的alter database 命令手动开启自动扩展功能</li>
+</ul>
+</li>
+<li>使用alter tablespace 添加数据文件 </li>
+</ul>
+</li>
+</ul>
+<hr>
+<ul>
+<li>自动扩展<ul>
+<li>alter database datafile ‘’ autoextent on next 1m;</li>
+</ul>
+</li>
+<li>手动重置数据文件大小<ul>
+<li>alter database datafile ‘’ resize 100m;</li>
+</ul>
+</li>
+<li>添加数据文件<ul>
+<li>alter tablespace myth add datafile ‘’ size 80m;</li>
+</ul>
+</li>
+</ul>
+<h4 id="6-13-移动数据文件的方法"><a href="#6-13-移动数据文件的方法" class="headerlink" title="6.13 移动数据文件的方法"></a>6.13 移动数据文件的方法</h4><h5 id="方法一："><a href="#方法一：" class="headerlink" title="方法一："></a>方法一：</h5><p>该语句适用于没有活动的还原数据或者是临时段的非系统表空间中的数据文件，使用语句中表空间必须是脱机且目标数据文件必须存在</p>
+<ul>
+<li>alter tablespace 表空间名 rename datafile ‘’[,’’] to ‘’[,’’]<ul>
+<li>1.使用数据字典查询所需信息</li>
+<li>2.将表空间置为脱机</li>
+<li>3.使用命令或操作系统移动或复制数据文件</li>
+<li>4.执行alter tablespace…. 命令</li>
+<li>5.将表空间联机</li>
+<li>6.使用数据字典查询信息</li>
+<li>7.使用操作系统删除无用的文件</li>
+</ul>
+</li>
+</ul>
+<h5 id="方法二："><a href="#方法二：" class="headerlink" title="方法二："></a>方法二：</h5><p>该语句适用于系统表空间和不能置为脱机的表空间的数据文件，要求使用该语句时数据库处于mount状态</p>
+<ul>
+<li>alter database 数据库名 rename file ‘’[,’’] to ‘’[,’’]<ul>
+<li>1.使用数据字典查询信息</li>
+<li>2.关闭数据库</li>
+<li>3.使用命令或操作系统移动或复制文件</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2018-12-13T11:53:28.399Z" itemprop="dateUpdated">2018-12-13 19:53:28</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2018/12/13/Memo-Database-OraclePerformances/" target="_blank" rel="external">http://blog.kuangcp.top/2018/12/13/Memo-Database-OraclePerformances/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="http://blog.kuangcp.top">
+            <img src="/img/avatar.jpg" alt="Kuangcp">
+            Kuangcp
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.kuangcp.top/2018/12/13/Memo-Database-OraclePerformances/&title=《OraclePerformances.md》 — Kuangcp Blog&pic=http://blog.kuangcp.top/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.kuangcp.top/2018/12/13/Memo-Database-OraclePerformances/&title=《OraclePerformances.md》 — Kuangcp Blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.kuangcp.top/2018/12/13/Memo-Database-OraclePerformances/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《OraclePerformances.md》 — Kuangcp Blog&url=http://blog.kuangcp.top/2018/12/13/Memo-Database-OraclePerformances/&via=http://blog.kuangcp.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.kuangcp.top/2018/12/13/Memo-Database-OraclePerformances/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/12/13/Memo-Blog-Blog/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Blog.md</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/12/13/Memo-Database-Redis/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Redis.md</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check" data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style="display:none">
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style="display:none">
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Kuangcp &copy; 2015 - 2018</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.kuangcp.top/2018/12/13/Memo-Database-OraclePerformances/&title=《OraclePerformances.md》 — Kuangcp Blog&pic=http://blog.kuangcp.top/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.kuangcp.top/2018/12/13/Memo-Database-OraclePerformances/&title=《OraclePerformances.md》 — Kuangcp Blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.kuangcp.top/2018/12/13/Memo-Database-OraclePerformances/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《OraclePerformances.md》 — Kuangcp Blog&url=http://blog.kuangcp.top/2018/12/13/Memo-Database-OraclePerformances/&via=http://blog.kuangcp.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.kuangcp.top/2018/12/13/Memo-Database-OraclePerformances/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACtElEQVR42u3a0WoDMQwEwP7/T7fQp0KJu5KsJJS5p9Am5xsHbGelj4/4+vy+fr7++Zff73n0qfz+v8c632F04eHh4bUe/dGV8KoDnwH585zfg4eHh7fNyxfr+UaS3C2Z4vO4eHh4eO/Aywc4H7uTv+Ph4eH9D14SOkRDxvfHw8PDe2de9cf/+bPJf/OJe1LWgoeHhxfzeuHCa1+v1/fw8PDwWlX13uKbP0TefNB8Qjw8PLwF3jlanTxc3oiQh7zNchoeHh7eVV7y1vOtq5M1L4/l2wkeHh7eBq9aTKqGvDm4F+lGpTg8PDy8q7zqxlClTqKHfKso/FbAw8PDG/PyQ3MSB1QP05NIonDcx8PDw7vKy3/854Fsta0qL6HlB/eHWQseHh7eJd7kMN1rCEgO5fMSHR4eHt4erxqzJpHBZDtpptF4eHh4T+T1Fvc8hM3H7UUkfzRd4eHh4a3xkuihR81DjTxEjgpmeHh4eAu8fFnvPWg1zO2V0KKYGA8PD+8SLz/ant/ZC2GTe+ZbyMPWATw8PLyrvHms0AteJ0fq8uh4eHh4V3m99qZ80a9+9lZUgYeHh7fH6x2ae6WsSUgxKZLh4eHh7fF6G0PvDtXy2CTUwMPDw9vgTUry1WNxdfRkoqMvAw8PD+8qr9o0kB92q0t5HjQk04GHh4e3x8vL//mWUF3iqyFFvm3g4eHhbfByWDVWuHtA730NeHh4eM/h9VoBLh+CWxceHh7eNu+zeJ1Dh2ozwfyA/sdk4eHh4S3wRvvJOK6dTNxk68LDw8Ob8/JAIQ8p8nmtjphHG3h4eHjbvF7lKHm4Kr63d0VNA3h4eHgv4q0s35fuhoeHh/duvGoZrBq2ztsL8PDw8J7Jyxun8mAi4VUbufKwGA8PD2+PVy2AJcFB3gSQBxzVVgM8PDy8Bd4XeFvFOs4DWu0AAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

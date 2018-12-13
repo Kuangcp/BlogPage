@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>LinuxProblem.md | Kuangcp Blog | Javaer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="目录 start  遇到的常见问题 命令找不到 其他 终端响铃 Ubuntu与Windows10时间相差8小时的解决 终端开启慢 Deepin的NVIDIA驱动问题 笔记本突然断电导致开机报错 输入法 fcitx   Flash        目录 end|2018-12-13 12:06| 码云 | CSDN | OSChina | cnblogs  遇到的常见问题命令找不到 sudo找不到 安">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LinuxProblem.md">
+<meta property="og:url" content="http://blog.kuangcp.top/2018/12/13/Memo-Linux-Base-LinuxProblem/index.html">
+<meta property="og:site_name" content="Kuangcp Blog">
+<meta property="og:description" content="目录 start  遇到的常见问题 命令找不到 其他 终端响铃 Ubuntu与Windows10时间相差8小时的解决 终端开启慢 Deepin的NVIDIA驱动问题 笔记本突然断电导致开机报错 输入法 fcitx   Flash        目录 end|2018-12-13 12:06| 码云 | CSDN | OSChina | cnblogs  遇到的常见问题命令找不到 sudo找不到 安">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-12-13T11:53:28.395Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="LinuxProblem.md">
+<meta name="twitter:description" content="目录 start  遇到的常见问题 命令找不到 其他 终端响铃 Ubuntu与Windows10时间相差8小时的解决 终端开启慢 Deepin的NVIDIA驱动问题 笔记本突然断电导致开机报错 输入法 fcitx   Flash        目录 end|2018-12-13 12:06| 码云 | CSDN | OSChina | cnblogs  遇到的常见问题命令找不到 sudo找不到 安">
+    
+        <link rel="alternate" type="application/atom+xml" title="Kuangcp Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Kuangcp</h5>
+          <a href="mailto:634206017@qq.com" title="634206017@qq.com" class="mail">634206017@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/">
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives">
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags">
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories">
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/kuangcp" target="_blank">
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/mythos" target="_blank">
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/custom">
+                <i class="icon icon-lg icon-link"></i>
+                测试
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">LinuxProblem.md</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">LinuxProblem.md</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-12-13T11:53:28.395Z" itemprop="datePublished" class="page-time">
+  2018-12-13
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#遇到的常见问题"><span class="post-toc-number">1.</span> <span class="post-toc-text">遇到的常见问题</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#命令找不到"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">命令找不到</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#其他"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">其他</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#终端响铃"><span class="post-toc-number">1.2.1.</span> <span class="post-toc-text">终端响铃</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Ubuntu与Windows10时间相差8小时的解决"><span class="post-toc-number">1.2.2.</span> <span class="post-toc-text">Ubuntu与Windows10时间相差8小时的解决</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#终端开启慢"><span class="post-toc-number">1.2.3.</span> <span class="post-toc-text">终端开启慢</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Deepin的NVIDIA驱动问题"><span class="post-toc-number">1.2.4.</span> <span class="post-toc-text">Deepin的NVIDIA驱动问题</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#笔记本突然断电导致开机报错"><span class="post-toc-number">1.2.5.</span> <span class="post-toc-text">笔记本突然断电导致开机报错</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#输入法"><span class="post-toc-number">1.2.5.1.</span> <span class="post-toc-text">输入法</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#fcitx"><span class="post-toc-number">1.2.5.1.1.</span> <span class="post-toc-text">fcitx</span></a></li></ol></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Flash"><span class="post-toc-number">1.2.5.2.</span> <span class="post-toc-text">Flash</span></a></li></ol></li></ol></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-Memo-Linux-Base-LinuxProblem" class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">LinuxProblem.md</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-12-13 19:53:28" datetime="2018-12-13T11:53:28.395Z" itemprop="datePublished">2018-12-13</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style="display:none">
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p><strong>目录 start</strong></p>
+<ol>
+<li><a href="#遇到的常见问题">遇到的常见问题</a><ol>
+<li><a href="#命令找不到">命令找不到</a></li>
+<li><a href="#其他">其他</a><ol>
+<li><a href="#终端响铃">终端响铃</a></li>
+<li><a href="#ubuntu与windows10时间相差8小时的解决">Ubuntu与Windows10时间相差8小时的解决</a></li>
+<li><a href="#终端开启慢">终端开启慢</a></li>
+<li><a href="#deepin的nvidia驱动问题">Deepin的NVIDIA驱动问题</a></li>
+<li><a href="#笔记本突然断电导致开机报错">笔记本突然断电导致开机报错</a><ol>
+<li><a href="#输入法">输入法</a><ol>
+<li><a href="#fcitx">fcitx</a></li>
+</ol>
+</li>
+<li><a href="#flash">Flash</a></li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<p><strong>目录 end</strong>|<em>2018-12-13 12:06</em>| <a href="https://gitee.com/gin9" target="_blank" rel="noopener">码云</a> | <a href="http://blog.csdn.net/kcp606" target="_blank" rel="noopener">CSDN</a> | <a href="https://my.oschina.net/kcp1104" target="_blank" rel="noopener">OSChina</a> | <a href="http://www.cnblogs.com/kuangcp" target="_blank" rel="noopener">cnblogs</a></p>
+<hr>
+<h1 id="遇到的常见问题"><a href="#遇到的常见问题" class="headerlink" title="遇到的常见问题"></a>遇到的常见问题</h1><h2 id="命令找不到"><a href="#命令找不到" class="headerlink" title="命令找不到"></a>命令找不到</h2><ul>
+<li><code>sudo找不到</code> 安装 sudo</li>
+<li><code>locale-gen 找不到</code> 安装 locales 使用<code>locale-gen --purge</code>命令进行更新编码</li>
+</ul>
+<blockquote>
+<p>Linux上的报错, 提示说找不到共享库 | <a href="http://www.cnblogs.com/Anker/p/3209876.html" target="_blank" rel="noopener">参考解决方式 </a></p>
+</blockquote>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><h3 id="终端响铃"><a href="#终端响铃" class="headerlink" title="终端响铃"></a>终端响铃</h3><blockquote>
+<p><a href="https://blog.csdn.net/u010691256/article/details/9048729" target="_blank" rel="noopener">参考博客: Linux中关闭响铃</a></p>
+</blockquote>
+<ol>
+<li>临时关闭：<code>rmmod pcspkr</code> 临时开启：<code>modprobe pcspkr</code></li>
+<li>编辑 <code>/etc/inputrc</code>，找到<code>#set bell-style none</code>这一行，去掉前面的注释符号</li>
+<li>xset -b</li>
+</ol>
+<p><code>下面的方法不敢试</code></p>
+<ul>
+<li>对于Debian/Ubuntu系统，使用root身份执行：<ul>
+<li><code>sudo echo &quot;blacklist pcspkr&quot; &gt;&gt; /etc/modprobe.d/blacklist</code></li>
+</ul>
+</li>
+<li>对于CentOS/Redhat/RHEL/Fedora系统，使用root身份执行：<ul>
+<li><code>echo &quot;alias pcspkr off&quot; &gt;&gt; /etc/modprobe.conf</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="Ubuntu与Windows10时间相差8小时的解决"><a href="#Ubuntu与Windows10时间相差8小时的解决" class="headerlink" title="Ubuntu与Windows10时间相差8小时的解决"></a>Ubuntu与Windows10时间相差8小时的解决</h3><ul>
+<li><code>timedatectl set-local-rtc true</code></li>
+</ul>
+<h3 id="终端开启慢"><a href="#终端开启慢" class="headerlink" title="终端开启慢"></a>终端开启慢</h3><ul>
+<li>检查 .bashrc 文件 看是否有可疑脚本,<ul>
+<li>这次就是因为 sdkman 的原因导致巨慢,那上次搞得我新建用户,重装系统是什么原因呢?</li>
+</ul>
+</li>
+</ul>
+<h3 id="Deepin的NVIDIA驱动问题"><a href="#Deepin的NVIDIA驱动问题" class="headerlink" title="Deepin的NVIDIA驱动问题"></a>Deepin的NVIDIA驱动问题</h3><ul>
+<li><a href="https://bbs.deepin.org/forum.php?mod=viewthread&amp;tid=132312" target="_blank" rel="noopener">论坛博客</a><ul>
+<li><code>sudo apt-get install bumblebee-nvidia nvidia-driver nvidia-settings</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="笔记本突然断电导致开机报错"><a href="#笔记本突然断电导致开机报错" class="headerlink" title="笔记本突然断电导致开机报错"></a>笔记本突然断电导致开机报错</h3><blockquote>
+<p>报错信息: fsck exited with status code 4</p>
+</blockquote>
+<ol>
+<li>根据报错提示的分区, 进行修复, 由于我的Linux是ext3文件系统</li>
+<li><code>fsck.ext3 -y /dev/sda9</code> <strong>分区根据实际情况</strong></li>
+<li>完成后重启即可</li>
+</ol>
+<h4 id="输入法"><a href="#输入法" class="headerlink" title="输入法"></a>输入法</h4><h5 id="fcitx"><a href="#fcitx" class="headerlink" title="fcitx"></a>fcitx</h5><ul>
+<li>fcitx单核满载:三种（搜狗拼音导致）<ul>
+<li>杀掉，fcitx -r</li>
+<li>先把进程杀掉再fcitx-autostart &amp;</li>
+<li>fcitx再fcitx-qimpanel<br><code>相关网页：</code></li>
+</ul>
+</li>
+<li><a href="https://ausdn.com/s/ubuntu+cpu+fcitx" target="_blank" rel="noopener">某引擎搜索结果页</a>| <a href="https://www.findhao.net/res/786" target="_blank" rel="noopener">几种方式</a>| <a href="http://tieba.baidu.com/p/3863217434" target="_blank" rel="noopener">卸载搜狗安装拼音</a></li>
+<li><p><a href="https://www.zhihu.com/question/19839748" target="_blank" rel="noopener">知乎问题</a> | <a href="http://forum.ubuntu.com.cn/viewtopic.php?f=122&amp;t=173730&amp;p=1299087" target="_blank" rel="noopener">ubuntu论坛</a> | <a href="http://forum.ubuntu.com.cn/viewtopic.php?f=8&amp;t=194486&amp;start=0" target="_blank" rel="noopener">ubuntu论坛</a></p>
+</li>
+<li><p>输入法没有显示打字窗口</p>
+<ul>
+<li>直接杀掉 sogou-qimpanel 然后点击图标进行启动</li>
+</ul>
+</li>
+</ul>
+<h4 id="Flash"><a href="#Flash" class="headerlink" title="Flash"></a>Flash</h4><ul>
+<li>点击<a href="https://get.adobe.com/cn/flashplayer/" target="_blank" rel="noopener">官网下载地址</a>下载,然后解压,</li>
+<li>将文件复制进火狐插件目录:<code>sudo cp libflashplayer.so  /usr/lib64/mozilla/plugins</code></li>
+<li>添加其他用户可执行权限<code>chmod 755 /usr/lib64/mozilla/plugins/libflashplayer.so</code></li>
+</ul>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2018-12-13T11:53:28.395Z" itemprop="dateUpdated">2018-12-13 19:53:28</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2018/12/13/Memo-Linux-Base-LinuxProblem/" target="_blank" rel="external">http://blog.kuangcp.top/2018/12/13/Memo-Linux-Base-LinuxProblem/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="http://blog.kuangcp.top">
+            <img src="/img/avatar.jpg" alt="Kuangcp">
+            Kuangcp
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.kuangcp.top/2018/12/13/Memo-Linux-Base-LinuxProblem/&title=《LinuxProblem.md》 — Kuangcp Blog&pic=http://blog.kuangcp.top/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.kuangcp.top/2018/12/13/Memo-Linux-Base-LinuxProblem/&title=《LinuxProblem.md》 — Kuangcp Blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.kuangcp.top/2018/12/13/Memo-Linux-Base-LinuxProblem/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《LinuxProblem.md》 — Kuangcp Blog&url=http://blog.kuangcp.top/2018/12/13/Memo-Linux-Base-LinuxProblem/&via=http://blog.kuangcp.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.kuangcp.top/2018/12/13/Memo-Linux-Base-LinuxProblem/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/12/13/Memo-Linux-Base-LinuxManual/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">LinuxManual.md</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/12/13/Memo-Linux-Base-LinuxStreamEditor/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">LinuxStreamEditor.md</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check" data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style="display:none">
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style="display:none">
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Kuangcp &copy; 2015 - 2018</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.kuangcp.top/2018/12/13/Memo-Linux-Base-LinuxProblem/&title=《LinuxProblem.md》 — Kuangcp Blog&pic=http://blog.kuangcp.top/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.kuangcp.top/2018/12/13/Memo-Linux-Base-LinuxProblem/&title=《LinuxProblem.md》 — Kuangcp Blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.kuangcp.top/2018/12/13/Memo-Linux-Base-LinuxProblem/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《LinuxProblem.md》 — Kuangcp Blog&url=http://blog.kuangcp.top/2018/12/13/Memo-Linux-Base-LinuxProblem/&via=http://blog.kuangcp.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.kuangcp.top/2018/12/13/Memo-Linux-Base-LinuxProblem/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACsUlEQVR42u3awWrDMBAE0P7/T7fQU6G1M7OSkgaeT8Emip4CXjGrj4/4+vy+ru5cff555/d19fT3/auRt114eHh4o6knk7ifUD5my8uf/jEfPDw8vGO8+2Jw9eV2WvejzUrRAwseHh7eS3kJtZ1iPmk8PDy8d+QlL/okVsiX7AV1Dw8PDy/mrUyx+LEyCH5q1oKHh4cX89oG2H/4fLC/h4eHh7fQVV9vTSUv96QYzC48PDy8E7w8fm03u7s24u0i1p00PDw8vBFv5QBBG0bsWrgnnY/Aw8PDC/LVlaHbECFZmiSiLcJcPDw8vGXeeqtpPXSYHS+IxsHDw8M7xkuGTorH+lGtPEmImmF4eHh4B3jJBjff1A4DgpLazh8PDw9vLy+PG1bi2lmUsKFs4OHh4R3gta/sWWjblpzZZr04GYGHh4e3wFtvWbWlZQbISQ9Sajw8PLxNvLa1n7/oZ8vUYi7/Ejw8PLxjvHxjndxpY4U2Gs4bbHh4eHinee1E27h2ZdLDkfHw8PCewptFrrM2/6wIFU/x8PDwDvNm1DzaaLfRebAbFQY8PDy8w7x2qz1rkrVFqN364+Hh4Z3jtTHrbOptxLDh+AIeHh7eMd6uOKCNZWfBRBFP4OHh4R3jrbS17kco2vxlnBF9Cw8PD+8Yb53UloGkPMwWrohx8fDw8Ea8fFM7OzTQhg5t8YiiDTw8PLytvF1b2HZFc9LsIMIfYQQeHh7eAV5dT4LAN2+zzRbxwQLh4eHhHeC1xWAWueZHDWafN1x4eHh4JS8pBvlxgfYoQL5ws+AYDw8P7xyvDVjbg1P5VntzWIyHh4f3Ul57jKDF5CWk2OLj4eHhvRVvV4TRhiPDLTUeHh5eyUsmOoseZi2xZJmiX8TDw8M7wGsbYDm7XaD1hdjQ38PDw8O7430BJkWSlw4Rf8QAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

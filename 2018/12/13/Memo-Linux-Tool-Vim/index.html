@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>Vim.md | Kuangcp Blog | Javaer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="目录 start  Vim Tips 基本配置 基础操作 跳转 搜索匹配 复制粘贴 插入模式 命令模式   vim-init spf13 SpaceVim space-vim    目录 end|2018-12-13 12:06| 码云 | CSDN | OSChina | cnblogs  Vim 学习曲线很高，但是学会熟练使用后就效率很高   vim galore Vim galore 中文翻">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vim.md">
+<meta property="og:url" content="http://blog.kuangcp.top/2018/12/13/Memo-Linux-Tool-Vim/index.html">
+<meta property="og:site_name" content="Kuangcp Blog">
+<meta property="og:description" content="目录 start  Vim Tips 基本配置 基础操作 跳转 搜索匹配 复制粘贴 插入模式 命令模式   vim-init spf13 SpaceVim space-vim    目录 end|2018-12-13 12:06| 码云 | CSDN | OSChina | cnblogs  Vim 学习曲线很高，但是学会熟练使用后就效率很高   vim galore Vim galore 中文翻">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-12-13T11:53:28.395Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Vim.md">
+<meta name="twitter:description" content="目录 start  Vim Tips 基本配置 基础操作 跳转 搜索匹配 复制粘贴 插入模式 命令模式   vim-init spf13 SpaceVim space-vim    目录 end|2018-12-13 12:06| 码云 | CSDN | OSChina | cnblogs  Vim 学习曲线很高，但是学会熟练使用后就效率很高   vim galore Vim galore 中文翻">
+    
+        <link rel="alternate" type="application/atom+xml" title="Kuangcp Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Kuangcp</h5>
+          <a href="mailto:634206017@qq.com" title="634206017@qq.com" class="mail">634206017@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/">
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives">
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags">
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories">
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/kuangcp" target="_blank">
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/mythos" target="_blank">
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/custom">
+                <i class="icon icon-lg icon-link"></i>
+                测试
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Vim.md</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Vim.md</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-12-13T11:53:28.395Z" itemprop="datePublished" class="page-time">
+  2018-12-13
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Vim"><span class="post-toc-number">1.</span> <span class="post-toc-text">Vim</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Tips"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">Tips</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#基本配置"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">基本配置</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#基础操作"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">基础操作</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#跳转"><span class="post-toc-number">1.3.1.</span> <span class="post-toc-text">跳转</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#搜索匹配"><span class="post-toc-number">1.3.2.</span> <span class="post-toc-text">搜索匹配</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#复制粘贴"><span class="post-toc-number">1.3.3.</span> <span class="post-toc-text">复制粘贴</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#插入模式"><span class="post-toc-number">1.3.4.</span> <span class="post-toc-text">插入模式</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#命令模式"><span class="post-toc-number">1.3.5.</span> <span class="post-toc-text">命令模式</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#vim-init"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">vim-init</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#spf13"><span class="post-toc-number">1.5.</span> <span class="post-toc-text">spf13</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#SpaceVim"><span class="post-toc-number">1.6.</span> <span class="post-toc-text">SpaceVim</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#space-vim"><span class="post-toc-number">1.7.</span> <span class="post-toc-text">space-vim</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-Memo-Linux-Tool-Vim" class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Vim.md</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-12-13 19:53:28" datetime="2018-12-13T11:53:28.395Z" itemprop="datePublished">2018-12-13</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style="display:none">
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p><strong>目录 start</strong></p>
+<ol>
+<li><a href="#vim">Vim</a><ol>
+<li><a href="#tips">Tips</a></li>
+<li><a href="#基本配置">基本配置</a></li>
+<li><a href="#基础操作">基础操作</a><ol>
+<li><a href="#跳转">跳转</a></li>
+<li><a href="#搜索匹配">搜索匹配</a></li>
+<li><a href="#复制粘贴">复制粘贴</a></li>
+<li><a href="#插入模式">插入模式</a></li>
+<li><a href="#命令模式">命令模式</a></li>
+</ol>
+</li>
+<li><a href="#vim-init">vim-init</a></li>
+<li><a href="#spf13">spf13</a></li>
+<li><a href="#spacevim">SpaceVim</a></li>
+<li><a href="#space-vim">space-vim</a></li>
+</ol>
+</li>
+</ol>
+<p><strong>目录 end</strong>|<em>2018-12-13 12:06</em>| <a href="https://gitee.com/gin9" target="_blank" rel="noopener">码云</a> | <a href="http://blog.csdn.net/kcp606" target="_blank" rel="noopener">CSDN</a> | <a href="https://my.oschina.net/kcp1104" target="_blank" rel="noopener">OSChina</a> | <a href="http://www.cnblogs.com/kuangcp" target="_blank" rel="noopener">cnblogs</a></p>
+<hr>
+<h1 id="Vim"><a href="#Vim" class="headerlink" title="Vim"></a>Vim</h1><blockquote>
+<p>学习曲线很高，但是学会熟练使用后就效率很高</p>
+</blockquote>
+<ul>
+<li><a href="https://github.com/mhinz/vim-galore" target="_blank" rel="noopener">vim galore</a></li>
+<li><a href="https://github.com/wsdjeg/vim-galore-zh_cn" target="_blank" rel="noopener">Vim galore 中文翻译</a></li>
+</ul>
+<blockquote>
+<p><a href="http://bytefluent.com/vivify/" target="_blank" rel="noopener">bytefluent.com/vivify</a>方便的自制主题</p>
+</blockquote>
+<h2 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h2><ol>
+<li><p>误按 <code>Ctrl S</code> 终止屏幕输出（即停止回显）你敲的依然有效，只是看不见 <code>Ctrl Q</code> 即可恢复</p>
+</li>
+<li><p>/usr/share/vim/vim80/macros/less.sh vim版less 具备语法高亮 路径中间是依据vim版本来的,按实际情况改动</p>
+</li>
+</ol>
+<hr>
+<p><code>vim输出的信息</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">系统 vimrc 文件: &quot;$VIM/vimrc&quot;</span><br><span class="line">用户 vimrc 文件: &quot;$HOME/.vimrc&quot;</span><br><span class="line">第二用户 vimrc 文件: &quot;~/.vim/vimrc&quot;</span><br><span class="line">用户 exrc 文件: &quot;$HOME/.exrc&quot;</span><br><span class="line">defaults file: &quot;$VIMRUNTIME/defaults.vim&quot;</span><br><span class="line">$VIM 预设值: &quot;/usr/share/vim&quot;</span><br></pre></td></tr></table></figure></p>
+<h2 id="基本配置"><a href="#基本配置" class="headerlink" title="基本配置"></a>基本配置</h2><ul>
+<li>在文件 全局：<code>/etc/vim/vimrc</code> 先备份一下 <code>sudo cp /etc/vim/vimrc /etc/vim/vimrc.bak</code><ul>
+<li>或者当前用户：<code>~/.vimrc</code> 中添加如下内容<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">set showcmd		&quot; Show (partial) command in status line.</span><br><span class="line">set autowrite		&quot; Automatically save before commands like :next and :make</span><br><span class="line">set nocompatible</span><br><span class="line">set number</span><br><span class="line">filetype on </span><br><span class="line">syntax on</span><br><span class="line">set history=1000</span><br><span class="line">set autoindent</span><br><span class="line">set smartindent</span><br><span class="line">set tabstop=4</span><br><span class="line">set expandtab</span><br><span class="line">set shiftwidth=4</span><br><span class="line">set showmatch</span><br><span class="line">set guioptions=T</span><br><span class="line">set ruler</span><br><span class="line">set hls</span><br><span class="line">set backspace=2</span><br><span class="line">imap jk &lt;Esc&gt; </span><br><span class="line"></span><br><span class="line">set relativenumber &quot; 设置相对行号</span><br><span class="line">&quot; 逗号后追加空格</span><br><span class="line">inoremap , ,&lt;space&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>~/.gvimrc</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">:set guifont=IBM\ Plex\ Mono\ 12</span><br><span class="line">colorscheme desert</span><br><span class="line">syntax enable</span><br><span class="line">syntax on</span><br></pre></td></tr></table></figure></p>
+<h2 id="基础操作"><a href="#基础操作" class="headerlink" title="基础操作"></a>基础操作</h2><blockquote>
+<p><a href="http://www.jianshu.com/p/bcbe916f97e1" target="_blank" rel="noopener">参考博客</a><br><a href="https://linuxtoy.org/archives/efficient-editing-with-vim.html" target="_blank" rel="noopener">高效率编辑器 Vim——操作篇，非常适合 Vim 新手</a></p>
+</blockquote>
+<ul>
+<li>v 可视化操作<blockquote>
+<p><a href="https://blog.csdn.net/topgun_chenlingyun/article/details/8013115" target="_blank" rel="noopener">参考博客: vim中执行shell命令小结</a></p>
+</blockquote>
+<h3 id="跳转"><a href="#跳转" class="headerlink" title="跳转"></a>跳转</h3></li>
+<li>K J H L 上下左右</li>
+<li>Ctrl+F  上翻一页</li>
+<li>Ctrl+B  下翻一页</li>
+<li><p>H M L   跳转到屏幕 顶 中 尾</p>
+<ul>
+<li>2H  第二行 3L 倒数第三行</li>
+</ul>
+</li>
+<li><p><code>*</code> 当光标在某单词上 会进行搜索跳转到下一个</p>
+</li>
+<li><code>#</code> 与<code>*</code> 一样，不过是跳转到上一个</li>
+<li><code>/)</code>和<code>/(</code> 跳转到 后和前 语句的位置 为了() 跳转方便</li>
+<li><code>/}</code>和<code>/{</code> 跳转到 后和前 段落的位置  </li>
+<li><code>g_</code> 跳转到最后一个不是空格的字符的位置</li>
+<li><code>gg</code> 跳转到文件第一行的起始位置</li>
+<li><p><code>G</code> 跳转到文件最后一行起始位置</p>
+</li>
+<li><p><code>5gg</code>或<code>5G</code> <code>:5</code> 跳转到 5 行的起始位置</p>
+</li>
+<li><code>number</code> 正数则是往下，负数则是往上 (相对)</li>
+</ul>
+<p><code>行内移动</code></p>
+<ul>
+<li><code>w</code> 右移到下一个字的开头</li>
+<li><code>e</code> 右移到下一个字的末尾</li>
+<li><code>b</code> 左移到前一个字的开头</li>
+<li><code>0</code> 左移光标到本行的开始</li>
+<li><code>$</code> 右移光标到行末尾</li>
+<li><code>^</code> 移动到本行第一个非空字符</li>
+</ul>
+<p><code>fg</code> 在光标所在处(如果是有效的目录或者文件,就能直接跳转过去)</p>
+<h3 id="搜索匹配"><a href="#搜索匹配" class="headerlink" title="搜索匹配"></a>搜索匹配</h3><ul>
+<li><code>/name</code>  正向搜索字符串 name<ul>
+<li><code>n</code> 搜索后跳下一个 </li>
+<li><code>N</code> 搜索后跳上一个</li>
+</ul>
+</li>
+<li><code>?name</code> 反向搜索字符串</li>
+</ul>
+<h3 id="复制粘贴"><a href="#复制粘贴" class="headerlink" title="复制粘贴"></a>复制粘贴</h3><blockquote>
+<p><code>:reg</code> 查看寄存器</p>
+</blockquote>
+<ul>
+<li><code>yy</code> 复制当前行 <code>nyy</code> 是复制该行开始的共n行(是vim内的剪贴板)<ul>
+<li><code>yn</code> 加换行 等效</li>
+</ul>
+</li>
+<li><code>&quot;+nyy</code> 同理复制n行，操作系统级的剪贴板<ul>
+<li><code>&quot;+yn</code> 等效</li>
+</ul>
+</li>
+</ul>
+<hr>
+<ul>
+<li><code>P</code>/<code>p</code>  将剪贴板的内容粘贴在 前/后<ul>
+<li><code>&quot;+p</code> 将系统的剪贴板内容粘贴进来</li>
+</ul>
+</li>
+<li><code>u</code> 撤销上一条命令的效果</li>
+<li><code>.</code> 重复最后一条修改正文的命令</li>
+</ul>
+<h3 id="插入模式"><a href="#插入模式" class="headerlink" title="插入模式"></a>插入模式</h3><ul>
+<li>i  在光标左侧插入</li>
+<li>a  在光标右侧插入</li>
+<li>o  在光标该行下一行新增一行</li>
+<li>O  在光标该行上一行新增一行</li>
+<li>I  在光标该行开头插入</li>
+<li>A  在光标该行末尾插入</li>
+</ul>
+<h3 id="命令模式"><a href="#命令模式" class="headerlink" title="命令模式"></a>命令模式</h3><ul>
+<li><code>:e path</code> 打开指定路径下文件</li>
+<li><code>:w</code> 保存当前编辑的文件 后接文件名就是另存为</li>
+<li><code>ZZ</code> 退出Vim 并将所做修改覆盖原始文件</li>
+<li><code>:q</code> 未修改的情况下退出</li>
+<li><code>:q!</code> 放弃所有修改，退出</li>
+<li><code>wq</code> <code>x</code> 先保存后退出</li>
+</ul>
+<h2 id="vim-init"><a href="#vim-init" class="headerlink" title="vim-init"></a>vim-init</h2><blockquote>
+<p><a href="https://github.com/skywind3000/vim-init" target="_blank" rel="noopener">Github:</a></p>
+</blockquote>
+<h2 id="spf13"><a href="#spf13" class="headerlink" title="spf13"></a>spf13</h2><ul>
+<li><a href="http://vim.spf13.com/" target="_blank" rel="noopener">official site</a></li>
+</ul>
+<h2 id="SpaceVim"><a href="#SpaceVim" class="headerlink" title="SpaceVim"></a>SpaceVim</h2><blockquote>
+<p><a href="https://ruby-china.org/topics/32020" target="_blank" rel="noopener">参考博客: SpaceVim 中文手册</a><code>主要看评论, 两个作者理念不同</code><br><a href="https://www.zhihu.com/question/54270182" target="_blank" rel="noopener">参考博客: 如何评价Vim配置文件SpaceVim?</a></p>
+</blockquote>
+<ul>
+<li><a href="https://github.com/topics/spacevim" target="_blank" rel="noopener">Space Vim</a><code>把Vim玩上天了</code><ul>
+<li><a href="https://legacy.gitbook.com/book/everettjf/spacevimtutorial/details" target="_blank" rel="noopener">GitBook : Space Vim Guide</a></li>
+<li><a href="https://spacevim.org/quick-start-guide/" target="_blank" rel="noopener">quick start</a></li>
+<li><a href="https://spacevim.org/cn/documentation/" target="_blank" rel="noopener">中文 文档</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="space-vim"><a href="#space-vim" class="headerlink" title="space-vim"></a>space-vim</h2><blockquote>
+<p><a href="https://github.com/liuchengxu/space-vim" target="_blank" rel="noopener">Github:</a></p>
+</blockquote>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2018-12-13T11:53:28.395Z" itemprop="dateUpdated">2018-12-13 19:53:28</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2018/12/13/Memo-Linux-Tool-Vim/" target="_blank" rel="external">http://blog.kuangcp.top/2018/12/13/Memo-Linux-Tool-Vim/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="http://blog.kuangcp.top">
+            <img src="/img/avatar.jpg" alt="Kuangcp">
+            Kuangcp
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.kuangcp.top/2018/12/13/Memo-Linux-Tool-Vim/&title=《Vim.md》 — Kuangcp Blog&pic=http://blog.kuangcp.top/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.kuangcp.top/2018/12/13/Memo-Linux-Tool-Vim/&title=《Vim.md》 — Kuangcp Blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.kuangcp.top/2018/12/13/Memo-Linux-Tool-Vim/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Vim.md》 — Kuangcp Blog&url=http://blog.kuangcp.top/2018/12/13/Memo-Linux-Tool-Vim/&via=http://blog.kuangcp.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.kuangcp.top/2018/12/13/Memo-Linux-Tool-Vim/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/12/13/Memo-Java-Log/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Log.md</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/12/13/Memo-Linux-Tool-Terminal/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Terminal.md</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check" data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style="display:none">
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style="display:none">
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Kuangcp &copy; 2015 - 2018</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.kuangcp.top/2018/12/13/Memo-Linux-Tool-Vim/&title=《Vim.md》 — Kuangcp Blog&pic=http://blog.kuangcp.top/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.kuangcp.top/2018/12/13/Memo-Linux-Tool-Vim/&title=《Vim.md》 — Kuangcp Blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.kuangcp.top/2018/12/13/Memo-Linux-Tool-Vim/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Vim.md》 — Kuangcp Blog&url=http://blog.kuangcp.top/2018/12/13/Memo-Linux-Tool-Vim/&via=http://blog.kuangcp.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.kuangcp.top/2018/12/13/Memo-Linux-Tool-Vim/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACLUlEQVR42u3a3W6DMAwG0L7/S3fSbifgs02rkRyuEK1CTid5/snrFV/v3+voPnny99Pz6/WJCwMD47GMZLmj++TJ0bby90ZUDAyMDRh5kD16QbLFSXC/2DMGBgbG6XbP1zlf4fw7GBgYGL2Am6Ru1cQxSUkxMDAw8mKymgLmzbUv1eIYGBgPZMwHA5+7/+p8AwMD418y3uMrSdrmA4CLFTAwMJZm5I2wagmal7JJQhkFYgwMjEUZeeBL2nOTgWgCO1wTAwNjaUYSCu8aavbC+mi+gYGBsQSj15TvbXdydOxiTQwMjKUZvUJ0fnji/PvNlBEDA2NpRl5Y5qnkXT9Hsj4GBsYOjGqLrdrKLzfOigfRMDAw9mEk4TU/+lBd4XyL0TgTAwNjA0Y+Yqy2zCZDzUJBi4GBsSgjD51JYK0+yQN04VgYBgbGcozeYCA/HpE3/as7wcDAwOh92ksZJ+25i64hBgbGEowkgPYi26T0zVt+hf8DGBgYj2VMcq1q07/6xsmuMDAw1mNMitjesDNfrfDTYGBgbMDIeb1WfnVQWm32YWBgrM24K4AmCdyo9d/7y2BgYDyc8S5e1eIzGWfmg8/D9TEwMJZm9ALcXZE+x2NgYGBUW2PV1/fCdHMei4GBsTQjL2h7IThvtzVHqhgYGBhxG64acPNSdjTCxMDA2IaRDwOqyd8NzTUMDIwNGMmivQMT1fFAc7SJgYGxNGN+RqMaNPPwfTMSAwPjeYwfoMDHZW4OLMkAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

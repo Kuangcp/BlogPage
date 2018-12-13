@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>DockerFile.md | Kuangcp Blog | Javaer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="目录 start  Dockerfile 使用入门案例 Tips Dockerfile命令 FROM MAINTAINER RUN 修改容器时区设置   CMD ENTRYPOINT USER EXPOSE ENV LABEL ARG COPY ADD VOLUME WORKDIR STOPSIGNAL ONBUILD     Practice Exercises 打包最新版git Dockerf">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DockerFile.md">
+<meta property="og:url" content="http://blog.kuangcp.top/2018/12/13/Memo-Linux-Container-DockerFile/index.html">
+<meta property="og:site_name" content="Kuangcp Blog">
+<meta property="og:description" content="目录 start  Dockerfile 使用入门案例 Tips Dockerfile命令 FROM MAINTAINER RUN 修改容器时区设置   CMD ENTRYPOINT USER EXPOSE ENV LABEL ARG COPY ADD VOLUME WORKDIR STOPSIGNAL ONBUILD     Practice Exercises 打包最新版git Dockerf">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-12-13T11:53:28.395Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="DockerFile.md">
+<meta name="twitter:description" content="目录 start  Dockerfile 使用入门案例 Tips Dockerfile命令 FROM MAINTAINER RUN 修改容器时区设置   CMD ENTRYPOINT USER EXPOSE ENV LABEL ARG COPY ADD VOLUME WORKDIR STOPSIGNAL ONBUILD     Practice Exercises 打包最新版git Dockerf">
+    
+        <link rel="alternate" type="application/atom+xml" title="Kuangcp Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Kuangcp</h5>
+          <a href="mailto:634206017@qq.com" title="634206017@qq.com" class="mail">634206017@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/">
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives">
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags">
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories">
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/kuangcp" target="_blank">
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/mythos" target="_blank">
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/custom">
+                <i class="icon icon-lg icon-link"></i>
+                测试
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">DockerFile.md</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">DockerFile.md</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-12-13T11:53:28.395Z" itemprop="datePublished" class="page-time">
+  2018-12-13
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Dockerfile"><span class="post-toc-number">1.</span> <span class="post-toc-text">Dockerfile</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#使用入门案例"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">使用入门案例</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Tips"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">Tips</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Dockerfile命令"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">Dockerfile命令</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#FROM"><span class="post-toc-number">1.3.1.</span> <span class="post-toc-text">FROM</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#MAINTAINER"><span class="post-toc-number">1.3.2.</span> <span class="post-toc-text">MAINTAINER</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#RUN"><span class="post-toc-number">1.3.3.</span> <span class="post-toc-text">RUN</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#修改容器时区设置"><span class="post-toc-number">1.3.3.1.</span> <span class="post-toc-text">修改容器时区设置</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#CMD"><span class="post-toc-number">1.3.4.</span> <span class="post-toc-text">CMD</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#ENTRYPOINT"><span class="post-toc-number">1.3.5.</span> <span class="post-toc-text">ENTRYPOINT</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#USER"><span class="post-toc-number">1.3.6.</span> <span class="post-toc-text">USER</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#EXPOSE"><span class="post-toc-number">1.3.7.</span> <span class="post-toc-text">EXPOSE</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#ENV"><span class="post-toc-number">1.3.8.</span> <span class="post-toc-text">ENV</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#LABEL"><span class="post-toc-number">1.3.9.</span> <span class="post-toc-text">LABEL</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#ARG"><span class="post-toc-number">1.3.10.</span> <span class="post-toc-text">ARG</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#COPY"><span class="post-toc-number">1.3.11.</span> <span class="post-toc-text">COPY</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#ADD"><span class="post-toc-number">1.3.12.</span> <span class="post-toc-text">ADD</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#VOLUME"><span class="post-toc-number">1.3.13.</span> <span class="post-toc-text">VOLUME</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#WORKDIR"><span class="post-toc-number">1.3.14.</span> <span class="post-toc-text">WORKDIR</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#STOPSIGNAL"><span class="post-toc-number">1.3.15.</span> <span class="post-toc-text">STOPSIGNAL</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#ONBUILD"><span class="post-toc-number">1.3.16.</span> <span class="post-toc-text">ONBUILD</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Practice"><span class="post-toc-number">2.</span> <span class="post-toc-text">Practice</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Exercises"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">Exercises</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#打包最新版git"><span class="post-toc-number">2.1.1.</span> <span class="post-toc-text">打包最新版git</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Dockerfile中新建用户"><span class="post-toc-number">2.1.2.</span> <span class="post-toc-text">Dockerfile中新建用户</span></a></li></ol></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-Memo-Linux-Container-DockerFile" class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">DockerFile.md</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-12-13 19:53:28" datetime="2018-12-13T11:53:28.395Z" itemprop="datePublished">2018-12-13</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style="display:none">
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p><strong>目录 start</strong></p>
+<ol>
+<li><a href="#dockerfile">Dockerfile</a><ol>
+<li><a href="#使用入门案例">使用入门案例</a></li>
+<li><a href="#tips">Tips</a></li>
+<li><a href="#dockerfile命令">Dockerfile命令</a><ol>
+<li><a href="#from">FROM</a></li>
+<li><a href="#maintainer">MAINTAINER</a></li>
+<li><a href="#run">RUN</a><ol>
+<li><a href="#修改容器时区设置">修改容器时区设置</a></li>
+</ol>
+</li>
+<li><a href="#cmd">CMD</a></li>
+<li><a href="#entrypoint">ENTRYPOINT</a></li>
+<li><a href="#user">USER</a></li>
+<li><a href="#expose">EXPOSE</a></li>
+<li><a href="#env">ENV</a></li>
+<li><a href="#label">LABEL</a></li>
+<li><a href="#arg">ARG</a></li>
+<li><a href="#copy">COPY</a></li>
+<li><a href="#add">ADD</a></li>
+<li><a href="#volume">VOLUME</a></li>
+<li><a href="#workdir">WORKDIR</a></li>
+<li><a href="#stopsignal">STOPSIGNAL</a></li>
+<li><a href="#onbuild">ONBUILD</a></li>
+</ol>
+</li>
+</ol>
+</li>
+<li><a href="#practice">Practice</a><ol>
+<li><a href="#exercises">Exercises</a><ol>
+<li><a href="#打包最新版git">打包最新版git</a></li>
+<li><a href="#dockerfile中新建用户">Dockerfile中新建用户</a></li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<p><strong>目录 end</strong>|<em>2018-12-13 12:06</em>| <a href="https://gitee.com/gin9" target="_blank" rel="noopener">码云</a> | <a href="http://blog.csdn.net/kcp606" target="_blank" rel="noopener">CSDN</a> | <a href="https://my.oschina.net/kcp1104" target="_blank" rel="noopener">OSChina</a> | <a href="http://www.cnblogs.com/kuangcp" target="_blank" rel="noopener">cnblogs</a></p>
+<hr>
+<h1 id="Dockerfile"><a href="#Dockerfile" class="headerlink" title="Dockerfile"></a>Dockerfile</h1><h2 id="使用入门案例"><a href="#使用入门案例" class="headerlink" title="使用入门案例"></a>使用入门案例</h2><ul>
+<li><p><code>mkdir test &amp;&amp; cd test &amp;&amp; touch Dockerfile</code> 输入如下文本</p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#随意写的</span></span><br><span class="line"><span class="keyword">FROM</span> alpine</span><br><span class="line"><span class="keyword">MAINTAINER</span> Mythos</span><br><span class="line"><span class="keyword">ENV</span> DIRPATH /path</span><br><span class="line"><span class="keyword">WORKDIR</span><span class="bash"> <span class="variable">$DIRPATH</span>/<span class="variable">$DIRNAME</span></span></span><br><span class="line"><span class="bash">RUN <span class="built_in">pwd</span></span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>docker build .</code> 如果成功则会得到一个没有名字的镜像 <code>none:none</code></p>
+<ul>
+<li><code>docker build -t image:tag .</code> 给镜像指定名字, 注意标签不设置就是默认的latest</li>
+</ul>
+</li>
+<li>创建镜像成功后 <code>docker run --name ContainerName -d image:tag</code> 新建容器来运行镜像</li>
+</ul>
+<h2 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h2><blockquote>
+<p><a href="https://blog.codeship.com/reduce-docker-image-size/" target="_blank" rel="noopener">Reducing Your Docker Image Size</a></p>
+</blockquote>
+<hr>
+<h2 id="Dockerfile命令"><a href="#Dockerfile命令" class="headerlink" title="Dockerfile命令"></a>Dockerfile命令</h2><ul>
+<li>Dockerfile是一个<code>镜像</code>的表示，可以通过Dockerfile来描述构建镜像的步骤，且可以自动构建一个容器</li>
+<li>所有的 Dockerfile 命令格式都是: <code>INSTRUCTION arguments</code> </li>
+<li>最好在运行这个配置文件的时候新建一个空目录目录下放dockerfile，不要使用根目录，不然全部的东西都传到守护进程里去了<ul>
+<li>因为生成过程的第一件事是将整个上下文 (递归) 发送到守护进程。</li>
+</ul>
+</li>
+<li>同样的可以使用<code>.dockerignore</code>文件来忽略不要上传的文件</li>
+</ul>
+<p><em>docker build</em></p>
+<ul>
+<li>如果文件名是默认的<code>Dockerfile</code> 就使用 <code>.</code> <ul>
+<li>否则就是 <code>docker build -t image:tag- &lt; 文件名</code> 或者使用-f参数:</li>
+<li><code>-f</code> 指向任意位置的文件进行配置 <code>docker build -f /path/to/a/Dockerfile .</code></li>
+</ul>
+</li>
+<li><code>-t</code>如果构建成功 可以指定保存新镜像的image和tag (多个的话就多个 -t就行了，例如 <code>docker build -t shykes/myapp:1.0.2 -t shykes/myapp:latest .</code>)</li>
+</ul>
+<h3 id="FROM"><a href="#FROM" class="headerlink" title="FROM"></a>FROM</h3><blockquote>
+<p>基于某镜像构建,这是整个文件的第一条指令，一定是基于某镜像构建的，如果是空镜像就使用特殊的 <code>FROM scratch</code><br>允许多个FROM命令，其后的命令就是基于该FROM的镜像构建的，但是一个dockerfile只能得到一个有名字的镜像(最后一个FROM构建的镜像)，之前的FROM就是none:none</p>
+</blockquote>
+<ul>
+<li><code>FROM image</code></li>
+<li><code>FROM image:tag</code></li>
+<li><p><code>FROM image@digest</code></p>
+</li>
+<li><p>如果FROM使用中，找不到对应的版本的镜像，整个Dockerfile就会报错返回</p>
+</li>
+</ul>
+<blockquote>
+<p>在 17.05 版本开始, 支持分步构建, Multiple stage</p>
+<ol>
+<li>例如基于一个编译环境镜像, 编译得到结果文件, 然后基于运行环境, 将结果文件复制过来, 构建成新的镜像</li>
+<li>构建出来的镜像是不包含编译环境的</li>
+</ol>
+</blockquote>
+<h3 id="MAINTAINER"><a href="#MAINTAINER" class="headerlink" title="MAINTAINER"></a>MAINTAINER</h3><ul>
+<li>留开发者名字 例如 <code>MAINTAINER kuangcp myth.kuang@gmail.com</code></li>
+<li>可以放多个信息，但是建议只有开发者信息，其他的放在Labels里 </li>
+</ul>
+<h3 id="RUN"><a href="#RUN" class="headerlink" title="RUN"></a>RUN</h3><blockquote>
+<p>每条RUN命令在当前镜像的基础上执行指定命令，并提交为新的镜像层，所以尽量将所有命令放在一个RUN里</p>
+</blockquote>
+<ul>
+<li><p><code>RUN command</code> </p>
+<ul>
+<li>这种写法中的command是shell <code>/bin/sh -C</code>负责执行，所以就会有限制，必须要有 <code>/bin/sh</code></li>
+</ul>
+</li>
+<li><p><code>RUN [&quot;executable&quot;, &quot;param1&quot;, &quot;param2&quot; ... ]</code>  一定要双引号（<code>JSON字符串的格式</code>来解析的）</p>
+<ul>
+<li>这种写法适用任意一个二进制程序 <ul>
+<li>例如bash执行 <code>RUN [&quot;/bin/bash&quot;, &quot;-C&quot;, &quot;echo hello&quot;]</code></li>
+<li>例如 ui-docker 就是基于空镜像的直接二进制文件执行的。</li>
+</ul>
+</li>
+<li>环境变量的问题： <code>RUN [&quot;echo&quot;,&quot;$HOME&quot;]</code> 是不会正常输出的，因为此时不会加载环境变量中的数据<ul>
+<li><code>RUN [&quot;sh&quot;, &quot;-c&quot;, &quot;echo&quot;, &quot;$HOME&quot;]</code> 就可以正常输出了</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>当RUN命令执行完毕后，就会生成一个新的文件层。这个文件层会保存在缓存中作为下一个指令的基础镜像存在，如果不需要缓存就加上 <code>--no-cache</code><ul>
+<li>所以就尽量是将所有的命令 放在一个RUN命令里减少镜像层数。</li>
+</ul>
+</li>
+</ul>
+<h4 id="修改容器时区设置"><a href="#修改容器时区设置" class="headerlink" title="修改容器时区设置"></a>修改容器时区设置</h4><blockquote>
+<p><a href="https://www.jianshu.com/p/004ddf941aac" target="_blank" rel="noopener">参考博客: Docker修改默认时区</a> </p>
+</blockquote>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Alpine </span></span><br><span class="line">RUN apk --no-cache add tzdata  &amp;&amp; \</span><br><span class="line">    ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime &amp;&amp; \</span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"Asia/Shanghai"</span> &gt; /etc/timezone</span><br><span class="line"></span><br><span class="line"><span class="comment"># Ubuntu</span></span><br><span class="line">RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime &amp;&amp; \</span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"Asia/Shanghai"</span> &gt; /etc/timezone &amp;&amp; \</span><br><span class="line">    dpkg-reconfigure -f noninteractive tzdata</span><br><span class="line"></span><br><span class="line"><span class="comment"># Centos</span></span><br><span class="line">RUN <span class="built_in">echo</span> <span class="string">"Asia/shanghai"</span> &gt; /etc/timezone;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>对于 alpine 以及 Ubuntu ln -s 建立到时间文件的软链接就已经够了, 但是确保没问题就最好还是修改下 时区文件</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>关于Java的时区问题</p>
+<ol>
+<li><code>docker run ... -e JAVA_OPTS=-Duser.timezone=Asia/Shanghai</code></li>
+<li>java读取的是 /etc/timezone 文件 所以修改为 Asia/Shanghai 就可以了</li>
+</ol>
+</blockquote>
+<h3 id="CMD"><a href="#CMD" class="headerlink" title="CMD"></a>CMD</h3><blockquote>
+<p>指定 容器启动时默认执行的命令</p>
+</blockquote>
+<ul>
+<li><p><code>三种格式</code></p>
+<ul>
+<li><code>CMD [&quot;executable&quot;,&quot;param1&quot;,&quot;param2&quot;]</code> (like an exec, preferred form) <code>推荐</code></li>
+<li><code>CMD [&quot;param1&quot;,&quot;param2&quot;]</code> (as default parameters to ENTRYPOINT) 作为默认参数提供给ENTRYPOINT</li>
+<li><code>CMD command param1 param2</code> (as a shell) 作为shell命令 依靠<code>bin/sh -C</code>执行</li>
+</ul>
+</li>
+<li><p>一个Dockerfile里只能有一个CMD，如果有多个，只有最后一个生效。</p>
+</li>
+<li>如果用户在<code>docker run</code> 中带了运行的命令，就会覆盖CMD命令</li>
+<li>与RUN命令一样如果要环境变量就要使用 <code>sh -C</code> : <code>CMD [&quot;sh&quot;, &quot;-C&quot;, &quot;echo $HOME&quot;]</code></li>
+</ul>
+<h3 id="ENTRYPOINT"><a href="#ENTRYPOINT" class="headerlink" title="ENTRYPOINT"></a>ENTRYPOINT</h3><blockquote>
+<p><code>容器入口点</code> 命令设置在容器启动时执行命令 一般用来做初始化容器，或者运行持久软件  </p>
+</blockquote>
+<ul>
+<li><code>ENTRYPOINT echo &quot;Welcome!&quot;</code> 那么每次启动容器都有这个输出</li>
+<li><code>ENTRYPOINT cmd param1 param2 ...</code></li>
+<li><code>ENTRYPOINT [&quot;cmd&quot;, &quot;param1&quot;, &quot;param2&quot;...]</code></li>
+</ul>
+<h3 id="USER"><a href="#USER" class="headerlink" title="USER"></a>USER</h3><ul>
+<li>切换用户，其后的命令都将以该用户执行<ul>
+<li>如果在这个镜像上的容器需要安装软件就会需要提权，就要至少创建额外的两个层，层限制是42,<ul>
+<li>所以，所有其他的操作在root用户执行 减少层数</li>
+</ul>
+</li>
+<li>更好的方法是在基础镜像中创建用户和用户组，然后在完成构建时再设置默认的用户</li>
+</ul>
+</li>
+<li>指定 mysql 的运行用户 <code>ENTRYPOINT [&quot;mysql&quot;, &quot;-u&quot;, &quot;daemon&quot;]</code></li>
+<li>更好的方式是：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ENTRYPOINT [&quot;memcached&quot;]</span><br><span class="line">USER daemon</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="EXPOSE"><a href="#EXPOSE" class="headerlink" title="EXPOSE"></a>EXPOSE</h3><ul>
+<li>对外开放端口 例如 EXPOSE 22</li>
+<li>但是还不能被外部访问到，只能被容器内或主机的其他容器访问，加上-p 开放端口才可以</li>
+</ul>
+<h3 id="ENV"><a href="#ENV" class="headerlink" title="ENV"></a>ENV</h3><blockquote>
+<p>设置环境变量 </p>
+</blockquote>
+<ul>
+<li><code>ENV &lt;key&gt; &lt;value&gt;</code><ul>
+<li>这种方式会将第一个字符串看作key，后面所有的字符串看成value</li>
+<li>所以只能设置一个变量 <code>ENV name kuang cheng ping</code></li>
+</ul>
+</li>
+<li><p><code>ENV &lt;key&gt;=&lt;value&gt;</code></p>
+<ul>
+<li>可以设置多个，但是空格要转义 <code>ENV name=myth\ kuang</code></li>
+<li>例如：设置时区 <code>ENV TZ=Asia/Shanghai</code></li>
+</ul>
+</li>
+<li><p>ENV命令之后的RUN命令都可以使用这里配置的环境变量</p>
+</li>
+<li>如果<code>docker run --env &lt;key&gt;=&lt;value&gt;</code>则会覆盖dockerfile中同名key的值<ul>
+<li><code>docker run -e</code> 重设环境变量</li>
+</ul>
+</li>
+<li><p>一个ENV命令一个新层，所以也是尽量使用一个ENV命令</p>
+</li>
+<li><p><code>ENV TIME_ZONE Asiz/Shanghai</code></p>
+</li>
+</ul>
+<h3 id="LABEL"><a href="#LABEL" class="headerlink" title="LABEL"></a>LABEL</h3><blockquote>
+<p>用来定义键值对， 相当于是一个内置的配置文件</p>
+</blockquote>
+<ul>
+<li><code>LABEL key=value</code><ul>
+<li>两种方式 前者更好，可以使用空格<code>LABEL version=&quot;java 1.8&quot;</code> <code>LABEL test=other</code></li>
+</ul>
+</li>
+<li>同样的 一个LABEL命令就会构建一个新的层，所以建议一个LABEL</li>
+<li>旧镜像中LABEL设置的key会被新镜像中的相同的key的值进行覆盖</li>
+</ul>
+<h3 id="ARG"><a href="#ARG" class="headerlink" title="ARG"></a>ARG</h3><blockquote>
+<p>用来指定一些镜像中使用的参数，例如版本信息 </p>
+</blockquote>
+<ul>
+<li><code>ARG &lt;name&gt; [=&lt;default value&gt;]</code></li>
+<li>使用<code>docker build --build=-arg&lt;name&gt;=&lt;value&gt;</code> 来传入值</li>
+</ul>
+<h3 id="COPY"><a href="#COPY" class="headerlink" title="COPY"></a>COPY</h3><blockquote>
+<p>当复制本地目录时，推荐使用copy</p>
+</blockquote>
+<blockquote>
+<p><a href="http://www.simapple.com/364.html" target="_blank" rel="noopener">参考博客</a></p>
+<ul>
+<li><code>copy &lt;src&gt; &lt;dest&gt;</code><ul>
+<li>src是当前Dockerfile的相对路径的文件或目录,也可以是远程URL</li>
+<li>dest 是目标容器中的绝对路径。</li>
+</ul>
+</li>
+<li>例如: <code>copy [&quot;./log&quot;, &quot;${APPROOT}&quot;]</code></li>
+</ul>
+</blockquote>
+<h3 id="ADD"><a href="#ADD" class="headerlink" title="ADD"></a>ADD</h3><ul>
+<li>相当于copy命令</li>
+<li><code>ADD &lt;src&gt; &lt;dest&gt;</code> <ul>
+<li>src 和 dest 和上面COPY命令使用是一样的</li>
+</ul>
+</li>
+</ul>
+<h3 id="VOLUME"><a href="#VOLUME" class="headerlink" title="VOLUME"></a>VOLUME</h3><ul>
+<li><code>VOLUME [&quot;&lt;mountpoint&gt;&quot;]</code> <code>VOLUME [&quot;/data&quot;]</code> 创建挂载点 用于共享目录</li>
+</ul>
+<h3 id="WORKDIR"><a href="#WORKDIR" class="headerlink" title="WORKDIR"></a>WORKDIR</h3><ul>
+<li><code>WORKDIR /path/to/workdir</code></li>
+<li>配置RUN, CMD, ENTRYPOINT 命令设置当前工作路径，如果目录不存在就新建</li>
+<li>可以设置多次，如果是相对路径，则相对前一个 WORKDIR 命令<ul>
+<li>例如：<code>WORKDIR /a WORKDIR b WORKDIR c RUN pwd</code> 其实是在 /a/b/c 下执行 pwd</li>
+</ul>
+</li>
+</ul>
+<h3 id="STOPSIGNAL"><a href="#STOPSIGNAL" class="headerlink" title="STOPSIGNAL"></a>STOPSIGNAL</h3><h3 id="ONBUILD"><a href="#ONBUILD" class="headerlink" title="ONBUILD"></a>ONBUILD</h3><ul>
+<li>注入下游镜像。如果生成的镜像是作为另一个镜像的基础镜像，则该指令定义了需要被执行的那些指令</li>
+</ul>
+<hr>
+<h1 id="Practice"><a href="#Practice" class="headerlink" title="Practice"></a>Practice</h1><ul>
+<li><a href="/Linux/Docker/alpine/Dockerfile">alpine构建ssh</a></li>
+<li><a href="https://github.com/eugeneware/docker-wordpress-nginx" target="_blank" rel="noopener">docker-wordpress-nginx</a></li>
+<li><p><a href="https://github.com/gemnasium/rails-meets-docker" target="_blank" rel="noopener">rails-meets-docker</a></p>
+</li>
+<li><p><a href="https://www.docker.io/learn/dockerfile/" target="_blank" rel="noopener">官方文档 dockerfile</a></p>
+</li>
+<li><a href="http://docs.docker.io/reference/builder/" target="_blank" rel="noopener">官方文档 builder</a></li>
+</ul>
+<h2 id="Exercises"><a href="#Exercises" class="headerlink" title="Exercises"></a>Exercises</h2><h3 id="打包最新版git"><a href="#打包最新版git" class="headerlink" title="打包最新版git"></a>打包最新版git</h3><ul>
+<li>注意其运行环境是容器内，不是宿主机，入口点的命令运行完了就退出了，不能当成宿主机上的git使用，只能说是学习一些操作<ul>
+<li>所以不可能说在容器中安装软件然后在宿主机上交互运行</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">FROM</span> ubuntu</span><br><span class="line"><span class="keyword">MAINTAINER</span> <span class="string">"your email"</span></span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> apt-get update \</span></span><br><span class="line"><span class="bash">    &amp;&amp; apt-get install -ysoftware-properties-common \</span></span><br><span class="line"><span class="bash">    &amp;&amp; add-apt-repository ppa:git-core/ppa \</span></span><br><span class="line"><span class="bash">    &amp;&amp; apt-get update &amp;&amp; apt-get install -y git</span></span><br><span class="line"><span class="bash">ENTRYPOINT [<span class="string">"git"</span>]</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>构建镜像<code>docker build -t git:new .</code></li>
+<li>将镜像容器化执行命令后自动删除容器<code>docker run --rm git:new</code></li>
+</ul>
+<h3 id="Dockerfile中新建用户"><a href="#Dockerfile中新建用户" class="headerlink" title="Dockerfile中新建用户"></a>Dockerfile中新建用户</h3><figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">RUN</span><span class="bash"> useradd -ms /bin/bash mythos;\</span></span><br><span class="line"><span class="bash">    <span class="built_in">echo</span> <span class="string">"mythos:jiushi"</span> | chpasswd;</span></span><br><span class="line"><span class="bash">USER mythos</span></span><br><span class="line"><span class="bash">WORKDIR /home/mythos</span></span><br></pre></td></tr></table></figure>
+<hr>
+<blockquote>
+<p><a href="https://blog.csdn.net/kikajack/article/details/79366043" target="_blank" rel="noopener">参考博客: 在 Docker 上开发应用 - 编写 Dockerfile 的最佳实践</a> | <a href="https://docs.docker.com/develop/develop-images/dockerfile_best-practices/" target="_blank" rel="noopener">英文原文</a></p>
+</blockquote>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2018-12-13T11:53:28.395Z" itemprop="dateUpdated">2018-12-13 19:53:28</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2018/12/13/Memo-Linux-Container-DockerFile/" target="_blank" rel="external">http://blog.kuangcp.top/2018/12/13/Memo-Linux-Container-DockerFile/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="http://blog.kuangcp.top">
+            <img src="/img/avatar.jpg" alt="Kuangcp">
+            Kuangcp
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.kuangcp.top/2018/12/13/Memo-Linux-Container-DockerFile/&title=《DockerFile.md》 — Kuangcp Blog&pic=http://blog.kuangcp.top/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.kuangcp.top/2018/12/13/Memo-Linux-Container-DockerFile/&title=《DockerFile.md》 — Kuangcp Blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.kuangcp.top/2018/12/13/Memo-Linux-Container-DockerFile/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《DockerFile.md》 — Kuangcp Blog&url=http://blog.kuangcp.top/2018/12/13/Memo-Linux-Container-DockerFile/&via=http://blog.kuangcp.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.kuangcp.top/2018/12/13/Memo-Linux-Container-DockerFile/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/12/13/Memo-Linux-Base-LinuxNet/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">LinuxNet.md</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/12/13/Memo-Linux-Base-ReleaseExperience/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">ReleaseExperience.md</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check" data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style="display:none">
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style="display:none">
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Kuangcp &copy; 2015 - 2018</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.kuangcp.top/2018/12/13/Memo-Linux-Container-DockerFile/&title=《DockerFile.md》 — Kuangcp Blog&pic=http://blog.kuangcp.top/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.kuangcp.top/2018/12/13/Memo-Linux-Container-DockerFile/&title=《DockerFile.md》 — Kuangcp Blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.kuangcp.top/2018/12/13/Memo-Linux-Container-DockerFile/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《DockerFile.md》 — Kuangcp Blog&url=http://blog.kuangcp.top/2018/12/13/Memo-Linux-Container-DockerFile/&via=http://blog.kuangcp.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.kuangcp.top/2018/12/13/Memo-Linux-Container-DockerFile/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACvElEQVR42u3aQW7DMAwEwPz/0ynQa+p6SYpJDuNT4LSWRwUkdsXHI76ev9frndf7vaddfft8uR4bFx4eHl5rsKsrwSTDvz4tf3LCvnwOHh4e3hovf3SyAleX+OR+8j54eHh438brbRvlFypOHB4eHt738/Kg4Wqhz4OGD2wMeHh4eDEvWfp7MW7OmBToB7IWPDw8vJhXPbL6hs+L53t4eHh4g1P1s1ceK+QbwM2IeHh4eAu83jHVqSL7f3BeZN9sHnh4eHgLvCQUSMLTXizbm9zqhOLh4eGd4uWH/dWWqd7ynY8SxcF4eHh4a7xksN562zu46h163WQteHh4eId41aI5L2dz5GRao2fi4eHhLfDyJTgfrBrd5jFx9Q+Dh4eHd5aXFLW9MjqPKiZR8s174uHh4a3xJkXzZNtIYuI8zP3jMx4eHt4ar3fkn7QgFMKCQRhxE+Di4eHhLfCqx06TdoFJA0G10MfDw8N7D68asFZ/Mt8YeuX7zcaAh4eHN+Yl5WnSIJXf721L85UfDw8P7xQvb5mav0RegkdNqMl74uHh4a3xqjFEHiWcah3oldp4eHh4G7zqo5PSubdhVKPk6qTj4eHhbfBOlddnv523f+Hh4eFt8KpL86l4IinBJ+EFHh4e3gYvWYKTEnbSQDDZGAp/Nzw8PLxDvLxszZf+SWtUNd7Fw8PDez8vX3DLdXpQQFdbu8pnW3h4eHgLvEnwmkxBr5kgagLAw8PD+xBvb5mutgL0tqWbqcHDw8Nb4PWW3TyGmDRjVQ/YkjAFDw8P7xQv3wwmOXG+2Uw2jPLuh4eHhzfgVVujJoAD2Um+deHh4eF9DS8/HutV9NX2r8tR8PDw8D7K64UR+QT1NpgbNh4eHt4aL1/WJ8FBPq2T3xplLXh4eHi1EQv/6udHUMn0zaPew+d7eHh4eH/f+QEmEJxxG6s+FAAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

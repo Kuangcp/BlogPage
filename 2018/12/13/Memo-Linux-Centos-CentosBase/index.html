@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>CentosBase.md | Kuangcp Blog | Javaer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="目录 start  Centos 安装 docker安装   基础命令 用户管理 新增   BUG    目录 end|2018-12-13 12:06| 码云 | CSDN | OSChina | cnblogs  Centos 主流服务器  安装docker安装 hub的官方镜像   docker pull centos 得到镜像，然后跑起来即可  cat /etc/redhat-releas">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CentosBase.md">
+<meta property="og:url" content="http://blog.kuangcp.top/2018/12/13/Memo-Linux-Centos-CentosBase/index.html">
+<meta property="og:site_name" content="Kuangcp Blog">
+<meta property="og:description" content="目录 start  Centos 安装 docker安装   基础命令 用户管理 新增   BUG    目录 end|2018-12-13 12:06| 码云 | CSDN | OSChina | cnblogs  Centos 主流服务器  安装docker安装 hub的官方镜像   docker pull centos 得到镜像，然后跑起来即可  cat /etc/redhat-releas">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-12-13T11:53:28.395Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CentosBase.md">
+<meta name="twitter:description" content="目录 start  Centos 安装 docker安装   基础命令 用户管理 新增   BUG    目录 end|2018-12-13 12:06| 码云 | CSDN | OSChina | cnblogs  Centos 主流服务器  安装docker安装 hub的官方镜像   docker pull centos 得到镜像，然后跑起来即可  cat /etc/redhat-releas">
+    
+        <link rel="alternate" type="application/atom+xml" title="Kuangcp Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Kuangcp</h5>
+          <a href="mailto:634206017@qq.com" title="634206017@qq.com" class="mail">634206017@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/">
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives">
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags">
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories">
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/kuangcp" target="_blank">
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/mythos" target="_blank">
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/custom">
+                <i class="icon icon-lg icon-link"></i>
+                测试
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">CentosBase.md</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">CentosBase.md</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-12-13T11:53:28.395Z" itemprop="datePublished" class="page-time">
+  2018-12-13
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Centos"><span class="post-toc-number">1.</span> <span class="post-toc-text">Centos</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#安装"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">安装</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#docker安装"><span class="post-toc-number">1.1.1.</span> <span class="post-toc-text">docker安装</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#基础命令"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">基础命令</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#用户管理"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">用户管理</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#新增"><span class="post-toc-number">1.3.1.</span> <span class="post-toc-text">新增</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#BUG"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">BUG</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-Memo-Linux-Centos-CentosBase" class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">CentosBase.md</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-12-13 19:53:28" datetime="2018-12-13T11:53:28.395Z" itemprop="datePublished">2018-12-13</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style="display:none">
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p><strong>目录 start</strong></p>
+<ol>
+<li><a href="#centos">Centos</a><ol>
+<li><a href="#安装">安装</a><ol>
+<li><a href="#docker安装">docker安装</a></li>
+</ol>
+</li>
+<li><a href="#基础命令">基础命令</a></li>
+<li><a href="#用户管理">用户管理</a><ol>
+<li><a href="#新增">新增</a></li>
+</ol>
+</li>
+<li><a href="#bug">BUG</a></li>
+</ol>
+</li>
+</ol>
+<p><strong>目录 end</strong>|<em>2018-12-13 12:06</em>| <a href="https://gitee.com/gin9" target="_blank" rel="noopener">码云</a> | <a href="http://blog.csdn.net/kcp606" target="_blank" rel="noopener">CSDN</a> | <a href="https://my.oschina.net/kcp1104" target="_blank" rel="noopener">OSChina</a> | <a href="http://www.cnblogs.com/kuangcp" target="_blank" rel="noopener">cnblogs</a></p>
+<hr>
+<h1 id="Centos"><a href="#Centos" class="headerlink" title="Centos"></a>Centos</h1><blockquote>
+<p>主流服务器</p>
+</blockquote>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><h3 id="docker安装"><a href="#docker安装" class="headerlink" title="docker安装"></a>docker安装</h3><blockquote>
+<p><a href="hub.docker.com/_/centos/">hub的官方镜像</a></p>
+</blockquote>
+<ul>
+<li><p><code>docker pull centos</code> 得到镜像，然后跑起来即可</p>
+<ul>
+<li><code>cat /etc/redhat-release</code> 查看当前centos版本（适用于redhat centos） <a href="www.cnblogs.com/hitwtx/archive/2012/02/13/2349742.html">参考博客</a></li>
+</ul>
+</li>
+<li><p>docker 中 centos7systemctl命令失效的解决方案：</p>
+<ul>
+<li><code>docker run --name centos2 --privileged  -ti -e &quot;container=docker&quot;  -v /sys/fs/cgroup:/sys/fs/cgroup  centos  /usr/sbin/init</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="基础命令"><a href="#基础命令" class="headerlink" title="基础命令"></a>基础命令</h2><blockquote>
+<p>采用的是yum rpm 管理包</p>
+</blockquote>
+<h2 id="用户管理"><a href="#用户管理" class="headerlink" title="用户管理"></a>用户管理</h2><h3 id="新增"><a href="#新增" class="headerlink" title="新增"></a>新增</h3><blockquote>
+<p>和Ubuntu类似, 但是adduser会新建用户并且建立home目录,而且没有废话的交互, ubuntu就有</p>
+</blockquote>
+<p><code>adduser kuang</code> 新增用户和对应目录<br><code>passwd kuang</code> 修改密码 , 奇怪的是使用gpasswd就更改成功了用不了</p>
+<h2 id="BUG"><a href="#BUG" class="headerlink" title="BUG"></a>BUG</h2><blockquote>
+<p>2018-04-01 16:34:17 稳定?呵呵<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">已安装:</span><br><span class="line">  nginx.x86_64 1:1.12.2-2.el7                                                                                                                                                                  </span><br><span class="line"></span><br><span class="line">作为依赖被安装:</span><br><span class="line">  fontconfig.x86_64 0:2.10.95-11.el7                 fontpackages-filesystem.noarch 0:1.44-8.el7  gd.x86_64 0:2.0.35-26.el7                         gperftools-libs.x86_64 0:2.4-8.el7         </span><br><span class="line">  libX11.x86_64 0:1.6.5-1.el7                        libX11-common.noarch 0:1.6.5-1.el7           libXau.x86_64 0:1.0.8-2.1.el7                     libXpm.x86_64 0:3.5.12-1.el7               </span><br><span class="line">  libjpeg-turbo.x86_64 0:1.2.90-5.el7                libpng.x86_64 2:1.5.13-7.el7_2               libunwind.x86_64 2:1.2-2.el7                      libxcb.x86_64 0:1.12-1.el7                 </span><br><span class="line">  libxslt.x86_64 0:1.1.28-5.el7                      lyx-fonts.noarch 0:2.2.3-1.el7               nginx-all-modules.noarch 1:1.12.2-2.el7           nginx-mod-http-geoip.x86_64 1:1.12.2-2.el7 </span><br><span class="line">  nginx-mod-http-image-filter.x86_64 1:1.12.2-2.el7  nginx-mod-http-perl.x86_64 1:1.12.2-2.el7    nginx-mod-http-xslt-filter.x86_64 1:1.12.2-2.el7  nginx-mod-mail.x86_64 1:1.12.2-2.el7       </span><br><span class="line">  nginx-mod-stream.x86_64 1:1.12.2-2.el7            </span><br><span class="line"></span><br><span class="line">失败:</span><br><span class="line">  nginx-filesystem.noarch 1:1.12.2-2.el7                                                                                                                                                       </span><br><span class="line"></span><br><span class="line">完毕！</span><br><span class="line">16:28:02 ~/frp/frp_0.16.1_linux_amd64 → nginx</span><br><span class="line">nginx: relocation error: /lib64/libc.so.6: symbol _dl_starting_up, version GLIBC_PRIVATE not defined in file ld-linux-x86-64.so.2 with link time reference</span><br><span class="line">16:28:06 ~/frp/frp_0.16.1_linux_amd64 → sudo yum install nginx</span><br><span class="line">sudo: relocation error: /lib64/libc.so.6: symbol _dl_starting_up, version GLIBC_PRIVATE not defined in file ld-linux-x86-64.so.2 with link time reference</span><br><span class="line">16:28:14 ~/frp/frp_0.16.1_linux_amd64 → sudo yum install git</span><br><span class="line">sudo: relocation error: /lib64/libc.so.6: symbol _dl_starting_up, version GLIBC_PRIVATE not defined in file ld-linux-x86-64.so.2 with link time reference</span><br><span class="line">16:28:30 ~/frp/frp_0.16.1_linux_amd64 → su root</span><br><span class="line">su: relocation error: /lib64/libc.so.6: symbol _dl_starting_up, version GLIBC_PRIVATE not defined in file ld-linux-x86-64.so.2 with link time reference</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2018-12-13T11:53:28.395Z" itemprop="dateUpdated">2018-12-13 19:53:28</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2018/12/13/Memo-Linux-Centos-CentosBase/" target="_blank" rel="external">http://blog.kuangcp.top/2018/12/13/Memo-Linux-Centos-CentosBase/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="http://blog.kuangcp.top">
+            <img src="/img/avatar.jpg" alt="Kuangcp">
+            Kuangcp
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.kuangcp.top/2018/12/13/Memo-Linux-Centos-CentosBase/&title=《CentosBase.md》 — Kuangcp Blog&pic=http://blog.kuangcp.top/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.kuangcp.top/2018/12/13/Memo-Linux-Centos-CentosBase/&title=《CentosBase.md》 — Kuangcp Blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.kuangcp.top/2018/12/13/Memo-Linux-Centos-CentosBase/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《CentosBase.md》 — Kuangcp Blog&url=http://blog.kuangcp.top/2018/12/13/Memo-Linux-Centos-CentosBase/&via=http://blog.kuangcp.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.kuangcp.top/2018/12/13/Memo-Linux-Centos-CentosBase/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/12/13/Memo-Linux-Base-Ssh/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Ssh.md</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/12/13/Memo-Linux-Container-DockerAdvance/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">DockerAdvance.md</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check" data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style="display:none">
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style="display:none">
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Kuangcp &copy; 2015 - 2018</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.kuangcp.top/2018/12/13/Memo-Linux-Centos-CentosBase/&title=《CentosBase.md》 — Kuangcp Blog&pic=http://blog.kuangcp.top/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.kuangcp.top/2018/12/13/Memo-Linux-Centos-CentosBase/&title=《CentosBase.md》 — Kuangcp Blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.kuangcp.top/2018/12/13/Memo-Linux-Centos-CentosBase/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《CentosBase.md》 — Kuangcp Blog&url=http://blog.kuangcp.top/2018/12/13/Memo-Linux-Centos-CentosBase/&via=http://blog.kuangcp.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.kuangcp.top/2018/12/13/Memo-Linux-Centos-CentosBase/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACsUlEQVR42u3aQW7jQAwEQP//07vX3YOVbnLGSYDSSUhkaUoGhjTJ1ys+/vxzvPvvu/N3x7trkjsfPvDw8PAWS08W8bys50U83zNZZ75mPDw8vNu8zXafv4Ln19Fe+bxmPDw8vN/Ce75z8jqegxYeHh7eb+TtiwVJ2v1tgQEPDw8v5s3S2fzxz4XaNsxcqbXg4eHhxbxZCfV7z6/09/Dw8PDWXfUDG+5oBCEJHtFq8fDw8C7w8g23bW5t2lp5Oh69IDw8PLwLvLz5tBmxasvBz9QDtWo8PDy8ES/XtwFgP4hw5RvDw8PDW/Nmm/uNpa8AbTKNh4eHt+DNktd2E2+HBjap+St/AB4eHt6Cl/fc9yMFbRvs+bV+USLBw8PDu8BrSW1Sm7S78q2/vR4PDw/vBi9fbvKwtvG/KQdHoQsPDw/vg7xNIbUtNJwqFr/2DDw8PLx0MqoOCcl2PysxtKMJs9QfDw8Pb8Nrt9R8RCBPfPdDWsNfDHh4eHgjXpscbxpgpwawZnfGw8PDO8ublQzaZDdPmmdlkbdIPDw8vAu8Gw2tWdE2GTWYDSLg4eHhneLlH9ik3Zsy7qo5h4eHh3eNt0mX6xLqKDDkwea/6/Hw8PAu8PJket8qm905Dzlv/4KHh4d3gTdr/8+Gok6dtwUUPDw8vLO8WWLdXnN2iKoIWnh4eHiXeZvya1EgmMWu/dAAHh4e3lHepm2fp7x5oaEtfxRlCDw8PLwFb190aD+7CTZtKMLDw8O7wWs33DZU7Eu0+fWrAw8PD6/k5cEgX/SpQNKGDTw8PLxP8mYbeg7In3U2gOHh4eH9BF4+NNCGn1lReNjfw8PDw/sgrx3SmjXY2nteSanx8PDw1sWIvLSaLCtZQ/41FENXeHh4eGteO8zUbt9teTdvgx3u7+Hh4eF9ffwFTSJUuUI5tIUAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>
