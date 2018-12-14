@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>SpringMVC.md | Kuangcp Blog | Javaer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="目录 start  SpringMVC MVC思想 原理   API 传统项目配置完整流程 配置依赖 Maven Gradle   web.xml ApplicationContext.xml 全局异常处理 自定义错误页面 中文编码问题   创建Controller   使用 自定义拦截器 Q&amp;amp;A      目录 end|2018-12-13 12:06| 码云 | CSDN | OSCh">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SpringMVC.md">
+<meta property="og:url" content="http://blog.kuangcp.top/2018/12/14/Memo-Java-Spring-SpringMVC/index.html">
+<meta property="og:site_name" content="Kuangcp Blog">
+<meta property="og:description" content="目录 start  SpringMVC MVC思想 原理   API 传统项目配置完整流程 配置依赖 Maven Gradle   web.xml ApplicationContext.xml 全局异常处理 自定义错误页面 中文编码问题   创建Controller   使用 自定义拦截器 Q&amp;amp;A      目录 end|2018-12-13 12:06| 码云 | CSDN | OSCh">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/Kuangcp/ImageRepos/master/Tech/Model/mvc.png">
+<meta property="og:updated_time" content="2018-12-14T12:42:49.254Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SpringMVC.md">
+<meta name="twitter:description" content="目录 start  SpringMVC MVC思想 原理   API 传统项目配置完整流程 配置依赖 Maven Gradle   web.xml ApplicationContext.xml 全局异常处理 自定义错误页面 中文编码问题   创建Controller   使用 自定义拦截器 Q&amp;amp;A      目录 end|2018-12-13 12:06| 码云 | CSDN | OSCh">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Kuangcp/ImageRepos/master/Tech/Model/mvc.png">
+    
+        <link rel="alternate" type="application/atom+xml" title="Kuangcp Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Kuangcp</h5>
+          <a href="mailto:kuangcp@aliyun.com" title="kuangcp@aliyun.com" class="mail">kuangcp@aliyun.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/">
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives">
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags">
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories">
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/kuangcp" target="_blank">
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">SpringMVC.md</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">SpringMVC.md</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-12-14T12:42:49.254Z" itemprop="datePublished" class="page-time">
+  2018-12-14
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#SpringMVC"><span class="post-toc-number">1.</span> <span class="post-toc-text">SpringMVC</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#MVC思想"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">MVC思想</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#原理"><span class="post-toc-number">1.1.1.</span> <span class="post-toc-text">原理</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#API"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">API</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#传统项目配置完整流程"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">传统项目配置完整流程</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#配置依赖"><span class="post-toc-number">1.3.1.</span> <span class="post-toc-text">配置依赖</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Maven"><span class="post-toc-number">1.3.1.1.</span> <span class="post-toc-text">Maven</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Gradle"><span class="post-toc-number">1.3.1.2.</span> <span class="post-toc-text">Gradle</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#web-xml"><span class="post-toc-number">1.3.2.</span> <span class="post-toc-text">web.xml</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#ApplicationContext-xml"><span class="post-toc-number">1.3.3.</span> <span class="post-toc-text">ApplicationContext.xml</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#全局异常处理"><span class="post-toc-number">1.3.3.1.</span> <span class="post-toc-text">全局异常处理</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#自定义错误页面"><span class="post-toc-number">1.3.3.2.</span> <span class="post-toc-text">自定义错误页面</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#中文编码问题"><span class="post-toc-number">1.3.3.3.</span> <span class="post-toc-text">中文编码问题</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#创建Controller"><span class="post-toc-number">1.3.4.</span> <span class="post-toc-text">创建Controller</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#使用"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">使用</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#自定义拦截器"><span class="post-toc-number">1.4.1.</span> <span class="post-toc-text">自定义拦截器</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Q-amp-A"><span class="post-toc-number">1.4.2.</span> <span class="post-toc-text">Q&amp;A</span></a></li></ol></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-Memo-Java-Spring-SpringMVC" class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">SpringMVC.md</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-12-14 20:42:49" datetime="2018-12-14T12:42:49.254Z" itemprop="datePublished">2018-12-14</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style="display:none">
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p><strong>目录 start</strong></p>
+<ol>
+<li><a href="#springmvc">SpringMVC</a><ol>
+<li><a href="#mvc思想">MVC思想</a><ol>
+<li><a href="#原理">原理</a></li>
+</ol>
+</li>
+<li><a href="#api">API</a></li>
+<li><a href="#传统项目配置完整流程">传统项目配置完整流程</a><ol>
+<li><a href="#配置依赖">配置依赖</a><ol>
+<li><a href="#maven">Maven</a></li>
+<li><a href="#gradle">Gradle</a></li>
+</ol>
+</li>
+<li><a href="#webxml">web.xml</a></li>
+<li><a href="#applicationcontextxml">ApplicationContext.xml</a><ol>
+<li><a href="#全局异常处理">全局异常处理</a></li>
+<li><a href="#自定义错误页面">自定义错误页面</a></li>
+<li><a href="#中文编码问题">中文编码问题</a></li>
+</ol>
+</li>
+<li><a href="#创建controller">创建Controller</a></li>
+</ol>
+</li>
+<li><a href="#使用">使用</a><ol>
+<li><a href="#自定义拦截器">自定义拦截器</a></li>
+<li><a href="#q&amp;a">Q&amp;A</a></li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<p><strong>目录 end</strong>|<em>2018-12-13 12:06</em>| <a href="https://gitee.com/gin9" target="_blank" rel="noopener">码云</a> | <a href="http://blog.csdn.net/kcp606" target="_blank" rel="noopener">CSDN</a> | <a href="https://my.oschina.net/kcp1104" target="_blank" rel="noopener">OSChina</a> | <a href="http://www.cnblogs.com/kuangcp" target="_blank" rel="noopener">cnblogs</a></p>
+<hr>
+<h1 id="SpringMVC"><a href="#SpringMVC" class="headerlink" title="SpringMVC"></a>SpringMVC</h1><blockquote>
+<p><a href="https://legacy.gitbook.com/book/linesh/spring-mvc-documentation-linesh-translation/details" target="_blank" rel="noopener">Spring MVC 4.2.4.RELEASE 中文文档</a></p>
+</blockquote>
+<h2 id="MVC思想"><a href="#MVC思想" class="headerlink" title="MVC思想"></a>MVC思想</h2><blockquote>
+<p><a href="http://blog.csdn.net/besley/article/details/8479943" target="_blank" rel="noopener">参考博客</a><br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/Kuangcp/ImageRepos/master/Tech/Model/mvc.png" alt="图" title="">
+                </div>
+                <div class="image-caption">图</div>
+            </figure></p>
+</blockquote>
+<h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><blockquote>
+<p>统一使用一个Servlet 进行请求的收发, 通过配置的URL对应的方法, 进行调用, 然后返回视图解析器进行渲染</p>
+</blockquote>
+<hr>
+<h2 id="API"><a href="#API" class="headerlink" title="API"></a>API</h2><blockquote>
+<p><a href="http://www.csdn.net/article/2013-05-02/2815115-stop-designing-fragile-web-api" target="_blank" rel="noopener">简洁的API设计</a></p>
+</blockquote>
+<hr>
+<h2 id="传统项目配置完整流程"><a href="#传统项目配置完整流程" class="headerlink" title="传统项目配置完整流程"></a>传统项目配置完整流程</h2><blockquote>
+<p>也就是Maven的Web结构，甚至是Eclipse那样的DynamicWeb项目结构， <a href="https://www.cnblogs.com/Sinte-Beuve/p/5730553.html" target="_blank" rel="noopener">参考 博客</a></p>
+</blockquote>
+<h3 id="配置依赖"><a href="#配置依赖" class="headerlink" title="配置依赖"></a>配置依赖</h3><h4 id="Maven"><a href="#Maven" class="headerlink" title="Maven"></a>Maven</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">properties</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">spring.version</span>&gt;</span>4.3.9.RELEASE<span class="tag">&lt;/<span class="name">spring.version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">properties</span>&gt;</span></span><br><span class="line">......</span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-web<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;spring.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-webmvc<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;spring.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 如果使用JSP作为视图层,还需 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>javax.servlet<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>javax.servlet-api<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.1.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>javax.servlet.jsp<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jsp-api<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>javax.servlet<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jstl<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="Gradle"><a href="#Gradle" class="headerlink" title="Gradle"></a>Gradle</h4><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">compile(<span class="string">'org.springframework:spring-web:4.3.9.RELEASE'</span>)</span><br><span class="line">compile(<span class="string">'org.springframework:spring-webmvc:4.3.9.RELEASE'</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="web-xml"><a href="#web-xml" class="headerlink" title="web.xml"></a>web.xml</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">servlet</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>mysql<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span>org.springframework.web.servlet.DispatcherServlet<span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">init-param</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>contextConfigLocation<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>/WEB-INF/applicationContext.xml<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">load-on-startup</span>&gt;</span>1<span class="tag">&lt;/<span class="name">load-on-startup</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">listener</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">listener-class</span>&gt;</span>org.springframework.web.context.ContextLoaderListener<span class="tag">&lt;/<span class="name">listener-class</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">listener</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>mysql<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="ApplicationContext-xml"><a href="#ApplicationContext-xml" class="headerlink" title="ApplicationContext.xml"></a>ApplicationContext.xml</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">xmlns:context</span>=<span class="string">"http://www.springframework.org/schema/context"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">xmlns:mvc</span>=<span class="string">"http://www.springframework.org/schema/mvc"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://www.springframework.org/schema/beans</span></span></span><br><span class="line"><span class="tag"><span class="string">            http://www.springframework.org/schema/beans/spring-beans-3.2.xsd</span></span></span><br><span class="line"><span class="tag"><span class="string">                http://www.sprinControllergframework.org/schema/context</span></span></span><br><span class="line"><span class="tag"><span class="string">            http://www.springframework.org/schema/context/spring-context-3.2.xsd</span></span></span><br><span class="line"><span class="tag"><span class="string">            http://www.springframework.org/schema/mvc</span></span></span><br><span class="line"><span class="tag"><span class="string">            http://www.springframework.org/schema/mvc/spring-mvc.xsd"</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--启用spring的一些annotation --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">context:annotation-config</span>/&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 自动扫描该包，使SpringMVC认为包下用了@controller注解的类是控制器 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">context:component-scan</span> <span class="attr">base-package</span>=<span class="string">"com.test.controller"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">context:include-filter</span> <span class="attr">type</span>=<span class="string">"annotation"</span> <span class="attr">expression</span>=<span class="string">"org.springframework.stereotype.Controller"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">context:component-scan</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--HandlerMapping 无需配置，springmvc可以默认启动--&gt;</span></span><br><span class="line"><span class="comment">&lt;!--静态资源映射--&gt;</span></span><br><span class="line"><span class="comment">&lt;!--本项目把静态资源放在了WEB-INF的statics目录下，资源映射如下--&gt;</span></span><br><span class="line"><span class="comment">&lt;!--&lt;mvc:resources mapping="/css/**" location="/WEB-INF/statics/css/"/&gt;--&gt;</span></span><br><span class="line"><span class="comment">&lt;!--&lt;mvc:resources mapping="/js/**" location="/WEB-INF/statics/js/"/&gt;--&gt;</span></span><br><span class="line"><span class="comment">&lt;!--&lt;mvc:resources mapping="/image/**" location="/WEB-INF/statics/image/"/&gt;--&gt;</span></span><br><span class="line"><span class="comment">&lt;!--但是项目部署到linux下发现WEB-INF的静态资源会出现无法解析的情况，但是本地tomcat访问正常，因此建议还是直接把静态资源放在webapp的statics下，映射配置如下--&gt;</span></span><br><span class="line"><span class="comment">&lt;!--&lt;mvc:resources mapping="/css/**" location="/statics/css/"/&gt;--&gt;</span></span><br><span class="line"><span class="comment">&lt;!--&lt;mvc:resources mapping="/js/**" location="/statics/js/"/&gt;--&gt;</span></span><br><span class="line"><span class="comment">&lt;!--&lt;mvc:resources mapping="/image/**" location="/statics/images/"/&gt;--&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 配置注解驱动 可以将request参数与绑定到controller参数上 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mvc:annotation-driven</span>/&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 对模型视图名称的解析，即在模型视图名称添加前后缀(如果最后一个还是表示文件夹,则最后的斜杠不要漏了) 使用JSP--&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 默认的视图解析器 在上边的解析错误时使用 (默认使用html)- --&gt;</span></span><br><span class="line"><span class="comment">&lt;!--&lt;bean id="defaultViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver"&gt;--&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--&lt;property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/&gt;--&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--&lt;property name="prefix" value="/WEB-INF/views/"/&gt;&amp;lt;!&amp;ndash;设置JSP文件的目录位置&amp;ndash;&amp;gt;--&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--&lt;property name="suffix" value=".jsp"/&gt;--&gt;</span></span><br><span class="line"><span class="comment">&lt;!--&lt;/bean&gt;--&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- springmvc文件上传需要配置的节点--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"multipartResolver"</span> <span class="attr">class</span>=<span class="string">"org.springframework.web.multipart.commons.CommonsMultipartResolver"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"maxUploadSize"</span> <span class="attr">value</span>=<span class="string">"20971500"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"defaultEncoding"</span> <span class="attr">value</span>=<span class="string">"UTF-8"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"resolveLazily"</span> <span class="attr">value</span>=<span class="string">"true"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="全局异常处理"><a href="#全局异常处理" class="headerlink" title="全局异常处理"></a>全局异常处理</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ExceptionHandler</span> <span class="keyword">implements</span> <span class="title">HandlerExceptionResolver</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> ModelAndView <span class="title">resolveException</span><span class="params">(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)</span> </span>&#123;</span><br><span class="line">        Map&lt;String, Object&gt; model = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        model.put(<span class="string">"ex"</span>, ex);</span><br><span class="line">        ex.printStackTrace();<span class="comment">//打印异常信息</span></span><br><span class="line">        <span class="comment">// 根据不同错误转向不同页面</span></span><br><span class="line">        <span class="keyword">if</span> (ex <span class="keyword">instanceof</span> CSRFException) &#123;<span class="comment">//受到csrf攻击</span></span><br><span class="line">           <span class="keyword">return</span> <span class="keyword">new</span> ModelAndView(<span class="string">"/errorPage/error"</span>, model);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (ex <span class="keyword">instanceof</span> BusinessException) &#123;<span class="comment">//业务逻辑处理出错</span></span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> ModelAndView(<span class="string">"errorPage/businessError"</span>, model);</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (ex <span class="keyword">instanceof</span> ParameterException) &#123;<span class="comment">//参数处理出错。</span></span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> ModelAndView(<span class="string">"errorPage/parameterError"</span>, model);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;  <span class="comment">//其他数据类型错误</span></span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> ModelAndView(<span class="string">"errorPage/error"</span>, model);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> ModelAndView(<span class="string">"error"</span>, model);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>但如果是前后端分离的话， 就只能统一处理异常然后然后对应的错误码和提示信息了<br><a href="http://www.cnblogs.com/exmyth/p/5601288.html" target="_blank" rel="noopener">参考博客</a><br><a href="https://blog.csdn.net/xin917480852/article/details/78023911" target="_blank" rel="noopener">ResponseBody方案</a></p>
+</blockquote>
+<h4 id="自定义错误页面"><a href="#自定义错误页面" class="headerlink" title="自定义错误页面"></a>自定义错误页面</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 自定义错误页面 需要放在静态资源下面</span></span><br><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> EmbeddedServletContainerCustomizer <span class="title">containerCustomizer</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (container -&gt; &#123;</span><br><span class="line">        ErrorPage error401Page = <span class="keyword">new</span> ErrorPage(HttpStatus.FORBIDDEN, <span class="string">"/500.html"</span>);</span><br><span class="line">        ErrorPage error404Page = <span class="keyword">new</span> ErrorPage(HttpStatus.NOT_FOUND, <span class="string">"/404.html"</span>);</span><br><span class="line">        ErrorPage error500Page = <span class="keyword">new</span> ErrorPage(HttpStatus.INTERNAL_SERVER_ERROR, <span class="string">"/500.html"</span>);</span><br><span class="line">        container.addErrorPages(error401Page, error404Page, error500Page);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="中文编码问题"><a href="#中文编码问题" class="headerlink" title="中文编码问题"></a>中文编码问题</h4><blockquote>
+<p><a href="http://www.cnblogs.com/dyllove98/p/3180158.html" target="_blank" rel="noopener">参考博客</a> <code>但是奇怪的是某些方法用第二种正常，有些还是要用第一种</code></p>
+<ol>
+<li>单个方法：<code>@GetMapping(value = &quot;/target/all&quot;,  produces = &quot;application/json; charset=utf-8&quot;)</code></li>
+<li>或者整个应用 注意：<code>&lt;/mvc:annotation-driven&gt;</code> 只能有一个，要将上面的覆盖掉<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">mvc:annotation-driven</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">mvc:message-converters</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"org.springframework.http.converter.StringHttpMessageConverter"</span>&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"supportedMediaTypes"</span>&gt;</span></span><br><span class="line">                   <span class="tag">&lt;<span class="name">list</span>&gt;</span></span><br><span class="line">                   <span class="comment">&lt;!-- 如果是前后端使用JSON作为主要数据交换格式就把JSON列为第一个， 否则就会被认为是Text --&gt;</span></span><br><span class="line">                       <span class="tag">&lt;<span class="name">value</span>&gt;</span>application/json; charset=UTF-8<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">                       <span class="tag">&lt;<span class="name">value</span>&gt;</span>text/plain; charset=UTF-8<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">                       <span class="tag">&lt;<span class="name">value</span>&gt;</span>text/html; charset=UTF-8<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">                   <span class="tag">&lt;/<span class="name">list</span>&gt;</span></span><br><span class="line">               <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;/<span class="name">mvc:message-converters</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">mvc:annotation-driven</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</blockquote>
+<h3 id="创建Controller"><a href="#创建Controller" class="headerlink" title="创建Controller"></a>创建Controller</h3><p>包 com.test.controller 下创建一个类<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/hi"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Hi</span> </span>&#123;</span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/hi"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">hi</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"Hi"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>使用上 ResponseEntity 让响应结果规范<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/handle"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> ResponseEntity&lt;String&gt; <span class="title">handle</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  URI location = ...;</span><br><span class="line">  HttpHeaders responseHeaders = <span class="keyword">new</span> HttpHeaders();</span><br><span class="line">  responseHeaders.setLocation(location);</span><br><span class="line">  responseHeaders.set(<span class="string">"MyResponseHeader"</span>, <span class="string">"MyValue"</span>);</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> ResponseEntity&lt;String&gt;(<span class="string">"Hello World"</span>, responseHeaders, HttpStatus.CREATED);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<hr>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><blockquote>
+<p>在Springboot框架中，static templates 文件夹下分别代表了tomcat管理的静态文件和MVC负责跳转的HTML文件或JSP文件<br>在static中对于路径的使用一定要带上应用路径，而在templates中就只要写相对路径即可</p>
+</blockquote>
+<h3 id="自定义拦截器"><a href="#自定义拦截器" class="headerlink" title="自定义拦截器"></a>自定义拦截器</h3><ul>
+<li><a href="http://www.jianshu.com/p/f14ed6ca4e56" target="_blank" rel="noopener">相关博客</a>|<a href="http://blog.csdn.net/catoop/article/details/50501696" target="_blank" rel="noopener">相关博客</a></li>
+</ul>
+<p><code>定义拦截器类</code><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MythInterceptor</span> <span class="keyword">extends</span> <span class="title">HandlerInterceptorAdapter</span></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">preHandle</span><span class="params">(HttpServletRequest request, HttpServletResponse response, Object handler)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        Long startTime = System.currentTimeMillis();</span><br><span class="line">        request.setAttribute(<span class="string">"startTime"</span>,startTime);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;<span class="comment">// true就继续跳转，false就停止</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">postHandle</span><span class="params">(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        <span class="keyword">long</span> startTime = (Long)request.getAttribute(<span class="string">"startTime"</span>);</span><br><span class="line">        request.removeAttribute(<span class="string">"startTime"</span>);</span><br><span class="line">        Long endTime = System.currentTimeMillis();</span><br><span class="line">        log.info(request.getRequestURL()+<span class="string">"发起请求耗时:[ "</span>+ (endTime - startTime) +<span class="string">"  ms]"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><code>配置MVC的配置类</code><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WebMvcConfig</span> <span class="keyword">extends</span> <span class="title">WebMvcConfigurerAdapter</span></span>&#123;</span><br><span class="line">    <span class="comment">//自定义拦截器bean</span></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> MythInterceptor <span class="title">mythInterceptor</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> MythInterceptor();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//注册拦截器</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addInterceptors</span><span class="params">(InterceptorRegistry registry)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//拦截器的URL正则</span></span><br><span class="line">        registry.addInterceptor(mythInterceptor()).addPathPatterns(<span class="string">"/**"</span>);</span><br><span class="line">        <span class="keyword">super</span>.addInterceptors(registry);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="Q-amp-A"><a href="#Q-amp-A" class="headerlink" title="Q&amp;A"></a>Q&amp;A</h3><blockquote>
+<p>URL 中带了 jsessionid 参数，导致页面各种问题</p>
+<ul>
+<li>一种原因：禁用cookie导致的</li>
+<li>最终解决： chrome中在设置里清除localhost的所有cookie和缓存</li>
+</ul>
+</blockquote>
+<ul>
+<li><a href="https://yq.aliyun.com/articles/101169" target="_blank" rel="noopener">解决问题参考博客</a></li>
+<li><p><a href="http://sxsoft.blog.163.com/blog/static/190412229200911103116773" target="_blank" rel="noopener">jsessionid的作用</a></p>
+</li>
+<li><p>[ ] ModelAndView中的addObject 的值能用js获取到么</p>
+</li>
+</ul>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2018-12-14T12:42:49.254Z" itemprop="dateUpdated">2018-12-14 20:42:49</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2018/12/14/Memo-Java-Spring-SpringMVC/" target="_blank" rel="external">http://blog.kuangcp.top/2018/12/14/Memo-Java-Spring-SpringMVC/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="http://blog.kuangcp.top">
+            <img src="/img/avatar.jpg" alt="Kuangcp">
+            Kuangcp
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.kuangcp.top/2018/12/14/Memo-Java-Spring-SpringMVC/&title=《SpringMVC.md》 — Kuangcp Blog&pic=http://blog.kuangcp.top/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.kuangcp.top/2018/12/14/Memo-Java-Spring-SpringMVC/&title=《SpringMVC.md》 — Kuangcp Blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.kuangcp.top/2018/12/14/Memo-Java-Spring-SpringMVC/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《SpringMVC.md》 — Kuangcp Blog&url=http://blog.kuangcp.top/2018/12/14/Memo-Java-Spring-SpringMVC/&via=http://blog.kuangcp.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.kuangcp.top/2018/12/14/Memo-Java-Spring-SpringMVC/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/12/14/Memo-Database-SQLServer/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">SQLServer.md</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/12/14/Memo-Java-Spring-SpringBoot/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">SpringBoot.md</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check" data-wechat="/img/wechat.png" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style="display:none">
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style="display:none">
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Kuangcp &copy; 2015 - 2018</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.kuangcp.top/2018/12/14/Memo-Java-Spring-SpringMVC/&title=《SpringMVC.md》 — Kuangcp Blog&pic=http://blog.kuangcp.top/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.kuangcp.top/2018/12/14/Memo-Java-Spring-SpringMVC/&title=《SpringMVC.md》 — Kuangcp Blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.kuangcp.top/2018/12/14/Memo-Java-Spring-SpringMVC/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《SpringMVC.md》 — Kuangcp Blog&url=http://blog.kuangcp.top/2018/12/14/Memo-Java-Spring-SpringMVC/&via=http://blog.kuangcp.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.kuangcp.top/2018/12/14/Memo-Java-Spring-SpringMVC/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACM0lEQVR42u3a0Y6DMAxEUf7/p6nUt4o2mbFDJSaXJ0RbkpOVvHac45Cv8339enK9v37/+un4Ou64YMCA8ViG8rrOvbI043ElKgwYMDZgKMOM8crSdEL5ZM4wYMCA0U7j9DfAgAEDxtqA2ylc9ZIYBgwYMPQitjZR/Z1/qsVhwIDxQIbbGPjn/Y39DRgwYDyEcbYvd2Nu/KQ2KxgwYGQzlLSvFt/Gv3JbC1IghgEDRihD+aqyQaa0JJWS2C1Tv/zfgAEDxgaM2mGLu9sJk8WCAQPGBgx3GLesdVNMnfQRcGHAgBHKUFK92uvctuh4dCNlhAEDRhxDD3Zuo1E/bFEba9LfgAEDRhCjc9iidsxLD/d6mxMGDBj7MJQCclVp6iaLdjsTBgwYQQxlsNoRDSXJs6P+rznDgAEjmuEmgm7xqS/BLWwYMGDEMdyi0W121oKpXXPDgAEjjqEXk2uL2FXbc5MMFwYMGBGM2qZ/p/hUlmlBSwAGDBhxDKV01A9+9TfjFhwRgwEDRhzD6HMKKZ3bsKwFZbsKhwEDRgTDnWKneakf7zDaDzBgwIhmuEF21YZavySe/E1gwIARwTjNyw2s7hZbMZWEAQNGNKOzrV/7rfscBgwYMPSNrdoxC70odbfnJo0BGDBghDI6jcZOm7NWuBpVOAwYMLZndCbqNiSMFiYMGDA2ZrgtzPETdwkmARoGDBgbMGqb9Wu31ZR0EwYMGHsyOo2BWuPTPWxhp4kwYMDIYbwAwBSyUMvFTRkAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

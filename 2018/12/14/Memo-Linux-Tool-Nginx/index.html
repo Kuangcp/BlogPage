@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>Nginx.md | Kuangcp Blog | Javaer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="目录 start  Nginx Nginx的安装 命令安装 编译安装 Docker安装并做反向代理   命令使用 配置使用 本地静态文件Web服务器 反向代理多个服务 配置https certbot来配置Https   配置Websocket反向代理   防盗链 负载均衡 跨域问题的配置 静态服务器将后台反代理     问题    目录 end|2018-12-13 12:06| 码云 | CSD">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Nginx.md">
+<meta property="og:url" content="http://blog.kuangcp.top/2018/12/14/Memo-Linux-Tool-Nginx/index.html">
+<meta property="og:site_name" content="Kuangcp Blog">
+<meta property="og:description" content="目录 start  Nginx Nginx的安装 命令安装 编译安装 Docker安装并做反向代理   命令使用 配置使用 本地静态文件Web服务器 反向代理多个服务 配置https certbot来配置Https   配置Websocket反向代理   防盗链 负载均衡 跨域问题的配置 静态服务器将后台反代理     问题    目录 end|2018-12-13 12:06| 码云 | CSD">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-12-14T12:42:49.250Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Nginx.md">
+<meta name="twitter:description" content="目录 start  Nginx Nginx的安装 命令安装 编译安装 Docker安装并做反向代理   命令使用 配置使用 本地静态文件Web服务器 反向代理多个服务 配置https certbot来配置Https   配置Websocket反向代理   防盗链 负载均衡 跨域问题的配置 静态服务器将后台反代理     问题    目录 end|2018-12-13 12:06| 码云 | CSD">
+    
+        <link rel="alternate" type="application/atom+xml" title="Kuangcp Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Kuangcp</h5>
+          <a href="mailto:kuangcp@aliyun.com" title="kuangcp@aliyun.com" class="mail">kuangcp@aliyun.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/">
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives">
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags">
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories">
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/kuangcp" target="_blank">
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Nginx.md</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Nginx.md</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-12-14T12:42:49.250Z" itemprop="datePublished" class="page-time">
+  2018-12-14
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Nginx"><span class="post-toc-number">1.</span> <span class="post-toc-text">Nginx</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Nginx的安装"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">Nginx的安装</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#命令安装"><span class="post-toc-number">1.1.1.</span> <span class="post-toc-text">命令安装</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#编译安装"><span class="post-toc-number">1.1.2.</span> <span class="post-toc-text">编译安装</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Docker安装并做反向代理"><span class="post-toc-number">1.1.3.</span> <span class="post-toc-text">Docker安装并做反向代理</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#命令使用"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">命令使用</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#配置使用"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">配置使用</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#本地静态文件Web服务器"><span class="post-toc-number">1.3.1.</span> <span class="post-toc-text">本地静态文件Web服务器</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#反向代理多个服务"><span class="post-toc-number">1.3.1.1.</span> <span class="post-toc-text">反向代理多个服务</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#配置https"><span class="post-toc-number">1.3.1.2.</span> <span class="post-toc-text">配置https</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#certbot来配置Https"><span class="post-toc-number">1.3.1.2.1.</span> <span class="post-toc-text">certbot来配置Https</span></a></li></ol></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#配置Websocket反向代理"><span class="post-toc-number">1.3.1.3.</span> <span class="post-toc-text">配置Websocket反向代理</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#防盗链"><span class="post-toc-number">1.3.2.</span> <span class="post-toc-text">防盗链</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#负载均衡"><span class="post-toc-number">1.3.3.</span> <span class="post-toc-text">负载均衡</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#跨域问题的配置"><span class="post-toc-number">1.3.4.</span> <span class="post-toc-text">跨域问题的配置</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#静态服务器将后台反代理"><span class="post-toc-number">1.3.4.1.</span> <span class="post-toc-text">静态服务器将后台反代理</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#问题"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">问题</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-Memo-Linux-Tool-Nginx" class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Nginx.md</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-12-14 20:42:49" datetime="2018-12-14T12:42:49.250Z" itemprop="datePublished">2018-12-14</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style="display:none">
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p><strong>目录 start</strong></p>
+<ol>
+<li><a href="#nginx">Nginx</a><ol>
+<li><a href="#nginx的安装">Nginx的安装</a><ol>
+<li><a href="#命令安装">命令安装</a></li>
+<li><a href="#编译安装">编译安装</a></li>
+<li><a href="#docker安装并做反向代理">Docker安装并做反向代理</a></li>
+</ol>
+</li>
+<li><a href="#命令使用">命令使用</a></li>
+<li><a href="#配置使用">配置使用</a><ol>
+<li><a href="#本地静态文件web服务器">本地静态文件Web服务器</a><ol>
+<li><a href="#反向代理多个服务">反向代理多个服务</a></li>
+<li><a href="#配置https">配置https</a><ol>
+<li><a href="#certbot来配置https">certbot来配置Https</a></li>
+</ol>
+</li>
+<li><a href="#配置websocket反向代理">配置Websocket反向代理</a></li>
+</ol>
+</li>
+<li><a href="#防盗链">防盗链</a></li>
+<li><a href="#负载均衡">负载均衡</a></li>
+<li><a href="#跨域问题的配置">跨域问题的配置</a><ol>
+<li><a href="#静态服务器将后台反代理">静态服务器将后台反代理</a></li>
+</ol>
+</li>
+</ol>
+</li>
+<li><a href="#问题">问题</a></li>
+</ol>
+</li>
+</ol>
+<p><strong>目录 end</strong>|<em>2018-12-13 12:06</em>| <a href="https://gitee.com/gin9" target="_blank" rel="noopener">码云</a> | <a href="http://blog.csdn.net/kcp606" target="_blank" rel="noopener">CSDN</a> | <a href="https://my.oschina.net/kcp1104" target="_blank" rel="noopener">OSChina</a> | <a href="http://www.cnblogs.com/kuangcp" target="_blank" rel="noopener">cnblogs</a></p>
+<hr>
+<h1 id="Nginx"><a href="#Nginx" class="headerlink" title="Nginx"></a>Nginx</h1><h2 id="Nginx的安装"><a href="#Nginx的安装" class="headerlink" title="Nginx的安装"></a>Nginx的安装</h2><h3 id="命令安装"><a href="#命令安装" class="headerlink" title="命令安装"></a>命令安装</h3><ul>
+<li>安装<code>sudo apt install nginx</code></li>
+<li>启动服务 <code>sudo nginx</code>或者<code>sudo /etc/init.d/nginx start</code></li>
+<li>关闭 <code>sudo nginx -s quit</code> 或者 <code>sudo /etc/init.d/nginx stop</code></li>
+</ul>
+<h3 id="编译安装"><a href="#编译安装" class="headerlink" title="编译安装"></a>编译安装</h3><blockquote>
+<p>不建议使用这种方式进行安装，很容易出现兼容问题</p>
+</blockquote>
+<ul>
+<li>下载 nginx，pcre，zlib，openssl 的压缩包</li>
+<li>进入解压根目录（按实际情况配置）<br><code>配置各个包</code><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">./configure --sbin-path=/usr/<span class="built_in">local</span>/nginx/nginx \</span><br><span class="line">--conf-path=/usr/<span class="built_in">local</span>/nginx/nginx.conf \</span><br><span class="line">--pid-path=/usr/<span class="built_in">local</span>/nginx/nginx.pid \</span><br><span class="line">--with-http_stub_status_module \</span><br><span class="line">--with-http_ssl_module \</span><br><span class="line">--with-pcre=/home/kuang/pcre-8.20 \</span><br><span class="line">--with-openssl=/home/kuang/openssl \</span><br><span class="line">--with-zlib=/home/kuang/zlib-1.2.11</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="Docker安装并做反向代理"><a href="#Docker安装并做反向代理" class="headerlink" title="Docker安装并做反向代理"></a>Docker安装并做反向代理</h3><blockquote>
+<p><a href="https://hub.docker.com/r/library/nginx/" target="_blank" rel="noopener">nginx hub 官方镜像</a></p>
+<ul>
+<li>运行命令创建容器运行 <code>docker run --name youhuigo -d -p 80:80 -v /home/kuang/nginx/conf/:/etc/nginx/conf.d/:ro --link you:web nginx</code></li>
+</ul>
+</blockquote>
+<p><code>conf 基础配置文件</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">upstream gitea &#123;</span><br><span class="line">  server 127.0.0.1:6001;</span><br><span class="line">&#125;</span><br><span class="line">server &#123;</span><br><span class="line">  listen 80;</span><br><span class="line">  server_name git.kuangcp.top;</span><br><span class="line">  location / &#123;</span><br><span class="line">    proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">    proxy_set_header X-Forward-For $proxy_add_x_forwarded_for;</span><br><span class="line">    proxy_set_header Host $http_host;</span><br><span class="line">    proxy_set_header X-Nginx-Proxt true;</span><br><span class="line"></span><br><span class="line">    proxy_pass http://gitea;</span><br><span class="line">    proxy_redirect off;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p><a href="http://www.ttlsa.com/nginx/use-nginx-proxy/" target="_blank" rel="noopener">配置多域名反向代理</a> <code>其实也就是多了 俩 upstream 监听80的server</code></p>
+</blockquote>
+<h2 id="命令使用"><a href="#命令使用" class="headerlink" title="命令使用"></a>命令使用</h2><p><code>nginx -h 输出</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">nginx version: nginx/1.13.3</span><br><span class="line">Usage: nginx [-?hvVtTq] [-s signal] [-c filename] [-p prefix] [-g directives]</span><br><span class="line">Options:</span><br><span class="line">  -?,-h         : this help</span><br><span class="line">  -v            : show version and exit</span><br><span class="line">  -V            : show version and configure options then exit</span><br><span class="line">  -t            : test configuration and exit</span><br><span class="line">  -T            : test configuration, dump it and exit</span><br><span class="line">  -q            : suppress non-error messages during configuration testing</span><br><span class="line">  -s signal     : send signal to a master process: stop, quit, reopen, reload</span><br><span class="line">  -p prefix     : set prefix path (default: /usr/share/nginx/)</span><br><span class="line">  -c filename   : set configuration file (default: /etc/nginx/nginx.conf)</span><br><span class="line">  -g directives : set global directives out of configuration file</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li><code>-s signal</code><ul>
+<li>stop 停止</li>
+<li>quit 退出</li>
+<li>reopen 重新打开</li>
+<li>reload 重载（修改配置文件常使用）</li>
+</ul>
+</li>
+<li><code>-t</code> 测试配置<ul>
+<li>使用 指定配置文件，或者默认配置文件 进行测试</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="配置使用"><a href="#配置使用" class="headerlink" title="配置使用"></a>配置使用</h2><blockquote>
+<p><a href="https://zhuanlan.zhihu.com/p/24524057" target="_blank" rel="noopener">知乎专栏</a><br><a href="https://segmentfault.com/a/1190000002797601" target="_blank" rel="noopener">nginx基本配置</a> | <a href="https://fengqi.me/unix/409.html" target="_blank" rel="noopener">ngrok nginx docker本地搭建服务器</a></p>
+<ul>
+<li><a href="https://www.shiyanlou.com/courses/95" target="_blank" rel="noopener">实验楼课程</a></li>
+</ul>
+</blockquote>
+<ul>
+<li>个人理解<ol>
+<li>server_name 是一个域名或者ip, 如果是ip和公网的域名就没什么好解释的,<ul>
+<li>但是如果只是局域网的修改host文件生成的域名, 自己使用该域名访问是没有问题的, 别人访问不了,但是如果也同样的修改host文件后, 也能正确使用域名访问</li>
+</ul>
+</li>
+<li>server是一个门路, 不会冲突, 所以才能有很多个监听80端口的配置而互不影响.</li>
+</ol>
+</li>
+</ul>
+<h3 id="本地静态文件Web服务器"><a href="#本地静态文件Web服务器" class="headerlink" title="本地静态文件Web服务器"></a>本地静态文件Web服务器</h3><blockquote>
+<p>最简单的使用 <a href="http://blog.yuansc.com/2015/04/29/nginx%E9%85%8D%E7%BD%AE%E9%9D%99%E6%80%81%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1%E5%99%A8/" target="_blank" rel="noopener">参考博客</a></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">  # listen 6050;</span><br><span class="line">  client_max_body_size 4G;</span><br><span class="line">  listen  80;  ## listen for ipv4; this line is default and implied</span><br><span class="line">  server_name static.me.com;</span><br><span class="line">  root /home/mini/Sync;</span><br><span class="line">  location / &#123;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>再在 <code>/etc/hosts</code>文件中配置下域名即可访问</p>
+<blockquote>
+<p>在服务器中配置， 出现403错误， 将 /etc/nginx/nginx.conf 中第一行的 user 改成 root</p>
+</blockquote>
+<h4 id="反向代理多个服务"><a href="#反向代理多个服务" class="headerlink" title="反向代理多个服务"></a>反向代理多个服务</h4><ul>
+<li>修改默认配置文件 <code>/etc/nginx/nginx.conf</code><ul>
+<li>或者更好的就是在 <code>/etc/nginx/conf.d/</code>下新建 *.conf 文件，文件名任意</li>
+</ul>
+</li>
+</ul>
+<p><code>该配置文件配置了服务器反向代理，80端口上：/路径的请求转发到9991端口 /myth转发到7898端口</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">upstream xxxuthus &#123;</span><br><span class="line">  server 127.0.0.1:9991;</span><br><span class="line">&#125;</span><br><span class="line">upstream youhui &#123;</span><br><span class="line">  server 127.0.0.1:7898;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">server &#123;</span><br><span class="line">  listen 80;</span><br><span class="line">  server_name 1.1.1.1;</span><br><span class="line"></span><br><span class="line">  location / &#123;</span><br><span class="line">    proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">    proxy_set_header X-Forward-For $proxy_add_x_forwarded_for;</span><br><span class="line">    proxy_set_header Host $http_host;</span><br><span class="line">    proxy_set_header X-Nginx-Proxt true;</span><br><span class="line"></span><br><span class="line">    proxy_pass http://xxxuthus;</span><br><span class="line">    proxy_redirect off;</span><br><span class="line">  &#125;</span><br><span class="line"> location /myth&#123;</span><br><span class="line">  proxy_pass http://youhui;</span><br><span class="line">  proxy_redirect off;</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>测试配置文件 再 重启nginx <code>nginx -s reload</code></li>
+</ul>
+<h4 id="配置https"><a href="#配置https" class="headerlink" title="配置https"></a>配置https</h4><blockquote>
+<p>参考博客 <a href="http://www.cnblogs.com/tintin1926/archive/2012/07/12/2587311.html" target="_blank" rel="noopener">nginx搭建https服务</a> | <a href="http://letus.club/2016/04/08/nginx-http2-letsencrypt/" target="_blank" rel="noopener">nginx http/2</a></p>
+</blockquote>
+<ul>
+<li>先签发证书 <code>命令运行</code><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">############ 证书颁发机构</span></span><br><span class="line"><span class="comment"># CA机构私钥</span></span><br><span class="line">openssl genrsa -out ca.key 2048</span><br><span class="line"><span class="comment"># CA证书</span></span><br><span class="line">openssl req -x509 -new -key ca.key -out ca.crt</span><br><span class="line"><span class="comment">############ 服务端</span></span><br><span class="line"><span class="comment"># 生成服务端私钥</span></span><br><span class="line">openssl genrsa -out server.key 2048</span><br><span class="line"><span class="comment"># 生成服务端证书请求文件</span></span><br><span class="line">openssl req -new -key server.key -out server.csr</span><br><span class="line"><span class="comment"># 使用CA证书生成服务端证书  关于sha256，默认使用的是sha1，在新版本的chrome中会被认为是不安全的，因为使用了过时的加密算法。</span></span><br><span class="line">openssl x509 -req -sha256 -<span class="keyword">in</span> server.csr -CA ca.crt -CAkey ca.key -CAcreateserial -days 3650 -out server.crt    </span><br><span class="line"><span class="comment"># 打包服务端的资料为pkcs12格式(非必要，只是换一种格式存储上一步生成的证书) 生成过程中，需要创建访问密码，请记录下来。</span></span><br><span class="line">openssl pkcs12 -<span class="built_in">export</span> -<span class="keyword">in</span> server.crt -inkey server.key -out server.pkcs12</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><code>*.conf配置文件 配置HTTPS</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">upstream youhui &#123;</span><br><span class="line">  server 127.0.0.1:8888;</span><br><span class="line">&#125;</span><br><span class="line">server &#123;</span><br><span class="line">  listen 443;</span><br><span class="line">  server_name wx.jjyouhuigo.com;</span><br><span class="line">  # 主要就是添加了这一块</span><br><span class="line">  ssl on;</span><br><span class="line">  ssl_certificate  /home/youhuigo/https/server.crt;</span><br><span class="line">  ssl_certificate_key  /home/youhuigo/https/server.key;</span><br><span class="line"></span><br><span class="line">  location / &#123;</span><br><span class="line">    proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">    proxy_set_header X-Forward-For $proxy_add_x_forwarded_for;</span><br><span class="line">    proxy_set_header Host $http_host;</span><br><span class="line">    proxy_set_header X-Nginx-Proxt true;</span><br><span class="line">    proxy_pass https://youhui;</span><br><span class="line">    proxy_redirect off;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h5 id="certbot来配置Https"><a href="#certbot来配置Https" class="headerlink" title="certbot来配置Https"></a>certbot来配置Https</h5><blockquote>
+<p>免费的网站, 并且现在支持泛域名了! <a href="http://www.cnblogs.com/lidong94/p/7156839.html" target="_blank" rel="noopener">参考博客</a> | <a href="https://www.digitalocean.com/community/tutorials/how-to-secure-nginx-with-let-s-encrypt-on-ubuntu-16-04" target="_blank" rel="noopener">参考博客</a><br><a href="http://linux.it.net.cn/e/server/nginx/2015/0131/12745.html" target="_blank" rel="noopener">Nginx反向代理https</a><br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">wget https://dl.eff.org/certbot-auto</span><br><span class="line">chmod a+x certbot-auto</span><br><span class="line">./certbot-auto 进行安装 但是过程中会有一些设置，</span><br><span class="line">./certbot-auto certonly --email kuangcp@aliyun.com --nginx -d wx.kuangcp.top 生成证书</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<p><em>SSL 接收到一个超出最大准许长度的记录 要在端口后加上SSL nginx</em><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">upstream youhui &#123;</span><br><span class="line">  server 127.0.0.1:8080;</span><br><span class="line">&#125;</span><br><span class="line">upstream git&#123;</span><br><span class="line">  server 127.0.0.1:55443;</span><br><span class="line">&#125;</span><br><span class="line">server &#123;</span><br><span class="line">  listen 80;</span><br><span class="line">  server_name git.kuangcp.top;</span><br><span class="line">location / &#123;</span><br><span class="line">  proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">  proxy_set_header X-Forward-For $proxy_add_x_forwarded_for;</span><br><span class="line">    proxy_set_header Host $http_host;</span><br><span class="line">    proxy_set_header X-Nginx-Proxt true;</span><br><span class="line">    proxy_pass http://git;</span><br><span class="line">    proxy_redirect off;</span><br><span class="line">  &#125;</span><br><span class="line">  access_log /home/kuang/log/youhui.log;</span><br><span class="line">&#125;</span><br><span class="line">server&#123;</span><br><span class="line">  listen 443 ssl;</span><br><span class="line">  server_name wx.kuangcp.top</span><br><span class="line">    ssl on;</span><br><span class="line">    ssl_certificate  /etc/letsencrypt/live/wx.kuangcp.top/fullchain.pem;</span><br><span class="line">    ssl_certificate_key  /etc/letsencrypt/live/wx.kuangcp.top/privkey.pem;</span><br><span class="line">    ssl_trusted_certificate /etc/letsencrypt/live/wx.kuangcp.top/chain.pem;</span><br><span class="line">    ssl_dhparam /etc/nginx/ssl/dhparam.pem;</span><br><span class="line">    location / &#123;</span><br><span class="line">      proxy_pass https://youhui;</span><br><span class="line">  &#125;</span><br><span class="line">  access_log /home/kuang/log/https.log;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="配置Websocket反向代理"><a href="#配置Websocket反向代理" class="headerlink" title="配置Websocket反向代理"></a>配置Websocket反向代理</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"># 配置连接的配置信息</span><br><span class="line">map $http_upgrade $connection_upgrade&#123;</span><br><span class="line">  default upgrade;</span><br><span class="line">  &apos;&apos;  close;</span><br><span class="line">&#125;</span><br><span class="line">upstream youhui &#123;</span><br><span class="line">  server 127.0.0.1:8888;</span><br><span class="line">&#125;</span><br><span class="line">server &#123;</span><br><span class="line">  listen 80;</span><br><span class="line">  server_name 127.0.0.1;</span><br><span class="line">  location / &#123;</span><br><span class="line">    proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">    proxy_set_header X-Forward-For $proxy_add_x_forwarded_for;</span><br><span class="line">    proxy_set_header Host $host;</span><br><span class="line">    proxy_set_header X-Nginx-Proxt true;</span><br><span class="line"></span><br><span class="line">    # 设置接收到的请求类型</span><br><span class="line">    proxy_set_header Upgrade $http_upgrade;</span><br><span class="line">    proxy_set_header Connection $connection_upgrade;</span><br><span class="line"></span><br><span class="line">    proxy_pass http://youhui;</span><br><span class="line">    proxy_redirect off;</span><br><span class="line">  proxy_read_timeout 300s;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="防盗链"><a href="#防盗链" class="headerlink" title="防盗链"></a>防盗链</h3><h3 id="负载均衡"><a href="#负载均衡" class="headerlink" title="负载均衡"></a>负载均衡</h3><blockquote>
+<p><a href="https://segmentfault.com/a/1190000012479902" target="_blank" rel="noopener">Nginx 反向代理 负载均衡 虚拟主机配置</a></p>
+</blockquote>
+<h3 id="跨域问题的配置"><a href="#跨域问题的配置" class="headerlink" title="跨域问题的配置"></a>跨域问题的配置</h3><p>需要被跨域访问的一端， 添加如下配置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">add_header Access-Control-Allow-Origin *;</span><br><span class="line">add_header Access-Control-Allow-Headers X-Requested-With;</span><br><span class="line">add_header Access-Control-Allow-Methods GET,POST,OPTIONS;</span><br></pre></td></tr></table></figure></p>
+<h4 id="静态服务器将后台反代理"><a href="#静态服务器将后台反代理" class="headerlink" title="静态服务器将后台反代理"></a>静态服务器将后台反代理</h4><blockquote>
+<p>极大地省去了后台的配置！！<br><a href="https://segmentfault.com/a/1190000012859206" target="_blank" rel="noopener">Nginx反向代理解决跨域问题</a> | <a href="https://www.jianshu.com/p/05415981e5e5" target="_blank" rel="noopener">nginx简易使用教程,使用nginx解决跨域问题</a><br><em>配置静态端</em><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    client_max_body_size 4G;</span><br><span class="line">    listen  80;  ## listen for ipv4; this line is default and implied</span><br><span class="line">    server_name view.kcp;</span><br><span class="line">    location /api/ &#123;</span><br><span class="line">            # add_header &apos;Access-Control-Allow-Origin&apos; &apos;*&apos;;</span><br><span class="line">            proxy_pass http://127.0.0.1:8889;</span><br><span class="line">    &#125;</span><br><span class="line">    location / &#123;</span><br><span class="line">        root /home/kcp/IdeaProjects/Base/graduate/static;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<ol>
+<li>将静态文件交由Nginx进行处理， 后台的服务统一用一个前缀和前台进行区分， 然后将服务端的真实host和ip或者域名配置进来</li>
+<li>这样在于前端看来就是访问 view.kcp/api 而已， 实际上访问的是 127.0.0.1:8889/api <blockquote>
+<p>由于我原先用了nginx反向代理tomcat， 配置一个修改本地host得到的域名， 然后填在这里就没用了， 所以最好使用真实IP或者外网可访问的域名</p>
+</blockquote>
+</li>
+</ol>
+<hr>
+<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><ul>
+<li>文件上传报错 413 <ul>
+<li>http{}中添加 <code>client_max_body_size 80M;</code></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2018-12-14T12:42:49.250Z" itemprop="dateUpdated">2018-12-14 20:42:49</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2018/12/14/Memo-Linux-Tool-Nginx/" target="_blank" rel="external">http://blog.kuangcp.top/2018/12/14/Memo-Linux-Tool-Nginx/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="http://blog.kuangcp.top">
+            <img src="/img/avatar.jpg" alt="Kuangcp">
+            Kuangcp
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.kuangcp.top/2018/12/14/Memo-Linux-Tool-Nginx/&title=《Nginx.md》 — Kuangcp Blog&pic=http://blog.kuangcp.top/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.kuangcp.top/2018/12/14/Memo-Linux-Tool-Nginx/&title=《Nginx.md》 — Kuangcp Blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.kuangcp.top/2018/12/14/Memo-Linux-Tool-Nginx/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Nginx.md》 — Kuangcp Blog&url=http://blog.kuangcp.top/2018/12/14/Memo-Linux-Tool-Nginx/&via=http://blog.kuangcp.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.kuangcp.top/2018/12/14/Memo-Linux-Tool-Nginx/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/12/14/Memo-Linux-Container-DockerSoft/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">DockerSoft.md</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/12/14/Memo-Skills-Work-InterviewSkill/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">InterviewSkill.md</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check" data-wechat="/img/wechat.png" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style="display:none">
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style="display:none">
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Kuangcp &copy; 2015 - 2018</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.kuangcp.top/2018/12/14/Memo-Linux-Tool-Nginx/&title=《Nginx.md》 — Kuangcp Blog&pic=http://blog.kuangcp.top/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.kuangcp.top/2018/12/14/Memo-Linux-Tool-Nginx/&title=《Nginx.md》 — Kuangcp Blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.kuangcp.top/2018/12/14/Memo-Linux-Tool-Nginx/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Nginx.md》 — Kuangcp Blog&url=http://blog.kuangcp.top/2018/12/14/Memo-Linux-Tool-Nginx/&via=http://blog.kuangcp.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.kuangcp.top/2018/12/14/Memo-Linux-Tool-Nginx/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACM0lEQVR42u3awY6DMAxF0f7/TzPSrEaihfvsdCScm1XVIsJh4Tq2Xy+8jt91/ubvOl/56dfz3civC5YMGTIeyzgu1/U1KXvVvm92lyFDxgaM60e5DqzkerIX2eXj9zJkyJABAGmySO4vQ4YMGTUGCak8sKZhXYYMGTszeNC8Dp3piyCBePFZXIYMGQ9kpI2B//z8xf6GDBkyHsI4wsXTRB4W04bBm6eSIUPGaEatKL82+UuDbJDhypAhYwQjDmqNNmenJXAT4mXIkLENI03a0nCZMkjSKUOGjB0YPGkjaV+tWNZvecqQIWM2Ix2VqB1l+SBF7RsZMmTMZvBDafoQ3w7iN69bhgwZ4xirivXkMyne8RaCDBkydmbwYNfvoPJ2QlBukyFDxjhG2hIgjQTebEjDd1DakyFDxiAGCWqdMVY+nMFfXPC/IUOGjHEMXtZPa/K12L9s2EKGDBmPZfAkr4/kRTQe9F88D5UhQ8ZjGXwzkqKlqWS/eXnTiZUhQ8YgBj8u1o6ytQGLGClDhoyhDN68TFO0b99HhgwZezJ4QOwMgXXGwj7uLkOGjNEMXuLnW6aFfr7SlyJDhowZjCNcq9qZvM3ZSg1lyJAxgtEJdp0xL/64xf6GDBkyxjHSINs5oPKDcdpgkCFDxg6M/saduL7gShkyZMgojXmlgTsd5niTGsqQIUMGTv7Sh+bDYTJkyNiZUWsG1NLHNClE7VIZMmSMZvQbA7WmZrpvCyBDhoynMn4AkZdGvLk/7DcAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

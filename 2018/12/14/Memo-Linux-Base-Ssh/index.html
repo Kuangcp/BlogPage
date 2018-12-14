@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>Ssh.md | Kuangcp Blog | Javaer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="目录 start  SSH 1.安装软件 2.复制粘贴建立密钥对 2.使用脚本更简单 3.遇到的问题 4.SSH配置文件 5.多密钥对 6.访问图形化 7.ssh登录并执行一系列命令    目录 end|2018-12-13 12:06| 码云 | CSDN | OSChina | cnblogs  SSH Linux启动或禁止SSH用户及IP的登录ssh和ssh2之间的免密码登陆详解SSH原理与">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ssh.md">
+<meta property="og:url" content="http://blog.kuangcp.top/2018/12/14/Memo-Linux-Base-Ssh/index.html">
+<meta property="og:site_name" content="Kuangcp Blog">
+<meta property="og:description" content="目录 start  SSH 1.安装软件 2.复制粘贴建立密钥对 2.使用脚本更简单 3.遇到的问题 4.SSH配置文件 5.多密钥对 6.访问图形化 7.ssh登录并执行一系列命令    目录 end|2018-12-13 12:06| 码云 | CSDN | OSChina | cnblogs  SSH Linux启动或禁止SSH用户及IP的登录ssh和ssh2之间的免密码登陆详解SSH原理与">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-12-14T12:42:49.250Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Ssh.md">
+<meta name="twitter:description" content="目录 start  SSH 1.安装软件 2.复制粘贴建立密钥对 2.使用脚本更简单 3.遇到的问题 4.SSH配置文件 5.多密钥对 6.访问图形化 7.ssh登录并执行一系列命令    目录 end|2018-12-13 12:06| 码云 | CSDN | OSChina | cnblogs  SSH Linux启动或禁止SSH用户及IP的登录ssh和ssh2之间的免密码登陆详解SSH原理与">
+    
+        <link rel="alternate" type="application/atom+xml" title="Kuangcp Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Kuangcp</h5>
+          <a href="mailto:kuangcp@aliyun.com" title="kuangcp@aliyun.com" class="mail">kuangcp@aliyun.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/">
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives">
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags">
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories">
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/kuangcp" target="_blank">
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Ssh.md</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Ssh.md</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-12-14T12:42:49.250Z" itemprop="datePublished" class="page-time">
+  2018-12-14
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#SSH"><span class="post-toc-number">1.</span> <span class="post-toc-text">SSH</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-安装软件"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">1.安装软件</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-复制粘贴建立密钥对"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">2.复制粘贴建立密钥对</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-使用脚本更简单"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">2.使用脚本更简单</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-遇到的问题"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">3.遇到的问题</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#4-SSH配置文件"><span class="post-toc-number">1.5.</span> <span class="post-toc-text">4.SSH配置文件</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#5-多密钥对"><span class="post-toc-number">1.6.</span> <span class="post-toc-text">5.多密钥对</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#6-访问图形化"><span class="post-toc-number">1.7.</span> <span class="post-toc-text">6.访问图形化</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#7-ssh登录并执行一系列命令"><span class="post-toc-number">1.8.</span> <span class="post-toc-text">7.ssh登录并执行一系列命令</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-Memo-Linux-Base-Ssh" class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Ssh.md</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-12-14 20:42:49" datetime="2018-12-14T12:42:49.250Z" itemprop="datePublished">2018-12-14</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style="display:none">
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p><strong>目录 start</strong></p>
+<ol>
+<li><a href="#ssh">SSH</a><ol>
+<li><a href="#1安装软件">1.安装软件</a></li>
+<li><a href="#2复制粘贴建立密钥对">2.复制粘贴建立密钥对</a></li>
+<li><a href="#2使用脚本更简单">2.使用脚本更简单</a></li>
+<li><a href="#3遇到的问题">3.遇到的问题</a></li>
+<li><a href="#4ssh配置文件">4.SSH配置文件</a></li>
+<li><a href="#5多密钥对">5.多密钥对</a></li>
+<li><a href="#6访问图形化">6.访问图形化</a></li>
+<li><a href="#7ssh登录并执行一系列命令">7.ssh登录并执行一系列命令</a></li>
+</ol>
+</li>
+</ol>
+<p><strong>目录 end</strong>|<em>2018-12-13 12:06</em>| <a href="https://gitee.com/gin9" target="_blank" rel="noopener">码云</a> | <a href="http://blog.csdn.net/kcp606" target="_blank" rel="noopener">CSDN</a> | <a href="https://my.oschina.net/kcp1104" target="_blank" rel="noopener">OSChina</a> | <a href="http://www.cnblogs.com/kuangcp" target="_blank" rel="noopener">cnblogs</a></p>
+<hr>
+<h1 id="SSH"><a href="#SSH" class="headerlink" title="SSH"></a>SSH</h1><blockquote>
+<p><a href="https://blog.csdn.net/linghe301/article/details/8211305" target="_blank" rel="noopener">Linux启动或禁止SSH用户及IP的登录</a><br><a href="http://blog.chinaunix.net/uid-26517277-id-4055228.html" target="_blank" rel="noopener">ssh和ssh2之间的免密码登陆详解</a><br><a href="http://www.ruanyifeng.com/blog/2011/12/ssh_remote_login.html" target="_blank" rel="noopener">SSH原理与运用（一）：远程登录</a><br><a href="http://www.ruanyifeng.com/blog/2011/12/ssh_port_forwarding.html" target="_blank" rel="noopener">SSH原理与运用（二）：远程操作与端口转发</a></p>
+</blockquote>
+<ul>
+<li><code>ssh user@host</code> 默认22端口登录系统  </li>
+<li><code>ssh -p port user@host</code> 指定端口登录  </li>
+<li><code>ssh -T user@host</code> 测试能否登录上    </li>
+</ul>
+<blockquote>
+<p><code>ssh -i 私钥绝对路径 user@host</code> 采用指定私钥登录(一般默认是<code>.ssh/id_rsa</code>)  </p>
+<blockquote>
+<p>私钥一定要是 600 权限<br>去除私钥的口令 <code>openssl rsa -in ~/.ssh/id_rsa -out ~/.ssh/id_rsa_new</code> <em>在GitForWindows里面虽然有openssl,但是这个命令却执行不了</em></p>
+</blockquote>
+</blockquote>
+<blockquote>
+<p>使用密码方式免去密码登录(因为一些奇怪的需求, 又想省事)</p>
+<blockquote>
+<ol>
+<li>安装sshpass <a href="https://linux.cn/article-8086-1.html" target="_blank" rel="noopener">完整教程</a></li>
+<li>sshpass -p ‘密码’ 后接正常的ssh命令 ssh user@host</li>
+</ol>
+</blockquote>
+</blockquote>
+<blockquote>
+<p>ssh登录然后执行一系列命令, sudo会执行不了 需要加 -t 参数才行 </p>
+</blockquote>
+<h2 id="1-安装软件"><a href="#1-安装软件" class="headerlink" title="1.安装软件"></a>1.安装软件</h2><p><em>客户端安装软件</em></p>
+<ul>
+<li><code>sudo spt-get install openssh-client</code></li>
+<li>生成密钥对 <code>ssh-keygen</code> 可以设置密码，为了方便也可以全部采用默认</li>
+</ul>
+<p><em>服务端安装软件</em></p>
+<ul>
+<li>安装：<code>sudo apt-get install openssh-server</code></li>
+<li>启动：<code>sudo /etc/init.d/ssh start</code> 或者 <code>service ssh start</code> </li>
+<li>更改配置文件修改默认端口 <code>/etc/ssh/sshd_config</code></li>
+<li>查看对否启动sshd<code>ps -e |grep ssh</code></li>
+<li>关闭服务 <code>/etc/init.d/ssh stop</code></li>
+</ul>
+<h2 id="2-复制粘贴建立密钥对"><a href="#2-复制粘贴建立密钥对" class="headerlink" title="2.复制粘贴建立密钥对"></a>2.复制粘贴建立密钥对</h2><p><em>客户端</em></p>
+<ul>
+<li>进入.ssh文件夹下 <code>gedit id_rsa.pub</code> 然后复制该公钥内容<ul>
+<li>或者 <code>cat ~/.ssh/id_rsa.pub | xclip -sel clip</code> 将文件复制到剪贴板 </li>
+<li>或者 <code>cat ~/.ssh/id_rsa.pub | xsel -b</code> 也是文件复制到剪贴板</li>
+</ul>
+</li>
+<li>在各种平台服务上添加这个公钥即可免密登录</li>
+</ul>
+<p><em>服务器端</em></p>
+<ul>
+<li>进入.ssh文件夹下 <code>sudo vim authorized_keys</code> 粘贴客户端公钥内容</li>
+<li>更改文件权限 <code>sudo chmod 600 authorized_keys</code> 确保 其 group和other位没有 w 权限</li>
+</ul>
+<h2 id="2-使用脚本更简单"><a href="#2-使用脚本更简单" class="headerlink" title="2.使用脚本更简单"></a>2.使用脚本更简单</h2><ul>
+<li>两方安装好软件 客户端生成好了秘钥对之后</li>
+<li>默认端口:<code>ssh-copy-id &quot;username@host&quot;</code> 输密码就可以了</li>
+<li><p>指定端口 <code>ssh-copy-id ”-p port username@host“</code> </p>
+<ul>
+<li>或者:<code>ssh-copy-id &quot; username@host&quot; -p port</code></li>
+</ul>
+</li>
+<li><p>成功后 客户端登录 <code>ssh -p 22 username@ip</code></p>
+<ul>
+<li>root用户一般需要修改:</li>
+<li><code>/etc/ssh/sshd_confg</code> 文件中PermitRootLogin  no 改为yes 重新启动ssh服务。</li>
+</ul>
+</li>
+<li><p>注意:</p>
+<ul>
+<li>一个端口和IP如果之前记录过相关信息,然后服务器重装了系统或者别的原因, 修改了服务器秘钥 </li>
+<li>再次连接新的系统按着提示来运行一条命令即可</li>
+<li>例如 <code>ssh-keygen -f &quot;/home/kcp/.ssh/known_hosts&quot; -R 120.78.154.52</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="3-遇到的问题"><a href="#3-遇到的问题" class="headerlink" title="3.遇到的问题"></a>3.遇到的问题</h2><ul>
+<li><p>终端抛出<code>ssh_exchange_identification: Connection closed by remote host</code> 错误:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">"PermitRootLogin without-password"</span> &gt;&gt; /etc/ssh/sshd_config ;\</span><br><span class="line"><span class="built_in">echo</span> <span class="string">"PermitRootLogin yes"</span> &gt;&gt; /etc/ssh/sshd_config ;\</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>或者尝试 <code>echo &quot;sshd: ALL&quot; &gt;&gt; /etc/hosts.allow &amp;&amp; service sshd restart</code></p>
+</li>
+</ul>
+<hr>
+<p><em>这是什么问题,这么6的么, 配置好了公钥</em><br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ ssh -p 8888 git@184.170.220.117</span><br><span class="line">    The authenticity of host <span class="string">'[184.170.220.117]:8888 ([184.170.220.117]:8888)'</span> can<span class="string">'t be established.</span></span><br><span class="line"><span class="string">    ECDSA key fingerprint is SHA256:Ha9k9dsMxtTaDgN4maUy1VoNzzsm+uMb84zcib6U5jU.</span></span><br><span class="line"><span class="string">    Are you sure you want to continue connecting (yes/no)? yes</span></span><br><span class="line"><span class="string">    Warning: Permanently added '</span>[184.170.220.117]:8888<span class="string">' (ECDSA) to the list of known hosts.</span></span><br><span class="line"><span class="string">    PTY allocation request failed on channel 0</span></span><br><span class="line"><span class="string">    Welcome to GitLab, Carlsiry Chen!</span></span><br><span class="line"><span class="string">    Connection to 184.170.220.117 closed.</span></span><br></pre></td></tr></table></figure></p>
+<p><em>emmm.出现这样的输出竟然是连接上了,,,</em></p>
+<h2 id="4-SSH配置文件"><a href="#4-SSH配置文件" class="headerlink" title="4.SSH配置文件"></a>4.SSH配置文件</h2><p><code>vim ~/.ssh/config</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Host aliyun</span><br><span class="line">    HostName www.ttlsa.com</span><br><span class="line">    Port 22</span><br><span class="line">    User root</span><br><span class="line">    IdentityFile  ~/.ssh/id_rsa.pub</span><br><span class="line">    IdentitiesOnly yes</span><br></pre></td></tr></table></figure></p>
+<p><em>参数解释</em><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">HostName 指定登录的主机名或IP地址</span><br><span class="line">Port 指定登录的端口号</span><br><span class="line">User 登录用户名</span><br><span class="line">IdentityFile 登录的公/私钥文件 奇怪的是有时候用公有时候用私??</span><br><span class="line">IdentitiesOnly 只接受SSH key 登录</span><br><span class="line">PubkeyAuthentication</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li><code>ssh aliyun</code> 即可登录 但是要输入生成公钥时的密码， <em>方便多公钥的情况</em><ul>
+<li>如果生成公钥时_没有_设置密码就要错三次，然后输入用户密码，</li>
+<li>不觉得有多方便，还不如 alias进行配置</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>修改欢迎信息 /etc/motd</p>
+</blockquote>
+<h2 id="5-多密钥对"><a href="#5-多密钥对" class="headerlink" title="5.多密钥对"></a>5.多密钥对</h2><blockquote>
+<p><a href="http://blog.csdn.net/black_ox/article/details/17753943" target="_blank" rel="noopener">参考博客</a>   </p>
+</blockquote>
+<ol>
+<li><code>ssh-keygen</code> 生成SSH密钥对<ul>
+<li>然后在询问中输入新的文件名</li>
+</ul>
+</li>
+<li><code>ssh-add 私钥文件绝对路径</code><ul>
+<li>若执行ssh-add时出现Could not open a connection to your authentication agent</li>
+<li>就先执行 <code>ssh-agent bash</code> 对应自己的解释器环境</li>
+</ul>
+</li>
+<li>如上 创建配置文件 config<ul>
+<li>在git项目中使用别名:正常的项目，我们clone下来之后，origin对应的URL假设为: <code>git@git.:Rusher/helloworld</code></li>
+<li>现在需要做个改动，将git, 要换成rusher_gitlab:<ul>
+<li><code>git remote set-url origin git@rusher_gitlab:Rusher/helloworld</code></li>
+</ul>
+</li>
+<li>如果是root用户的项目:<ul>
+<li><code>git remote set-url origin git@root_gitlab:root/helloworld</code><br><em>config</em><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Host default</span><br><span class="line">HostName github.com</span><br><span class="line">User git</span><br><span class="line">IdentityFile ~/.ssh/default_id_rsa.pub</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li>测试配置是否正确: <code>ssh -T git@default</code></li>
+</ul>
+<h2 id="6-访问图形化"><a href="#6-访问图形化" class="headerlink" title="6.访问图形化"></a>6.访问图形化</h2><p>在<code>/etc/ssh/sshd_config</code>添加以下信息，然后重启ssh服务<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">X11Forwarding yes</span><br><span class="line">X11DisplayOffset 10</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li><code>ssh -X -p port user@host</code> 登录即可<ul>
+<li>使用过一次,发现了严重的内存泄露,也不知道是什么原因</li>
+</ul>
+</li>
+</ul>
+<h2 id="7-ssh登录并执行一系列命令"><a href="#7-ssh登录并执行一系列命令" class="headerlink" title="7.ssh登录并执行一系列命令"></a>7.ssh登录并执行一系列命令</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssh user@host <span class="string">'cmd \</span></span><br><span class="line"><span class="string">    &amp;&amp; cmd \'</span></span><br></pre></td></tr></table></figure>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2018-12-14T12:42:49.250Z" itemprop="dateUpdated">2018-12-14 20:42:49</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2018/12/14/Memo-Linux-Base-Ssh/" target="_blank" rel="external">http://blog.kuangcp.top/2018/12/14/Memo-Linux-Base-Ssh/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="http://blog.kuangcp.top">
+            <img src="/img/avatar.jpg" alt="Kuangcp">
+            Kuangcp
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.kuangcp.top/2018/12/14/Memo-Linux-Base-Ssh/&title=《Ssh.md》 — Kuangcp Blog&pic=http://blog.kuangcp.top/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.kuangcp.top/2018/12/14/Memo-Linux-Base-Ssh/&title=《Ssh.md》 — Kuangcp Blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.kuangcp.top/2018/12/14/Memo-Linux-Base-Ssh/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Ssh.md》 — Kuangcp Blog&url=http://blog.kuangcp.top/2018/12/14/Memo-Linux-Base-Ssh/&via=http://blog.kuangcp.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.kuangcp.top/2018/12/14/Memo-Linux-Base-Ssh/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/12/14/Memo-Linux-Base-LinuxUI/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">LinuxUI.md</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/12/14/Memo-Linux-Centos-CentosBase/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">CentosBase.md</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check" data-wechat="/img/wechat.png" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style="display:none">
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style="display:none">
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Kuangcp &copy; 2015 - 2018</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.kuangcp.top/2018/12/14/Memo-Linux-Base-Ssh/&title=《Ssh.md》 — Kuangcp Blog&pic=http://blog.kuangcp.top/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.kuangcp.top/2018/12/14/Memo-Linux-Base-Ssh/&title=《Ssh.md》 — Kuangcp Blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.kuangcp.top/2018/12/14/Memo-Linux-Base-Ssh/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Ssh.md》 — Kuangcp Blog&url=http://blog.kuangcp.top/2018/12/14/Memo-Linux-Base-Ssh/&via=http://blog.kuangcp.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.kuangcp.top/2018/12/14/Memo-Linux-Base-Ssh/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACLUlEQVR42u3ay07EMAwF0Pn/ny4Sq5GGDtd2B9HkdFWV0uSwMPHj8Yiv4/t6vn99kr/5/OR1lbOfXnBhYGDclnG8vfLl3z+Zr3v2DgYGxj6MSZBN3k/WSlY5fY6BgYERb7p6cMzvMTAwMKqMeZqa/C4GBgZGNZlMDnPJHyJJVj+Yi2NgYNyQ0WsM/M39x/sbGBgY/55xFK9Jm7OaHhd2hYGBsTSjV5TvtQHy4l0eXUe9BQwMjJswquX+ZNNJ4jo/LP7wfwMDA2NRRnKMyzPH3vvV7UZHQwwMjOUYHx/YKjZBqy1PDAyMHRh5ca161KuG6d4TDAyMHRi9cn8vAZ4ntM3jLAYGxm0Z1QXmJbNqOI6aDRgYGBswyiWtYni9qp1wuhYGBsbSjF6wy5fJi275iEZUNcTAwFiUUR32mhfLqi2BQi6OgYGxASMJbb0BssmIRuELGBgYSzOSovyklVgN1nl7FQMDY21GNchWi2vzxDX6MgYGxtKMSeuxml5GLckBEgMDYz1GPjYxCYXz8Ytf9oOBgbE9o3pAzIe6kgNlxMbAwFiakYS5eYnt2lJd4QsYGBhLMI7iVU1c3wfiasiOjoYYGBjLMeYhMmkVXFsXbHZlMTAwbs6YB8G8nZmkys3RVQwMjA0YvSCYNwPyBkAzAcbAwMAYpKCTYFo+GmJgYGAUG5NXldWihBkDA2MDRnXQoZfK9nqqyQ4xMDDWZvQGHaptzvlYxgiAgYFxV8YXOxyOdGD4eOgAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

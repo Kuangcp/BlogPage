@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>Platform.md | Kuangcp Blog | Javaer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="目录 start  代码托管平台 Gitlab Gitee URL规则   Github URL规则 MarkDown规则 wiki Bandage图标   Gitea 自建     二进制包仓库 代码质量检测平台 codeclimate codebeat codacy   综合开发平台 华为云 阿里云 ECS ACM OSS   百度开发平台 CCE BOS BAE 其他应用 翻译     腾讯">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Platform.md">
+<meta property="og:url" content="http://blog.kuangcp.top/2018/12/14/Memo-Platform/index.html">
+<meta property="og:site_name" content="Kuangcp Blog">
+<meta property="og:description" content="目录 start  代码托管平台 Gitlab Gitee URL规则   Github URL规则 MarkDown规则 wiki Bandage图标   Gitea 自建     二进制包仓库 代码质量检测平台 codeclimate codebeat codacy   综合开发平台 华为云 阿里云 ECS ACM OSS   百度开发平台 CCE BOS BAE 其他应用 翻译     腾讯">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-12-14T12:42:49.250Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Platform.md">
+<meta name="twitter:description" content="目录 start  代码托管平台 Gitlab Gitee URL规则   Github URL规则 MarkDown规则 wiki Bandage图标   Gitea 自建     二进制包仓库 代码质量检测平台 codeclimate codebeat codacy   综合开发平台 华为云 阿里云 ECS ACM OSS   百度开发平台 CCE BOS BAE 其他应用 翻译     腾讯">
+    
+        <link rel="alternate" type="application/atom+xml" title="Kuangcp Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Kuangcp</h5>
+          <a href="mailto:kuangcp@aliyun.com" title="kuangcp@aliyun.com" class="mail">kuangcp@aliyun.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/">
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives">
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags">
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories">
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/kuangcp" target="_blank">
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Platform.md</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Platform.md</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-12-14T12:42:49.250Z" itemprop="datePublished" class="page-time">
+  2018-12-14
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#代码托管平台"><span class="post-toc-number">1.</span> <span class="post-toc-text">代码托管平台</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Gitlab"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">Gitlab</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Gitee"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">Gitee</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#URL规则"><span class="post-toc-number">1.2.1.</span> <span class="post-toc-text">URL规则</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Github"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">Github</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#URL规则-1"><span class="post-toc-number">1.3.1.</span> <span class="post-toc-text">URL规则</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#MarkDown规则"><span class="post-toc-number">1.3.2.</span> <span class="post-toc-text">MarkDown规则</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#wiki"><span class="post-toc-number">1.3.3.</span> <span class="post-toc-text">wiki</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Bandage图标"><span class="post-toc-number">1.3.4.</span> <span class="post-toc-text">Bandage图标</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Gitea"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">Gitea</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#自建"><span class="post-toc-number">1.4.1.</span> <span class="post-toc-text">自建</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#二进制包仓库"><span class="post-toc-number">2.</span> <span class="post-toc-text">二进制包仓库</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#代码质量检测平台"><span class="post-toc-number">3.</span> <span class="post-toc-text">代码质量检测平台</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#codeclimate"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">codeclimate</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#codebeat"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">codebeat</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#codacy"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">codacy</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#综合开发平台"><span class="post-toc-number">4.</span> <span class="post-toc-text">综合开发平台</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#华为云"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">华为云</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#阿里云"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">阿里云</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#ECS"><span class="post-toc-number">4.2.1.</span> <span class="post-toc-text">ECS</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#ACM"><span class="post-toc-number">4.2.2.</span> <span class="post-toc-text">ACM</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#OSS"><span class="post-toc-number">4.2.3.</span> <span class="post-toc-text">OSS</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#百度开发平台"><span class="post-toc-number">4.3.</span> <span class="post-toc-text">百度开发平台</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#CCE"><span class="post-toc-number">4.3.1.</span> <span class="post-toc-text">CCE</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#BOS"><span class="post-toc-number">4.3.2.</span> <span class="post-toc-text">BOS</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#BAE"><span class="post-toc-number">4.3.3.</span> <span class="post-toc-text">BAE</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#其他应用"><span class="post-toc-number">4.3.4.</span> <span class="post-toc-text">其他应用</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#翻译"><span class="post-toc-number">4.3.4.1.</span> <span class="post-toc-text">翻译</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#腾讯"><span class="post-toc-number">4.4.</span> <span class="post-toc-text">腾讯</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#域名"><span class="post-toc-number">4.4.1.</span> <span class="post-toc-text">域名</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#CVM"><span class="post-toc-number">4.4.2.</span> <span class="post-toc-text">CVM</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#COS"><span class="post-toc-number">4.4.3.</span> <span class="post-toc-text">COS</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#微信公众号"><span class="post-toc-number">4.4.4.</span> <span class="post-toc-text">微信公众号</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#网易"><span class="post-toc-number">4.5.</span> <span class="post-toc-text">网易</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#有道智云"><span class="post-toc-number">4.5.1.</span> <span class="post-toc-text">有道智云</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#微软"><span class="post-toc-number">4.6.</span> <span class="post-toc-text">微软</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#翻译-1"><span class="post-toc-number">4.6.1.</span> <span class="post-toc-text">翻译</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#云存储"><span class="post-toc-number">5.</span> <span class="post-toc-text">云存储</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#NextCloud"><span class="post-toc-number">5.1.</span> <span class="post-toc-text">NextCloud</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#坚果云"><span class="post-toc-number">5.2.</span> <span class="post-toc-text">坚果云</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#七牛云"><span class="post-toc-number">5.3.</span> <span class="post-toc-text">七牛云</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#智能机器人平台"><span class="post-toc-number">6.</span> <span class="post-toc-text">智能机器人平台</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#图灵机器人"><span class="post-toc-number">6.1.</span> <span class="post-toc-text">图灵机器人</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#评论系统"><span class="post-toc-number">7.</span> <span class="post-toc-text">评论系统</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#消息推送"><span class="post-toc-number">8.</span> <span class="post-toc-text">消息推送</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#极光推送"><span class="post-toc-number">8.1.</span> <span class="post-toc-text">极光推送</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#GoEasy"><span class="post-toc-number">8.2.</span> <span class="post-toc-text">GoEasy</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#文档"><span class="post-toc-number">9.</span> <span class="post-toc-text">文档</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#文档托管"><span class="post-toc-number">9.1.</span> <span class="post-toc-text">文档托管</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#文档转换"><span class="post-toc-number">9.2.</span> <span class="post-toc-text">文档转换</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#接口平台"><span class="post-toc-number">10.</span> <span class="post-toc-text">接口平台</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#今日头条"><span class="post-toc-number">10.1.</span> <span class="post-toc-text">今日头条</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#测试平台"><span class="post-toc-number">11.</span> <span class="post-toc-text">测试平台</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#培训"><span class="post-toc-number">12.</span> <span class="post-toc-text">培训</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-Memo-Platform" class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Platform.md</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-12-14 20:42:49" datetime="2018-12-14T12:42:49.250Z" itemprop="datePublished">2018-12-14</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style="display:none">
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p><strong>目录 start</strong></p>
+<ol>
+<li><a href="#代码托管平台">代码托管平台</a><ol>
+<li><a href="#gitlab">Gitlab</a></li>
+<li><a href="#gitee">Gitee</a><ol>
+<li><a href="#url规则">URL规则</a></li>
+</ol>
+</li>
+<li><a href="#github">Github</a><ol>
+<li><a href="#url规则">URL规则</a></li>
+<li><a href="#markdown规则">MarkDown规则</a></li>
+<li><a href="#wiki">wiki</a></li>
+<li><a href="#bandage图标">Bandage图标</a></li>
+</ol>
+</li>
+<li><a href="#gitea">Gitea</a><ol>
+<li><a href="#自建">自建</a></li>
+</ol>
+</li>
+</ol>
+</li>
+<li><a href="#二进制包仓库">二进制包仓库</a></li>
+<li><a href="#代码质量检测平台">代码质量检测平台</a><ol>
+<li><a href="#codeclimate">codeclimate</a></li>
+<li><a href="#codebeat">codebeat</a></li>
+<li><a href="#codacy">codacy</a></li>
+</ol>
+</li>
+<li><a href="#综合开发平台">综合开发平台</a><ol>
+<li><a href="#华为云">华为云</a></li>
+<li><a href="#阿里云">阿里云</a><ol>
+<li><a href="#ecs">ECS</a></li>
+<li><a href="#acm">ACM</a></li>
+<li><a href="#oss">OSS</a></li>
+</ol>
+</li>
+<li><a href="#百度开发平台">百度开发平台</a><ol>
+<li><a href="#cce">CCE</a></li>
+<li><a href="#bos">BOS</a></li>
+<li><a href="#bae">BAE</a></li>
+<li><a href="#其他应用">其他应用</a><ol>
+<li><a href="#翻译">翻译</a></li>
+</ol>
+</li>
+</ol>
+</li>
+<li><a href="#腾讯">腾讯</a><ol>
+<li><a href="#域名">域名</a></li>
+<li><a href="#cvm">CVM</a></li>
+<li><a href="#cos">COS</a></li>
+<li><a href="#微信公众号">微信公众号</a></li>
+</ol>
+</li>
+<li><a href="#网易">网易</a><ol>
+<li><a href="#有道智云">有道智云</a></li>
+</ol>
+</li>
+<li><a href="#微软">微软</a><ol>
+<li><a href="#翻译">翻译</a></li>
+</ol>
+</li>
+</ol>
+</li>
+<li><a href="#云存储">云存储</a><ol>
+<li><a href="#nextcloud">NextCloud</a></li>
+<li><a href="#坚果云">坚果云</a></li>
+<li><a href="#七牛云">七牛云</a></li>
+</ol>
+</li>
+<li><a href="#智能机器人平台">智能机器人平台</a><ol>
+<li><a href="#图灵机器人">图灵机器人</a></li>
+</ol>
+</li>
+<li><a href="#评论系统">评论系统</a></li>
+<li><a href="#消息推送">消息推送</a><ol>
+<li><a href="#极光推送">极光推送</a></li>
+<li><a href="#goeasy">GoEasy</a></li>
+</ol>
+</li>
+<li><a href="#文档">文档</a><ol>
+<li><a href="#文档托管">文档托管</a></li>
+<li><a href="#文档转换">文档转换</a></li>
+</ol>
+</li>
+<li><a href="#接口平台">接口平台</a><ol>
+<li><a href="#今日头条">今日头条</a></li>
+</ol>
+</li>
+<li><a href="#测试平台">测试平台</a></li>
+<li><a href="#培训">培训</a></li>
+</ol>
+<p><strong>目录 end</strong>|<em>2018-12-13 12:06</em>| <a href="https://gitee.com/gin9" target="_blank" rel="noopener">码云</a> | <a href="http://blog.csdn.net/kcp606" target="_blank" rel="noopener">CSDN</a> | <a href="https://my.oschina.net/kcp1104" target="_blank" rel="noopener">OSChina</a> | <a href="http://www.cnblogs.com/kuangcp" target="_blank" rel="noopener">cnblogs</a></p>
+<hr>
+<h1 id="代码托管平台"><a href="#代码托管平台" class="headerlink" title="代码托管平台"></a>代码托管平台</h1><h2 id="Gitlab"><a href="#Gitlab" class="headerlink" title="Gitlab"></a>Gitlab</h2><blockquote>
+<p><a href="https://gitlab.com/" target="_blank" rel="noopener">Site</a></p>
+</blockquote>
+<p>功能丰富, 集成了 CI/CD, 也能自己搭建 社区版, 免费的私有库, 用于团队协作的功能比较多</p>
+<h2 id="Gitee"><a href="#Gitee" class="headerlink" title="Gitee"></a>Gitee</h2><blockquote>
+<p>码云,国内的github <a href="http://git.mydoc.io/" target="_blank" rel="noopener">帮助文档</a></p>
+</blockquote>
+<p>也是有私有库, 但是私有库有数量限制, 不过那个数挺大的, 1000 还是多少, 但是分支图的显示不喜欢, 分支都没有闭合, 真难受</p>
+<h3 id="URL规则"><a href="#URL规则" class="headerlink" title="URL规则"></a>URL规则</h3><ul>
+<li>HTTPS &amp; SSH<ul>
+<li><code>HTTPS:</code> <a href="https://gitee.com/kcp1104/MythRedisClient.git" target="_blank" rel="noopener">https://gitee.com/kcp1104/MythRedisClient.git</a></li>
+<li><code>SSH:</code> <a href="mailto:git@gitee.com" target="_blank" rel="noopener">git@gitee.com</a>:kcp1104/MythRedisClient.git</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="Github"><a href="#Github" class="headerlink" title="Github"></a>Github</h2><blockquote>
+<p>全球范围性的网站  <a href="https://developer.github.com/v3/" target="_blank" rel="noopener">开发者文档</a> </p>
+</blockquote>
+<ol>
+<li>在github上修改了项目后，或者以后是和别人一起开发，就要先git pull origin （master）将别人的分支和自己的分支都拉下来确保是最新，<ul>
+<li>再进行<code>git push -u origin master</code> 才能正确提交代码，如果不pull，提交是注定失败的，还会扰乱分支图</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li><a href="https://segmentfault.com/a/1190000000475547" target="_blank" rel="noopener">少有人知的 GitHub 使用技巧</a><h3 id="URL规则-1"><a href="#URL规则-1" class="headerlink" title="URL规则"></a>URL规则</h3><blockquote>
+<p>github仓库的URL规则</p>
+<blockquote>
+<p>git.io 是短网址服务</p>
+</blockquote>
+</blockquote>
+</li>
+<li><p>HTTP &amp; SSH</p>
+<ul>
+<li><code>SSH:</code> <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>:Kuangcp/Script.git</li>
+<li><code>HTTPS:</code> <a href="https://github.com/Kuangcp/Script.git" target="_blank" rel="noopener">https://github.com/Kuangcp/Script.git</a></li>
+</ul>
+</li>
+<li><p>目录：</p>
+<ul>
+<li><code>https://github.com/用户/项目/tree/分支/相对根目录的目录</code></li>
+</ul>
+</li>
+<li>文本文件：<ul>
+<li><code>https://github.com/用户/项目/blob/分支/文件目录</code></li>
+</ul>
+</li>
+<li>二进制文件，例如图片：<ul>
+<li><code>https://raw.githubusercontent.com/用户/项目/分支/文件目录</code></li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>例如同仓库下的这个文件<code>/Linux/Docker.md</code> 可以直接这样写，方便调用，最好最前面不要加<code>.</code>这个表示当前目录的 </p>
+</blockquote>
+<h3 id="MarkDown规则"><a href="#MarkDown规则" class="headerlink" title="MarkDown规则"></a>MarkDown规则</h3><blockquote>
+<p><a href="/Skills/Document/MarkDown.md#github">更多详情&gt;&gt;</a></p>
+</blockquote>
+<h3 id="wiki"><a href="#wiki" class="headerlink" title="wiki"></a>wiki</h3><blockquote>
+<p>其实也是一个git仓库, 以特定格式进行显示而已</p>
+<ul>
+<li>侧栏的目录依赖于 <code>_Sidebar.md</code> 文件<br>其显示规则类似于Markdown语法: <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">* [[Introduction|Home]]</span><br><span class="line">* Basic Utilities</span><br><span class="line">  * [[Using/avoiding null|UsingAndAvoidingNullExplained]]</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</blockquote>
+<blockquote>
+<p>其中 [[名称|URL]] 类似于 <a href=""></a>  URL的md后缀也要去掉,不然就跳转到md文件的源路径了<br>允许md以文件夹多结构的形式存在, 但是最终的目录规则是扁平的, 直接就是文件名,没有目录名</p>
+</blockquote>
+<h3 id="Bandage图标"><a href="#Bandage图标" class="headerlink" title="Bandage图标"></a>Bandage图标</h3><blockquote>
+<p><a href="https://shields.io/" target="_blank" rel="noopener">shields</a></p>
+</blockquote>
+<ul>
+<li>规则 <a href="https://img.shields.io/badge/note-JavaSE-blue.svg" target="_blank" rel="noopener">https://img.shields.io/badge/note-JavaSE-blue.svg</a><ul>
+<li>如果是中文则要转码</li>
+<li>颜色: brightgreen green yellowgreen yellow orange red lightgrey blue ff69b4 (也就是说可以设置任意颜色)</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="Gitea"><a href="#Gitea" class="headerlink" title="Gitea"></a>Gitea</h2><blockquote>
+<p><a href="https://gitea.io/zh-cn/" target="_blank" rel="noopener">官网</a> </p>
+</blockquote>
+<h3 id="自建"><a href="#自建" class="headerlink" title="自建"></a>自建</h3><ul>
+<li>使用docker安装比较简单<ul>
+<li>配置数据库，一定要是外网的。或者容器互联<br><code>/data/gitea/conf/app.ini</code> Docker中要修改的配置，都是改成对外的配置<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ROOT_URL         = http://git.kuangcp.top/</span><br><span class="line">DOMAIN           = git.kuangcp.top</span><br><span class="line">SSH_PORT         = 22</span><br><span class="line">SSH_DOMAIN       = kuangcp.top</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<p>然后还需修改本地的SSH配置才能正常使用</p>
+<hr>
+<h1 id="二进制包仓库"><a href="#二进制包仓库" class="headerlink" title="二进制包仓库"></a>二进制包仓库</h1><ul>
+<li><a href="https://bintray.com/kuangcp" target="_blank" rel="noopener">JFrog Bintray</a> </li>
+<li><a href="http://mvnrepository.com/" target="_blank" rel="noopener">Maven Central Repository </a></li>
+</ul>
+<h1 id="代码质量检测平台"><a href="#代码质量检测平台" class="headerlink" title="代码质量检测平台"></a>代码质量检测平台</h1><h2 id="codeclimate"><a href="#codeclimate" class="headerlink" title="codeclimate"></a>codeclimate</h2><blockquote>
+<p><a href="https://codeclimate.com/dashboard" target="_blank" rel="noopener">官网</a></p>
+</blockquote>
+<p>要求比较严格, 有详细的说明</p>
+<h2 id="codebeat"><a href="#codebeat" class="headerlink" title="codebeat"></a>codebeat</h2><blockquote>
+<p><a href="https://codebeat.co/" target="_blank" rel="noopener">官网</a></p>
+</blockquote>
+<p>要求比较严格</p>
+<h2 id="codacy"><a href="#codacy" class="headerlink" title="codacy"></a>codacy</h2><blockquote>
+<p><a href="https://app.codacy.com/projects" target="_blank" rel="noopener">官网</a></p>
+</blockquote>
+<p>要求比较宽松</p>
+<hr>
+<h1 id="综合开发平台"><a href="#综合开发平台" class="headerlink" title="综合开发平台"></a>综合开发平台</h1><h2 id="华为云"><a href="#华为云" class="headerlink" title="华为云"></a>华为云</h2><ul>
+<li><a href="http://support.huaweicloud.com/devg-cse/cse_03_summary.html" target="_blank" rel="noopener">CSE微服务相关文档</a></li>
+</ul>
+<hr>
+<h2 id="阿里云"><a href="#阿里云" class="headerlink" title="阿里云"></a>阿里云</h2><h3 id="ECS"><a href="#ECS" class="headerlink" title="ECS"></a>ECS</h3><blockquote>
+<p>阿里云主机, 学生有优惠 9.9每月 1核2g</p>
+</blockquote>
+<blockquote>
+<p>域名因为是兼并了万网，所以功能更强大， 现在还支持搭建免费的DNS服务器了</p>
+</blockquote>
+<h3 id="ACM"><a href="#ACM" class="headerlink" title="ACM"></a>ACM</h3><blockquote>
+<p>应用配置管理 <a href="https://help.aliyun.com/document_detail/59964.html?spm=a2c4g.11186623.6.546.yaM0cp" target="_blank" rel="noopener">入门文档</a><br><a href="https://zhuanlan.zhihu.com/p/33525168?group_id=942728800581259264" target="_blank" rel="noopener">如何用ACM简化你的Spring Cloud微服务环境配置管理</a></p>
+</blockquote>
+<h3 id="OSS"><a href="#OSS" class="headerlink" title="OSS"></a>OSS</h3><blockquote>
+<p>对象存储</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">资费项 	    计费项 	       标准型单价 	    低频访问型单价 	归档型单价</span><br><span class="line">存储费用 (注①) 	数据存储 	0.148元/GB/月 	0.08元/GB/月 	0.033/GB/月</span><br><span class="line">流量费用 (注①) 	内/外网流入流量（数据上传到OSS） 	免费 	免费 	免费</span><br><span class="line">	内网流出流量（通过ECS云服务器下载OSS的数据） 	免费 	免费 	免费</span><br><span class="line">	外网流出流量 	00:00-08:00（闲时）：0.25元/GB 8:00-24:00（忙时）：0.50元/GB</span><br><span class="line">	CDN回源流出流量 	0.15元/GB 	0.15元/GB 	0.15元/GB</span><br><span class="line">	跨区域复制流量 	0.50元/GB 	0.50元/GB 	0.50元/GB</span><br><span class="line">请求费用 </span><br><span class="line">	所有请求类型 	0.01元/万次 	0.1元/万次 	0.1元/万次</span><br><span class="line">数据处理费用 (注②)</span><br><span class="line"> 	图片处理 	每月0-10TB：免费&gt;10TB：0.025元/GB 	每月0-10TB：免费&gt;10TB：0.025元/GB  	无</span><br><span class="line">	视频截帧 	0.1元/千张 	0.1元/千张 	无</span><br><span class="line">	数据取回 	免费 	0.0325元/GB 	0.06元/GB</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="百度开发平台"><a href="#百度开发平台" class="headerlink" title="百度开发平台"></a>百度开发平台</h2><hr>
+<h3 id="CCE"><a href="#CCE" class="headerlink" title="CCE"></a>CCE</h3><blockquote>
+<p>容器引擎  -&gt; <a href="https://cloud.baidu.com/doc/CCE/GettingStarted.html" target="_blank" rel="noopener">入门必看</a><br>其实就是镜像仓库,比阿里云的好用 域名很短</p>
+</blockquote>
+<h3 id="BOS"><a href="#BOS" class="headerlink" title="BOS"></a>BOS</h3><blockquote>
+<p>对象存储 <a href="https://cloud.baidu.com/doc/BOS/Pricing.html#.E6.8C.89.E9.9C.80.E8.AE.A1.E8.B4.B9" target="_blank" rel="noopener">计价方式</a><br>关于流量定价中的CDN回源流量, 大致是当你开了CDN加速, 然后CDN为了刷新缓存要去你对象存储源获取最新的文件, 这个消耗的流量<br>同样支持文件夹  </p>
+</blockquote>
+<p><em>存储空间价格</em><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">计费项 	标准存储单价（元/GB/月） 	低频存储单价（元/GB/月） 	冷存储单价（元/GB/月）  </span><br><span class="line">存储空间 	0.128 	0.08 	0.048</span><br></pre></td></tr></table></figure></p>
+<p><em>请求次数价格</em><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">计费项 	规格 	标准存储单价（元/万次） 	低频存储单价（元/万次） 	冷存储单价（元/万次）  </span><br><span class="line">写请求次数 	PUT,COPY,DELETE 	0.01 	0.25 	0.5  </span><br><span class="line">读请求次数 	GET Bucket,GET OBJECT及其他所有请求 	0.01 	0.05 	0.1</span><br></pre></td></tr></table></figure></p>
+<p><em>数据取回价格</em><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">计费项 	规格 	标准存储单价（元/GB） 	低频存储单价（元/GB） 	冷存储单价（元/GB）</span><br><span class="line">数据取回 	- 	NA 	0.03 	0.15</span><br></pre></td></tr></table></figure></p>
+<p><em>流量价格</em><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">计费项 	标准存储 &amp; 低频存储 &amp; 冷存储单价（元/GB）</span><br><span class="line">外网数据流出 	0.6</span><br><span class="line">CDN回源流出 	0.14</span><br><span class="line">跨区域数据流出 	0.6</span><br></pre></td></tr></table></figure></p>
+<hr>
+<h3 id="BAE"><a href="#BAE" class="headerlink" title="BAE"></a>BAE</h3><blockquote>
+<p>应用引擎，简单的说就是一个提供了环境，你只需上传打包好的可执行文件就可以运行起来了<br>本来的话是比较简单容易上手的, 但是现在要备案了, 就玩不了了</p>
+</blockquote>
+<ul>
+<li>短期使用收费没有很高，十分灵活，就是前期学习入门 配置略麻烦。适合演示使用，例如毕设。<ul>
+<li>并且还提供一定免费额度的 MySQL Redis MongoDb （只能BAE的内网访问）</li>
+<li>还有自动测试</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="其他应用"><a href="#其他应用" class="headerlink" title="其他应用"></a>其他应用</h3><ul>
+<li><a href="http://naotu.baidu.com/" target="_blank" rel="noopener">百度脑图</a><code>在线思维导图创作</code></li>
+<li><a href="https://zn.baidu.com/cse/home/index" target="_blank" rel="noopener">站内搜索</a><code>不用自己写搜索了</code></li>
+</ul>
+<h4 id="翻译"><a href="#翻译" class="headerlink" title="翻译"></a>翻译</h4><blockquote>
+<p><a href="http://api.fanyi.baidu.com/api/trans/product/index" target="_blank" rel="noopener">官网</a> <code>免费注册, 每月有 2000,000 字符 免费额度</code></p>
+</blockquote>
+<hr>
+<h2 id="腾讯"><a href="#腾讯" class="headerlink" title="腾讯"></a>腾讯</h2><h3 id="域名"><a href="#域名" class="headerlink" title="域名"></a>域名</h3><blockquote>
+<p><a href="https://cloud.tencent.com/product/tools" target="_blank" rel="noopener">域名检测工具</a></p>
+</blockquote>
+<h3 id="CVM"><a href="#CVM" class="headerlink" title="CVM"></a>CVM</h3><blockquote>
+<p>云服务器<br>学生优惠是 10元每月1核1g 60则是2核2g</p>
+</blockquote>
+<h3 id="COS"><a href="#COS" class="headerlink" title="COS"></a>COS</h3><blockquote>
+<p>对象存储 <a href="https://cloud.tencent.com/document/product/436" target="_blank" rel="noopener">官方文档</a><br>同样的支持文件夹,还可以拖动文件夹上传,算是最好用的一个了  </p>
+</blockquote>
+<p><em>免费额度</em><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">资源类型 	资源子类型 	       每月免费额度</span><br><span class="line">存储空间 	存储空间 	         50 GB</span><br><span class="line">流量 	     外网下行流量 	     10 GB</span><br><span class="line">流量 	     腾讯云 CDN 回源流量 	10 GB</span><br><span class="line">请求 	     读请求 	           100 万次</span><br><span class="line">请求 	     写请求 	           100 万次</span><br></pre></td></tr></table></figure></p>
+<h3 id="微信公众号"><a href="#微信公众号" class="headerlink" title="微信公众号"></a>微信公众号</h3><p><code>2017-12-21 21:41:43</code></p>
+<ul>
+<li>不说了反正都是Shit一样的接口设计和返回值  希望会变好，碰过就不想再弄了！！！</li>
+</ul>
+<h2 id="网易"><a href="#网易" class="headerlink" title="网易"></a>网易</h2><h3 id="有道智云"><a href="#有道智云" class="headerlink" title="有道智云"></a>有道智云</h3><blockquote>
+<p><a href="https://ai.youdao.com/gw.s" target="_blank" rel="noopener">官网</a></p>
+</blockquote>
+<h2 id="微软"><a href="#微软" class="headerlink" title="微软"></a>微软</h2><h3 id="翻译-1"><a href="#翻译-1" class="headerlink" title="翻译"></a>翻译</h3><p><code>每月 2000,000 字符免费</code></p>
+<blockquote>
+<p><a href="https://azure.microsoft.com/en-us/services/cognitive-services/translator-text-api/" target="_blank" rel="noopener">文档</a><br><a href="https://docs.microsoft.com/en-us/azure/cognitive-services/translator/reference/v3-0-reference" target="_blank" rel="noopener">api</a><br><a href="https://azure.microsoft.com/en-us/pricing/details/cognitive-services/translator-text-api/" target="_blank" rel="noopener">定价</a></p>
+</blockquote>
+<hr>
+<h1 id="云存储"><a href="#云存储" class="headerlink" title="云存储"></a>云存储</h1><h2 id="NextCloud"><a href="#NextCloud" class="headerlink" title="NextCloud"></a>NextCloud</h2><blockquote>
+<p>当自己具有服务器的时候, 搭建自己的私有云盘</p>
+</blockquote>
+<h2 id="坚果云"><a href="#坚果云" class="headerlink" title="坚果云"></a>坚果云</h2><h2 id="七牛云"><a href="#七牛云" class="headerlink" title="七牛云"></a>七牛云</h2><blockquote>
+<p>免费存储额度10g流量额度10g, 但是不能创建文件夹  </p>
+</blockquote>
+<hr>
+<h1 id="智能机器人平台"><a href="#智能机器人平台" class="headerlink" title="智能机器人平台"></a>智能机器人平台</h1><h2 id="图灵机器人"><a href="#图灵机器人" class="headerlink" title="图灵机器人"></a>图灵机器人</h2><hr>
+<h1 id="评论系统"><a href="#评论系统" class="headerlink" title="评论系统"></a>评论系统</h1><ul>
+<li><a href="http://changyan.kuaizhan.com/" target="_blank" rel="noopener">畅言</a></li>
+</ul>
+<hr>
+<h1 id="消息推送"><a href="#消息推送" class="headerlink" title="消息推送"></a>消息推送</h1><h2 id="极光推送"><a href="#极光推送" class="headerlink" title="极光推送"></a>极光推送</h2><blockquote>
+<p><a href="https://www.jiguang.cn/" target="_blank" rel="noopener">官网</a> <code>做Android IOS的消息推送和短信等推送</code></p>
+</blockquote>
+<h2 id="GoEasy"><a href="#GoEasy" class="headerlink" title="GoEasy"></a>GoEasy</h2><ul>
+<li><a href="http://goeasy.io/cn/started" target="_blank" rel="noopener">示例</a></li>
+</ul>
+<hr>
+<h1 id="文档"><a href="#文档" class="headerlink" title="文档"></a>文档</h1><h2 id="文档托管"><a href="#文档托管" class="headerlink" title="文档托管"></a>文档托管</h2><ul>
+<li><a href="https://www.kancloud.cn/dashboard" target="_blank" rel="noopener">看云</a></li>
+</ul>
+<p><em>showdoc</em></p>
+<ul>
+<li><a href="https://www.showdoc.cc/web/#/" target="_blank" rel="noopener">showdoc</a><code>开源,也具有Docker方式</code> | <a href="https://www.showdoc.cc/web/#/demo?page_id=7" target="_blank" rel="noopener">示例</a></li>
+<li>Docker安装: <a href="https://www.showdoc.cc/web/#/help?page_id=65610" target="_blank" rel="noopener">官方文档</a> <code>跑起来也就几十M内存占用</code><ul>
+<li><code>git clone https://github.com/star7th/showdoc</code></li>
+<li>进入项目目录 然后 <code>docker build -t showdoc ./</code></li>
+<li><code>docker run -d --name showdoc -p 4999:80 showdoc</code></li>
+<li><code>http://localhost:4999/install/</code> 然后为了保险起见进容器删除项目根目录的install目录即可</li>
+<li>数据与备份 Sqlite/showdoc.db.php 是数据库; 如果有图片就还要备份图片,所以解耦就还是不上传图片了</li>
+</ul>
+</li>
+</ul>
+<h2 id="文档转换"><a href="#文档转换" class="headerlink" title="文档转换"></a>文档转换</h2><ul>
+<li><a href="http://pandoc.org/try/" target="_blank" rel="noopener">pandoc</a></li>
+</ul>
+<h1 id="接口平台"><a href="#接口平台" class="headerlink" title="接口平台"></a>接口平台</h1><h2 id="今日头条"><a href="#今日头条" class="headerlink" title="今日头条"></a>今日头条</h2><blockquote>
+<p>今日头条灵犬系统 API <code>https://m.toutiao.com/detector/api/detect/?text=</code>URL</p>
+</blockquote>
+<hr>
+<h1 id="测试平台"><a href="#测试平台" class="headerlink" title="测试平台"></a>测试平台</h1><ul>
+<li><a href="https://www.eolinker.com/#/index" target="_blank" rel="noopener">自动API测试</a></li>
+<li><a href="http://www.appadhoc.com/" target="_blank" rel="noopener">吆喝科技</a><code>A/B测试 灰度上线</code></li>
+</ul>
+<hr>
+<h1 id="培训"><a href="#培训" class="headerlink" title="培训"></a>培训</h1><ul>
+<li><a href="http://www.gupaoedu.com/" target="_blank" rel="noopener">咕泡</a><code>看起来很有深度, 就是有点贵</code></li>
+<li><a href="https://jizhi.im/index" target="_blank" rel="noopener">集智</a></li>
+</ul>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2018-12-14T12:42:49.250Z" itemprop="dateUpdated">2018-12-14 20:42:49</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2018/12/14/Memo-Platform/" target="_blank" rel="external">http://blog.kuangcp.top/2018/12/14/Memo-Platform/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="http://blog.kuangcp.top">
+            <img src="/img/avatar.jpg" alt="Kuangcp">
+            Kuangcp
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.kuangcp.top/2018/12/14/Memo-Platform/&title=《Platform.md》 — Kuangcp Blog&pic=http://blog.kuangcp.top/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.kuangcp.top/2018/12/14/Memo-Platform/&title=《Platform.md》 — Kuangcp Blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.kuangcp.top/2018/12/14/Memo-Platform/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Platform.md》 — Kuangcp Blog&url=http://blog.kuangcp.top/2018/12/14/Memo-Platform/&via=http://blog.kuangcp.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.kuangcp.top/2018/12/14/Memo-Platform/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/12/14/Memo-Linux-Tool-IME/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">IME.md</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/12/14/Memo-FrontEnd-Frame-LayUI/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">LayUI.md</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check" data-wechat="/img/wechat.png" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style="display:none">
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style="display:none">
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Kuangcp &copy; 2015 - 2018</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.kuangcp.top/2018/12/14/Memo-Platform/&title=《Platform.md》 — Kuangcp Blog&pic=http://blog.kuangcp.top/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.kuangcp.top/2018/12/14/Memo-Platform/&title=《Platform.md》 — Kuangcp Blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.kuangcp.top/2018/12/14/Memo-Platform/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Platform.md》 — Kuangcp Blog&url=http://blog.kuangcp.top/2018/12/14/Memo-Platform/&via=http://blog.kuangcp.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.kuangcp.top/2018/12/14/Memo-Platform/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACK0lEQVR42u3ay07DMBAFUP7/p4vEFtW5dxKQah+vKiiOTxaD5/H1Fa/Xz/r9k9/r3W/zp+TfrxcGBsbHMl7L9Y6xpq7Z7T7rs2FgYJzDyLfLj7X+TkLN/xYDAwNj/TlZ+ZURAwMD46mAm2SRs6seBgYGxp0kNkkmW+pTz8XAwNib0TYG/vPzH/Y3MDAwPoTxKlcbpu+U4YpTYWBgbM1YF+jbNDVPdGdDGxfhGAMDY1NGXhRrxyaSx+eHvgjiGBgYxzBmCWReIMuLcXnQx8DAOIHRHmu9URum89ZCfQ3FwMDYjpGXzPIgeOe4bTEOAwPjBEY+1DUr7ufU/LpZDIdhYGB8OKM9dB6g2wGyWTjGwMA4gZGXwGbDFrPEdRaUMTAwdmW0YbRNXJ8axbh4OgYGxmGMOlrfGPxqWwLRfwwMDIxNGXni2l7m8gR4dmV8m4tjYGBsxGhLaetQm6e+7ZUxuYxiYGCcw2jHs2bDFm0IjpJbDAyMYxj545NL4f3xi7y1gIGBsSujbT0+dUFMSnVFmQ8DA+MAxmzrtiVwp0h38eoxMDC2ZsyalEmxrH1Bs3CMgYFxAuNVrrag3zYm8xeEgYFxDmMW7PI0+Kk2Z17+w8DA2JWRB9mEkf9Ve+m82BkDA+MARpv7ztqZs3QXAwMDI2eseW1DdBbEMTAwMGZFsfbad3/Pi/4GBgbGpow2aObJbdsobUdaMTAwTmA8MK8RM9pBsfa1YmBgbMf4Bq+xslDfYLyWAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

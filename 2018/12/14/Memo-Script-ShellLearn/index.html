@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>ShellLearn.md | Kuangcp Blog | Javaer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="目录 start  学习Shell shell类别 Shell内建命令 Tips 执行 输入输出 输入 输出 彩色输出     变量 变量作用域 嵌套   数据类型 整型 字符串 数组   结构 传递参数 判断 if case   循环   函数 配置文件 脚本的参数自动补全 Bash Zsh   常用模块 时间   工具 shyaml      目录 end|2018-12-13 12:06|">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ShellLearn.md">
+<meta property="og:url" content="http://blog.kuangcp.top/2018/12/14/Memo-Script-ShellLearn/index.html">
+<meta property="og:site_name" content="Kuangcp Blog">
+<meta property="og:description" content="目录 start  学习Shell shell类别 Shell内建命令 Tips 执行 输入输出 输入 输出 彩色输出     变量 变量作用域 嵌套   数据类型 整型 字符串 数组   结构 传递参数 判断 if case   循环   函数 配置文件 脚本的参数自动补全 Bash Zsh   常用模块 时间   工具 shyaml      目录 end|2018-12-13 12:06|">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-12-14T12:42:49.250Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ShellLearn.md">
+<meta name="twitter:description" content="目录 start  学习Shell shell类别 Shell内建命令 Tips 执行 输入输出 输入 输出 彩色输出     变量 变量作用域 嵌套   数据类型 整型 字符串 数组   结构 传递参数 判断 if case   循环   函数 配置文件 脚本的参数自动补全 Bash Zsh   常用模块 时间   工具 shyaml      目录 end|2018-12-13 12:06|">
+    
+        <link rel="alternate" type="application/atom+xml" title="Kuangcp Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Kuangcp</h5>
+          <a href="mailto:kuangcp@aliyun.com" title="kuangcp@aliyun.com" class="mail">kuangcp@aliyun.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/">
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives">
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags">
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories">
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/kuangcp" target="_blank">
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">ShellLearn.md</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">ShellLearn.md</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-12-14T12:42:49.250Z" itemprop="datePublished" class="page-time">
+  2018-12-14
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#学习Shell"><span class="post-toc-number">1.</span> <span class="post-toc-text">学习Shell</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#shell类别"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">shell类别</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Shell内建命令"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">Shell内建命令</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Tips"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">Tips</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#执行"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">执行</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#输入输出"><span class="post-toc-number">1.5.</span> <span class="post-toc-text">输入输出</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#输入"><span class="post-toc-number">1.5.1.</span> <span class="post-toc-text">输入</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#输出"><span class="post-toc-number">1.5.2.</span> <span class="post-toc-text">输出</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#彩色输出"><span class="post-toc-number">1.5.2.1.</span> <span class="post-toc-text">彩色输出</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#变量"><span class="post-toc-number">1.6.</span> <span class="post-toc-text">变量</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#变量作用域"><span class="post-toc-number">1.6.1.</span> <span class="post-toc-text">变量作用域</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#嵌套"><span class="post-toc-number">1.6.2.</span> <span class="post-toc-text">嵌套</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#数据类型"><span class="post-toc-number">1.7.</span> <span class="post-toc-text">数据类型</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#整型"><span class="post-toc-number">1.7.1.</span> <span class="post-toc-text">整型</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#字符串"><span class="post-toc-number">1.7.2.</span> <span class="post-toc-text">字符串</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#判断"><span class="post-toc-number">1.7.3.</span> <span class="post-toc-text">判断</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#if"><span class="post-toc-number">1.7.3.1.</span> <span class="post-toc-text">if</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#case"><span class="post-toc-number">1.7.3.2.</span> <span class="post-toc-text">case</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#循环"><span class="post-toc-number">1.7.4.</span> <span class="post-toc-text">循环</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#函数"><span class="post-toc-number">1.8.</span> <span class="post-toc-text">函数</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#配置文件"><span class="post-toc-number">1.9.</span> <span class="post-toc-text">配置文件</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#脚本的参数自动补全"><span class="post-toc-number">1.10.</span> <span class="post-toc-text">脚本的参数自动补全</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Bash"><span class="post-toc-number">1.10.1.</span> <span class="post-toc-text">Bash</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Zsh"><span class="post-toc-number">1.10.2.</span> <span class="post-toc-text">Zsh</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#常用模块"><span class="post-toc-number">1.11.</span> <span class="post-toc-text">常用模块</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#时间"><span class="post-toc-number">1.11.1.</span> <span class="post-toc-text">时间</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#工具"><span class="post-toc-number">1.12.</span> <span class="post-toc-text">工具</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#shyaml"><span class="post-toc-number">1.12.1.</span> <span class="post-toc-text">shyaml</span></a></li></ol></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-Memo-Script-ShellLearn" class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">ShellLearn.md</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-12-14 20:42:49" datetime="2018-12-14T12:42:49.250Z" itemprop="datePublished">2018-12-14</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style="display:none">
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p><strong>目录 start</strong></p>
+<ol>
+<li><a href="#学习shell">学习Shell</a><ol>
+<li><a href="#shell类别">shell类别</a></li>
+<li><a href="#shell内建命令">Shell内建命令</a></li>
+<li><a href="#tips">Tips</a></li>
+<li><a href="#执行">执行</a></li>
+<li><a href="#输入输出">输入输出</a><ol>
+<li><a href="#输入">输入</a></li>
+<li><a href="#输出">输出</a><ol>
+<li><a href="#彩色输出">彩色输出</a></li>
+</ol>
+</li>
+</ol>
+</li>
+<li><a href="#变量">变量</a><ol>
+<li><a href="#变量作用域">变量作用域</a></li>
+<li><a href="#嵌套">嵌套</a></li>
+</ol>
+</li>
+<li><a href="#数据类型">数据类型</a><ol>
+<li><a href="#整型">整型</a></li>
+<li><a href="#字符串">字符串</a></li>
+<li><a href="#数组">数组</a></li>
+</ol>
+</li>
+<li><a href="#结构">结构</a><ol>
+<li><a href="#传递参数">传递参数</a></li>
+<li><a href="#判断">判断</a><ol>
+<li><a href="#if">if</a></li>
+<li><a href="#case">case</a></li>
+</ol>
+</li>
+<li><a href="#循环">循环</a></li>
+</ol>
+</li>
+<li><a href="#函数">函数</a></li>
+<li><a href="#配置文件">配置文件</a></li>
+<li><a href="#脚本的参数自动补全">脚本的参数自动补全</a><ol>
+<li><a href="#bash">Bash</a></li>
+<li><a href="#zsh">Zsh</a></li>
+</ol>
+</li>
+<li><a href="#常用模块">常用模块</a><ol>
+<li><a href="#时间">时间</a></li>
+</ol>
+</li>
+<li><a href="#工具">工具</a><ol>
+<li><a href="#shyaml">shyaml</a></li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<p><strong>目录 end</strong>|<em>2018-12-13 12:06</em>| <a href="https://gitee.com/gin9" target="_blank" rel="noopener">码云</a> | <a href="http://blog.csdn.net/kcp606" target="_blank" rel="noopener">CSDN</a> | <a href="https://my.oschina.net/kcp1104" target="_blank" rel="noopener">OSChina</a> | <a href="http://www.cnblogs.com/kuangcp" target="_blank" rel="noopener">cnblogs</a></p>
+<hr>
+<h1 id="学习Shell"><a href="#学习Shell" class="headerlink" title="学习Shell"></a>学习Shell</h1><blockquote>
+<p>首先语法不像别的语言可读性好，比如Python，然后方言众多，学习比Python2，3还恶心<br><a href="https://linuxtoy.org/archives/shell-programming-basic.html" target="_blank" rel="noopener">Shell 编程之语法基础</a> | <a href="https://linuxtoy.org/archives/shell-programming-execute.html" target="_blank" rel="noopener">Shell 编程之执行过程</a><br><a href="http://www.runoob.com/linux/linux-shell.html" target="_blank" rel="noopener">Shell 教程</a></p>
+</blockquote>
+<h2 id="shell类别"><a href="#shell类别" class="headerlink" title="shell类别"></a>shell类别</h2><ul>
+<li>sh<ul>
+<li>大多Linux都支持的shell类别</li>
+</ul>
+</li>
+<li>bash</li>
+<li>zsh<ul>
+<li>十分现代化 <a href="https://segmentfault.com/a/1190000004695131" target="_blank" rel="noopener">配置oh my zsh</a></li>
+</ul>
+</li>
+<li>dash<ul>
+<li>它主要是为了执行脚本而出现，而不是交互，它速度更快，但功能相比bash要少很多，语法严格遵守POSIX标准</li>
+<li>速度确实要快,输入上的交互确实交互不了</li>
+</ul>
+</li>
+<li>fish</li>
+</ul>
+<blockquote>
+<p><a href="http://blog.csdn.net/zengqiang1/article/details/61916697" target="_blank" rel="noopener">linux shell dash&amp;bash</a><br><a href="http://www.cnblogs.com/happycxz/p/7840077.html" target="_blank" rel="noopener">参考博客: 常见shell类型</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://github.com/goreliu/zshguide" target="_blank" rel="noopener">Github: zsh guide</a>  </p>
+</blockquote>
+<hr>
+<h2 id="Shell内建命令"><a href="#Shell内建命令" class="headerlink" title="Shell内建命令"></a>Shell内建命令</h2><ul>
+<li style="list-style: none"><input type="checkbox"> 学习内建命令的使用</li>
+</ul>
+<hr>
+<h2 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h2><blockquote>
+<p>常用代码片段 </p>
+</blockquote>
+<ol>
+<li><p>获取当前shell脚本的绝对路径 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">1. 命令嵌套 只要在 命令中用 两个反引号 `` 将子命令包住即可</span><br><span class="line">1. 检查当前用户为Root用户</span><br><span class="line">    ```sh</span><br><span class="line">        if [ $(id -u) != &quot;0&quot; ]; then</span><br><span class="line">            printf $red&quot;Please use root to run this script\n&quot;$end</span><br><span class="line">            exit 1</span><br><span class="line">        fi</span><br></pre></td></tr></table></figure></p>
+</li>
+<li><p>kill 脚本进程</p>
+ <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">id=`ps -ef | grep <span class="string">"WithRedis.py"</span> | grep -v <span class="string">"grep"</span> | grep -v <span class="string">"\-d"</span> | awk <span class="string">'&#123;print $2&#125;'</span>`</span><br><span class="line"><span class="keyword">if</span> [ <span class="string">"<span class="variable">$&#123;id&#125;</span>1"</span> = <span class="string">"1"</span> ];<span class="keyword">then</span></span><br><span class="line">    <span class="built_in">printf</span> <span class="variable">$red</span><span class="string">"not exist background running script\n"</span><span class="variable">$end</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    <span class="built_in">kill</span> -9 <span class="variable">$id</span></span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>得到脚本绝对路径; 如果只是执行 pwd 只是得到执行脚本时的当前绝对路径而已</p>
+ <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">basepath=$(<span class="built_in">cd</span> \`dirname <span class="variable">$0</span>\`; <span class="built_in">pwd</span>)</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<hr>
+<h2 id="执行"><a href="#执行" class="headerlink" title="执行"></a>执行</h2><ul>
+<li><p><a href="http://blog.csdn.net/xiaolang85/article/details/7861441" target="_blank" rel="noopener">source命令</a> | <a href="http://www.cnblogs.com/my_life/articles/4323528.html" target="_blank" rel="noopener">点和source命令</a></p>
+</li>
+<li><p>文件头部 <code>#!/bin/sh</code>表示要使用sh解释器来执行, 可以替换成bash dash</p>
+<ul>
+<li>只要该文件具有执行权限就可以直接运行了 <code>./a.sh</code> 或者绝对路径</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="输入输出"><a href="#输入输出" class="headerlink" title="输入输出"></a>输入输出</h2><h3 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h3><ul>
+<li><code>read answer</code></li>
+</ul>
+<p>并且在处理管道的输入也是一样的使用 read<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> <span class="built_in">read</span> line; <span class="keyword">do</span></span><br><span class="line">  <span class="built_in">echo</span> <span class="variable">$line</span></span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h3><p>echo  printf </p>
+<h4 id="彩色输出"><a href="#彩色输出" class="headerlink" title="彩色输出"></a>彩色输出</h4><blockquote>
+<p><a href="http://blog.csdn.net/magiclyj/article/details/72637666" target="_blank" rel="noopener">参考博客,比较详细</a></p>
+</blockquote>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">red=<span class="string">'\033[0;31m'</span></span><br><span class="line">green=<span class="string">'\033[0;32m'</span></span><br><span class="line">yellow=<span class="string">'\033[0;33m'</span></span><br><span class="line">blue=<span class="string">'\033[0;34m'</span></span><br><span class="line">purple=<span class="string">'\033[0;35m'</span></span><br><span class="line">cyan=<span class="string">'\033[0;36m'</span></span><br><span class="line">white=<span class="string">'\033[0;37m'</span></span><br><span class="line">default=<span class="string">'\033[0m'</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h2><h3 id="变量作用域"><a href="#变量作用域" class="headerlink" title="变量作用域"></a>变量作用域</h3><blockquote>
+<p>比Python的作用域更加恶心</p>
+</blockquote>
+<h3 id="嵌套"><a href="#嵌套" class="headerlink" title="嵌套"></a>嵌套</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 实现了读取 A_host变量的值</span></span><br><span class="line">perfix=<span class="string">'A_'</span></span><br><span class="line">name=<span class="variable">$&#123;perfix&#125;</span>host</span><br><span class="line">host=<span class="variable">$&#123;!name&#125;</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><a href="http://www.bitscn.com/os/linux/201505/506409.html" target="_blank" rel="noopener">shell将变量当命令执行问题</a></p>
+</blockquote>
+<ol>
+<li><code>${command}</code></li>
+<li><code>echo ${command}|awk &#39;{run=$0;system(run)}&#39;</code> 最好</li>
+</ol>
+<hr>
+<h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><h3 id="整型"><a href="#整型" class="headerlink" title="整型"></a>整型</h3><ul>
+<li>自增：<ul>
+<li>i=$(( $i + 1 )) <em>dash sh 都有效</em></li>
+<li>((a++))</li>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">    - let i+=1;</span><br><span class="line">    - i=$[$i+1];</span><br><span class="line">- 取余</span><br><span class="line">    - i=$(( $i % 3))</span><br><span class="line"></span><br><span class="line">&gt; [取随机数](http://www.cnblogs.com/chengmo/archive/2010/10/23/1858879.html)</span><br><span class="line"></span><br><span class="line">- 四则运算 [参考博客 ](https://blog.csdn.net/taijianyu/article/details/6907288)</span><br><span class="line">  - ((i=$j+$k))     等价于   i=`expr $j + $k`</span><br><span class="line">  - ((i=$j-$k))     等价于   i=`expr $j -$k`</span><br><span class="line">  - ((i=$j*$k))     等价于   i=`expr $j \*$k`</span><br><span class="line">  - ((i=$j/$k))     等价于   i=`expr $j /$k`</span><br><span class="line"></span><br><span class="line">_判断变量是否为数值_</span><br><span class="line">&gt; [博客 判断是否为数值](http://www.jb51.net/article/67468.htm)</span><br><span class="line">```sh</span><br><span class="line">  if [ &quot;$1&quot; -gt 0 ] 2&gt;/dev/null ;then </span><br><span class="line">    echo &quot;$1 is number.&quot; </span><br><span class="line">  else </span><br><span class="line">    echo &apos;no.&apos; </span><br><span class="line">  fi</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h3><ul>
+<li><p><a href="https://www.2cto.com/os/201305/208219.html" target="_blank" rel="noopener">字符串截取</a> | <a href="http://www.jb51.net/article/56563.htm" target="_blank" rel="noopener">Blog:变量字符串截取</a> | <a href="http://man.linuxde.net/docs/shell_regex.html" target="_blank" rel="noopener">Shell正则</a></p>
+</li>
+<li><p>[ ] 重新整理</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$&#123;varible##*string&#125;</span> 从左向右截取最后一个string后的字符串</span><br><span class="line"><span class="variable">$&#123;varible#*string&#125;</span>  从左向右截取第一个string后的字符串</span><br><span class="line"><span class="variable">$&#123;varible%%string*&#125;</span> 从右向左截取最后一个string后的字符串</span><br><span class="line"><span class="variable">$&#123;varible%string*&#125;</span>  从右向左截取第一个string后的字符串</span><br><span class="line"></span><br><span class="line">vars=<span class="variable">$&#123;vars%%#*&#125;</span> <span class="comment"># 截取#左边</span></span><br><span class="line">vars=<span class="variable">$&#123;vars#*cd&#125;</span> <span class="comment"># 截取最左的cd的右边</span></span><br><span class="line">vars=<span class="variable">$&#123;vars%\'*&#125;</span> <span class="comment"># 截取 右边引号 之左</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><code>获取命令的输出</code></p>
+<ul>
+<li>使用  保存结果的变量名=<code>需要执行的linux命令</code> 这种方式来获取命令的输出时，注意的情况总结如下：</li>
+<li>1）保证反单引号内的命令执行时成功的，也就是所命令执行后$?的输出必须是0，否则获取不到命令的输出</li>
+<li>2）即便是命令的返回值是0，也需要保证结果是通过标准输出来输出的，而不是标准错误输出，否则需要重定向</li>
+<li><p>因此我们推荐使用  保存结果的变量名=<code>需要执行的linux命令 2&gt;&amp;1</code>的方式来获取命令的执行结果。</p>
+</li>
+<li><p>输出变量时: <code>$var</code>会丢失换行和空格 <code>&quot;$var&quot;</code>不会</p>
+</li>
+</ul>
+<p><code>字符串的包含问题</code><br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">isGithub=`expr match <span class="string">"<span class="variable">$line</span>"</span> <span class="string">".*"</span><span class="variable">$2</span>`</span><br><span class="line"><span class="comment"># 简单的就是使用grep</span></span><br><span class="line">isGithub=`<span class="built_in">echo</span> <span class="variable">$line</span> | grep <span class="string">"github"</span> `</span><br><span class="line"><span class="comment"># return 0 is $1 is substring of $2, otherwise 1</span></span><br><span class="line"><span class="function"><span class="title">strIsSubstring</span></span>()&#123;</span><br><span class="line">    <span class="built_in">local</span> x=1</span><br><span class="line">    <span class="keyword">case</span> <span class="string">"<span class="variable">$2</span>"</span> <span class="keyword">in</span></span><br><span class="line">        *<span class="variable">$1</span>*) x=0;;</span><br><span class="line">    <span class="keyword">esac</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="variable">$x</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>_求长_ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">_字符串拆分成数组_</span><br><span class="line">&gt; [修改分隔符](http://www.cnblogs.com/FlyFive/p/3640243.html) | [三种方法概述](https://blog.csdn.net/bitcarmanlee/article/details/50973454)</span><br><span class="line"></span><br><span class="line">1. 如果是空格分割的字符串</span><br><span class="line">    - 直接 `for element in $target`</span><br><span class="line"></span><br><span class="line">************************</span><br><span class="line">### 数组</span><br><span class="line"></span><br><span class="line">*********************</span><br><span class="line">## 结构</span><br><span class="line"></span><br><span class="line">### 传递参数</span><br><span class="line">&gt; [参考博客](http://www.cnblogs.com/FrankTan/archive/2010/03/01/1634516.html) `命令行选项 参数处理`</span><br><span class="line"></span><br><span class="line">| 参数 | 说明 |</span><br><span class="line">|:----:|:----|</span><br><span class="line">| `$#` | 传递到脚本的参数个数</span><br><span class="line">| `$*` | 以一个单字符串显示所有向脚本传递的参数。以&quot;$1 $2 … $n&quot;的形式输出所有参数。</span><br><span class="line">| `$$` | 脚本运行的当前进程ID号</span><br><span class="line">| `$!` | 后台运行的最后一个进程的ID号</span><br><span class="line">| `$@` | 与$*相同，但是使用时加引号 以&quot;$1&quot; &quot;$2&quot; … &quot;$n&quot; 的形式输出所有参数。</span><br><span class="line">| `$-` | 显示Shell使用的当前选项，与set命令功能相同。</span><br><span class="line">| `$?` | 显示最后命令的退出状态。0表示没有错误，其他任何值表明有错误。</span><br><span class="line"></span><br><span class="line">&gt; 读取脚本参数 </span><br><span class="line">```sh</span><br><span class="line">  # 1. 简单的方式</span><br><span class="line">  case $1 in </span><br><span class="line">    -h | h)</span><br><span class="line">      echo &quot;help&quot;</span><br><span class="line">    ;;</span><br><span class="line">    *)</span><br><span class="line">      echo &quot;default&quot;</span><br><span class="line">    ;;</span><br><span class="line">  esac</span><br><span class="line"></span><br><span class="line">  # 2. 规范化的参数</span><br><span class="line">  while getopts &quot;hup:&quot; opt; do</span><br><span class="line">    case &quot;$opt&quot; in</span><br><span class="line">      h)</span><br><span class="line">        usage</span><br><span class="line">        exit 0</span><br><span class="line">        ;;</span><br><span class="line">      u)</span><br><span class="line">        UPCASE=true</span><br><span class="line">        ;;</span><br><span class="line">      d)</span><br><span class="line">        DATE=$OPTARG</span><br><span class="line">        ;;</span><br><span class="line">    esac</span><br><span class="line">  done</span><br></pre></td></tr></table></figure></p>
+<h3 id="判断"><a href="#判断" class="headerlink" title="判断"></a>判断</h3><h4 id="if"><a href="#if" class="headerlink" title="if"></a>if</h4><ul>
+<li><a href="http://www.cnblogs.com/276815076/archive/2011/10/30/2229286.html" target="_blank" rel="noopener">参考博客</a></li>
+</ul>
+<p><em>判断文件</em></p>
+<ul>
+<li>文件 <code>if [ -f path ]</code></li>
+<li>链接 <code>if [ -L path ]</code></li>
+<li><p>目录 <code>if [ -d path ]</code></p>
+</li>
+<li><p>整数比较</p>
+<ul>
+<li><code>-eq</code> 等于,如:if [ “$a” -eq “$b” ]</li>
+<li><code>-ne</code> 不等于,如:if [ “$a” -ne “$b” ]</li>
+<li><code>-gt</code> 大于,如:if [ “$a” -gt “$b” ]</li>
+<li><code>-ge</code> 大于等于,如:if [ “$a” -ge “$b” ]</li>
+<li><code>-lt</code> 小于,如:if [ “$a” -lt “$b” ]</li>
+<li><code>-le</code> 小于等于,如:if [ “$a” -le “$b” ]</li>
+<li><code>大于</code> (需要双括号),如:((“$a” &gt; “$b”))</li>
+<li><code>&gt;=</code>大于等于(需要双括号),如:((“$a” &gt;= “$b”))<h4 id="case"><a href="#case" class="headerlink" title="case"></a>case</h4></li>
+</ul>
+</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">case</span> <span class="variable">$content</span> <span class="keyword">in</span> </span><br><span class="line">  -h|h)</span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"help"</span></span><br><span class="line">  ;;</span><br><span class="line">  *)</span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"前面全部不匹配才会执行"</span></span><br><span class="line">  ;;</span><br><span class="line"><span class="keyword">esac</span></span><br></pre></td></tr></table></figure>
+<h3 id="循环"><a href="#循环" class="headerlink" title="循环"></a>循环</h3><ul>
+<li><a href="http://www.cnblogs.com/fhefh/archive/2011/04/15/2017233.html" target="_blank" rel="noopener">参考博客</a></li>
+</ul>
+<p><code>简易循环</code><br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> $(seq 1 5); <span class="keyword">do</span></span><br><span class="line">  <span class="built_in">echo</span> <span class="variable">$i</span></span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">i=1</span><br><span class="line"><span class="keyword">while</span> [ <span class="string">"<span class="variable">$i</span>"</span> -le 10 ];<span class="keyword">do</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="variable">$i</span></span><br><span class="line">    i=$((<span class="variable">$i</span>+1))</span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><blockquote>
+<p>Shell的函数只能返回整型数据类型</p>
+</blockquote>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">simple</span></span>()&#123;</span><br><span class="line">  <span class="built_in">echo</span> <span class="string">"simple"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h2><blockquote>
+<p><a href="http://blog.csdn.net/xinfuqizao/article/details/21812003" target="_blank" rel="noopener">参考博客</a></p>
+</blockquote>
+<hr>
+<h2 id="脚本的参数自动补全"><a href="#脚本的参数自动补全" class="headerlink" title="脚本的参数自动补全"></a>脚本的参数自动补全</h2><blockquote>
+<p><a href="http://www.cnblogs.com/wang_yb/p/5969451.html" target="_blank" rel="noopener">参考博客: 命令行自动补全原理 </a></p>
+</blockquote>
+<h3 id="Bash"><a href="#Bash" class="headerlink" title="Bash"></a>Bash</h3><h3 id="Zsh"><a href="#Zsh" class="headerlink" title="Zsh"></a>Zsh</h3><blockquote>
+<p>更为直观, 简单</p>
+</blockquote>
+<p>学习怎么使用的话, 可以看上面的博客(虽然有点简陋), 但是如果是 oh-my-zsh 的用户, 可以直接看别人的插件, 模仿就行了, 例如 redis-cli 插件的自动补全, 就很简单直接</p>
+<ol>
+<li><code>#compdef redis-cli rec</code> 这第一行很重要, 定义了是对哪个命令或脚本的自动补全</li>
+</ol>
+<hr>
+<h2 id="常用模块"><a href="#常用模块" class="headerlink" title="常用模块"></a>常用模块</h2><h3 id="时间"><a href="#时间" class="headerlink" title="时间"></a>时间</h3><blockquote>
+<p><a href="http://blog.csdn.net/superbfly/article/details/52453334" target="_blank" rel="noopener">shell处理时间格式</a></p>
+</blockquote>
+<hr>
+<h2 id="工具"><a href="#工具" class="headerlink" title="工具"></a>工具</h2><blockquote>
+<p><a href="/Skills/Soft_Manual.md#终端工具">更多工具</a></p>
+</blockquote>
+<h3 id="shyaml"><a href="#shyaml" class="headerlink" title="shyaml"></a>shyaml</h3><blockquote>
+<p><a href="https://linuxtoy.org/archives/shyaml.html" target="_blank" rel="noopener">参考</a></p>
+</blockquote>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2018-12-14T12:42:49.250Z" itemprop="dateUpdated">2018-12-14 20:42:49</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2018/12/14/Memo-Script-ShellLearn/" target="_blank" rel="external">http://blog.kuangcp.top/2018/12/14/Memo-Script-ShellLearn/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="http://blog.kuangcp.top">
+            <img src="/img/avatar.jpg" alt="Kuangcp">
+            Kuangcp
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.kuangcp.top/2018/12/14/Memo-Script-ShellLearn/&title=《ShellLearn.md》 — Kuangcp Blog&pic=http://blog.kuangcp.top/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.kuangcp.top/2018/12/14/Memo-Script-ShellLearn/&title=《ShellLearn.md》 — Kuangcp Blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.kuangcp.top/2018/12/14/Memo-Script-ShellLearn/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《ShellLearn.md》 — Kuangcp Blog&url=http://blog.kuangcp.top/2018/12/14/Memo-Script-ShellLearn/&via=http://blog.kuangcp.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.kuangcp.top/2018/12/14/Memo-Script-ShellLearn/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/12/14/Memo-FrontEnd-HTML5/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">HTML5.md</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/12/14/Memo-Scala-Scala/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Scala.md</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check" data-wechat="/img/wechat.png" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style="display:none">
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style="display:none">
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Kuangcp &copy; 2015 - 2018</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.kuangcp.top/2018/12/14/Memo-Script-ShellLearn/&title=《ShellLearn.md》 — Kuangcp Blog&pic=http://blog.kuangcp.top/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.kuangcp.top/2018/12/14/Memo-Script-ShellLearn/&title=《ShellLearn.md》 — Kuangcp Blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.kuangcp.top/2018/12/14/Memo-Script-ShellLearn/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《ShellLearn.md》 — Kuangcp Blog&url=http://blog.kuangcp.top/2018/12/14/Memo-Script-ShellLearn/&via=http://blog.kuangcp.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.kuangcp.top/2018/12/14/Memo-Script-ShellLearn/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACM0lEQVR42u3aQU7EMAwFUO5/6WGLBFP+dwpSk9cVGmaSviwsO/bHR/y8vjzfP8+/P9vltgcDA+OxjNfl826DfLN85fy/P+yOgYFxAOPd9u++MwMnITs5LAwMDIzr5fIAnYfdNqxjYGBg5Iz2Ja4TSgwMDIxrxiyAXqeJSSqZJ5q31eIYGBgPZORXZv//95/0NzAwMB7FeJVPUqC2hWtbJP+wGgYGxtaMPMDNystZQTt7HwwMjF0ZSesxKVbbEYok1F6H8qUlMDAwHsVom4srgxf5+sPmBAYGxjGMJB3MWwKzgNu2PDEwMPZmXJems7Gw5JKuHQ775WgwMDC2ZuT1YF1SjmL/XTtiYGDsxChKxKDUzMPu7Kru7ftgYGAcwGhHK3LSbOSrTU8xMDDOYcwuyGblZXJYxeUdBgbGAYz1S7R7GwZtewADA2NvRntN1rYQ2vK43THiYWBgbM1IhsbaVmU7eLEUajEwMDZi5CVlfhm3PmDRltAYGBgnMFYSxHwUbGXlXwIxBgbGAYx8uGFlOGw23hEdDQYGxjGMtnDNN27bAO2vMDAwTmDkyVyewM1GvtpxMQwMjL0ZKwMWeYsxaQa0R4OBgXEOY70Ezccj2sL15mELDAyMhzPaIJsMZOQv2q4W1eIYGBibMmYFZ5tEzo4pak5gYGBgLJDyYY72wu7mgIuBgbERYyWBa9ufeYsCAwPjBEY+YHFXUG4HLDAwME5m5KVj0ipoL9TWmxMYGBhbMz4BZsNgvqsbi4oAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

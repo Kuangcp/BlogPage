@@ -14,25 +14,25 @@
     
     
     
-    <title>WebPerformance.md | Kuangcp Blog | Javaer</title>
+    <title>JavaWeb性能调优 | Kuangcp Blog | Javaer</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
     <meta name="theme-color" content="#3F51B5">
     
     
     <meta name="keywords" content="Performance">
-    <meta name="description" content="目录 start  Java性能调优 Web性能 性能基准 测试工具 压力测试 ApacheBenchMark Jmeter wrk     数据库性能 MySQL 主从复制以及读写分离        目录 end|2018-12-13 12:06| 码云 | CSDN | OSChina | cnblogs  Java性能调优 查看详情&amp;gt;&amp;gt;  Web性能性能基准 参考博客: 系统吞吐">
+    <meta name="description" content="目录 start  Java性能调优 Web性能 性能基准 测试工具 压力测试 ApacheBenchMark Jmeter wrk     数据库性能 MySQL 主从复制以及读写分离        目录 end|2018-12-13 12:06| 码云 | CSDN | OSChina | cnblogs  JavaWeb性能调优 查看详情&amp;gt;&amp;gt;  Web性能性能基准 参考博客: 系">
 <meta name="keywords" content="Performance">
 <meta property="og:type" content="article">
-<meta property="og:title" content="WebPerformance.md">
+<meta property="og:title" content="JavaWeb性能调优">
 <meta property="og:url" content="http://blog.kuangcp.top/2018/12/13/Memo-Java-AdvancedLearning-WebPerformance/index.html">
 <meta property="og:site_name" content="Kuangcp Blog">
-<meta property="og:description" content="目录 start  Java性能调优 Web性能 性能基准 测试工具 压力测试 ApacheBenchMark Jmeter wrk     数据库性能 MySQL 主从复制以及读写分离        目录 end|2018-12-13 12:06| 码云 | CSDN | OSChina | cnblogs  Java性能调优 查看详情&amp;gt;&amp;gt;  Web性能性能基准 参考博客: 系统吞吐">
+<meta property="og:description" content="目录 start  Java性能调优 Web性能 性能基准 测试工具 压力测试 ApacheBenchMark Jmeter wrk     数据库性能 MySQL 主从复制以及读写分离        目录 end|2018-12-13 12:06| 码云 | CSDN | OSChina | cnblogs  JavaWeb性能调优 查看详情&amp;gt;&amp;gt;  Web性能性能基准 参考博客: 系">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-12-13T11:53:28.395Z">
+<meta property="og:updated_time" content="2018-12-14T12:42:49.254Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="WebPerformance.md">
-<meta name="twitter:description" content="目录 start  Java性能调优 Web性能 性能基准 测试工具 压力测试 ApacheBenchMark Jmeter wrk     数据库性能 MySQL 主从复制以及读写分离        目录 end|2018-12-13 12:06| 码云 | CSDN | OSChina | cnblogs  Java性能调优 查看详情&amp;gt;&amp;gt;  Web性能性能基准 参考博客: 系统吞吐">
+<meta name="twitter:title" content="JavaWeb性能调优">
+<meta name="twitter:description" content="目录 start  Java性能调优 Web性能 性能基准 测试工具 压力测试 ApacheBenchMark Jmeter wrk     数据库性能 MySQL 主从复制以及读写分离        目录 end|2018-12-13 12:06| 码云 | CSDN | OSChina | cnblogs  JavaWeb性能调优 查看详情&amp;gt;&amp;gt;  Web性能性能基准 参考博客: 系">
     
         <link rel="alternate" type="application/atom+xml" title="Kuangcp Blog" href="/atom.xml">
     
@@ -113,7 +113,7 @@
         <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
           <i class="icon icon-lg icon-navicon"></i>
         </a>
-        <div class="flex-col header-title ellipsis">WebPerformance.md</div>
+        <div class="flex-col header-title ellipsis">JavaWeb性能调优</div>
         
         <div class="search-wrap" id="search-wrap">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
@@ -135,7 +135,7 @@
 <header class="content-header post-header">
 
     <div class="container fade-scale">
-        <h1 class="title">WebPerformance.md</h1>
+        <h1 class="title">JavaWeb性能调优</h1>
         <h5 class="subtitle">
             
                 <time datetime="2018-12-13T08:02:57.000Z" itemprop="datePublished" class="page-time">
@@ -160,7 +160,7 @@
     <aside class="post-widget">
         <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
             <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Java性能调优"><span class="post-toc-number">1.</span> <span class="post-toc-text">Java性能调优</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Web性能"><span class="post-toc-number">2.</span> <span class="post-toc-text">Web性能</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#性能基准"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">性能基准</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#测试工具"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">测试工具</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#压力测试"><span class="post-toc-number">2.2.1.</span> <span class="post-toc-text">压力测试</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#ApacheBenchMark"><span class="post-toc-number">2.2.1.1.</span> <span class="post-toc-text">ApacheBenchMark</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Jmeter"><span class="post-toc-number">2.2.1.2.</span> <span class="post-toc-text">Jmeter</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#wrk"><span class="post-toc-number">2.2.1.3.</span> <span class="post-toc-text">wrk</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#数据库性能"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">数据库性能</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#MySQL"><span class="post-toc-number">2.3.1.</span> <span class="post-toc-text">MySQL</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#主从复制以及读写分离"><span class="post-toc-number">2.3.1.1.</span> <span class="post-toc-text">主从复制以及读写分离</span></a></li></ol></li></ol></li></ol></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#JavaWeb性能调优"><span class="post-toc-number">1.</span> <span class="post-toc-text">JavaWeb性能调优</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Web性能"><span class="post-toc-number">2.</span> <span class="post-toc-text">Web性能</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#性能基准"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">性能基准</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#测试工具"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">测试工具</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#压力测试"><span class="post-toc-number">2.2.1.</span> <span class="post-toc-text">压力测试</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#ApacheBenchMark"><span class="post-toc-number">2.2.1.1.</span> <span class="post-toc-text">ApacheBenchMark</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Jmeter"><span class="post-toc-number">2.2.1.2.</span> <span class="post-toc-text">Jmeter</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#wrk"><span class="post-toc-number">2.2.1.3.</span> <span class="post-toc-text">wrk</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#数据库性能"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">数据库性能</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#MySQL"><span class="post-toc-number">2.3.1.</span> <span class="post-toc-text">MySQL</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#主从复制以及读写分离"><span class="post-toc-number">2.3.1.1.</span> <span class="post-toc-text">主从复制以及读写分离</span></a></li></ol></li></ol></li></ol></li></ol>
         </nav>
     </aside>
 
@@ -168,7 +168,7 @@
 <article id="post-Memo-Java-AdvancedLearning-WebPerformance" class="post-article article-type-post fade" itemprop="blogPost">
 
     <div class="post-card">
-        <h1 class="post-card-title">WebPerformance.md</h1>
+        <h1 class="post-card-title">JavaWeb性能调优</h1>
         <div class="post-meta">
             <time class="post-time" title="2018-12-13 16:02:57" datetime="2018-12-13T08:02:57.000Z" itemprop="datePublished">2018-12-13</time>
 
@@ -211,7 +211,7 @@
 </ol>
 <p><strong>目录 end</strong>|<em>2018-12-13 12:06</em>| <a href="https://gitee.com/gin9" target="_blank" rel="noopener">码云</a> | <a href="http://blog.csdn.net/kcp606" target="_blank" rel="noopener">CSDN</a> | <a href="https://my.oschina.net/kcp1104" target="_blank" rel="noopener">OSChina</a> | <a href="http://www.cnblogs.com/kuangcp" target="_blank" rel="noopener">cnblogs</a></p>
 <hr>
-<h1 id="Java性能调优"><a href="#Java性能调优" class="headerlink" title="Java性能调优"></a>Java性能调优</h1><blockquote>
+<h1 id="JavaWeb性能调优"><a href="#JavaWeb性能调优" class="headerlink" title="JavaWeb性能调优"></a>JavaWeb性能调优</h1><blockquote>
 <p><a href="/Java/JavaPerformance.md">查看详情&gt;&gt;</a></p>
 </blockquote>
 <h1 id="Web性能"><a href="#Web性能" class="headerlink" title="Web性能"></a>Web性能</h1><h2 id="性能基准"><a href="#性能基准" class="headerlink" title="性能基准"></a>性能基准</h2><blockquote>
@@ -252,7 +252,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2018-12-13T11:53:28.395Z" itemprop="dateUpdated">2018-12-13 19:53:28</time>
+    最后更新时间：<time datetime="2018-12-14T12:42:49.254Z" itemprop="dateUpdated">2018-12-14 20:42:49</time>
 </span><br>
 
 
@@ -288,7 +288,7 @@
 <div class="page-share" id="pageShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.kuangcp.top/2018/12/13/Memo-Java-AdvancedLearning-WebPerformance/&title=《WebPerformance.md》 — Kuangcp Blog&pic=http://blog.kuangcp.top/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.kuangcp.top/2018/12/13/Memo-Java-AdvancedLearning-WebPerformance/&title=《JavaWeb性能调优》 — Kuangcp Blog&pic=http://blog.kuangcp.top/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -298,7 +298,7 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.kuangcp.top/2018/12/13/Memo-Java-AdvancedLearning-WebPerformance/&title=《WebPerformance.md》 — Kuangcp Blog&source=" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.kuangcp.top/2018/12/13/Memo-Java-AdvancedLearning-WebPerformance/&title=《JavaWeb性能调优》 — Kuangcp Blog&source=" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
@@ -308,7 +308,7 @@
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《WebPerformance.md》 — Kuangcp Blog&url=http://blog.kuangcp.top/2018/12/13/Memo-Java-AdvancedLearning-WebPerformance/&via=http://blog.kuangcp.top" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《JavaWeb性能调优》 — Kuangcp Blog&url=http://blog.kuangcp.top/2018/12/13/Memo-Java-AdvancedLearning-WebPerformance/&via=http://blog.kuangcp.top" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
@@ -338,7 +338,7 @@
     <div class="waves-block waves-effect prev">
       <a href="/2018/12/13/Memo-Java-AdvancedLearning-Java8/" id="post-prev" class="post-nav-link">
         <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
-        <h4 class="title">Java8.md</h4>
+        <h4 class="title">Java8</h4>
       </a>
     </div>
   
@@ -443,7 +443,7 @@
 <div class="global-share" id="globalShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.kuangcp.top/2018/12/13/Memo-Java-AdvancedLearning-WebPerformance/&title=《WebPerformance.md》 — Kuangcp Blog&pic=http://blog.kuangcp.top/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.kuangcp.top/2018/12/13/Memo-Java-AdvancedLearning-WebPerformance/&title=《JavaWeb性能调优》 — Kuangcp Blog&pic=http://blog.kuangcp.top/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -453,7 +453,7 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.kuangcp.top/2018/12/13/Memo-Java-AdvancedLearning-WebPerformance/&title=《WebPerformance.md》 — Kuangcp Blog&source=" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.kuangcp.top/2018/12/13/Memo-Java-AdvancedLearning-WebPerformance/&title=《JavaWeb性能调优》 — Kuangcp Blog&source=" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
@@ -463,7 +463,7 @@
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《WebPerformance.md》 — Kuangcp Blog&url=http://blog.kuangcp.top/2018/12/13/Memo-Java-AdvancedLearning-WebPerformance/&via=http://blog.kuangcp.top" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《JavaWeb性能调优》 — Kuangcp Blog&url=http://blog.kuangcp.top/2018/12/13/Memo-Java-AdvancedLearning-WebPerformance/&via=http://blog.kuangcp.top" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>

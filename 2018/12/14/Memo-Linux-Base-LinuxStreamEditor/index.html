@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>LinuxStreamEditor.md | Kuangcp Blog | Javaer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="目录 start  流编辑器 grep tr cut paste sed awk    目录 end|2018-12-13 12:06| 码云 | CSDN | OSChina | cnblogs  流编辑器 参考博客: 比较linux下各种流编辑器的用法  grep g (globally) search for a re (regular expression ) and p (print )">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LinuxStreamEditor.md">
+<meta property="og:url" content="http://blog.kuangcp.top/2018/12/14/Memo-Linux-Base-LinuxStreamEditor/index.html">
+<meta property="og:site_name" content="Kuangcp Blog">
+<meta property="og:description" content="目录 start  流编辑器 grep tr cut paste sed awk    目录 end|2018-12-13 12:06| 码云 | CSDN | OSChina | cnblogs  流编辑器 参考博客: 比较linux下各种流编辑器的用法  grep g (globally) search for a re (regular expression ) and p (print )">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-12-14T12:42:49.250Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="LinuxStreamEditor.md">
+<meta name="twitter:description" content="目录 start  流编辑器 grep tr cut paste sed awk    目录 end|2018-12-13 12:06| 码云 | CSDN | OSChina | cnblogs  流编辑器 参考博客: 比较linux下各种流编辑器的用法  grep g (globally) search for a re (regular expression ) and p (print )">
+    
+        <link rel="alternate" type="application/atom+xml" title="Kuangcp Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Kuangcp</h5>
+          <a href="mailto:kuangcp@aliyun.com" title="kuangcp@aliyun.com" class="mail">kuangcp@aliyun.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/">
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives">
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags">
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories">
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/kuangcp" target="_blank">
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">LinuxStreamEditor.md</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">LinuxStreamEditor.md</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-12-14T12:42:49.250Z" itemprop="datePublished" class="page-time">
+  2018-12-14
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#流编辑器"><span class="post-toc-number">1.</span> <span class="post-toc-text">流编辑器</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#grep"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">grep</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#tr"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">tr</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#cut"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">cut</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#paste"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">paste</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#sed"><span class="post-toc-number">1.5.</span> <span class="post-toc-text">sed</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#awk"><span class="post-toc-number">1.6.</span> <span class="post-toc-text">awk</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-Memo-Linux-Base-LinuxStreamEditor" class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">LinuxStreamEditor.md</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-12-14 20:42:49" datetime="2018-12-14T12:42:49.250Z" itemprop="datePublished">2018-12-14</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style="display:none">
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p><strong>目录 start</strong></p>
+<ol>
+<li><a href="#流编辑器">流编辑器</a><ol>
+<li><a href="#grep">grep</a></li>
+<li><a href="#tr">tr</a></li>
+<li><a href="#cut">cut</a></li>
+<li><a href="#paste">paste</a></li>
+<li><a href="#sed">sed</a></li>
+<li><a href="#awk">awk</a></li>
+</ol>
+</li>
+</ol>
+<p><strong>目录 end</strong>|<em>2018-12-13 12:06</em>| <a href="https://gitee.com/gin9" target="_blank" rel="noopener">码云</a> | <a href="http://blog.csdn.net/kcp606" target="_blank" rel="noopener">CSDN</a> | <a href="https://my.oschina.net/kcp1104" target="_blank" rel="noopener">OSChina</a> | <a href="http://www.cnblogs.com/kuangcp" target="_blank" rel="noopener">cnblogs</a></p>
+<hr>
+<h1 id="流编辑器"><a href="#流编辑器" class="headerlink" title="流编辑器"></a>流编辑器</h1><blockquote>
+<p><a href="https://blog.csdn.net/havedream_one/article/details/45007449" target="_blank" rel="noopener">参考博客: 比较linux下各种流编辑器的用法</a></p>
+</blockquote>
+<h2 id="grep"><a href="#grep" class="headerlink" title="grep"></a>grep</h2><blockquote>
+<p>g (globally) search for a re (regular expression ) and p (print ) the results.</p>
+</blockquote>
+<h2 id="tr"><a href="#tr" class="headerlink" title="tr"></a>tr</h2><blockquote>
+<p>转换字符</p>
+<ul>
+<li>替换：可以使用字符集的形式。如tr [a-z] [A-Z] 或者 tr a-z A-Z</li>
+<li>压缩：-s   如echo “you are        a    man   ”|tr -s ‘ ‘ ‘ ‘   结果you are a man</li>
+<li>删除：-d   如echo “you     are    a man”|  tr -d ‘ ‘结果youareaman</li>
+</ul>
+</blockquote>
+<h2 id="cut"><a href="#cut" class="headerlink" title="cut"></a>cut</h2><blockquote>
+<p>man cut</p>
+</blockquote>
+<h2 id="paste"><a href="#paste" class="headerlink" title="paste"></a>paste</h2><blockquote>
+<p>粘贴，也就是合并文件用的<br>使用制表符来合并多个文件对应的行，也可以使用 -d 指定合并符<br>实例：<br>默认制表符<br>paste p3.txt p2.txt p1.txt<br>指定<br>paste -d ‘*‘ p3.txt p2.txt p1.txt<br>so，也不需要和其他的对比了，其他都是拆分，而paste是合并。</p>
+</blockquote>
+<h2 id="sed"><a href="#sed" class="headerlink" title="sed"></a>sed</h2><blockquote>
+<p>组成模式: <code>参数 命令 文件</code> | sed –help 查看详细</p>
+</blockquote>
+<ul>
+<li><a href="http://wiki.jikexueyuan.com/project/shell-learning/sed-search-and-replace.html" target="_blank" rel="noopener">参考：sed 查找与替换</a></li>
+<li><a href="http://wiki.jikexueyuan.com/project/shell-learning/sed-accurate-control-of-regular.html" target="_blank" rel="noopener">sed 正则的精确控制</a><ul>
+<li><code>echo Tolstoy is worldly | sed &#39;s/T.*y/Camus/&#39;</code> 这里的pattern就有问题， 会把整行替换掉</li>
+<li><code>echo Tolstoy is worldly | sed &#39;s/T[a-z]*y/Camus/&#39;</code> 只把第一个单词替换</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>处理管道流 <code>echo syx is a good body | sed &#39;s/syx/zsf/&#39;</code></p>
+</blockquote>
+<ul>
+<li><p><code>参数</code></p>
+<ul>
+<li><code>-n</code> suppress automatic printing of pattern space</li>
+<li><code>-e</code> 只在控制台输出的操作的结果内容(全部)，源文件不变 </li>
+<li><code>-i</code> 直接在源文件中进行修改</li>
+<li><code>-f file</code> 执行一个 sed 脚本文件中的指令</li>
+</ul>
+</li>
+<li><p><code>命令</code></p>
+<ul>
+<li>p 打印 <code>sed -n Np 文件名</code></li>
+<li>a 新增 在下一行</li>
+<li>i 插入 在上一行 将hello插入到第4行：<code>sed -in &quot;4i hello&quot; test.md</code></li>
+<li>c 替换 整行</li>
+<li>s 替换 行内字符串的替换 <ul>
+<li>命令结构为: <code>&#39;s/pattern/relacement/flags&#39;</code><ul>
+<li>pattern 是正则的 pattern 写法 <strong>注意会匹配到首尾的空字符</strong> <code>echo abc | sed &#39;s/a*/l/g&#39;</code> 就很费解</li>
+<li>replacement 是需要替换成的内容</li>
+<li>flags 是动作(可以为空)<ul>
+<li>整数: 一行中的第几处符合 pattern 将被替换</li>
+<li>g : 全部替换</li>
+<li>p : 输出修改的行内容</li>
+<li>w filename : 替换后的文件写入到新文件</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>将文件中所有aaa换为bbb, <code>sed -e &quot;s/aaa/bbb/g&quot; test.md</code></li>
+</ul>
+</li>
+<li>d 删除 行级别, 删除2-4行 <code>sed -i &quot;2,4d&quot; test.md</code></li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">b ：label 将执行的指令跳至由 : 建立的参考位置。</span><br><span class="line">D ：删除 pattern space 内第一个 newline 字母 前的资料。</span><br><span class="line">g ：拷贝资料从 hold space。</span><br><span class="line">G ：添加资料从 hold space 至 pattern space 。</span><br><span class="line">h ：拷贝资料从 pattern space 至 hold space 。</span><br><span class="line">H ：添加资料从 pattern space 至 hold space 。</span><br><span class="line">l ：印出 l 资料中的 nonprinting character 用 ASCII 码。</span><br><span class="line">i ：插入添加使用者输入的资料行。</span><br><span class="line">n ：读入下一笔资料。</span><br><span class="line">N ：添加下一笔资料到 pattern space。</span><br><span class="line">p ：印出资料。</span><br><span class="line">P ：印出 pattern space 内第一个 newline 字母 前的资料。</span><br><span class="line">q ：跳出 sed 编辑。</span><br><span class="line">r ：读入它档内容。</span><br><span class="line">w ：写资料到它档内。</span><br><span class="line">x ：交换 hold space 与 pattern space 内容。</span><br><span class="line">y ：转换（transform）字元。</span><br></pre></td></tr></table></figure>
+<blockquote>
+<ol>
+<li>截取指定行数到新文件 <code>sed -n ‘开始行数，结束行数p’ info.log &gt; newFile.log</code></li>
+<li>修改配置文件中name的值为123 <code>sed -i &quot;s/name=.*/name=123/g&quot; config.conf</code></li>
+<li>CRLF -&gt; LF <code>sed -i &#39;s/\r//g&#39; file</code> 配合git 就是 <code>git ls-files| sed -i &#39;s/\r//g&#39;</code></li>
+</ol>
+</blockquote>
+<blockquote>
+<p><a href="http://www.techug.com/post/linux-sed1line.html" target="_blank" rel="noopener">参考博客: linux sed 命令单行任务快速参考</a></p>
+</blockquote>
+<h2 id="awk"><a href="#awk" class="headerlink" title="awk"></a>awk</h2><blockquote>
+<p>awk有3个不同版本: awk、nawk和gawk，未作特别说明，一般指gawk，gawk 是 AWK 的 GNU 版本。</p>
+</blockquote>
+<ol>
+<li>截取输出 cat log.log | awk ‘{print $2}’ </li>
+<li>只输出某列之后的列 忽略第一列:<code>awk &#39;{$1=&quot;&quot;;print $0}&#39;</code> 忽略1到4: <code>awk &#39;{ for(i=1; i&lt;=4; i++){ $i=&quot;&quot; }; print $0 }&#39;</code></li>
+</ol>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2018-12-14T12:42:49.250Z" itemprop="dateUpdated">2018-12-14 20:42:49</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2018/12/14/Memo-Linux-Base-LinuxStreamEditor/" target="_blank" rel="external">http://blog.kuangcp.top/2018/12/14/Memo-Linux-Base-LinuxStreamEditor/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="http://blog.kuangcp.top">
+            <img src="/img/avatar.jpg" alt="Kuangcp">
+            Kuangcp
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.kuangcp.top/2018/12/14/Memo-Linux-Base-LinuxStreamEditor/&title=《LinuxStreamEditor.md》 — Kuangcp Blog&pic=http://blog.kuangcp.top/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.kuangcp.top/2018/12/14/Memo-Linux-Base-LinuxStreamEditor/&title=《LinuxStreamEditor.md》 — Kuangcp Blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.kuangcp.top/2018/12/14/Memo-Linux-Base-LinuxStreamEditor/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《LinuxStreamEditor.md》 — Kuangcp Blog&url=http://blog.kuangcp.top/2018/12/14/Memo-Linux-Base-LinuxStreamEditor/&via=http://blog.kuangcp.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.kuangcp.top/2018/12/14/Memo-Linux-Base-LinuxStreamEditor/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/12/14/Memo-Linux-Base-LinuxProblem/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">LinuxProblem.md</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/12/14/Memo-Linux-Base-LinuxUI/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">LinuxUI.md</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check" data-wechat="/img/wechat.png" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style="display:none">
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style="display:none">
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Kuangcp &copy; 2015 - 2018</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.kuangcp.top/2018/12/14/Memo-Linux-Base-LinuxStreamEditor/&title=《LinuxStreamEditor.md》 — Kuangcp Blog&pic=http://blog.kuangcp.top/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.kuangcp.top/2018/12/14/Memo-Linux-Base-LinuxStreamEditor/&title=《LinuxStreamEditor.md》 — Kuangcp Blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.kuangcp.top/2018/12/14/Memo-Linux-Base-LinuxStreamEditor/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《LinuxStreamEditor.md》 — Kuangcp Blog&url=http://blog.kuangcp.top/2018/12/14/Memo-Linux-Base-LinuxStreamEditor/&via=http://blog.kuangcp.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.kuangcp.top/2018/12/14/Memo-Linux-Base-LinuxStreamEditor/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACtklEQVR42u3aQZKjMAwF0Nz/0t3bqeoAX5KVyeKxoggBPy8sIfn1io+f4Ph7579X/p5fveXqyv1/RwceHh7e0aFf3VO9nvx6BRg9AQ8PD2+Nd79MJ0v/1QvyYJA/JxkzHh4e3vfw7q/cL/HJcj+/Ew8PD+/beNUw0AsVvaIGHh4e3id5SfkgP89Luskb8//i4eHhfYaXd5G+53ylv4eHh4d3aENAtbnV22rQa6c9PB8PDw9vgZcvuPevrF65+jUPTvk48fDw8LZ5k/CQN7E2yhOX1/Hw8PCO8pLCa68llgSJeXh4mFY8PDy8BV7eXqom2dXlvhp+omQaDw8Pb4F3v1hXNwGcSsqTMkQUSPDw8PDWeNVlff76POTkZeI3042Hh4e3xssDQzX5rjbDJlNzWWvBw8PDO8qblE0PbCctPqe68QsPDw9vg1dNlPMlvrf1at4Gw8PDw/tfvCRR7iXHedqdjOohvcbDw8Nb4OWLb7XN3wsk1SkbfTHg4eHhtXjz9Le6lJ8teTyMAQ8PD2+Zt1EUmASDvKR7+Uw8PDy8Bd6krZUMLhnKvED8MGY8PDy8o7zqH6pl2WpIqJaPH0IIHh4e3hqvmaq2ir85MiFFXwx4eHh4R3m95la16RVtkIonq7dBAQ8PD+8sr7chYL7hoJpY97Yg4OHh4e3xqp/9PUY14X7NDzw8PLxlXt7OTwbdS9bzyY0KJXh4eHgf5PVa+/lyn0/QSmDAw8PDG8BOpcK9Nn9ynrfi3vT38PDw8I7yJmtsMqBqCWOCPxxC8PDw8AaZZ2+ZnpeAe+k+Hh4e3id51cS32uDvbQiYBDA8PDy8b+Ply33yzFO/vrHg4eHhfRmvmnznV/KAVNg6gIeHh3eUN0mUq8Xf3hiajTE8PDy8BV7+kV/dFFUtBE/uOdDfw8PDw3seyS/UMCIWKUhZcgAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

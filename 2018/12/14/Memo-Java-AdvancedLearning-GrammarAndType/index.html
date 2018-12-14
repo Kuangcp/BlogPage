@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>Java基础语法 | Kuangcp Blog | Javaer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="基础,语法">
+    <meta name="description" content="目录 start  基础语法 代码风格 结构 判断 循环   用户输入输出   数据类型 基础数据类型 byte char boolean short int long float double   包装类型 String StringBuffer和StringBuilder   Float Double Integer Long Boolean Void   枚举类型 自动拆装箱 内部类 类型强">
+<meta name="keywords" content="基础,语法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java基础语法">
+<meta property="og:url" content="http://blog.kuangcp.top/2018/12/14/Memo-Java-AdvancedLearning-GrammarAndType/index.html">
+<meta property="og:site_name" content="Kuangcp Blog">
+<meta property="og:description" content="目录 start  基础语法 代码风格 结构 判断 循环   用户输入输出   数据类型 基础数据类型 byte char boolean short int long float double   包装类型 String StringBuffer和StringBuilder   Float Double Integer Long Boolean Void   枚举类型 自动拆装箱 内部类 类型强">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-12-14T12:42:49.254Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java基础语法">
+<meta name="twitter:description" content="目录 start  基础语法 代码风格 结构 判断 循环   用户输入输出   数据类型 基础数据类型 byte char boolean short int long float double   包装类型 String StringBuffer和StringBuilder   Float Double Integer Long Boolean Void   枚举类型 自动拆装箱 内部类 类型强">
+    
+        <link rel="alternate" type="application/atom+xml" title="Kuangcp Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Kuangcp</h5>
+          <a href="mailto:kuangcp@aliyun.com" title="kuangcp@aliyun.com" class="mail">kuangcp@aliyun.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/">
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives">
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags">
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories">
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/kuangcp" target="_blank">
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Java基础语法</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Java基础语法</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-12-14T12:42:49.254Z" itemprop="datePublished" class="page-time">
+  2018-12-14
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Java/">Java</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#基础语法"><span class="post-toc-number">1.</span> <span class="post-toc-text">基础语法</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#代码风格"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">代码风格</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#结构"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">结构</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#判断"><span class="post-toc-number">1.2.1.</span> <span class="post-toc-text">判断</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#循环"><span class="post-toc-number">1.2.2.</span> <span class="post-toc-text">循环</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#用户输入输出"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">用户输入输出</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#数据类型"><span class="post-toc-number">2.</span> <span class="post-toc-text">数据类型</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#基础数据类型"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">基础数据类型</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#byte"><span class="post-toc-number">2.1.1.</span> <span class="post-toc-text">byte</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#char"><span class="post-toc-number">2.1.2.</span> <span class="post-toc-text">char</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#boolean"><span class="post-toc-number">2.1.3.</span> <span class="post-toc-text">boolean</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#short"><span class="post-toc-number">2.1.4.</span> <span class="post-toc-text">short</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#int"><span class="post-toc-number">2.1.5.</span> <span class="post-toc-text">int</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#long"><span class="post-toc-number">2.1.6.</span> <span class="post-toc-text">long</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#float"><span class="post-toc-number">2.1.7.</span> <span class="post-toc-text">float</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#double"><span class="post-toc-number">2.1.8.</span> <span class="post-toc-text">double</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#包装类型"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">包装类型</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#String"><span class="post-toc-number">2.2.1.</span> <span class="post-toc-text">String</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#StringBuffer和StringBuilder"><span class="post-toc-number">2.2.1.1.</span> <span class="post-toc-text">StringBuffer和StringBuilder</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Float"><span class="post-toc-number">2.2.2.</span> <span class="post-toc-text">Float</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Double"><span class="post-toc-number">2.2.3.</span> <span class="post-toc-text">Double</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Integer"><span class="post-toc-number">2.2.4.</span> <span class="post-toc-text">Integer</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Long"><span class="post-toc-number">2.2.5.</span> <span class="post-toc-text">Long</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Boolean"><span class="post-toc-number">2.2.6.</span> <span class="post-toc-text">Boolean</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Void"><span class="post-toc-number">2.2.7.</span> <span class="post-toc-text">Void</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#枚举类型"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">枚举类型</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#自动拆装箱"><span class="post-toc-number">2.4.</span> <span class="post-toc-text">自动拆装箱</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#内部类"><span class="post-toc-number">2.5.</span> <span class="post-toc-text">内部类</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#类型强转"><span class="post-toc-number">2.6.</span> <span class="post-toc-text">类型强转</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#时间类型"><span class="post-toc-number">2.7.</span> <span class="post-toc-text">时间类型</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#类的结构"><span class="post-toc-number">3.</span> <span class="post-toc-text">类的结构</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#修饰符"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">修饰符</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#权限修饰符"><span class="post-toc-number">3.1.1.</span> <span class="post-toc-text">权限修饰符</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#其他"><span class="post-toc-number">3.1.2.</span> <span class="post-toc-text">其他</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#成员属性"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">成员属性</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#方法"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">方法</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Object"><span class="post-toc-number">4.</span> <span class="post-toc-text">Object</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#VO"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">VO</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#PO"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">PO</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#TO"><span class="post-toc-number">4.3.</span> <span class="post-toc-text">TO</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#BO"><span class="post-toc-number">4.4.</span> <span class="post-toc-text">BO</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#POJO"><span class="post-toc-number">4.5.</span> <span class="post-toc-text">POJO</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#DAO"><span class="post-toc-number">4.6.</span> <span class="post-toc-text">DAO</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#关键字"><span class="post-toc-number">5.</span> <span class="post-toc-text">关键字</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-Memo-Java-AdvancedLearning-GrammarAndType" class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Java基础语法</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-12-14 20:42:49" datetime="2018-12-14T12:42:49.254Z" itemprop="datePublished">2018-12-14</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Java/">Java</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style="display:none">
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p><strong>目录 start</strong></p>
+<ol>
+<li><a href="#基础语法">基础语法</a><ol>
+<li><a href="#代码风格">代码风格</a></li>
+<li><a href="#结构">结构</a><ol>
+<li><a href="#判断">判断</a></li>
+<li><a href="#循环">循环</a></li>
+</ol>
+</li>
+<li><a href="#用户输入输出">用户输入输出</a></li>
+</ol>
+</li>
+<li><a href="#数据类型">数据类型</a><ol>
+<li><a href="#基础数据类型">基础数据类型</a><ol>
+<li><a href="#byte">byte</a></li>
+<li><a href="#char">char</a></li>
+<li><a href="#boolean">boolean</a></li>
+<li><a href="#short">short</a></li>
+<li><a href="#int">int</a></li>
+<li><a href="#long">long</a></li>
+<li><a href="#float">float</a></li>
+<li><a href="#double">double</a></li>
+</ol>
+</li>
+<li><a href="#包装类型">包装类型</a><ol>
+<li><a href="#string">String</a><ol>
+<li><a href="#stringbuffer和stringbuilder">StringBuffer和StringBuilder</a></li>
+</ol>
+</li>
+<li><a href="#float">Float</a></li>
+<li><a href="#double">Double</a></li>
+<li><a href="#integer">Integer</a></li>
+<li><a href="#long">Long</a></li>
+<li><a href="#boolean">Boolean</a></li>
+<li><a href="#void">Void</a></li>
+</ol>
+</li>
+<li><a href="#枚举类型">枚举类型</a></li>
+<li><a href="#自动拆装箱">自动拆装箱</a></li>
+<li><a href="#内部类">内部类</a></li>
+<li><a href="#类型强转">类型强转</a></li>
+<li><a href="#时间类型">时间类型</a></li>
+</ol>
+</li>
+<li><a href="#类的结构">类的结构</a><ol>
+<li><a href="#修饰符">修饰符</a><ol>
+<li><a href="#权限修饰符">权限修饰符</a></li>
+<li><a href="#其他">其他</a></li>
+</ol>
+</li>
+<li><a href="#成员属性">成员属性</a></li>
+<li><a href="#方法">方法</a></li>
+</ol>
+</li>
+<li><a href="#object">Object</a><ol>
+<li><a href="#vo">VO</a></li>
+<li><a href="#po">PO</a></li>
+<li><a href="#to">TO</a></li>
+<li><a href="#bo">BO</a></li>
+<li><a href="#pojo">POJO</a></li>
+<li><a href="#dao">DAO</a></li>
+</ol>
+</li>
+<li><a href="#关键字">关键字</a></li>
+</ol>
+<p><strong>目录 end</strong>|<em>2018-12-13 12:06</em>| <a href="https://gitee.com/gin9" target="_blank" rel="noopener">码云</a> | <a href="http://blog.csdn.net/kcp606" target="_blank" rel="noopener">CSDN</a> | <a href="https://my.oschina.net/kcp1104" target="_blank" rel="noopener">OSChina</a> | <a href="http://www.cnblogs.com/kuangcp" target="_blank" rel="noopener">cnblogs</a></p>
+<hr>
+<h1 id="基础语法"><a href="#基础语法" class="headerlink" title="基础语法"></a>基础语法</h1><h2 id="代码风格"><a href="#代码风格" class="headerlink" title="代码风格"></a>代码风格</h2><blockquote>
+<p><a href="https://github.com/google/styleguide" target="_blank" rel="noopener">Google Style Guide</a> | <a href="/Java/AlibabaJavaStandard.md">阿里巴巴开发手册</a></p>
+</blockquote>
+<h2 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h2><h3 id="判断"><a href="#判断" class="headerlink" title="判断"></a>判断</h3><ul>
+<li>if</li>
+<li>switch</li>
+</ul>
+<h3 id="循环"><a href="#循环" class="headerlink" title="循环"></a>循环</h3><ul>
+<li>while<ul>
+<li><code>while(true){}</code></li>
+<li><code>do{}while(true);</code></li>
+</ul>
+</li>
+<li>for 循环<ul>
+<li><code>for(int a=0; i&lt;10; i++){}</code></li>
+</ul>
+</li>
+<li>for each循环<ul>
+<li><code>for(Object item:list){}</code> 其中list对象如果是通过调用一个对象的方法返回的，那么只会调用一次</li>
+</ul>
+</li>
+</ul>
+<h2 id="用户输入输出"><a href="#用户输入输出" class="headerlink" title="用户输入输出"></a>用户输入输出</h2><ul>
+<li><code>System.out.println(&quot;&quot;)</code> 输出并在末尾追加换行<ul>
+<li>.print() 输出, 行末不换行</li>
+<li>.printf() 格式化输出, 和C语法类似</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h1 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h1><blockquote>
+<p><a href="https://docs.oracle.com/javase/tutorial/java/generics/types.html" target="_blank" rel="noopener">official guide</a></p>
+</blockquote>
+<h2 id="基础数据类型"><a href="#基础数据类型" class="headerlink" title="基础数据类型"></a>基础数据类型</h2><blockquote>
+<p>八种基本数据类型 byte char boolean short int long float double</p>
+</blockquote>
+<blockquote>
+<p><a href="http://www.yinwang.org/blog-cn/2016/06/08/java-value-type" target="_blank" rel="noopener">参考博客: Java 有值类型吗？</a></p>
+</blockquote>
+<p>确实, 这样来看Java没有值类型才是更统一的, 不过有没有对程序都是一样的, 因为Java没有解引用, 基本数据类型又没有成员, 所以值还是引用, 没差</p>
+<h3 id="byte"><a href="#byte" class="headerlink" title="byte"></a>byte</h3><blockquote>
+<p>字节</p>
+</blockquote>
+<p>Java8以前是使用 char数组 来存放String, Java8开始就是 byte数组 了</p>
+<h3 id="char"><a href="#char" class="headerlink" title="char"></a>char</h3><h3 id="boolean"><a href="#boolean" class="headerlink" title="boolean"></a>boolean</h3><blockquote>
+<p><a href="https://www.jianshu.com/p/2f663dc820d0" target="_blank" rel="noopener">参考 你真的知道Java中boolean类型占用多少个字节吗？</a></p>
+</blockquote>
+<h3 id="short"><a href="#short" class="headerlink" title="short"></a>short</h3><h3 id="int"><a href="#int" class="headerlink" title="int"></a>int</h3><blockquote>
+<p>数值范围 <code>+- 2147483647</code> = 2^31-1 也就说明了int是占四个字节 32位 一位是符号位 (操作系统的不同也会有差异)</p>
+</blockquote>
+<h3 id="long"><a href="#long" class="headerlink" title="long"></a>long</h3><blockquote>
+<p>数值范围 <code>+- 9223372036854775807</code> = 2^63-1 也就是八个字节 64位 一位是符号位</p>
+</blockquote>
+<h3 id="float"><a href="#float" class="headerlink" title="float"></a>float</h3><h3 id="double"><a href="#double" class="headerlink" title="double"></a>double</h3><hr>
+<h2 id="包装类型"><a href="#包装类型" class="headerlink" title="包装类型"></a>包装类型</h2><blockquote>
+<p><code>wrapper class</code>基本类型和包装类型不能混为一谈 本质上的 class是不同的, 只不过自动拆装箱才让人感觉没差别</p>
+</blockquote>
+<p>Integer.TYPE == int.class<br>Byte.TYPE == byte.class<br>Boolean.TYPE == boolean.class<br>Double.TYPE == double.class<br>Void.TYPE == void.class</p>
+<h3 id="String"><a href="#String" class="headerlink" title="String"></a>String</h3><blockquote>
+<p>该类是final修饰的, 原因:<a href="https://www.zhihu.com/question/31345592" target="_blank" rel="noopener">知乎问题</a></p>
+</blockquote>
+<ul>
+<li><p>常量池的实现</p>
+</li>
+<li><p>常见编码转换</p>
+<ul>
+<li>一般Windows文件默认编码：<code>str = new String(str.getBytes(&quot;iso8859-1&quot;), &quot;gb2312&quot;);</code> </li>
+<li>properties文件中获取中文 <code>str = new String(str.getBytes(&quot;utf-8&quot;), &quot;utf-8&quot;);</code></li>
+</ul>
+</li>
+</ul>
+<h4 id="StringBuffer和StringBuilder"><a href="#StringBuffer和StringBuilder" class="headerlink" title="StringBuffer和StringBuilder"></a>StringBuffer和StringBuilder</h4><blockquote>
+<p><a href="https://blog.csdn.net/rmn190/article/details/1492013" target="_blank" rel="noopener">参考博客</a></p>
+</blockquote>
+<h3 id="Float"><a href="#Float" class="headerlink" title="Float"></a>Float</h3><h3 id="Double"><a href="#Double" class="headerlink" title="Double"></a>Double</h3><h3 id="Integer"><a href="#Integer" class="headerlink" title="Integer"></a>Integer</h3><h3 id="Long"><a href="#Long" class="headerlink" title="Long"></a>Long</h3><h3 id="Boolean"><a href="#Boolean" class="headerlink" title="Boolean"></a>Boolean</h3><h3 id="Void"><a href="#Void" class="headerlink" title="Void"></a>Void</h3><ul>
+<li>void 的包装类型, 常用于反射时对应上 返回值为void的方法(总得有个类型 Void.TYPE) 该类型在 jdk1.1就有了, 1.5出了泛型后, 又多了一个用途(因为泛型不支持原始类型)</li>
+</ul>
+<blockquote>
+<p>The Void class is an uninstantiable placeholder class to hold a reference to the Class object representing the Java keyword void.</p>
+</blockquote>
+<blockquote>
+<p><a href="https://stackoverflow.com/questions/2352447/what-is-the-need-of-void-class-in-java" target="_blank" rel="noopener">参考博客: What is the need of Void class in Java</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://stackoverflow.com/questions/643906/uses-for-the-java-void-reference-type" target="_blank" rel="noopener">参考博客: Uses for the Java Void Reference Type?</a></p>
+</blockquote>
+<ol>
+<li>在AOP中, 增强根据切点的返回值类型, 做出不同的逻辑, 有可能用到Void</li>
+<li>Void 强调 the nothing, null 强调 nothing</li>
+<li>Void 作为方法的返回值时,只能返回 null </li>
+</ol>
+<ul>
+<li>案例:  <ul>
+<li>Future<void></void></li>
+<li>ResponseEntity<void> </void></li>
+<li>A <code>Consumer&lt;T&gt;</code> can be viewed as a <code>Function&lt;T, Void&gt;</code>.</li>
+<li>A <code>Supplier&lt;T&gt;</code> can be viewed as a <code>Function&lt;Void, T&gt;</code></li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p><a href="https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html" target="_blank" rel="noopener">official api</a></p>
+</blockquote>
+<blockquote>
+<p>When you use the visitor pattern it can be cleaner to use Void instead of Object when you want to be sure that the return value will be null. Example:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">LeavesVisitor</span>&lt;<span class="title">OUT</span>&gt;</span>&#123;</span><br><span class="line">   <span class="function">OUT <span class="title">visit</span><span class="params">(Leaf1 leaf)</span></span>;</span><br><span class="line">   <span class="function">OUT <span class="title">visit</span><span class="params">(Leaf2 leaf)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>When you will implement your visitor you can explicitly set OUT to be Void so that you know your visitor will always return null, instead of using Object</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyVoidVisitor</span> <span class="keyword">implements</span> <span class="title">LeavesVisitor</span>&lt;<span class="title">Void</span>&gt;</span>&#123;</span><br><span class="line">    <span class="function">Void <span class="title">visit</span><span class="params">(Leaf1 leaf)</span></span>&#123;</span><br><span class="line">        <span class="comment">//...do what you want on your leaf</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function">Void <span class="title">visit</span><span class="params">(Leaf2 leaf)</span></span>&#123;</span><br><span class="line">        <span class="comment">//...do what you want on your leaf</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="枚举类型"><a href="#枚举类型" class="headerlink" title="枚举类型"></a>枚举类型</h2><blockquote>
+<p><a href="https://docs.oracle.com/javase/tutorial/java/javaOO/enum.html" target="_blank" rel="noopener">official doc: enum</a></p>
+</blockquote>
+<p>枚举类的构造器必须是private 或者 package private (也就是缺省)</p>
+<blockquote>
+<p><a href="https://www.ibm.com/developerworks/cn/java/j-lo-enum/index.html" target="_blank" rel="noopener">参考博客: Java 语言中 Enum 类型的使用介绍</a><br>从上面的定义形式来看，似乎 Java 中的枚举类型很简单，但实际上 Java 语言规范赋予枚举类型的功能非常的强大，它不仅是简单地将整形数值转换成对象，而是将枚举类型定义转变成一个完整功能的类定义。</p>
+</blockquote>
+<ul>
+<li><p>简单定义</p>
+<ul>
+<li><code>public enum Color {RED, GREEN, GRAY, BLUE, YELLOW, WHITE, PURPLE, BLACK}</code></li>
+</ul>
+</li>
+<li><p>简单单例</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">enum</span> Tool&#123;</span><br><span class="line">    INSTANCE(<span class="number">12</span>); </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> num; </span><br><span class="line">    Tool(<span class="keyword">int</span> num)&#123;</span><br><span class="line">        <span class="keyword">this</span>.num = num;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">getNum</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> num;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 使用的时候</span></span><br><span class="line">Tool.INSTANCE.getNum();</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<h2 id="自动拆装箱"><a href="#自动拆装箱" class="headerlink" title="自动拆装箱"></a>自动拆装箱</h2><blockquote>
+<p>基本数据类型和包装类型在Java中是可以视为等价的, 就是因为自动拆装箱的存在</p>
+</blockquote>
+<hr>
+<h2 id="内部类"><a href="#内部类" class="headerlink" title="内部类"></a>内部类</h2><blockquote>
+<p>其域可以和其他常见类型一样, 作为类的成员, 也可作为方法的局部变量, 其中包含的各种变量的域都是按原规则生效的</p>
+</blockquote>
+<p><em>但是内部类的属性不能用static修饰</em><br>归根结底，还是类与对象的区别，静态属性不依赖于对象，因为它保存在jvm的静态区，所以访问修改的时候不需要依赖当前有没有存活的对象，在虚拟机加载的时候也是优先于实例生成的。<br>而实例对象则是保存在jvm的堆内存中，想要访问内部类，必须先实例化外部类，然后通过外部类才能访问内部类。内部类其实也可以认为是外部类的一个成员变量，只要是成员变量，<br>各个对象都是不依赖的，静态属性的出现破坏了这一逻辑，所以java语言在语义层面不允许我们那么做，这其实不是技术问题，是一个语言的逻辑和语义问题。</p>
+<blockquote>
+<p><a href="https://my.oschina.net/u/1027043/blog/1823113" target="_blank" rel="noopener">参考博客: 关于Java内部类字段和方法不能使用static修饰的原因</a></p>
+</blockquote>
+<hr>
+<h2 id="类型强转"><a href="#类型强转" class="headerlink" title="类型强转"></a>类型强转</h2><ul>
+<li>Double -&gt; int 直接(int)num;</li>
+</ul>
+<hr>
+<h2 id="时间类型"><a href="#时间类型" class="headerlink" title="时间类型"></a>时间类型</h2><ol>
+<li>最早常用是 Date 然后 Calendar 然后 Instant LocalDateTime …</li>
+</ol>
+<p><em>获取指定时间</em> <a href="https://blog.csdn.net/jssongwei/article/details/71403354" target="_blank" rel="noopener">获取指定时间的时间戳</a></p>
+<hr>
+<h1 id="类的结构"><a href="#类的结构" class="headerlink" title="类的结构"></a>类的结构</h1><h2 id="修饰符"><a href="#修饰符" class="headerlink" title="修饰符"></a>修饰符</h2><blockquote>
+<p><a href="https://blog.csdn.net/yan8024/article/details/6426451" target="_blank" rel="noopener">参考博客: java 权限修饰符</a></p>
+</blockquote>
+<h3 id="权限修饰符"><a href="#权限修饰符" class="headerlink" title="权限修饰符"></a>权限修饰符</h3><ul>
+<li><code>public</code>   <strong>任意范围</strong>;</li>
+<li><code>protected</code>  <strong>子类</strong> 与 <strong>同包</strong>;  子类可以是任意包下</li>
+<li><code>缺省(package private)</code> <strong>同包</strong>;  限定了同一个包下, 才能访问 所修饰的属性</li>
+<li><code>private</code>  只能 <strong>当前类</strong> 或者 <strong>内部类</strong> 访问</li>
+</ul>
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><h2 id="成员属性"><a href="#成员属性" class="headerlink" title="成员属性"></a>成员属性</h2><p>作为Java的bean, 或者大多数情况下, 属性都是私有的, 然后提供setter getter 方法,而且 一般来说, setter和getter方法是不能包含逻辑的, 也就是简单的赋值 取值<br>乍一看相比于C语言, 似乎这是多此一举, 但是注意面向对象思想, 一个对象对外提供的应该只是行为, 具有较强的语义性, 什么对象执行了什么方法, 而直接引用就可能将对象属性和静态属性混淆</p>
+<h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><p>方法的签名: </p>
+<ul>
+<li style="list-style: none"><input type="checkbox"> 方法签名的详解</li>
+</ul>
+<hr>
+<h1 id="Object"><a href="#Object" class="headerlink" title="Object"></a>Object</h1><blockquote>
+<p><a href="http://www.cnblogs.com/yxnchinahlj/archive/2012/02/24/2366110.html" target="_blank" rel="noopener">参考博客:  java的(PO,VO,TO,BO,DAO,POJO)解释</a><br>| <a href="https://zhuanlan.zhihu.com/p/35762537?group_id=969493512006373376" target="_blank" rel="noopener">VO DAO BO 等缩写的意义</a></p>
+</blockquote>
+<h2 id="VO"><a href="#VO" class="headerlink" title="VO"></a>VO</h2><blockquote>
+<p>(value object) 值对象</p>
+<ol>
+<li>使用new关键字创建的, 由GC回收的, </li>
+<li>VO是值对象, 业务对象, 存活在业务层的, 是业务逻辑使用的<ul>
+<li>它存在的目的就是为数据提供一个生存的地方</li>
+</ul>
+</li>
+<li>VO的属性是根据当前业务的不同而不同的<ul>
+<li>也就是说，它的每一个属性都一一对应当前业务逻辑所需要的数据的名称。</li>
+</ul>
+</li>
+</ol>
+</blockquote>
+<h2 id="PO"><a href="#PO" class="headerlink" title="PO"></a>PO</h2><blockquote>
+<p>(persistant object) 持久对象</p>
+<ol>
+<li>PO则是向数据库中添加新数据时创建，删除数据库中数据时削除的。<ul>
+<li>并且它只能存活在一个数据库连接中，断开连接即被销毁。</li>
+</ul>
+</li>
+<li>PO是持久化对象, 是有状态的, 每个属性代表其当前状态, 他是物理数据的对象表示<ul>
+<li>使用它能够让我们的程序与物理数据解耦，并且可以简化对象数据与物理数据之间的转换。</li>
+</ul>
+</li>
+<li>PO的属性是跟数据库表的字段一一对应的。</li>
+<li>PO对象需要实现序列化接口</li>
+</ol>
+</blockquote>
+<blockquote>
+<p>首先说PO和VO吧，它们的关系应该是相互独立的，一个VO可以只是PO的部分，也可以是多个PO构成，同样也可以等同于一个PO（当然我是指他们的属性）。<br>正因为这样，PO独立出来，数据持久层也就独立出来了，它不会受到任何业务的干涉。又正因为这样，业务逻辑层也独立开来，它不会受到数据持久层的影响，业务层关心的只是业务逻辑的处理，至于怎么存怎么读交给别人吧！<br>不过，另外一点，如果我们没有使用数据持久层，或者说没有使用hibernate，那么PO和VO也可以是同一个东西，虽然这并不好。</p>
+</blockquote>
+<h2 id="TO"><a href="#TO" class="headerlink" title="TO"></a>TO</h2><blockquote>
+<p>(transfer Object) 数据传输对象</p>
+<ul>
+<li>在应用程序不同tie(关系)之间传输的对象</li>
+</ul>
+</blockquote>
+<h2 id="BO"><a href="#BO" class="headerlink" title="BO"></a>BO</h2><blockquote>
+<p>(business object) 业务对象</p>
+<ul>
+<li>从业务模型的角度看,见UML元件领域模型中的领域对象。封装业务逻辑的java对象,通过调用DAO方法,结合PO,VO进行业务操作。</li>
+<li>它装满了业务逻辑的处理，在业务逻辑复杂的应用中有用。</li>
+</ul>
+</blockquote>
+<h2 id="POJO"><a href="#POJO" class="headerlink" title="POJO"></a>POJO</h2><blockquote>
+<p><a href="https://en.wikipedia.org/wiki/Plain_old_Java_object" target="_blank" rel="noopener">Wikipedia: POJO</a> <code>Plain Old Java Object</code></p>
+</blockquote>
+<blockquote>
+<p>(plain ordinary java object) 简单无规则java对象</p>
+<ul>
+<li>纯的传统意义的java对象。就是说在一些Object/Relation Mapping工具中，能够做到维护数据库表记录的persisent object完全是一个符合Java Bean规范的纯Java对象，没有增加别的属性和方法。我的理解就是最基本的Java Bean，只有属性字段及setter和getter方法！</li>
+</ul>
+</blockquote>
+<h2 id="DAO"><a href="#DAO" class="headerlink" title="DAO"></a>DAO</h2><blockquote>
+<p>(data access object) 数据访问对象</p>
+<ul>
+<li>通常和PO结合使用，DAO中包含了各种数据库的操作方法</li>
+</ul>
+</blockquote>
+<hr>
+<h1 id="关键字"><a href="#关键字" class="headerlink" title="关键字"></a>关键字</h1><blockquote>
+<p> Java关键字和保留字<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">abstract class    extends implements null      strictfp     true</span><br><span class="line">assert   const    false   import     package   super        try</span><br><span class="line">boolean  continue final   instanceof private   switch       void</span><br><span class="line">break    default  finally int        protected synchronized volatile</span><br><span class="line">byte     do       float   interface  public    this         while</span><br><span class="line">case     double   for     long       return    throw</span><br><span class="line">catch    else     goto    native     short     throws</span><br><span class="line">char     enum     if      new        static    transient</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<ul>
+<li style="list-style: none"><input type="checkbox"> transient 序列化时不进行序列化</li>
+</ul>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2018-12-14T12:42:49.254Z" itemprop="dateUpdated">2018-12-14 20:42:49</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2018/12/14/Memo-Java-AdvancedLearning-GrammarAndType/" target="_blank" rel="external">http://blog.kuangcp.top/2018/12/14/Memo-Java-AdvancedLearning-GrammarAndType/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="http://blog.kuangcp.top">
+            <img src="/img/avatar.jpg" alt="Kuangcp">
+            Kuangcp
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/基础/">基础</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/语法/">语法</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.kuangcp.top/2018/12/14/Memo-Java-AdvancedLearning-GrammarAndType/&title=《Java基础语法》 — Kuangcp Blog&pic=http://blog.kuangcp.top/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.kuangcp.top/2018/12/14/Memo-Java-AdvancedLearning-GrammarAndType/&title=《Java基础语法》 — Kuangcp Blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.kuangcp.top/2018/12/14/Memo-Java-AdvancedLearning-GrammarAndType/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Java基础语法》 — Kuangcp Blog&url=http://blog.kuangcp.top/2018/12/14/Memo-Java-AdvancedLearning-GrammarAndType/&via=http://blog.kuangcp.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.kuangcp.top/2018/12/14/Memo-Java-AdvancedLearning-GrammarAndType/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/12/14/Memo-Java-AdvancedLearning-MultipleLanguage/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">MultipleLanguage</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/12/14/Memo-Java-TemplateEngine-Thymeleaf/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Thymeleaf.md</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check" data-wechat="/img/wechat.png" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style="display:none">
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style="display:none">
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Kuangcp &copy; 2015 - 2018</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.kuangcp.top/2018/12/14/Memo-Java-AdvancedLearning-GrammarAndType/&title=《Java基础语法》 — Kuangcp Blog&pic=http://blog.kuangcp.top/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.kuangcp.top/2018/12/14/Memo-Java-AdvancedLearning-GrammarAndType/&title=《Java基础语法》 — Kuangcp Blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.kuangcp.top/2018/12/14/Memo-Java-AdvancedLearning-GrammarAndType/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Java基础语法》 — Kuangcp Blog&url=http://blog.kuangcp.top/2018/12/14/Memo-Java-AdvancedLearning-GrammarAndType/&via=http://blog.kuangcp.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.kuangcp.top/2018/12/14/Memo-Java-AdvancedLearning-GrammarAndType/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACt0lEQVR42u3a0WojMQwF0P7/T3ehTwvbJPdKdtOFM08lzDg+E7BUSR8f8fX5df3997/X8/ufr/Pok0drHr7w8PDwRlt/vulHnyRfnDybX/me8fDw8G7zZsEgP8Sf3z973VHwwMPDw3srb8ZIttjuAQ8PD+//4iVliLOvDA8PD+938vIU9tQRvy8HH6614OHh4XXVg7oB9t6/r/f38PDw8EYF0/zAzYcA2tbaard4eHh4F3h5mbVNkdumV8LIn3qxHB4eHt4hXrv1TYMqWa199uE6eHh4eEd5xTuIN52XXzcFkeTHwMPDw7vBO1UmaI/+NllvE248PDy827z8gbaEOhtUzYsRUZKNh4eHd5S3KTFswkaeIs9Czjf9PTw8PLyjvE3bKT/o2zs3LTE8PDy827zk6G8T31npNk/No2EFPDw8vGu8tgG2eap9HasWHR4eHt4FXj4EMBsO2ISTWdh4sQ4eHh7emtc+MKMWB3c8ShWl73h4eHjXePnSScMsLze0ZYv8czw8PLx7vM2xXrTwy/vbYsSLb8HDw8O7zNsEgzbJzleYtcfw8PDwbvDa47ttm83aWnkB90WowMPDw7vG2xzr+/JBXqJtCx94eHh4N3jtY23jf1b2ze8f/pJ4eHh4a177b3/bJJuNHeRh7EWgwsPDwzvKmxUj2rQ4CRVtoTYKRXh4eHg/wju19TaZzkNLMaCAh4eHd4G3GmZapMubMu6BwgoeHh7egvdZXnl6nRdkW2qxHzw8PLwLvFkkmSW+OaYNLfuhLjw8PLxZA6wtB8yKC8nb3Y954eHh4f0Mr/2a2ahWPp6VR7AX+8HDw8N7K282hjU7+tvSxsNvxMPDw/sFvHyUqm2YtStHCTceHh7eNV5ejNg0+2fJdB5mvvkEDw8P7wJv3wBrBw7y1eowMLvw8PDwUt4f2DaSly2t73IAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

@@ -14,7 +14,7 @@
     
     
     
-    <title>Java8.md | Kuangcp Blog | Javaer</title>
+    <title>Java8 | Kuangcp Blog | Javaer</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
     <meta name="theme-color" content="#3F51B5">
@@ -24,14 +24,14 @@
     <meta name="description" content="目录 start  Java8 Funcational Lambda 行为参数化 Lambda基础 原始类型特化 类型检查、类型推断以及限制 类型检查 同样的Lambda 不同的函数式接口 类型推断 使用局部变量   方法引用 复合 Lambda 表达式 比较器复合 谓词复合 函数复合   利用Lambda开发DSL框架   Stream Stream与集合 只能遍历一次 外部迭代和内部迭代">
 <meta name="keywords" content="基础,Java8">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java8.md">
+<meta property="og:title" content="Java8">
 <meta property="og:url" content="http://blog.kuangcp.top/2018/12/13/Memo-Java-AdvancedLearning-Java8/index.html">
 <meta property="og:site_name" content="Kuangcp Blog">
 <meta property="og:description" content="目录 start  Java8 Funcational Lambda 行为参数化 Lambda基础 原始类型特化 类型检查、类型推断以及限制 类型检查 同样的Lambda 不同的函数式接口 类型推断 使用局部变量   方法引用 复合 Lambda 表达式 比较器复合 谓词复合 函数复合   利用Lambda开发DSL框架   Stream Stream与集合 只能遍历一次 外部迭代和内部迭代">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-12-13T11:53:28.395Z">
+<meta property="og:updated_time" content="2018-12-14T12:42:49.254Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Java8.md">
+<meta name="twitter:title" content="Java8">
 <meta name="twitter:description" content="目录 start  Java8 Funcational Lambda 行为参数化 Lambda基础 原始类型特化 类型检查、类型推断以及限制 类型检查 同样的Lambda 不同的函数式接口 类型推断 使用局部变量   方法引用 复合 Lambda 表达式 比较器复合 谓词复合 函数复合   利用Lambda开发DSL框架   Stream Stream与集合 只能遍历一次 外部迭代和内部迭代">
     
         <link rel="alternate" type="application/atom+xml" title="Kuangcp Blog" href="/atom.xml">
@@ -113,7 +113,7 @@
         <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
           <i class="icon icon-lg icon-navicon"></i>
         </a>
-        <div class="flex-col header-title ellipsis">Java8.md</div>
+        <div class="flex-col header-title ellipsis">Java8</div>
         
         <div class="search-wrap" id="search-wrap">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
@@ -135,7 +135,7 @@
 <header class="content-header post-header">
 
     <div class="container fade-scale">
-        <h1 class="title">Java8.md</h1>
+        <h1 class="title">Java8</h1>
         <h5 class="subtitle">
             
                 <time datetime="2018-12-13T08:05:51.000Z" itemprop="datePublished" class="page-time">
@@ -168,7 +168,7 @@
 <article id="post-Memo-Java-AdvancedLearning-Java8" class="post-article article-type-post fade" itemprop="blogPost">
 
     <div class="post-card">
-        <h1 class="post-card-title">Java8.md</h1>
+        <h1 class="post-card-title">Java8</h1>
         <div class="post-meta">
             <time class="post-time" title="2018-12-13 16:05:51" datetime="2018-12-13T08:05:51.000Z" itemprop="datePublished">2018-12-13</time>
 
@@ -277,7 +277,7 @@
 </ol>
 </li>
 </ol>
-<p><strong>目录 end</strong>|<em>2018-12-13 12:06</em>| <a href="https://gitee.com/gin9" target="_blank" rel="noopener">码云</a> | <a href="http://blog.csdn.net/kcp606" target="_blank" rel="noopener">CSDN</a> | <a href="https://my.oschina.net/kcp1104" target="_blank" rel="noopener">OSChina</a> | <a href="http://www.cnblogs.com/kuangcp" target="_blank" rel="noopener">cnblogs</a></p>
+<p><strong>目录 end</strong>|<em>2018-12-14 20:38</em>| <a href="https://gitee.com/gin9" target="_blank" rel="noopener">码云</a> | <a href="http://blog.csdn.net/kcp606" target="_blank" rel="noopener">CSDN</a> | <a href="https://my.oschina.net/kcp1104" target="_blank" rel="noopener">OSChina</a> | <a href="http://www.cnblogs.com/kuangcp" target="_blank" rel="noopener">cnblogs</a></p>
 <hr>
 <h1 id="Java8"><a href="#Java8" class="headerlink" title="Java8"></a>Java8</h1><blockquote>
 <p><a href="https://docs.oracle.com/javase/8/" target="_blank" rel="noopener">doc: Java8</a> | <a href="https://docs.oracle.com/javase/8/docs/api/" target="_blank" rel="noopener">API</a><br><a href="http://www.oracle.com/technetwork/java/javase/jdk-8-readme-2095712.html" target="_blank" rel="noopener">Java8 JDK Readme</a> | <a href="http://www.oracle.com/technetwork/java/javase/jre-8-readme-2095710.html" target="_blank" rel="noopener">Jre8 Readme</a><code>有说明哪些是JRE运行不必要的文件</code>  </p>
@@ -451,7 +451,48 @@
 </tr>
 </tbody>
 </table>
-<p><strong><code>Lambdas及函数式接口的例子</code></strong><br>| 使用案例 | Lambda例子 | 对应的函数式接口 |<br>|:—-|:—-|:—-|<br>| 布尔表达式 | (List<string> list) -&gt; list.isEmpty() | <code>Predicate&lt;List&lt;String&gt;&gt;</code>|<br>| 创建对象 |() -&gt; new Apple(10) |<code>Supplier&lt;Apple&gt;</code><br>| 消费一个对象 | (Apple a) -&gt;System.out.println(a.getWeight())|<code>Consumer&lt;Apple&gt;</code>|<br>| 从一个对象中 选择/提取 | (String s) -&gt; s.length() | Function&lt;String, Integer&gt; 或 <code>ToIntFunction&lt;String&gt;</code><br>| 合并两个值 | (int a, int b) -&gt; a * b |  IntBinaryOperator|<br>| 比较两个对象 | (Apple a1, Apple a2) -&gt; a1.getWeight().compareTo(a2.getWeight()) | Comparator&lt; Apple &gt; 或 BiFunction&lt;Apple, Apple, Integer&gt; 或 ToIntBiFunction&lt;Apple, Apple&gt;</string></p>
+<p><strong><code>Lambdas及函数式接口的例子</code></strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">使用案例</th>
+<th style="text-align:left">Lambda例子</th>
+<th style="text-align:left">对应的函数式接口</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">布尔表达式</td>
+<td style="text-align:left">(List<string> list) -&gt; list.isEmpty()</string></td>
+<td style="text-align:left"><code>Predicate&lt;List&lt;String&gt;&gt;</code></td>
+</tr>
+<tr>
+<td style="text-align:left">创建对象</td>
+<td style="text-align:left">() -&gt; new Apple(10)</td>
+<td style="text-align:left"><code>Supplier&lt;Apple&gt;</code></td>
+</tr>
+<tr>
+<td style="text-align:left">消费一个对象</td>
+<td style="text-align:left">(Apple a) -&gt;System.out.println(a.getWeight())</td>
+<td style="text-align:left"><code>Consumer&lt;Apple&gt;</code></td>
+</tr>
+<tr>
+<td style="text-align:left">从一个对象中 选择/提取</td>
+<td style="text-align:left">(String s) -&gt; s.length()</td>
+<td style="text-align:left">Function&lt;String, Integer&gt; 或 <code>ToIntFunction&lt;String&gt;</code></td>
+</tr>
+<tr>
+<td style="text-align:left">合并两个值</td>
+<td style="text-align:left">(int a, int b) -&gt; a * b</td>
+<td style="text-align:left">IntBinaryOperator</td>
+</tr>
+<tr>
+<td style="text-align:left">比较两个对象</td>
+<td style="text-align:left">(Apple a1, Apple a2) -&gt; a1.getWeight().compareTo(a2.getWeight())</td>
+<td style="text-align:left">Comparator&lt; Apple &gt; 或 BiFunction&lt;Apple, Apple, Integer&gt; 或 ToIntBiFunction&lt;Apple, Apple&gt;</td>
+</tr>
+</tbody>
+</table>
 <ul>
 <li>请注意，任何函数式接口都不允许抛出受检异常（checked exception）。如果你需要Lambda 表达式来抛出异常，有两种办法：<ul>
 <li>定义一个自己的函数式接口，并声明受检异常，</li>
@@ -1046,7 +1087,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2018-12-13T11:53:28.395Z" itemprop="dateUpdated">2018-12-13 19:53:28</time>
+    最后更新时间：<time datetime="2018-12-14T12:42:49.254Z" itemprop="dateUpdated">2018-12-14 20:42:49</time>
 </span><br>
 
 
@@ -1082,7 +1123,7 @@
 <div class="page-share" id="pageShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.kuangcp.top/2018/12/13/Memo-Java-AdvancedLearning-Java8/&title=《Java8.md》 — Kuangcp Blog&pic=http://blog.kuangcp.top/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.kuangcp.top/2018/12/13/Memo-Java-AdvancedLearning-Java8/&title=《Java8》 — Kuangcp Blog&pic=http://blog.kuangcp.top/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -1092,7 +1133,7 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.kuangcp.top/2018/12/13/Memo-Java-AdvancedLearning-Java8/&title=《Java8.md》 — Kuangcp Blog&source=" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.kuangcp.top/2018/12/13/Memo-Java-AdvancedLearning-Java8/&title=《Java8》 — Kuangcp Blog&source=" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
@@ -1102,7 +1143,7 @@
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Java8.md》 — Kuangcp Blog&url=http://blog.kuangcp.top/2018/12/13/Memo-Java-AdvancedLearning-Java8/&via=http://blog.kuangcp.top" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Java8》 — Kuangcp Blog&url=http://blog.kuangcp.top/2018/12/13/Memo-Java-AdvancedLearning-Java8/&via=http://blog.kuangcp.top" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
@@ -1132,7 +1173,7 @@
     <div class="waves-block waves-effect prev">
       <a href="/2018/12/13/Memo-Java-AdvancedLearning-Exception/" id="post-prev" class="post-nav-link">
         <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
-        <h4 class="title">Exception</h4>
+        <h4 class="title">Java异常处理</h4>
       </a>
     </div>
   
@@ -1141,7 +1182,7 @@
     <div class="waves-block waves-effect next">
       <a href="/2018/12/13/Memo-Java-AdvancedLearning-WebPerformance/" id="post-next" class="post-nav-link">
         <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
-        <h4 class="title">WebPerformance.md</h4>
+        <h4 class="title">JavaWeb性能调优</h4>
       </a>
     </div>
   
@@ -1237,7 +1278,7 @@
 <div class="global-share" id="globalShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.kuangcp.top/2018/12/13/Memo-Java-AdvancedLearning-Java8/&title=《Java8.md》 — Kuangcp Blog&pic=http://blog.kuangcp.top/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.kuangcp.top/2018/12/13/Memo-Java-AdvancedLearning-Java8/&title=《Java8》 — Kuangcp Blog&pic=http://blog.kuangcp.top/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -1247,7 +1288,7 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.kuangcp.top/2018/12/13/Memo-Java-AdvancedLearning-Java8/&title=《Java8.md》 — Kuangcp Blog&source=" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.kuangcp.top/2018/12/13/Memo-Java-AdvancedLearning-Java8/&title=《Java8》 — Kuangcp Blog&source=" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
@@ -1257,7 +1298,7 @@
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Java8.md》 — Kuangcp Blog&url=http://blog.kuangcp.top/2018/12/13/Memo-Java-AdvancedLearning-Java8/&via=http://blog.kuangcp.top" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Java8》 — Kuangcp Blog&url=http://blog.kuangcp.top/2018/12/13/Memo-Java-AdvancedLearning-Java8/&via=http://blog.kuangcp.top" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
