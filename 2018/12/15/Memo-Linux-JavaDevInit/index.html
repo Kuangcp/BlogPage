@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>Java初始化环境搭建 | Kuangcp Blog | Javaer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="工具使用经验">
+    <meta name="description" content="目录 start  配置Deepin的Java开发环境 新增用户 安装Docker   在Linux上配置Java环境 配置JDK 解压配置 sdkman方式 mythsdk   配置MySQL 配置Redis 从源码编译运行并测试   问题以及解决方案： 双硬盘的折腾记录    目录 end|2018-12-13 12:06| 码云 | CSDN | OSChina | cnblogs  配置D">
+<meta name="keywords" content="工具使用经验">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java初始化环境搭建">
+<meta property="og:url" content="http://blog.kuangcp.top/2018/12/15/Memo-Linux-JavaDevInit/index.html">
+<meta property="og:site_name" content="Kuangcp Blog">
+<meta property="og:description" content="目录 start  配置Deepin的Java开发环境 新增用户 安装Docker   在Linux上配置Java环境 配置JDK 解压配置 sdkman方式 mythsdk   配置MySQL 配置Redis 从源码编译运行并测试   问题以及解决方案： 双硬盘的折腾记录    目录 end|2018-12-13 12:06| 码云 | CSDN | OSChina | cnblogs  配置D">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-12-16T09:11:25.585Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java初始化环境搭建">
+<meta name="twitter:description" content="目录 start  配置Deepin的Java开发环境 新增用户 安装Docker   在Linux上配置Java环境 配置JDK 解压配置 sdkman方式 mythsdk   配置MySQL 配置Redis 从源码编译运行并测试   问题以及解决方案： 双硬盘的折腾记录    目录 end|2018-12-13 12:06| 码云 | CSDN | OSChina | cnblogs  配置D">
+    
+        <link rel="alternate" type="application/atom+xml" title="Kuangcp Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Kuangcp</h5>
+          <a href="mailto:kuangcp@aliyun.com" title="kuangcp@aliyun.com" class="mail">kuangcp@aliyun.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/">
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives">
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags">
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories">
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/kuangcp" target="_blank">
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Java初始化环境搭建</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Java初始化环境搭建</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-12-15T04:01:26.000Z" itemprop="datePublished" class="page-time">
+  2018-12-15
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/基础/">基础</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#配置Deepin的Java开发环境"><span class="post-toc-number">1.</span> <span class="post-toc-text">配置Deepin的Java开发环境</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#新增用户"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">新增用户</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#安装Docker"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">安装Docker</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#在Linux上配置Java环境"><span class="post-toc-number">2.</span> <span class="post-toc-text">在Linux上配置Java环境</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#配置JDK"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">配置JDK</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#解压配置"><span class="post-toc-number">2.1.1.</span> <span class="post-toc-text">解压配置</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#sdkman方式"><span class="post-toc-number">2.1.2.</span> <span class="post-toc-text">sdkman方式</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#mythsdk"><span class="post-toc-number">2.1.3.</span> <span class="post-toc-text">mythsdk</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#配置MySQL"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">配置MySQL</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#配置Redis"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">配置Redis</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#从源码编译运行并测试"><span class="post-toc-number">2.3.1.</span> <span class="post-toc-text">从源码编译运行并测试</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#问题以及解决方案："><span class="post-toc-number">2.4.</span> <span class="post-toc-text">问题以及解决方案：</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#双硬盘的折腾记录"><span class="post-toc-number">2.5.</span> <span class="post-toc-text">双硬盘的折腾记录</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-Memo-Linux-JavaDevInit" class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Java初始化环境搭建</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-12-15 12:01:26" datetime="2018-12-15T04:01:26.000Z" itemprop="datePublished">2018-12-15</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/基础/">基础</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style="display:none">
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p><strong>目录 start</strong></p>
+<ol>
+<li><a href="#配置deepin的java开发环境">配置Deepin的Java开发环境</a><ol>
+<li><a href="#新增用户">新增用户</a></li>
+<li><a href="#安装docker">安装Docker</a></li>
+</ol>
+</li>
+<li><a href="#在linux上配置java环境">在Linux上配置Java环境</a><ol>
+<li><a href="#配置jdk">配置JDK</a><ol>
+<li><a href="#解压配置">解压配置</a></li>
+<li><a href="#sdkman方式">sdkman方式</a></li>
+<li><a href="#mythsdk">mythsdk</a></li>
+</ol>
+</li>
+<li><a href="#配置mysql">配置MySQL</a></li>
+<li><a href="#配置redis">配置Redis</a><ol>
+<li><a href="#从源码编译运行并测试">从源码编译运行并测试</a></li>
+</ol>
+</li>
+<li><a href="#问题以及解决方案">问题以及解决方案：</a></li>
+<li><a href="#双硬盘的折腾记录">双硬盘的折腾记录</a></li>
+</ol>
+</li>
+</ol>
+<p><strong>目录 end</strong>|<em>2018-12-13 12:06</em>| <a href="https://gitee.com/gin9" target="_blank" rel="noopener">码云</a> | <a href="http://blog.csdn.net/kcp606" target="_blank" rel="noopener">CSDN</a> | <a href="https://my.oschina.net/kcp1104" target="_blank" rel="noopener">OSChina</a> | <a href="http://www.cnblogs.com/kuangcp" target="_blank" rel="noopener">cnblogs</a></p>
+<hr>
+<h1 id="配置Deepin的Java开发环境"><a href="#配置Deepin的Java开发环境" class="headerlink" title="配置Deepin的Java开发环境"></a>配置Deepin的Java开发环境</h1><p>修改Hostname需要重启, 设置java默认需要重启, docker添加用户组需要重启</p>
+<h2 id="新增用户"><a href="#新增用户" class="headerlink" title="新增用户"></a>新增用户</h2><blockquote>
+<p><a href="/Linux/Base/LinuxBase.md#用户管理">详细</a></p>
+</blockquote>
+<h2 id="安装Docker"><a href="#安装Docker" class="headerlink" title="安装Docker"></a>安装Docker</h2><blockquote>
+<p><a href="/Linux/Container/Docker.md">详细文档</a></p>
+</blockquote>
+<h1 id="在Linux上配置Java环境"><a href="#在Linux上配置Java环境" class="headerlink" title="在Linux上配置Java环境"></a>在Linux上配置Java环境</h1><h2 id="配置JDK"><a href="#配置JDK" class="headerlink" title="配置JDK"></a>配置JDK</h2><h3 id="解压配置"><a href="#解压配置" class="headerlink" title="解压配置"></a>解压配置</h3><ul>
+<li><a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html" target="_blank" rel="noopener">下载地址</a></li>
+<li>在文件 <code>/etc/profile</code> 中添加</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> JAVA_HOME= 绝对路径例如： /home/kcp/Application/sdk/jdk1.8.0_131</span><br><span class="line"><span class="built_in">export</span> JRE_HOME=<span class="variable">$&#123;JAVA_HOME&#125;</span>/jre</span><br><span class="line"><span class="built_in">export</span> CLASSPATH=.:<span class="variable">$&#123;JAVA_HOME&#125;</span>/lib:<span class="variable">$&#123;JRE_HOME&#125;</span>/lib</span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$&#123;JAVA_HOME&#125;</span>/bin:<span class="variable">$PATH</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>让修改立即生效<code>source /etc/profile</code> 或者修改 <code>.bashrc</code> 文件, 就会在当前用户的终端生效</p>
+</blockquote>
+<p><strong>root用户的环境</strong></p>
+<ul>
+<li><p>指定默认的jdk，因为系统预装了openJdk ,为了稳妥建议先进入JDK的bin目录,然后执行</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo update-alternatives --install /usr/bin/java java `<span class="built_in">pwd</span>`/java 300</span><br><span class="line">sudo update-alternatives --install /usr/bin/javac javac `<span class="built_in">pwd</span>`/javac 300</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>或者不执行命令, 直接修改链接文件即可完成同样的目的</p>
+<blockquote>
+<p>后期更新JDK版本, 普通用户的话, 就只是需要更改 <code>.bashrc</code> 文件, root用户就执行以上命令, 或者直接重建软链接文件</p>
+<blockquote>
+<p>root 用户下 <code>which java</code> 然后 <code>ls -l 显示的路径</code> 一直往下找, 找到 <code>/etc/alternatives/java</code> 和 <code>/etc/alternatives/javac</code> 重建这两个软链接.</p>
+</blockquote>
+</blockquote>
+</li>
+</ul>
+<h3 id="sdkman方式"><a href="#sdkman方式" class="headerlink" title="sdkman方式"></a>sdkman方式</h3><blockquote>
+<p>jdk不推荐使用sdkman安装，这里的jdk是开源版估计，会少javafx等一些闭源包 Oracle版本才是完整的<br>但是最近SDKMAN出了一个oracle的版本貌似是完整的，因为有个同意协议的过程 <code>sdk install java 8u144-oracle</code></p>
+</blockquote>
+<ul>
+<li>安装sdkman <code>curl -s &quot;https://get.sdkman.io&quot; | bash</code></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Looking for a previous installation of SDKMAN...</span><br><span class="line">Looking for unzip...</span><br><span class="line">Not found.</span><br><span class="line">Please install unzip on your system using your favourite package manager.</span><br><span class="line">Restart after installing unzip.</span><br></pre></td></tr></table></figure>
+<ul>
+<li>遇到这种提示就是需要安装zip <code>sudo apt install zip unzip</code> 然后重新执行命令</li>
+<li>执行脚本：<code>source &quot;/home/kuang/.sdkman/bin/sdkman-init.sh&quot;</code> 或者重启终端就可以使用 <code>sdk</code>命令了</li>
+<li>查看sdkman 版本 ：<code>sdk version</code></li>
+<li>查看可用版本 <code>sdk list java</code> </li>
+<li>不指定版本就是安装最新版 <code>sdk install java</code> </li>
+<li>指定默认版本 <code>sdk default java 8u131-zulu</code></li>
+<li>验证是否成功：<code>java -version</code></li>
+</ul>
+<h3 id="mythsdk"><a href="#mythsdk" class="headerlink" title="mythsdk"></a>mythsdk</h3><blockquote>
+<p>个人用py开发的脚本， 实现了和sdkman一致的内容， 并且很简单 | <a href="https://github.com/Kuangcp/Script/tree/master/python/mythsdk" target="_blank" rel="noopener">使用文档</a></p>
+</blockquote>
+<hr>
+<h2 id="配置MySQL"><a href="#配置MySQL" class="headerlink" title="配置MySQL"></a>配置MySQL</h2><blockquote>
+<p><a href="/Database/MySQL.md">安装MySQL</a></p>
+</blockquote>
+<hr>
+<h2 id="配置Redis"><a href="#配置Redis" class="headerlink" title="配置Redis"></a>配置Redis</h2><blockquote>
+<p><a href="/Database/Redis.md">安装Redis</a></p>
+</blockquote>
+<h3 id="从源码编译运行并测试"><a href="#从源码编译运行并测试" class="headerlink" title="从源码编译运行并测试"></a>从源码编译运行并测试</h3><blockquote>
+<p>新建文件夹将源码下拉下来运行，然后就可以将该目录删除</p>
+</blockquote>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">wget http://downloads.sourceforge.net/tcl/tcl8.6.1-src.tar.gz</span><br><span class="line">sudo tar xzvf tcl8.6.1-src.tar.gz  -C /usr/<span class="built_in">local</span>/</span><br><span class="line"><span class="built_in">cd</span>  /usr/<span class="built_in">local</span>/tcl8.6.1/unix/</span><br><span class="line">sudo ./configure</span><br><span class="line">sudo make</span><br><span class="line">sudo make install</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="问题以及解决方案："><a href="#问题以及解决方案：" class="headerlink" title="问题以及解决方案："></a>问题以及解决方案：</h2><blockquote>
+<p>QQ</p>
+<ul>
+<li><code>sudo apt-get install deepin-crossover deepinwine-qq</code></li>
+<li><a href="https://www.findhao.net/easycoding/1748" target="_blank" rel="noopener">安装QQ</a></li>
+</ul>
+</blockquote>
+<blockquote>
+<p>显卡问题</p>
+<ul>
+<li>联想G4070 安装 deepin 15.4.1 显卡兼容失败（15.4还能正常用）, 15.5 15.6 是正常使用的 15.7 有点缺陷</li>
+<li>因为合上盖子休眠就会导致打开电脑直接死机， 找了半天原因是驱动问题<ul>
+<li>安装 <code>nvidia-driver</code>, <code>nvidia-setting</code>, <code>bumblebee-nvidia</code> 即可解决</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<p>手残，按到关闭窗口特效后，就无法打开了，各种用着不爽， 然后重装了最新版系统，然后就装驱动，重启就不能开特效了。。。。。<br>虽然各种小bug, 也花费了很多时间来解决这些问题(因为自己有强迫症), 但是还是学到了很多东西</p>
+<hr>
+<h2 id="双硬盘的折腾记录"><a href="#双硬盘的折腾记录" class="headerlink" title="双硬盘的折腾记录"></a>双硬盘的折腾记录</h2><blockquote>
+<p><a href="/MyBlog/2018-3-15-install-deepin.md">记录</a></p>
+</blockquote>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2018-12-16T09:11:25.585Z" itemprop="dateUpdated">2018-12-16 17:11:25</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2018/12/15/Memo-Linux-JavaDevInit/" target="_blank" rel="external">http://blog.kuangcp.top/2018/12/15/Memo-Linux-JavaDevInit/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="http://blog.kuangcp.top">
+            <img src="/img/avatar.jpg" alt="Kuangcp">
+            Kuangcp
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/工具使用经验/">工具使用经验</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.kuangcp.top/2018/12/15/Memo-Linux-JavaDevInit/&title=《Java初始化环境搭建》 — Kuangcp Blog&pic=http://blog.kuangcp.top/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.kuangcp.top/2018/12/15/Memo-Linux-JavaDevInit/&title=《Java初始化环境搭建》 — Kuangcp Blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.kuangcp.top/2018/12/15/Memo-Linux-JavaDevInit/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Java初始化环境搭建》 — Kuangcp Blog&url=http://blog.kuangcp.top/2018/12/15/Memo-Linux-JavaDevInit/&via=http://blog.kuangcp.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.kuangcp.top/2018/12/15/Memo-Linux-JavaDevInit/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/12/15/Memo-Linux-Tool-Caddy/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Caddy</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/12/15/Memo-Linux-Debian-Ubuntu/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Ubuntu</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check" data-wechat="/img/wechat.png" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style="display:none">
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style="display:none">
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Kuangcp &copy; 2015 - 2018</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">赣ICP备17014189号-1</a><br>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.kuangcp.top/2018/12/15/Memo-Linux-JavaDevInit/&title=《Java初始化环境搭建》 — Kuangcp Blog&pic=http://blog.kuangcp.top/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.kuangcp.top/2018/12/15/Memo-Linux-JavaDevInit/&title=《Java初始化环境搭建》 — Kuangcp Blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.kuangcp.top/2018/12/15/Memo-Linux-JavaDevInit/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Java初始化环境搭建》 — Kuangcp Blog&url=http://blog.kuangcp.top/2018/12/15/Memo-Linux-JavaDevInit/&via=http://blog.kuangcp.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.kuangcp.top/2018/12/15/Memo-Linux-JavaDevInit/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACJklEQVR42u3a3U7DMAwG0L7/SxeJK6SJ8NnpgLonVxXrupwiWfHPccTr/Fzr69f7v671M1+/dbxjYWBg3JZxLle+3fVfvrv+DpPvDQMD4zmMJMgm1PW3qgE3D9YYGBgY1XsSTDVYY2BgYOQBdx2Cr/oUAwMDo5fE9tLOvD72S7k4BgbGDRlXNQbecf0H/Q0MDIx/xjiLq/e0XmuzsCsMDIzRjHWBPmlY5oAePi/AYWBgzGbsp7K9n+8957LhMAwMjJsw8rJ7Xmjbh5WDPgYGxmhGXqavJrfVIYz8qFrucmBgYAxi5I2BammsF0x37sHAwJjEqKaRvYQ2H6Ho7QEDA2M2ozqelW9iv6xWDsoYGBhDGdUiWq/NmTcge68SAwNjNqMX7N6RPeelNwwMjKcx1j+QhL+8bldtJxSaqRgYGKMZvfBaPfDlLYSdYQ4MDIwnMJrl+GCj1XJ/L8XFwMCYyug9qHl0K7Yz80CMgYExm9ErpeXHtXzkIiFFrwkDA2McIw9nV2F6wT36D2BgYIxm9Laeh+adQbFoyAMDA2M0Iy/3X1uSy9sJhe9iYGAMZZzFVR2kSALuBZ9iYGCMZuwHu506XzUo52EdAwNjHiPfyrUHyl74/uGEi4GBMZpRLc3vDIcdrYWBgYGx3xncOVbmLwIDAwOjysivq6W06vAHBgbGExh5yaxabstDbT6QsZWLY2Bg3JCxn0BWR8p6pbrqi8DAwBjB+ABC3lbkibON6wAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

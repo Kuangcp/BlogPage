@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>Hibernate.md | Kuangcp Blog | Javaer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="目录 start  Hibernate Hibernate基础配置 JDBC和Hibernate比较 配置流程   Hibernate必需JAR 编写数据库表对应框架持久层的对象 hibernate.cfg.xml文件 日志文件的配置 SessionFactory和Session比较 OID的作用： id生成策略 非普通类型   Hibernate实体关联配置 一对多的配置 注意 ：   多对多的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hibernate.md">
+<meta property="og:url" content="http://blog.kuangcp.top/2018/12/16/Memo-Java-Ecosystem-Hibernate/index.html">
+<meta property="og:site_name" content="Kuangcp Blog">
+<meta property="og:description" content="目录 start  Hibernate Hibernate基础配置 JDBC和Hibernate比较 配置流程   Hibernate必需JAR 编写数据库表对应框架持久层的对象 hibernate.cfg.xml文件 日志文件的配置 SessionFactory和Session比较 OID的作用： id生成策略 非普通类型   Hibernate实体关联配置 一对多的配置 注意 ：   多对多的">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-12-16T09:11:25.585Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hibernate.md">
+<meta name="twitter:description" content="目录 start  Hibernate Hibernate基础配置 JDBC和Hibernate比较 配置流程   Hibernate必需JAR 编写数据库表对应框架持久层的对象 hibernate.cfg.xml文件 日志文件的配置 SessionFactory和Session比较 OID的作用： id生成策略 非普通类型   Hibernate实体关联配置 一对多的配置 注意 ：   多对多的">
+    
+        <link rel="alternate" type="application/atom+xml" title="Kuangcp Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Kuangcp</h5>
+          <a href="mailto:kuangcp@aliyun.com" title="kuangcp@aliyun.com" class="mail">kuangcp@aliyun.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/">
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives">
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags">
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories">
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/kuangcp" target="_blank">
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Hibernate.md</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Hibernate.md</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-12-16T09:11:25.585Z" itemprop="datePublished" class="page-time">
+  2018-12-16
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Hibernate"><span class="post-toc-number">1.</span> <span class="post-toc-text">Hibernate</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Hibernate基础配置"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">Hibernate基础配置</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#JDBC和Hibernate比较"><span class="post-toc-number">1.1.1.</span> <span class="post-toc-text">JDBC和Hibernate比较</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#配置流程"><span class="post-toc-number">1.1.1.1.</span> <span class="post-toc-text">配置流程</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Hibernate必需JAR"><span class="post-toc-number">1.1.2.</span> <span class="post-toc-text">Hibernate必需JAR</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#编写数据库表对应框架持久层的对象"><span class="post-toc-number">1.1.3.</span> <span class="post-toc-text">编写数据库表对应框架持久层的对象</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#hibernate-cfg-xml文件"><span class="post-toc-number">1.1.4.</span> <span class="post-toc-text">hibernate.cfg.xml文件</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#日志文件的配置"><span class="post-toc-number">1.1.5.</span> <span class="post-toc-text">日志文件的配置</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#SessionFactory和Session比较"><span class="post-toc-number">1.1.6.</span> <span class="post-toc-text">SessionFactory和Session比较</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#OID的作用："><span class="post-toc-number">1.1.7.</span> <span class="post-toc-text">OID的作用：</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#id生成策略"><span class="post-toc-number">1.1.8.</span> <span class="post-toc-text">id生成策略</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#非普通类型"><span class="post-toc-number">1.1.9.</span> <span class="post-toc-text">非普通类型</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Hibernate实体关联配置"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">Hibernate实体关联配置</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#一对多的配置"><span class="post-toc-number">1.2.1.</span> <span class="post-toc-text">一对多的配置</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#注意-："><span class="post-toc-number">1.2.1.1.</span> <span class="post-toc-text">注意 ：</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#多对多的配置"><span class="post-toc-number">1.2.2.</span> <span class="post-toc-text">多对多的配置</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#学生方配置"><span class="post-toc-number">1.2.2.1.</span> <span class="post-toc-text">学生方配置</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#课程方配置"><span class="post-toc-number">1.2.2.2.</span> <span class="post-toc-text">课程方配置</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#一对一的配置"><span class="post-toc-number">1.2.3.</span> <span class="post-toc-text">一对一的配置</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#使用多对一的技巧"><span class="post-toc-number">1.2.4.</span> <span class="post-toc-text">使用多对一的技巧</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#添加记录"><span class="post-toc-number">1.2.4.1.</span> <span class="post-toc-text">添加记录</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#删除记录"><span class="post-toc-number">1.2.4.2.</span> <span class="post-toc-text">删除记录</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#继承关系的配置"><span class="post-toc-number">1.2.5.</span> <span class="post-toc-text">继承关系的配置</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Hibernate异常"><span class="post-toc-number">1.2.6.</span> <span class="post-toc-text">Hibernate异常</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#could-not-find-a-getter-for"><span class="post-toc-number">1.2.6.1.</span> <span class="post-toc-text">could not find a getter for</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#个人总结"><span class="post-toc-number">1.2.6.2.</span> <span class="post-toc-text">个人总结</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Hibernate对象的状态"><span class="post-toc-number">1.2.7.</span> <span class="post-toc-text">Hibernate对象的状态</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Session的方法"><span class="post-toc-number">1.2.7.1.</span> <span class="post-toc-text">Session的方法</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#特别注意"><span class="post-toc-number">1.2.7.2.</span> <span class="post-toc-text">特别注意</span></a></li></ol></li></ol></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-Memo-Java-Ecosystem-Hibernate" class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Hibernate.md</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-12-16 17:11:25" datetime="2018-12-16T09:11:25.585Z" itemprop="datePublished">2018-12-16</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style="display:none">
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p><strong>目录 start</strong></p>
+<ol>
+<li><a href="#hibernate">Hibernate</a><ol>
+<li><a href="#hibernate基础配置">Hibernate基础配置</a><ol>
+<li><a href="#jdbc和hibernate比较">JDBC和Hibernate比较</a><ol>
+<li><a href="#配置流程">配置流程</a></li>
+</ol>
+</li>
+<li><a href="#hibernate必需jar">Hibernate必需JAR</a></li>
+<li><a href="#编写数据库表对应框架持久层的对象">编写数据库表对应框架持久层的对象</a></li>
+<li><a href="#hibernatecfgxml文件">hibernate.cfg.xml文件</a></li>
+<li><a href="#日志文件的配置">日志文件的配置</a></li>
+<li><a href="#sessionfactory和session比较">SessionFactory和Session比较</a></li>
+<li><a href="#oid的作用">OID的作用：</a></li>
+<li><a href="#id生成策略">id生成策略</a></li>
+<li><a href="#非普通类型">非普通类型</a></li>
+</ol>
+</li>
+<li><a href="#hibernate实体关联配置">Hibernate实体关联配置</a><ol>
+<li><a href="#一对多的配置">一对多的配置</a><ol>
+<li><a href="#注意-"><strong>注意 ：</strong></a></li>
+</ol>
+</li>
+<li><a href="#多对多的配置">多对多的配置</a><ol>
+<li><a href="#学生方配置">学生方配置</a></li>
+<li><a href="#课程方配置">课程方配置</a></li>
+</ol>
+</li>
+<li><a href="#一对一的配置">一对一的配置</a></li>
+<li><a href="#使用多对一的技巧">使用多对一的技巧</a><ol>
+<li><a href="#添加记录">添加记录</a></li>
+<li><a href="#删除记录">删除记录</a></li>
+</ol>
+</li>
+<li><a href="#继承关系的配置">继承关系的配置</a></li>
+<li><a href="#hibernate异常">Hibernate异常</a><ol>
+<li><a href="#could-not-find-a-getter-for">could not find a getter for</a></li>
+<li><a href="#个人总结">个人总结</a></li>
+</ol>
+</li>
+<li><a href="#hibernate对象的状态">Hibernate对象的状态</a><ol>
+<li><a href="#session的方法">Session的方法</a></li>
+<li><a href="#特别注意">特别注意</a></li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<p><strong>目录 end</strong>|<em>2018-12-13 12:06</em>| <a href="https://gitee.com/gin9" target="_blank" rel="noopener">码云</a> | <a href="http://blog.csdn.net/kcp606" target="_blank" rel="noopener">CSDN</a> | <a href="https://my.oschina.net/kcp1104" target="_blank" rel="noopener">OSChina</a> | <a href="http://www.cnblogs.com/kuangcp" target="_blank" rel="noopener">cnblogs</a></p>
+<hr>
+<h1 id="Hibernate"><a href="#Hibernate" class="headerlink" title="Hibernate"></a>Hibernate</h1><h2 id="Hibernate基础配置"><a href="#Hibernate基础配置" class="headerlink" title="Hibernate基础配置"></a>Hibernate基础配置</h2><h3 id="JDBC和Hibernate比较"><a href="#JDBC和Hibernate比较" class="headerlink" title="JDBC和Hibernate比较"></a>JDBC和Hibernate比较</h3><ul>
+<li>JDBC<ul>
+<li>使用其简洁精悍，最快，但是使用时接收数据以及多方面的比较麻烦</li>
+</ul>
+</li>
+<li>Hibernate<ul>
+<li>单表操作是很便捷的，但是涉及到多表复杂操作时比较麻烦</li>
+</ul>
+</li>
+</ul>
+<h4 id="配置流程"><a href="#配置流程" class="headerlink" title="配置流程"></a>配置流程</h4><blockquote>
+<p>如果后续需要添加表的话，就这个顺序</p>
+<ul>
+<li><strong>1 :</strong>  先有数据库和表，建立cfg.xml文件配置好数据库的基本参数</li>
+<li><strong>2 :</strong>  使用工具建立POJO持久类</li>
+<li><strong>3 :</strong>  导入Hibernate所必需JAR包，最好使用Myeclipse的配置，自己导包总有一堆错误</li>
+<li><strong>4 :</strong>  使用MyEclipse自动创建hbm.xml文件，还有各种文件。配置好hbm文件里关于表间关系的映射，或者在Myeclipse配置时手动选择</li>
+<li><strong>5 :</strong>  配置好DAO类中事务开启和关闭，以及各种所必需的配置，若表没有设立主键，那么POJO类需要继承自动生成的抽象类（含有主键）</li>
+<li><strong>6 :</strong>  调用DAO或者自己的Utils类，通过Hibernate来操作数据库</li>
+</ul>
+</blockquote>
+<h3 id="Hibernate必需JAR"><a href="#Hibernate必需JAR" class="headerlink" title="Hibernate必需JAR"></a>Hibernate必需JAR</h3><blockquote>
+<p>Hibernate 3.6</p>
+<ul>
+<li>required目录下所有JAR都要导入</li>
+<li>jpa的JAR包（做注解用）</li>
+<li>日志包：<ul>
+<li>slf4j-api-* .jar  该包是一个日志接口，需要一个JAR包的实现：</li>
+<li>slf4j-log4j12.jar 该包是转换的JAR包</li>
+<li>log4j-1.2.11.jar  实现的JAR包</li>
+</ul>
+</li>
+<li>数据库驱动包  mysql-connector-java-5.1.7-bin.jar</li>
+<li>在src同级目录下新建一个lib目录，把JAR包复制进去，然后右击将jar文件  Add to build path 加入到类搜索路径里</li>
+</ul>
+</blockquote>
+<h3 id="编写数据库表对应框架持久层的对象"><a href="#编写数据库表对应框架持久层的对象" class="headerlink" title="编写数据库表对应框架持久层的对象"></a>编写数据库表对应框架持久层的对象</h3><ul>
+<li>使用自己的工具类创建到对应的包下，或者用相关工具生成，类型要自己多加注意</li>
+</ul>
+<h3 id="hibernate-cfg-xml文件"><a href="#hibernate-cfg-xml文件" class="headerlink" title="hibernate.cfg.xml文件"></a>hibernate.cfg.xml文件</h3><blockquote>
+<p>作为默认的主配置文件</p>
+<ul>
+<li>数据库连接属性 驱动，url，用户名，密码</li>
+<li>数据库方言 </li>
+<li>辅助配置</li>
+<li>POJO类配置文件的映射</li>
+<li>etc/hibernate.properties里可以看到更多配置，数据库连接池，SQL优化等</li>
+<li>在：project/core/src/main/resources/org/hibernate/下有各种dtd文件，<ul>
+<li>可以为eclipse的xml配置自动提示功能</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<h3 id="日志文件的配置"><a href="#日志文件的配置" class="headerlink" title="日志文件的配置"></a>日志文件的配置</h3><blockquote>
+<p>默认是Log4j,<br>在etc下复制log4j.properties到src下，就可以了，本人ssh下复制log4j.xml就可以了</p>
+</blockquote>
+<h3 id="SessionFactory和Session比较"><a href="#SessionFactory和Session比较" class="headerlink" title="SessionFactory和Session比较"></a>SessionFactory和Session比较</h3><ul>
+<li><p>【SessionFactory】 </p>
+<blockquote>
+<p>  重量级容器：消耗大量资源，不能有太多实例,二级缓存<br>通常将该工厂类是单例模式，一个工厂类实例表示一个数据库<br>所以Hibernate一般是不能跨数据库来做事务操作。但是EJB和JPA可以实现</p>
+<blockquote>
+<p>这个配置选项：<br>hibernate.hbm2ddl.auto create-drop 在一个数据库中创建，然后使用完关闭实例时就删除所有建立的表<br>hibernate.hbm2ddl.auto create 清除数据库的表及数据，重新创建表<br>hibernate.hbm2ddl.auto update 更改配置文件，能够在数据库进行操作（更新，建立）<br>hibernate.hbm2ddl.auto validate</p>
+</blockquote>
+</blockquote>
+</li>
+<li><p>【session】</p>
+<blockquote>
+<p>  轻量级的容器，一级缓存<br>是非线程安全的对象</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="OID的作用："><a href="#OID的作用：" class="headerlink" title="OID的作用："></a>OID的作用：</h3><blockquote>
+<p>在Hibernate中唯一标识对象的属性，每个实体都是必须要有OID的</p>
+</blockquote>
+<h3 id="id生成策略"><a href="#id生成策略" class="headerlink" title="id生成策略"></a>id生成策略</h3><ul>
+<li>assigned：要求用户去手动指定对象的OID；该对象ID的类型可以是任意的</li>
+<li>identity：MySQL的自动生成</li>
+<li>native：数据类型是数值型，id的生成策略为数据库底层自增长（数据库自己去决定使用哪种方式，MySQL用identity，Oracle用序列等）</li>
+<li>sequence：Oracle数据库推荐，数值型（Long）</li>
+<li>seqhilo oracle :推荐使用的策略，使用序列来搭配高低机制</li>
+<li>uuid.hex :32位字符</li>
+<li>uuid:</li>
+<li>hilo：类型为数值型（long） [实际开发中推荐使用]</li>
+</ul>
+<blockquote>
+<p>id = hi+lo (高位和低位进行组合)<br>sessionFactory实例化，高位就会加一，生成算法是：hi*(max lo +1)+lo;</p>
+</blockquote>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">generator</span> <span class="attr">class</span>=<span class="string">"hilo"</span> &gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">param</span> <span class="attr">name</span>=<span class="string">"table"</span>&gt;</span>stu_hilo<span class="tag">&lt;/<span class="name">param</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 放高值的表名 最好是一个对象对应于一个高低值的表避免了并发--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">param</span> <span class="attr">name</span>=<span class="string">"cloumn"</span>&gt;</span>next_hi<span class="tag">&lt;/<span class="name">param</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 高的值放在表的哪个字段 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">param</span> <span class="attr">name</span>=<span class="string">"max_lo"</span>&gt;</span>100<span class="tag">&lt;/ <span class="attr">param</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 每个轮回值的上限是多少 虚拟机启动频繁就设小一些，避免编码的浪费--&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">generator</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="非普通类型"><a href="#非普通类型" class="headerlink" title="非普通类型"></a>非普通类型</h3><ul>
+<li>Set集合：</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">set</span> <span class="attr">name</span>=<span class="string">"Nos"</span> <span class="attr">table</span>=<span class="string">"表"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">key</span> <span class="attr">column</span>=<span class="string">"外码"</span>&gt;</span><span class="tag">&lt;/<span class="name">key</span>&gt;</span><span class="comment">&lt;!-- 外码 是必须的 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">element</span> <span class="attr">column</span>=<span class="string">"号码"</span> <span class="attr">type</span>=<span class="string">"string"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">set</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>List集合:</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">list</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">key</span>&gt;</span><span class="tag">&lt;/<span class="name">key</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">index</span>&gt;</span><span class="tag">&lt;/<span class="name">index</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">element</span>&gt;</span><span class="tag">&lt;/<span class="name">element</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">list</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>查询列 属性：<br><code>&lt;property name=&quot;&quot; formula=&quot;(select sum() from 选修表 as u where u.id=id)&quot;&gt;&lt;/property&gt;</code></li>
+</ul>
+<h2 id="Hibernate实体关联配置"><a href="#Hibernate实体关联配置" class="headerlink" title="Hibernate实体关联配置"></a>Hibernate实体关联配置</h2><h3 id="一对多的配置"><a href="#一对多的配置" class="headerlink" title="一对多的配置"></a>一对多的配置</h3><ul>
+<li>注意：一定要两个都有oid的情况才能配置一对多的映射,不能是依赖于另一个主键类</li>
+<li>一方：</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">set</span> <span class="attr">name</span>=<span class="string">""</span> [<span class="attr">cascade</span>=<span class="string">""</span>]&gt;</span> </span><br><span class="line">    <span class="tag">&lt;<span class="name">key</span> <span class="attr">column</span>=<span class="string">"这是外键"</span>&gt;</span><span class="tag">&lt;/<span class="name">key</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">one-to-many</span> <span class="attr">class</span>=<span class="string">"多方的类"</span>&gt;</span><span class="tag">&lt;/<span class="name">one-to-many</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">set</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>多方：<br><code>&lt;many-to-one name=&quot;&quot; class=&quot;一方的类&quot; column=&quot;外键，key要一致&quot; /&gt;</code></li>
+<li>双向的关联，会有update的SQL语句的执行来维护关系，影响效率</li>
+<li>多方维护：一方中set标签加inverse=”true”一方就不会维护，代码一定要多方执行set*<em>(</em>)</li>
+<li>一方维护：一方代码一定要执行*<em>.add</em>()</li>
+</ul>
+<h4 id="注意-："><a href="#注意-：" class="headerlink" title="注意 ："></a><strong>注意 ：</strong></h4><ul>
+<li><p>1.在一的一方，修改xml文件，添加一个set 属性，表示 多方 的一个集合</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">set</span> <span class="attr">name</span>=<span class="string">"类中属性名（集合）"</span> <span class="attr">inverse</span>=<span class="string">"true"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">key</span>&gt;</span><span class="tag">&lt; <span class="attr">column</span> <span class="attr">name</span>=<span class="string">"数据库列名"</span>/&gt;</span><span class="tag">&lt;/<span class="name">key</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">one-to-many</span> <span class="attr">class</span>=<span class="string">"多方类路径"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">set</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>2.在一的一方，修改POJO持久类文件，添加一个hashset，用来存储多方，添加setget方法，名字就是配置文件里添加的那个名字 注意修改构造器</p>
+</li>
+<li><p>3.在多的一方，修改xml文件，置换掉那个外键，换成many-to-one标签，里面写上外键的列<br><code>&lt;many-to-one name=&quot;类中属性名（对象）&quot; class=&quot;一方的类路径&quot; column=&quot;数据库中列名&quot;&gt;&lt;/many-to-one&gt;</code></p>
+</li>
+<li><p>4.在多的一方，修改POJO持久类文件，添加一个一方的对象添加setget方法，名字就是配置文件里添加的那个名字  注意修改构造器</p>
+<ul>
+<li>一方的set集合中有inverse属性，多方是没有的，Hibernate中inverse是和外键对应的，一方配置了inverse是false，一方就不会维护关系（外键），一般是给多方维护，因为效率高</li>
+<li>cascade是对象和对象之间的操作，和外键没有关系</li>
+<li>处于持久化状态的对象在Session中，客户端不需要做Session的save/update 操作，Hibernate会自动的去检查处于持久化的对象的状态的属性是否发生改变，改变了就发送update语句。<ul>
+<li>如果该对象是一方，在一的一方映射文件中有cascade=all时，Hibernate内部还会检查该持久化对象关联的集合，对此集合进行update操作，但是该操作和外键没有关系，只有当通过多方建立关系后，才能使外键有值。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="多对多的配置"><a href="#多对多的配置" class="headerlink" title="多对多的配置"></a>多对多的配置</h3><ul>
+<li>关系在第三方表中，和两张表本身没有关系</li>
+<li>多对多维护关系，谁都能维护关系（效率是一样的）维护一般是在页面上进行的</li>
+<li>table 是多对多的中间表（存放了一个关系）</li>
+<li>key中的column一般是填当前配置文件中的id</li>
+<li>多对多的配置是需要两个外键的</li>
+<li>如果使用了反转并使用了级联，就只会保存实体，但是关系是没有维护的（就是不会插入到第三方表），和一对多一样的（一对多是外键列没有值）。</li>
+<li>！！如果双方都级联了，必须要有一方inverse，不然会有重复维护的错误发生</li>
+</ul>
+<h4 id="学生方配置"><a href="#学生方配置" class="headerlink" title="学生方配置"></a>学生方配置</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">set</span> <span class="attr">name</span>=<span class="string">"students"</span> <span class="attr">table</span>=<span class="string">"student_course"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">key</span> <span class="attr">column</span>=<span class="string">"cid"</span>&gt;</span><span class="tag">&lt;/<span class="name">key</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">many-to-many</span> <span class="attr">class</span>=<span class="string">"Student"</span> <span class="attr">column</span>=<span class="string">"stu_id"</span>&gt;</span><span class="tag">&lt;/<span class="name">many-to-many</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">set</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="课程方配置"><a href="#课程方配置" class="headerlink" title="课程方配置"></a>课程方配置</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">set</span> <span class="attr">name</span>=<span class="string">"courses"</span> <span class="attr">table</span>=<span class="string">"student_course"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">key</span> <span class="attr">column</span>=<span class="string">"stu_id"</span>&gt;</span><span class="tag">&lt;/<span class="name">key</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">many-to-many</span> <span class="attr">class</span>=<span class="string">"Course"</span> <span class="attr">column</span>=<span class="string">"cid"</span>&gt;</span><span class="tag">&lt;/<span class="name">many-to-many</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">set</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="一对一的配置"><a href="#一对一的配置" class="headerlink" title="一对一的配置"></a>一对一的配置</h3><ul>
+<li>单向<br>  只要配置单向的配置文件添加：<br>  <code>&lt;many-to-one name=&quot;&quot;class=&quot;映射的类&quot; column=&quot;数据库字段&quot; unique=&quot;true&quot;&gt;&lt;/many-to-one&gt;</code></li>
+<li>双向<ul>
+<li>一方 甲：<br><code>&lt;many-to-one name=&quot;&quot; class=&quot;乙方类&quot;column=&quot;数据库字段&quot; unique=&quot;true&quot;&gt;&lt;/many-to-one&gt;</code></li>
+<li>一方 乙：<br><code>&lt;one-to-one name=&quot;&quot; class=&quot;甲方类&quot; property-ref=&quot;甲方配置的标签的name&quot;&gt;&lt;/one-to-one&gt;</code></li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="使用多对一的技巧"><a href="#使用多对一的技巧" class="headerlink" title="使用多对一的技巧"></a>使用多对一的技巧</h3><h4 id="添加记录"><a href="#添加记录" class="headerlink" title="添加记录"></a>添加记录</h4><ol>
+<li>当需要添加一个多方时，一看成课程，多看成成绩。当然的首先得有相关课程，再添加成绩记录。</li>
+<li>那就先实例化一个课程对象，配置好信息</li>
+<li>实例化多个成绩实例，再 课程对象.get**Set().add(成绩对象); 将成绩对象添加到集合中，</li>
+<li>session.save(课程对象)；<blockquote>
+<p>注意：既然实现了这样的操作，那就说明了在实例化成绩的时候，不需要指定课程的值，那就需要添加一个构造器</p>
+</blockquote>
+<h4 id="删除记录"><a href="#删除记录" class="headerlink" title="删除记录"></a>删除记录</h4></li>
+<li>如果删除一方，那就会将一删除，如果没有配置级联，就会将多方的外键置空，不会删除多方表</li>
+<li>如何通过一方修改多方的一条, 把一方的set中的要修改的一条，（查找之前需要对象 = session.load(对象.class,主键名)将多方的数据加载进来）<ul>
+<li>注意多方不能有空列必须指定一个默认值（是和构造器有关么？）</li>
+<li>再查找出来，修改再update，新增也是如此增加多的一方的时候，就是在一方的set中新增一条记录，多方的操作都体现在了一方那里</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="继承关系的配置"><a href="#继承关系的配置" class="headerlink" title="继承关系的配置"></a>继承关系的配置</h3><blockquote>
+<p>两种方式，一般采用前者<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 将子类插入到父类的配置文件 需要使用key来关联的--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">joined-subclass</span> <span class="attr">name</span>=<span class="string">"cn.hibernate.extend.Student"</span> <span class="attr">table</span>=<span class="string">"extend_student"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">key</span> <span class="attr">column</span>=<span class="string">"id"</span>&gt;</span><span class="tag">&lt;/<span class="name">key</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"sru_id"</span> <span class="attr">type</span>=<span class="string">"long"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">joined-subclass</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">    union是相当于将父类的所有属性复制到子类里，是共享父类的OID，</span></span><br><span class="line"><span class="comment">    所以父类的OID是不能和子类的OID重复的</span></span><br><span class="line"><span class="comment">    不然 查询的时候就会报错,</span></span><br><span class="line"><span class="comment">    所以就需要改父类的主键生成策略是高低值（或者是手动set），可以手动配置高低值的表的生成</span></span><br><span class="line"><span class="comment">--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">union-subclass</span> <span class="attr">name</span>=<span class="string">"cn.hibernate.extend.Student"</span> <span class="attr">table</span>=<span class="string">"union_student"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"sru_id"</span> <span class="attr">type</span>=<span class="string">"long"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">union-subclass</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<hr>
+<h3 id="Hibernate异常"><a href="#Hibernate异常" class="headerlink" title="Hibernate异常"></a>Hibernate异常</h3><h4 id="could-not-find-a-getter-for"><a href="#could-not-find-a-getter-for" class="headerlink" title="could not find a getter for"></a>could not find a getter for</h4><p>原因：1 可能真的没写get方法，或者get方法不合规范 setget方法中不允许两个连续大写字母<br>        2 *.hmb.xml文件中的属性名和pojo持久类中属性名不一致（一定不能在表名中添加下划线）<br>        3 方法名写错（基本不可能，都是自动生成的）</p>
+<h4 id="个人总结"><a href="#个人总结" class="headerlink" title="个人总结"></a>个人总结</h4><p>当使用了没有 主键的表，使用Myeclipse自动创建配置文件，使用自己的Table2Class来生成POJO持久类，<br>就要继承对应的自动创建的抽象类，因为没有主键的表默认是将所有列看成一个主键，并且还会有添加一个id属性，<br>这样也说明还有一点就是，这种表的字段不能有叫做id的列</p>
+<p>是不是可以不用手动去使用那个类，好像这里自动生成的一切都有，</p>
+<p>自动生成会生成：<br>    对应POJO的抽象类，hbm配置文件，以及默认的几个类，HibernateSessionFactory，IBaseHibernateDao，<br>    对应的Dao（添加的时候默认是没有使用事务，所以需要手动修改）,添加，删除，都是依据主键的，<br>    至少要初始化主键，当然还得满足数据库的要求</p>
+<h3 id="Hibernate对象的状态"><a href="#Hibernate对象的状态" class="headerlink" title="Hibernate对象的状态"></a>Hibernate对象的状态</h3><blockquote>
+<p>主要是对象内存和Session中的状态区别，而不是Session和数据库</p>
+</blockquote>
+<ul>
+<li><code>临时态</code>：刚实例化对象。对象在数据库中不存在，Session中也不存在</li>
+<li><code>游离态</code>：刚实例化的对象，但是该对象手动指定了OID并且OID在数据库中已经存在，并且是没有绑定Session的（特殊的临时态）<ul>
+<li>保存两个有关联关系的对象，update时，如果配置文件中配置了级联，就会一起保存，一般建议在一方级联</li>
+</ul>
+</li>
+<li><code>持久态</code>：该对象在数据库中存在，该对象绑定在Session（一级缓存）中</li>
+<li><code>删除态</code>：session.delete(对象)，删除后对象从数据库和Session中都移除了，但是OID还在内存中。<ul>
+<li>游离态delete后就成了删除态</li>
+<li>持久态delete后就成了删除态</li>
+</ul>
+</li>
+</ul>
+<h4 id="Session的方法"><a href="#Session的方法" class="headerlink" title="Session的方法"></a>Session的方法</h4><ul>
+<li>save</li>
+<li>update</li>
+<li>delete </li>
+<li>saveOrUpdate 由入参的OID来自动选择是要save还是update</li>
+<li>merge 形参：临时态的对象。形参和Session没有任何关系，返回对象Object2（持久化对象），所以在Session关闭的时候Object2的更改会同步到数据库中</li>
+<li>get 将数据库中指定对象获取为持久态，查不到就是返回null</li>
+<li>load 懒加载。使用代理对象，延迟加载。用到了别的属性就去查数据库。查不到就抛异常</li>
+<li>flush 刷新Session</li>
+<li>evict 定点清除 将指定的对象从Session中移除，变成游离态</li>
+<li>clear 全部清除 </li>
+<li>close</li>
+</ul>
+<h4 id="特别注意"><a href="#特别注意" class="headerlink" title="特别注意"></a>特别注意</h4><ul>
+<li>一个对象（内存）不能存在于多个Session中，一个存，一个改的情况是会错误的</li>
+<li><p>但是数据库中同一条记录可以实例化为多个对象（内存），那么这些对象（内存）放在不同的Session中是可以的</p>
+</li>
+<li><p>get：</p>
+<ul>
+<li>只延迟加载有外键关联的那部分属性，没有使用就不会查询，只有用到了才会查询</li>
+<li>多方：立即加载就要在配置文件中将对应的属性中添加 fetch=”join”</li>
+<li>一方：配置文件中set标签 加上lazy=”false”（两条SQL），再添加 fetch=”join”后就只有一条SQL语句，但是这个一方是不能做分页查询的</li>
+</ul>
+</li>
+<li><p>load：</p>
+<ul>
+<li>在你确定OID是一定有的时候使用load提高效率，但是实际开发过程中用的少，因为实际上没有这么确定。</li>
+</ul>
+</li>
+<li><p>懒加载如果Session关闭了或者是对象游离态。就会有懒加载初始化的异常</p>
+</li>
+</ul>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2018-12-16T09:11:25.585Z" itemprop="dateUpdated">2018-12-16 17:11:25</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2018/12/16/Memo-Java-Ecosystem-Hibernate/" target="_blank" rel="external">http://blog.kuangcp.top/2018/12/16/Memo-Java-Ecosystem-Hibernate/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="http://blog.kuangcp.top">
+            <img src="/img/avatar.jpg" alt="Kuangcp">
+            Kuangcp
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.kuangcp.top/2018/12/16/Memo-Java-Ecosystem-Hibernate/&title=《Hibernate.md》 — Kuangcp Blog&pic=http://blog.kuangcp.top/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.kuangcp.top/2018/12/16/Memo-Java-Ecosystem-Hibernate/&title=《Hibernate.md》 — Kuangcp Blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.kuangcp.top/2018/12/16/Memo-Java-Ecosystem-Hibernate/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Hibernate.md》 — Kuangcp Blog&url=http://blog.kuangcp.top/2018/12/16/Memo-Java-Ecosystem-Hibernate/&via=http://blog.kuangcp.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.kuangcp.top/2018/12/16/Memo-Java-Ecosystem-Hibernate/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/12/16/Memo-Java-Ecosystem-Mybatis/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Mybatis.md</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/12/16/Memo-Java-AdvancedLearning-ProgramThinking/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">ProgramThinking</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check" data-wechat="/img/wechat.png" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style="display:none">
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style="display:none">
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Kuangcp &copy; 2015 - 2018</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">赣ICP备17014189号-1</a><br>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.kuangcp.top/2018/12/16/Memo-Java-Ecosystem-Hibernate/&title=《Hibernate.md》 — Kuangcp Blog&pic=http://blog.kuangcp.top/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.kuangcp.top/2018/12/16/Memo-Java-Ecosystem-Hibernate/&title=《Hibernate.md》 — Kuangcp Blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.kuangcp.top/2018/12/16/Memo-Java-Ecosystem-Hibernate/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Hibernate.md》 — Kuangcp Blog&url=http://blog.kuangcp.top/2018/12/16/Memo-Java-Ecosystem-Hibernate/&via=http://blog.kuangcp.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.kuangcp.top/2018/12/16/Memo-Java-Ecosystem-Hibernate/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACsUlEQVR42u3aQW4jMQwEQP//015gT7sHO92klDhA6WQYM7JKAUSF5OMRj+ff8eqb5z/j1Tfv301mfjXbgYGHh4c3Wvqrkf9kMsMrTD7yNePh4eHd5uXH9+b55N33waadBw8PD+9nee+P4Pz6m2Pw8PDwfjuvvYLnyM1nPDw8vJ/izf75f581PZsOvp5rwcPDw4t5bQHsEz5frO/h4eHhLarqeTmqTSvsL+7R2vDw8PAu8PLEwakg0V6y8+175C/g4eHhrXlJUWpWoJo9vy99RblqPDw8vBHvfRNAu0OzK2++hjq5jIeHh3eNl5Daa/Hs6M+vy9G/AXh4eHjXeO3R3MLyC3dL/eIbPDw8vAu8tgSVH/2bULQ554uLNR4eHt6Cd7b4lIeKWdho61x4eHh4Z3ltqnQfGGblrivtAnh4eHjzs7Q+uJN06j5g5EWy4V8SDw8Pb8Rrj+b83byNNQ9OSTrjv3fx8PDwrvFmF+J9iqFtCKibWfHw8PAu8NqDuw0GedPqLA0RbR8eHh7eBd6s0LU/1vdJ5Lp1AA8PD+8yL0nIJqFi1oaVz1ZvBx4eHt6Cd5bRVvCTX8yLakUfLh4eHt5RXl7yb1sK8sJVu5KXT+Lh4eFd4OUpgE0zQVsYaxsavvhdPDw8vG/kbS7TsyfzeRIqHh4e3j1eW75qS1CzdqtZouRAdQ4PDw8vmH92mW5bAU6FnzZxjIeHh3ebt2/Deo7GZm14eHh438mbLSI56JMCVZuWrZMReHh4eBd4Z4NHm57YNGklW4aHh4d3j5cfymd3Lk+CrNLEeHh4eNd4+aG8TzokBa1NEMLDw8P7TN4mMZGEnDwxgYeHh/fJvKQxK09ntG1Y7Qbh4eHh3ea1xaek3epsGWxV3MLDw8M7ypsVwNoiVr4pyZYdxuPh4eGlc/4BCMJUuTcjcmoAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

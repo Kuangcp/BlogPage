@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>Mybatis.md | Kuangcp Blog | Javaer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="目录 start  Mybatis Mybatis xml文件配置： 主配置文件： 操作配置文件：     导入JAR包： 创建SqlSessionFactory类 内容： maven Spring-mybaits 配置 SessionFactory类，使用Spring注入一个工厂类，然后使用本地线程组，节省Session开销     流程控制 foreach 循环语句 collection 有">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mybatis.md">
+<meta property="og:url" content="http://blog.kuangcp.top/2018/12/16/Memo-Java-Ecosystem-Mybatis/index.html">
+<meta property="og:site_name" content="Kuangcp Blog">
+<meta property="og:description" content="目录 start  Mybatis Mybatis xml文件配置： 主配置文件： 操作配置文件：     导入JAR包： 创建SqlSessionFactory类 内容： maven Spring-mybaits 配置 SessionFactory类，使用Spring注入一个工厂类，然后使用本地线程组，节省Session开销     流程控制 foreach 循环语句 collection 有">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-12-16T09:11:25.585Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Mybatis.md">
+<meta name="twitter:description" content="目录 start  Mybatis Mybatis xml文件配置： 主配置文件： 操作配置文件：     导入JAR包： 创建SqlSessionFactory类 内容： maven Spring-mybaits 配置 SessionFactory类，使用Spring注入一个工厂类，然后使用本地线程组，节省Session开销     流程控制 foreach 循环语句 collection 有">
+    
+        <link rel="alternate" type="application/atom+xml" title="Kuangcp Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Kuangcp</h5>
+          <a href="mailto:kuangcp@aliyun.com" title="kuangcp@aliyun.com" class="mail">kuangcp@aliyun.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/">
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives">
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags">
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories">
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/kuangcp" target="_blank">
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Mybatis.md</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Mybatis.md</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-12-16T09:11:25.585Z" itemprop="datePublished" class="page-time">
+  2018-12-16
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Mybatis"><span class="post-toc-number">1.</span> <span class="post-toc-text">Mybatis</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Mybatis-1"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">Mybatis</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#xml文件配置："><span class="post-toc-number">1.1.1.</span> <span class="post-toc-text">xml文件配置：</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#主配置文件："><span class="post-toc-number">1.1.1.1.</span> <span class="post-toc-text">主配置文件：</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#操作配置文件："><span class="post-toc-number">1.1.1.1.1.</span> <span class="post-toc-text">操作配置文件：</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#导入JAR包："><span class="post-toc-number">1.1.2.</span> <span class="post-toc-text">导入JAR包：</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#创建SqlSessionFactory类-内容："><span class="post-toc-number">1.1.3.</span> <span class="post-toc-text">创建SqlSessionFactory类 内容：</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#maven-Spring-mybaits-配置"><span class="post-toc-number">1.1.3.1.</span> <span class="post-toc-text">maven Spring-mybaits 配置</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#SessionFactory类，使用Spring注入一个工厂类，然后使用本地线程组，节省Session开销"><span class="post-toc-number">1.1.3.1.1.</span> <span class="post-toc-text">SessionFactory类，使用Spring注入一个工厂类，然后使用本地线程组，节省Session开销</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#流程控制"><span class="post-toc-number">1.1.4.</span> <span class="post-toc-text">流程控制</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#foreach-循环语句"><span class="post-toc-number">1.1.4.1.</span> <span class="post-toc-text">foreach 循环语句</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#collection-有-arry-list-map-几种-还有item是必写，其他的是可选的"><span class="post-toc-number">1.1.4.1.1.</span> <span class="post-toc-text">collection 有 arry list map 几种 还有item是必写，其他的是可选的</span></a></li></ol></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#if-判断语句"><span class="post-toc-number">1.1.4.2.</span> <span class="post-toc-text">if 判断语句:</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#set-方便书写update语句"><span class="post-toc-number">1.1.4.3.</span> <span class="post-toc-text">set 方便书写update语句</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#choose-相当于switch语句"><span class="post-toc-number">1.1.4.4.</span> <span class="post-toc-text">choose 相当于switch语句</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#和-的区别："><span class="post-toc-number">1.1.4.5.</span> <span class="post-toc-text">$和#的区别：</span></a></li></ol></li></ol></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-Memo-Java-Ecosystem-Mybatis" class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Mybatis.md</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-12-16 17:11:25" datetime="2018-12-16T09:11:25.585Z" itemprop="datePublished">2018-12-16</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style="display:none">
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p><strong>目录 start</strong></p>
+<ol>
+<li><a href="#mybatis">Mybatis</a><ol>
+<li><a href="#mybatis">Mybatis</a><ol>
+<li><a href="#xml文件配置">xml文件配置：</a><ol>
+<li><a href="#主配置文件">主配置文件：</a><ol>
+<li><a href="#操作配置文件">操作配置文件：</a></li>
+</ol>
+</li>
+</ol>
+</li>
+<li><a href="#导入jar包">导入JAR包：</a></li>
+<li><a href="#创建sqlsessionfactory类-内容">创建SqlSessionFactory类 内容：</a><ol>
+<li><a href="#maven-spring-mybaits-配置">maven Spring-mybaits 配置</a><ol>
+<li><a href="#sessionfactory类使用spring注入一个工厂类然后使用本地线程组节省session开销"><strong>SessionFactory类，使用Spring注入一个工厂类，然后使用本地线程组，节省Session开销</strong></a></li>
+</ol>
+</li>
+</ol>
+</li>
+<li><a href="#流程控制">流程控制</a><ol>
+<li><a href="#foreach-循环语句">foreach 循环语句</a><ol>
+<li><a href="#collection-有-arry-list-map-几种-还有item是必写其他的是可选的">collection 有 arry list map 几种 还有item是必写，其他的是可选的</a></li>
+</ol>
+</li>
+<li><a href="#if-判断语句">if 判断语句:</a></li>
+<li><a href="#set-方便书写update语句">set 方便书写update语句</a></li>
+<li><a href="#choose-相当于switch语句">choose 相当于switch语句</a><ol>
+<li><a href="#$和的区别">$和的区别：</a></li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<p><strong>目录 end</strong>|<em>2018-12-13 12:06</em>| <a href="https://gitee.com/gin9" target="_blank" rel="noopener">码云</a> | <a href="http://blog.csdn.net/kcp606" target="_blank" rel="noopener">CSDN</a> | <a href="https://my.oschina.net/kcp1104" target="_blank" rel="noopener">OSChina</a> | <a href="http://www.cnblogs.com/kuangcp" target="_blank" rel="noopener">cnblogs</a></p>
+<hr>
+<h1 id="Mybatis"><a href="#Mybatis" class="headerlink" title="Mybatis"></a>Mybatis</h1><blockquote>
+<p>一个灵活的数据库中间件框架</p>
+</blockquote>
+<h2 id="Mybatis-1"><a href="#Mybatis-1" class="headerlink" title="Mybatis"></a>Mybatis</h2><h3 id="xml文件配置："><a href="#xml文件配置：" class="headerlink" title="xml文件配置："></a>xml文件配置：</h3><ul>
+<li>创建mybatis-config.xml文件<ul>
+<li>该文件是主配置文件，配置了sessionFactory</li>
+</ul>
+</li>
+<li>创建generatorConfig.xml文件<ul>
+<li>是各种操作的配置，一个操作对应一个SQL的配置</li>
+</ul>
+</li>
+</ul>
+<h4 id="主配置文件："><a href="#主配置文件：" class="headerlink" title="主配置文件："></a>主配置文件：</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8" ?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"</span></span><br><span class="line"><span class="meta">"http://mybatis.org/dtd/mybatis-3-config.dtd"&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 配置别名 为了方便配置操作文件--&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">typeAliases</span>&gt;</span> </span><br><span class="line">    <span class="tag">&lt;<span class="name">typeAlias</span> <span class="attr">type</span>=<span class="string">"cn.mybatis.test.Human"</span> <span class="attr">alias</span>=<span class="string">"Human"</span> /&gt;</span>  </span><br><span class="line"><span class="tag">&lt;/<span class="name">typeAliases</span>&gt;</span> </span><br><span class="line"><span class="comment">&lt;!-- 配置环境变量 --&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">environments</span> <span class="attr">default</span>=<span class="string">"development"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">environment</span> <span class="attr">id</span>=<span class="string">"development"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">transactionManager</span> <span class="attr">type</span>=<span class="string">"JDBC"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dataSource</span> <span class="attr">type</span>=<span class="string">"POOLED"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"driver"</span> <span class="attr">value</span>=<span class="string">"com.mysql.jdbc.Driver"</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"url"</span> <span class="attr">value</span>=<span class="string">"jdbc:mysql://localhost:3306/test?characterEncoding=UTF-8"</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"username"</span> <span class="attr">value</span>=<span class="string">"root"</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"password"</span> <span class="attr">value</span>=<span class="string">"123456"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dataSource</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">environment</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">environments</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 配置mappers --&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">mappers</span>&gt;</span> </span><br><span class="line">    <span class="tag">&lt;<span class="name">mapper</span> <span class="attr">resource</span>=<span class="string">"cn/mybatis/test/HumanDao.xml"</span> /&gt;</span>  </span><br><span class="line"><span class="tag">&lt;/<span class="name">mappers</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h5 id="操作配置文件："><a href="#操作配置文件：" class="headerlink" title="操作配置文件："></a>操作配置文件：</h5><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8" ?&gt;</span> </span><br><span class="line"><span class="meta">&lt;!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">mapper</span> <span class="attr">namespace</span>=<span class="string">"cn.mybatis.test"</span>&gt;</span> </span><br><span class="line">    <span class="comment">&lt;!-- 按id查询 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"queryUsersById"</span> <span class="attr">parameterType</span>=<span class="string">"Human"</span> <span class="attr">resultType</span>=<span class="string">"Human"</span>&gt;</span>  </span><br><span class="line">        <span class="comment">&lt;!-- useCache="false" --&gt;</span></span><br><span class="line">        &lt;![CDATA[ </span><br><span class="line">      select * from inserts t where t.id=#&#123;id&#125;</span><br><span class="line">      ]]&gt;  </span><br><span class="line">    <span class="tag">&lt;/<span class="name">select</span>&gt;</span>  </span><br><span class="line">    <span class="comment">&lt;!-- 查询全部 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"queryUsers"</span> <span class="attr">resultType</span>=<span class="string">"Human"</span>&gt;</span></span><br><span class="line">        select * from inserts</span><br><span class="line">    <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 插入记录 --&gt;</span>    </span><br><span class="line">    <span class="tag">&lt;<span class="name">insert</span> <span class="attr">id</span>=<span class="string">"insertUser"</span> <span class="attr">parameterType</span>=<span class="string">"Human"</span> &gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 该字段是必须要在数据库中自增长的</span></span><br><span class="line"><span class="comment">        可能会有并发问题</span></span><br><span class="line"><span class="comment">        useGeneratedKeys="true" keyProperty="id"</span></span><br><span class="line"><span class="comment">        所以用查询方式好点， 写语句就不要考虑主键了</span></span><br><span class="line"><span class="comment">     --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">selectKey</span> <span class="attr">resultType</span>=<span class="string">"int"</span> <span class="attr">keyProperty</span>=<span class="string">"id"</span>&gt;</span></span><br><span class="line">            select LAST_INSERT_ID()</span><br><span class="line">        <span class="tag">&lt;/<span class="name">selectKey</span>&gt;</span></span><br><span class="line">        insert into inserts (name) values(#&#123;name&#125;)</span><br><span class="line">    <span class="tag">&lt;/<span class="name">insert</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 删除记录 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">delete</span> <span class="attr">id</span>=<span class="string">"deleteUser"</span> <span class="attr">parameterType</span>=<span class="string">"String"</span>&gt;</span></span><br><span class="line">        delete from inserts where id=#&#123;id&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">delete</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 更新记录 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">update</span> <span class="attr">id</span>=<span class="string">"updateUserById"</span> <span class="attr">parameterType</span>=<span class="string">"Human"</span>&gt;</span></span><br><span class="line">        update inserts set name=#&#123;name&#125; where id=#&#123;id&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">update</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mapper</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="导入JAR包："><a href="#导入JAR包：" class="headerlink" title="导入JAR包："></a>导入JAR包：</h3><ul>
+<li><strong>核心包</strong></li>
+<li>mybatis-3.4.1.jar 主包</li>
+<li>dom4j-1.6.1.jar 日志记录</li>
+<li>log4j-1.2.15.jar</li>
+<li>slf4j-api-1.5.8.jar</li>
+<li>slf4j-log4j12.jar</li>
+</ul>
+<h3 id="创建SqlSessionFactory类-内容："><a href="#创建SqlSessionFactory类-内容：" class="headerlink" title="创建SqlSessionFactory类 内容："></a>创建SqlSessionFactory类 内容：</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> SqlSessionFactory sessionFactory;</span><br><span class="line"><span class="keyword">static</span>&#123;</span><br><span class="line">    <span class="keyword">try</span>&#123;</span><br><span class="line">        String resource = <span class="string">"cn/mybatis/test/mybatis-config.xml"</span>;</span><br><span class="line">        InputStream inputStream = Resources.getResourceAsStream(resource);</span><br><span class="line">        sessionFactory = <span class="keyword">new</span> SqlSessionFactoryBuilder().build(inputStream);</span><br><span class="line">    &#125;<span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">        System.out.println(<span class="string">"获取Session失败"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 获取Session</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> SqlSession <span class="title">getSession</span><span class="params">()</span></span>&#123;</span><br><span class="line">    SqlSession session = <span class="keyword">null</span>;</span><br><span class="line">    session = sessionFactory.openSession();</span><br><span class="line">    <span class="keyword">return</span> session;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="maven-Spring-mybaits-配置"><a href="#maven-Spring-mybaits-配置" class="headerlink" title="maven Spring-mybaits 配置"></a>maven Spring-mybaits 配置</h4><ul>
+<li>使用Spring自动注入对象,方便别名和SessionFactory的管理</li>
+<li>pom引入必须的JAR包就可以了</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--基本属性--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"dataSource"</span> <span class="attr">class</span>=<span class="string">"com.mchange.v2.c3p0.ComboPooledDataSource"</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"driverClass"</span> <span class="attr">value</span>=<span class="string">"$&#123;driver&#125;"</span>/&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"jdbcUrl"</span> <span class="attr">value</span>=<span class="string">"$&#123;url&#125;"</span>/&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"user"</span> <span class="attr">value</span>=<span class="string">"$&#123;username&#125;"</span>/&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"password"</span> <span class="attr">value</span>=<span class="string">"$&#123;password&#125;"</span>/&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"initialPoolSize"</span> <span class="attr">value</span>=<span class="string">"$&#123;initialSize&#125;"</span>/&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"maxPoolSize"</span> <span class="attr">value</span>=<span class="string">"$&#123;maxSize&#125;"</span>/&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"sqlSessionFactory"</span> <span class="attr">class</span>=<span class="string">"org.mybatis.spring.SqlSessionFactoryBean"</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"dataSource"</span> <span class="attr">ref</span>=<span class="string">"dataSource"</span>/&gt;</span></span><br><span class="line">     <span class="comment">&lt;!--操作配置文件的路径--&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"mapperLocations"</span> <span class="attr">value</span>=<span class="string">"classpath:bean/*.xml"</span>/&gt;</span></span><br><span class="line">     <span class="comment">&lt;!--bean的路径，进行别名的自动扫描--&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"typeAliasesPackage"</span> <span class="attr">value</span>=<span class="string">"com.book.bean"</span>/&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"mybatisSessionFactory"</span> <span class="attr">class</span>=<span class="string">"com.book.dao.MybatisSessionFactory"</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"sessionFactory"</span> <span class="attr">ref</span>=<span class="string">"sqlSessionFactory"</span>/&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"> <span class="comment">&lt;!--定义数据源--&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">tx:annotation-driven</span> <span class="attr">transaction-manager</span>=<span class="string">"transactionManager"</span> /&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"transactionManager"</span> <span class="attr">class</span>=<span class="string">"org.springframework.jdbc.datasource.DataSourceTransactionManager"</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"dataSource"</span> <span class="attr">ref</span>=<span class="string">"dataSource"</span>/&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h5 id="SessionFactory类，使用Spring注入一个工厂类，然后使用本地线程组，节省Session开销"><a href="#SessionFactory类，使用Spring注入一个工厂类，然后使用本地线程组，节省Session开销" class="headerlink" title="SessionFactory类，使用Spring注入一个工厂类，然后使用本地线程组，节省Session开销"></a><strong>SessionFactory类，使用Spring注入一个工厂类，然后使用本地线程组，节省Session开销</strong></h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MybatisSessionFactory</span> </span>&#123;</span><br><span class="line">   <span class="meta">@Autowired</span></span><br><span class="line">   <span class="keyword">private</span>  SqlSessionFactory sessionFactory;</span><br><span class="line">   <span class="comment">// 日志</span></span><br><span class="line">   <span class="keyword">private</span> <span class="keyword">static</span> org.slf4j.Logger Log = LoggerFactory.getLogger(MybatisSessionFactory.class);</span><br><span class="line">   <span class="comment">//使用本地线程组能避免不必要的Session开支，加强性能</span></span><br><span class="line">   <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> ThreadLocal&lt;SqlSession&gt; THREAD_LOCAL = <span class="keyword">new</span> ThreadLocal&lt;SqlSession&gt;();</span><br><span class="line">   <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * 获取Session</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span>  SqlSession <span class="title">getSession</span><span class="params">()</span></span>&#123;</span><br><span class="line">       SqlSession session = (SqlSession)THREAD_LOCAL.get();</span><br><span class="line">       <span class="keyword">if</span>(session==<span class="keyword">null</span> )&#123;</span><br><span class="line">           session = <span class="keyword">this</span>.sessionFactory.openSession();</span><br><span class="line">           THREAD_LOCAL.set(session);</span><br><span class="line">       &#125;</span><br><span class="line">       Log.info(<span class="string">"__获取了一个Session__"</span>+session);</span><br><span class="line">       <span class="keyword">return</span> session;</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="comment">/*</span></span><br><span class="line"><span class="comment">       关闭连接</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">closeSession</span><span class="params">()</span></span>&#123;</span><br><span class="line">       SqlSession session = (SqlSession)THREAD_LOCAL.get();</span><br><span class="line">       THREAD_LOCAL.set(<span class="keyword">null</span>);</span><br><span class="line">       <span class="keyword">if</span>(session!=<span class="keyword">null</span>)&#123;</span><br><span class="line">           session.close();</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="function"><span class="keyword">public</span>  SqlSessionFactory <span class="title">getSessionFactory</span><span class="params">()</span> </span>&#123;</span><br><span class="line">       <span class="keyword">return</span> sessionFactory;</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="function"><span class="keyword">public</span>  <span class="keyword">void</span> <span class="title">setSessionFactory</span><span class="params">(SqlSessionFactory sessionFactory)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">this</span>.sessionFactory = sessionFactory;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="流程控制"><a href="#流程控制" class="headerlink" title="流程控制"></a>流程控制</h3><h4 id="foreach-循环语句"><a href="#foreach-循环语句" class="headerlink" title="foreach 循环语句"></a>foreach 循环语句</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">foreach</span> <span class="attr">collection</span>=<span class="string">"param_list 自定义的话就是Map中的key，或者使用 @Param("</span>")来指定 " <span class="attr">item</span>=<span class="string">"params"</span> <span class="attr">index</span>=<span class="string">"currentIndex 当前索引"</span>  <span class="attr">separator</span>=<span class="string">"循环分隔符"</span> <span class="attr">open</span>=<span class="string">"在循环前加上字符"</span> <span class="attr">close</span>=<span class="string">"循环结束后加上字符"</span>&gt;</span></span><br><span class="line">    $&#123;params&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">foreach</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h5 id="collection-有-arry-list-map-几种-还有item是必写，其他的是可选的"><a href="#collection-有-arry-list-map-几种-还有item是必写，其他的是可选的" class="headerlink" title="collection 有 arry list map 几种 还有item是必写，其他的是可选的"></a>collection 有 arry list map 几种 还有item是必写，其他的是可选的</h5><h4 id="if-判断语句"><a href="#if-判断语句" class="headerlink" title="if 判断语句:"></a>if 判断语句:</h4><ul>
+<li><code>&lt;if test=&quot;&quot;&gt;&lt;/if&gt;</code></li>
+</ul>
+<h4 id="set-方便书写update语句"><a href="#set-方便书写update语句" class="headerlink" title="set 方便书写update语句"></a>set 方便书写update语句</h4><ul>
+<li><code>&lt;set&gt;&lt;if test=&quot;col!=null&quot;&gt;col=#{col},&lt;/if&gt;&lt;/set&gt;</code></li>
+</ul>
+<blockquote>
+<p>mybatis会自动去除多余的逗号，但是每一行书写要写逗号</p>
+</blockquote>
+<h4 id="choose-相当于switch语句"><a href="#choose-相当于switch语句" class="headerlink" title="choose 相当于switch语句"></a>choose 相当于switch语句</h4><ul>
+<li><code>&lt;choose&gt;&lt;when test=&quot;&quot;&gt;&lt;/when&gt;&lt;/choose&gt;</code></li>
+</ul>
+<h4 id="和-的区别："><a href="#和-的区别：" class="headerlink" title="$和#的区别："></a>$和#的区别：</h4><ul>
+<li>\$ 会有SQL注入的漏洞，#则没有</li>
+<li>使用$ 是SQL进行String的拼接，使用#是preparstatement的预处理然后注入</li>
+<li>使用#的时候出现这个问题<br>2017-01-22 11:16:11.046 [main] DEBUG myth.book.getAll_Param_BookType - ==&gt;  Preparing: select * from book_type where ? and ? and 1=1;<br>2017-01-22 11:16:11.136 [main] DEBUG myth.book.getAll_Param_BookType - ==&gt; Parameters:  book_type&lt;10 (String),  ‘father_type=’2 (String)</li>
+<li>条件不能使用数值，<br>  条件是单独使用时也是String但是是有效的</li>
+</ul>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2018-12-16T09:11:25.585Z" itemprop="dateUpdated">2018-12-16 17:11:25</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2018/12/16/Memo-Java-Ecosystem-Mybatis/" target="_blank" rel="external">http://blog.kuangcp.top/2018/12/16/Memo-Java-Ecosystem-Mybatis/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="http://blog.kuangcp.top">
+            <img src="/img/avatar.jpg" alt="Kuangcp">
+            Kuangcp
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.kuangcp.top/2018/12/16/Memo-Java-Ecosystem-Mybatis/&title=《Mybatis.md》 — Kuangcp Blog&pic=http://blog.kuangcp.top/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.kuangcp.top/2018/12/16/Memo-Java-Ecosystem-Mybatis/&title=《Mybatis.md》 — Kuangcp Blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.kuangcp.top/2018/12/16/Memo-Java-Ecosystem-Mybatis/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Mybatis.md》 — Kuangcp Blog&url=http://blog.kuangcp.top/2018/12/16/Memo-Java-Ecosystem-Mybatis/&via=http://blog.kuangcp.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.kuangcp.top/2018/12/16/Memo-Java-Ecosystem-Mybatis/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/12/16/Memo-Java-Spring-Spring/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Spring.md</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/12/16/Memo-Java-Ecosystem-Hibernate/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Hibernate.md</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check" data-wechat="/img/wechat.png" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style="display:none">
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style="display:none">
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Kuangcp &copy; 2015 - 2018</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">赣ICP备17014189号-1</a><br>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.kuangcp.top/2018/12/16/Memo-Java-Ecosystem-Mybatis/&title=《Mybatis.md》 — Kuangcp Blog&pic=http://blog.kuangcp.top/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.kuangcp.top/2018/12/16/Memo-Java-Ecosystem-Mybatis/&title=《Mybatis.md》 — Kuangcp Blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.kuangcp.top/2018/12/16/Memo-Java-Ecosystem-Mybatis/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Mybatis.md》 — Kuangcp Blog&url=http://blog.kuangcp.top/2018/12/16/Memo-Java-Ecosystem-Mybatis/&via=http://blog.kuangcp.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.kuangcp.top/2018/12/16/Memo-Java-Ecosystem-Mybatis/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACtUlEQVR42u3awYobMRAEUP//TyeQU2CZdVW3tHHgzWlZezx6MqjlUr9e8fXrz/X1P39fyV1f///0yflTDlx4eHh4o6E/Xckjn159ekr+9OQpb6YADw8P7xqvXb7zJb79nOTeohTh4eHh/VPebNHfYPDw8PD+d1676H8fHyRDx8PDw/tkXvvjP09Nk5KQBxMXsxY8PDy8mNcegH3C3xfP9/Dw8PAWp+qbgpEciSWY1Qjx8PDwLvCSx2/KRhtJ5O8vCgYeHh7eNd4sLJjFGXkZONDEgIeHh3eBNysSNwLZTXtBNHI8PDy8NS8fYpuXzpb+fLtcfFd4eHh4R3mz9qnZpnazvc5jizedEXh4eHiHeJtta3u0v2kFSNq53hQMPDw8vDVvtuzOjrvaY7BiuX96Jx4eHt5lXh6/5qUiX+L32+sia8HDw8Nb8zatpZvg4PviNCtUeHh4eLd5s9A2+dBk0EmsMJuCuoEADw8Pbzu2IgLIpyaflHyjv4qG8fDw8Ea8ZEvdvtqGGu0SX0wfHh4e3gXeZoF+ldemXXXTMouHh4d3j5cv4nk4eyO2aBth8fDw8M7y8gV6FrPmmPb47cAvBjw8PLwRb7ON3rRJJUFtW4TevBMPDw/vGm8WK+zLw2yC8q0/Hh4e3lleclt7rJVvdvO72lHh4eHh3ePlUWm7WG+OzZItePH5eHh4eEd5eVybDygvM0lA3E7WY93Dw8PDO8rbBKltWHDqidFXgoeHh3eUtwkXZuw8aDgQRuDh4eFd4G2igdmgN41Z7XYcDw8P7x5vXwxmi3ISOsyOyvDw8PB+hndqgd4EuPsDs8fCgIeHh/cBvE0se68lqz7fw8PDw7vMa1uykjD3VORRdDTg4eHhHeK1h08JeNaSNSs5eHh4eD/JayPXWavWbPpmTV14eHh413i/AaZsAyff1FCRAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>Java7 | Kuangcp Blog | Javaer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="基础,Java7">
+    <meta name="description" content="目录 start  Java5 Java6 Java7 异常处理 TWR    目录 end|2018-12-13 12:06| 码云 | CSDN | OSChina | cnblogs   参考博客: JDK各个版本比较 JDK5~JDK10  Java5  complete   Java6  complete  Java7 Official:api  小特性  | Switch 支持 Str">
+<meta name="keywords" content="基础,Java7">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java7">
+<meta property="og:url" content="http://blog.kuangcp.top/2018/12/16/Memo-Java-AdvancedLearning-Java7/index.html">
+<meta property="og:site_name" content="Kuangcp Blog">
+<meta property="og:description" content="目录 start  Java5 Java6 Java7 异常处理 TWR    目录 end|2018-12-13 12:06| 码云 | CSDN | OSChina | cnblogs   参考博客: JDK各个版本比较 JDK5~JDK10  Java5  complete   Java6  complete  Java7 Official:api  小特性  | Switch 支持 Str">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-12-16T09:11:25.585Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java7">
+<meta name="twitter:description" content="目录 start  Java5 Java6 Java7 异常处理 TWR    目录 end|2018-12-13 12:06| 码云 | CSDN | OSChina | cnblogs   参考博客: JDK各个版本比较 JDK5~JDK10  Java5  complete   Java6  complete  Java7 Official:api  小特性  | Switch 支持 Str">
+    
+        <link rel="alternate" type="application/atom+xml" title="Kuangcp Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Kuangcp</h5>
+          <a href="mailto:kuangcp@aliyun.com" title="kuangcp@aliyun.com" class="mail">kuangcp@aliyun.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/">
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives">
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags">
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories">
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/kuangcp" target="_blank">
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Java7</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Java7</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-12-16T09:11:25.585Z" itemprop="datePublished" class="page-time">
+  2018-12-16
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Java/">Java</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Java5"><span class="post-toc-number">1.</span> <span class="post-toc-text">Java5</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Java6"><span class="post-toc-number">2.</span> <span class="post-toc-text">Java6</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Java7"><span class="post-toc-number">3.</span> <span class="post-toc-text">Java7</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#异常处理"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">异常处理</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#TWR"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">TWR</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-Memo-Java-AdvancedLearning-Java7" class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Java7</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-12-16 17:11:25" datetime="2018-12-16T09:11:25.585Z" itemprop="datePublished">2018-12-16</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Java/">Java</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style="display:none">
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p><strong>目录 start</strong></p>
+<ol>
+<li><a href="#java5">Java5</a></li>
+<li><a href="#java6">Java6</a></li>
+<li><a href="#java7">Java7</a><ol>
+<li><a href="#异常处理">异常处理</a></li>
+<li><a href="#twr">TWR</a></li>
+</ol>
+</li>
+</ol>
+<p><strong>目录 end</strong>|<em>2018-12-13 12:06</em>| <a href="https://gitee.com/gin9" target="_blank" rel="noopener">码云</a> | <a href="http://blog.csdn.net/kcp606" target="_blank" rel="noopener">CSDN</a> | <a href="https://my.oschina.net/kcp1104" target="_blank" rel="noopener">OSChina</a> | <a href="http://www.cnblogs.com/kuangcp" target="_blank" rel="noopener">cnblogs</a></p>
+<hr>
+<blockquote>
+<p><a href="https://blog.csdn.net/tieselingzhi/article/details/79764048s" target="_blank" rel="noopener">参考博客: JDK各个版本比较 JDK5~JDK10</a></p>
+</blockquote>
+<h1 id="Java5"><a href="#Java5" class="headerlink" title="Java5"></a>Java5</h1><ul>
+<li style="list-style: none"><input type="checkbox"> complete </li>
+</ul>
+<h1 id="Java6"><a href="#Java6" class="headerlink" title="Java6"></a>Java6</h1><ul>
+<li style="list-style: none"><input type="checkbox"> complete</li>
+</ul>
+<h1 id="Java7"><a href="#Java7" class="headerlink" title="Java7"></a>Java7</h1><ul>
+<li><a href="https://docs.oracle.com/javase/7/docs/api/" target="_blank" rel="noopener">Official:api</a></li>
+</ul>
+<p><em>小特性</em></p>
+<ul>
+<li>| Switch 支持 String</li>
+<li>| 二进制的实例化 原本是 <code>int x = Integer.parseInt(&quot;1010100&quot;, 2);</code>Java7之后<code>int x = 0b110110;</code></li>
+<li>| 数字下划线 <code>10_0100__1000__0011</code></li>
+<li>| 钻石语法: 泛型右部直接<code>&lt;&gt;</code>不用写类型变量</li>
+</ul>
+<h2 id="异常处理"><a href="#异常处理" class="headerlink" title="异常处理"></a>异常处理</h2><ul>
+<li>| 异常处理<ul>
+<li>允许异常的<code>或</code>操作 <code>catch(IOException | NullPointException e)</code></li>
+<li>final关键字: <code>catch (final Exception e){throw e;}</code> 抛出后的是原异常类型的异常而不是Exception</li>
+</ul>
+</li>
+</ul>
+<h2 id="TWR"><a href="#TWR" class="headerlink" title="TWR"></a>TWR</h2><ul>
+<li><p>| TWR(try with resources)</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 从URL下载文件, 其中的资源都会自动关闭</span></span><br><span class="line"><span class="comment">// 但是要注意发生异常后,资源也不会自动关闭, 所以确保TWR生效,正确的用法是为各个资源声明独立变量.</span></span><br><span class="line"><span class="keyword">try</span>(OutputStream out = <span class="keyword">new</span> FileOutputStream(file);</span><br><span class="line">    InputStream is = url.openStream()</span><br><span class="line">)&#123;</span><br><span class="line">    <span class="keyword">byte</span>[] buf = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">1024</span>];</span><br><span class="line">    <span class="keyword">int</span> len; </span><br><span class="line">    <span class="keyword">while</span> ((len = is.read(buf)) &gt; <span class="number">0</span>)&#123;</span><br><span class="line">        out.write(buf, <span class="number">0</span>, len);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>另一个好处就是改善了错误跟踪的能力, 能够更准确地跟踪堆栈中的异常, 在Java7之前,处理资源时抛出的异常经常会被覆盖,TWR也可能会出现这种情况.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>((InputStream in = getNullStream()))&#123;</span><br><span class="line">    in.available();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在这种改进后的跟踪堆栈中能看到提示, 其中的NullPointException是能够抛出来看到的.没有被隐藏</p>
+</li>
+</ul>
+<blockquote>
+<p>目前TWR特性依靠一个接口来实现 AutoCloseable. TWR的try从句中出现的资源类都必须实现这个接口. Java7中大部分资源类都修改过<br>但不是所有的资源类都采用了这项技术, JDBC是已经具备了这个特性. <em>官方提倡尽量采用TWR替代原有的方式</em>  </p>
+</blockquote>
+<hr>
+<ul>
+<li>| 简化变参方法调用:<ul>
+<li><code>HashMap&lt;String, String&gt;[] array = new HashMap&lt;&gt;[2];</code> 不允许创建已知类型的泛型数组</li>
+<li>只能这样写 <code>HashMap&lt;String, String&gt; array = new HashMap[2];</code><ul>
+<li>这样的编写也只是一个敷衍, 编译器会警告: 可以将array定义为HashMap&lt;String, String&gt;数组,但是又不能创建这个类型的实例. 所以这里只是将原始类型实例化了放进去.</li>
+</ul>
+</li>
+<li>现在能够这样编写: <code>public static &lt;T&gt; Collection&lt;T&gt; doSomething(T... entries){}</code></li>
+</ul>
+</li>
+</ul>
+<hr>
+<ul>
+<li style="list-style: none"><input type="checkbox"> 反射的简化和加强</li>
+</ul>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2018-12-16T09:11:25.585Z" itemprop="dateUpdated">2018-12-16 17:11:25</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2018/12/16/Memo-Java-AdvancedLearning-Java7/" target="_blank" rel="external">http://blog.kuangcp.top/2018/12/16/Memo-Java-AdvancedLearning-Java7/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="http://blog.kuangcp.top">
+            <img src="/img/avatar.jpg" alt="Kuangcp">
+            Kuangcp
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java7/">Java7</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/基础/">基础</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.kuangcp.top/2018/12/16/Memo-Java-AdvancedLearning-Java7/&title=《Java7》 — Kuangcp Blog&pic=http://blog.kuangcp.top/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.kuangcp.top/2018/12/16/Memo-Java-AdvancedLearning-Java7/&title=《Java7》 — Kuangcp Blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.kuangcp.top/2018/12/16/Memo-Java-AdvancedLearning-Java7/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Java7》 — Kuangcp Blog&url=http://blog.kuangcp.top/2018/12/16/Memo-Java-AdvancedLearning-Java7/&via=http://blog.kuangcp.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.kuangcp.top/2018/12/16/Memo-Java-AdvancedLearning-Java7/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/12/16/Memo-Java-AdvancedLearning-Java11/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Java11</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/12/16/Memo-Java-AdvancedLearning-JavaReleaseVersion/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Java主要发行版</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check" data-wechat="/img/wechat.png" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style="display:none">
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style="display:none">
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Kuangcp &copy; 2015 - 2018</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">赣ICP备17014189号-1</a><br>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.kuangcp.top/2018/12/16/Memo-Java-AdvancedLearning-Java7/&title=《Java7》 — Kuangcp Blog&pic=http://blog.kuangcp.top/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.kuangcp.top/2018/12/16/Memo-Java-AdvancedLearning-Java7/&title=《Java7》 — Kuangcp Blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.kuangcp.top/2018/12/16/Memo-Java-AdvancedLearning-Java7/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Java7》 — Kuangcp Blog&url=http://blog.kuangcp.top/2018/12/16/Memo-Java-AdvancedLearning-Java7/&via=http://blog.kuangcp.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.kuangcp.top/2018/12/16/Memo-Java-AdvancedLearning-Java7/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACv0lEQVR42u3aS27jMBAFQN//0hlgVgMYol9/mGSA0spwEImlBbv9mq9XfH39vd6/+ff798/v1/kOT886f79w4eHh4bWWfl7QGXNe7hM+eXqynvNLxMPDw7vHSxZ0fkCy3SfFIOdFxQMPDw/vR3nzfjW5Z15O8PDw8P5HXlJCqoHC/HXj4eHhfQ8vb2HzyCBfXN5qX8xa8PDw8GpPLwzAfsPni/M9PDw8vMFUvbrdV5+Sj9aaq8XDw8O7wOvFrLuHq7Ya5cIvBjw8PLxV3mTR1TC3Gh/k//VYGPDw8PCWeNH22hpNJeFsLxDpjd/w8PDwtnjJ9p0MrkYjqNUn4uHh4d3mnW+UL6J3vKDX0Jdbczw8PLwLvN6tq414HshWMREVDw8Pb8xLtul8SJZEq7uHBj68IDw8PLzLvHNTW22+ewUgX0/UoOPh4eFd4+02tXkxSMZm1SMChXwaDw8Pb5rNRkFD3nBP8HkG27sPHh4e3hYvH0olN62WnPMd8mc9lhM8PDy8VV7v0FU+1N8Nc5d/N+Dh4eGt8rbCiN5wKw8jmoUBDw8Pr8XrNamT+PUMTv6aj8fw8PDwbvDygHX3WFVeinojMTw8PLx7vHyon0cPk4MC1eIxOiKAh4eHt8rLDznlIUUv0p2M0/Dw8PBu8Kqbe7WN3l1uL6rAw8PD2+X1Dowmm/6cUW3NH8MIPDw8vGu8ycBpEtH2ilNUePDw8PAu8HrBxPw41CTGfU3eHB4eHt6Y91W8qu1y3gTn1MI98fDw8C7w5mUjWW4+7sqLRDmlxsPDw1vlJcWgerCgGnBUX1Ch3cfDw8O7xquO6ntbf7XVTirYh3Xi4eHh/SgvX8SN8KIaZODh4eH9Hl61YMxD3ry0jFpqPDw8vCKvGkYkcUBvWdUo5EMRwsPDw7vAmw/AkrKRf66OyhbOneHh4eGlvD/0iJxxZQbhjgAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

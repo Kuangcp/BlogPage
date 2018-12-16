@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>Linux常用命令 | Kuangcp Blog | Javaer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="工具">
+    <meta name="description" content="目录 start  系统常用基础命令 输入输出 重定向   管道 xargs   time date grep 定时任务 crontab Systemd     实用的工具 终端工具 图形化工具 剪贴板管理   练习打字    目录 end|2018-12-14 20:38| 码云 | CSDN | OSChina | cnblogs  系统常用基础命令输入输出重定向 输出重定向  &amp;gt; a.">
+<meta name="keywords" content="工具">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux常用命令">
+<meta property="og:url" content="http://blog.kuangcp.top/2018/12/15/Memo-Linux-Base-LinuxCommand/index.html">
+<meta property="og:site_name" content="Kuangcp Blog">
+<meta property="og:description" content="目录 start  系统常用基础命令 输入输出 重定向   管道 xargs   time date grep 定时任务 crontab Systemd     实用的工具 终端工具 图形化工具 剪贴板管理   练习打字    目录 end|2018-12-14 20:38| 码云 | CSDN | OSChina | cnblogs  系统常用基础命令输入输出重定向 输出重定向  &amp;gt; a.">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-12-16T09:11:25.585Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linux常用命令">
+<meta name="twitter:description" content="目录 start  系统常用基础命令 输入输出 重定向   管道 xargs   time date grep 定时任务 crontab Systemd     实用的工具 终端工具 图形化工具 剪贴板管理   练习打字    目录 end|2018-12-14 20:38| 码云 | CSDN | OSChina | cnblogs  系统常用基础命令输入输出重定向 输出重定向  &amp;gt; a.">
+    
+        <link rel="alternate" type="application/atom+xml" title="Kuangcp Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Kuangcp</h5>
+          <a href="mailto:kuangcp@aliyun.com" title="kuangcp@aliyun.com" class="mail">kuangcp@aliyun.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/">
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives">
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags">
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories">
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/kuangcp" target="_blank">
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Linux常用命令</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Linux常用命令</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-12-15T03:11:55.000Z" itemprop="datePublished" class="page-time">
+  2018-12-15
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Linux/">Linux</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#系统常用基础命令"><span class="post-toc-number">1.</span> <span class="post-toc-text">系统常用基础命令</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#输入输出"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">输入输出</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#重定向"><span class="post-toc-number">1.1.1.</span> <span class="post-toc-text">重定向</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#管道"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">管道</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#xargs"><span class="post-toc-number">1.2.1.</span> <span class="post-toc-text">xargs</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#time"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">time</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#date"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">date</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#grep"><span class="post-toc-number">1.5.</span> <span class="post-toc-text">grep</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#定时任务"><span class="post-toc-number">1.6.</span> <span class="post-toc-text">定时任务</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#crontab"><span class="post-toc-number">1.6.1.</span> <span class="post-toc-text">crontab</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Systemd"><span class="post-toc-number">1.6.2.</span> <span class="post-toc-text">Systemd</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#实用的工具"><span class="post-toc-number">2.</span> <span class="post-toc-text">实用的工具</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#终端工具"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">终端工具</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#图形化工具"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">图形化工具</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#剪贴板管理"><span class="post-toc-number">2.2.1.</span> <span class="post-toc-text">剪贴板管理</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#练习打字"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">练习打字</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-Memo-Linux-Base-LinuxCommand" class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Linux常用命令</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-12-15 11:11:55" datetime="2018-12-15T03:11:55.000Z" itemprop="datePublished">2018-12-15</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Linux/">Linux</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style="display:none">
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p><strong>目录 start</strong></p>
+<ol>
+<li><a href="#系统常用基础命令">系统常用基础命令</a><ol>
+<li><a href="#输入输出">输入输出</a><ol>
+<li><a href="#重定向">重定向</a></li>
+</ol>
+</li>
+<li><a href="#管道">管道</a><ol>
+<li><a href="#xargs">xargs</a></li>
+</ol>
+</li>
+<li><a href="#time">time</a></li>
+<li><a href="#date">date</a></li>
+<li><a href="#grep">grep</a></li>
+<li><a href="#定时任务">定时任务</a><ol>
+<li><a href="#crontab">crontab</a></li>
+<li><a href="#systemd">Systemd</a></li>
+</ol>
+</li>
+</ol>
+</li>
+<li><a href="#实用的工具">实用的工具</a><ol>
+<li><a href="#终端工具">终端工具</a></li>
+<li><a href="#图形化工具">图形化工具</a><ol>
+<li><a href="#剪贴板管理">剪贴板管理</a></li>
+</ol>
+</li>
+<li><a href="#练习打字">练习打字</a></li>
+</ol>
+</li>
+</ol>
+<p><strong>目录 end</strong>|<em>2018-12-14 20:38</em>| <a href="https://gitee.com/gin9" target="_blank" rel="noopener">码云</a> | <a href="http://blog.csdn.net/kcp606" target="_blank" rel="noopener">CSDN</a> | <a href="https://my.oschina.net/kcp1104" target="_blank" rel="noopener">OSChina</a> | <a href="http://www.cnblogs.com/kuangcp" target="_blank" rel="noopener">cnblogs</a></p>
+<hr>
+<h1 id="系统常用基础命令"><a href="#系统常用基础命令" class="headerlink" title="系统常用基础命令"></a>系统常用基础命令</h1><h2 id="输入输出"><a href="#输入输出" class="headerlink" title="输入输出"></a>输入输出</h2><h3 id="重定向"><a href="#重定向" class="headerlink" title="重定向"></a>重定向</h3><ul>
+<li>输出重定向  <code>&gt; a.log 2&gt;&amp;1</code> 表示为将2也输出到标准输出 <strong>为了方便记忆也可以将&amp;理解为C中的取地址符:2重定向到1的地址</strong><ul>
+<li>2是错误输出</li>
+<li>1是标准输出</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="管道"><a href="#管道" class="headerlink" title="管道"></a>管道</h2><blockquote>
+<p><a href="http://www.cnblogs.com/davidwang456/p/3839874.html" target="_blank" rel="noopener">参考博客: linux 管道 </a><br><a href="http://www.cnblogs.com/chengmo/archive/2010/10/21/1856577.html" target="_blank" rel="noopener">参考博客: linux shell 管道命令(pipe)使用及与shell重定向区别</a></p>
+<ul>
+<li style="list-style: none"><input type="checkbox"> 学习管道的使用</li>
+</ul>
+</blockquote>
+<h3 id="xargs"><a href="#xargs" class="headerlink" title="xargs"></a>xargs</h3><blockquote>
+<p>常在管道中使用 能将输入流转为 命令 的参数</p>
+</blockquote>
+<ul>
+<li>输出所有的md文件的内容 <code>find . -name &quot;*.md&quot; | xargs cat | less</code></li>
+</ul>
+<hr>
+<h2 id="time"><a href="#time" class="headerlink" title="time"></a>time</h2><blockquote>
+<p>可以用于统计命令运行消耗的时间</p>
+</blockquote>
+<ul>
+<li><p>bash内置简易time <code>time</code> 和 /usr/bin/time <code>\time</code></p>
+<ul>
+<li><code>\time -v ls -al</code><h2 id="date"><a href="#date" class="headerlink" title="date"></a>date</h2><blockquote>
+<p>获取日期和时间 <code>date +%Y_%m_%d_%H:%M:%S</code></p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>获取前一天日期 <code>date --date=&#39;1 day ago&#39; -R</code></p>
+</li>
+<li>将秒时间戳转换为日期 <code>date --date=&#39;@1524738626&#39;</code></li>
+</ul>
+<h2 id="grep"><a href="#grep" class="headerlink" title="grep"></a>grep</h2><blockquote>
+<p>egrep <a href="http://man.linuxde.net/grep" target="_blank" rel="noopener">相关网页</a> 与 grep -E 等价</p>
+</blockquote>
+<ul>
+<li><p>正则 <code>grep -E &quot;[1-9]+&quot;</code> 注意<code>[] 和 ()</code>的区别 <code>[]</code> 是里面单个字符 <code>()</code>是里面的全部</p>
+</li>
+<li><p>-o 一行内多次匹配 <code>grep -o 的 total.md | wc -l</code> 统计所有<code>的</code>的数量</p>
+</li>
+<li>-i 忽略大小写</li>
+</ul>
+<h2 id="定时任务"><a href="#定时任务" class="headerlink" title="定时任务"></a>定时任务</h2><h3 id="crontab"><a href="#crontab" class="headerlink" title="crontab"></a>crontab</h3><blockquote>
+<p><a href="http://www.cnblogs.com/taosim/articles/2007056.html" target="_blank" rel="noopener">参考博客 shell定时任务crontab</a><br><code>minute hour day-of-month month-of-year day-of-week commands</code></p>
+</blockquote>
+<blockquote>
+<p>cron 脚本中的操作命令 最好都使用绝对路径, 必须注意环境变量问题</p>
+</blockquote>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">SHELL=/bin/sh</span><br><span class="line">PATH=/usr/<span class="built_in">local</span>/sbin:/usr/<span class="built_in">local</span>/bin:/sbin:/bin:/usr/sbin:/usr/bin</span><br><span class="line"></span><br><span class="line"><span class="comment"># Example of job definition:</span></span><br><span class="line"><span class="comment"># .---------------- minute (0 - 59)</span></span><br><span class="line"><span class="comment"># |  .------------- hour (0 - 23)</span></span><br><span class="line"><span class="comment"># |  |  .---------- day of month (1 - 31)</span></span><br><span class="line"><span class="comment"># |  |  |  .------- month (1 - 12) OR jan,feb,mar,apr ...</span></span><br><span class="line"><span class="comment"># |  |  |  |  .---- day of week (0 - 6) (Sunday=0 or 7) OR sun,mon,tue,wed,thu,fri,sat</span></span><br><span class="line"><span class="comment"># |  |  |  |  |</span></span><br><span class="line"><span class="comment"># *  *  *  *  * user-name command to be executed</span></span><br></pre></td></tr></table></figure>
+<h3 id="Systemd"><a href="#Systemd" class="headerlink" title="Systemd"></a>Systemd</h3><blockquote>
+<p><a href="http://www.ruanyifeng.com/blog/2018/03/systemd-timer.html" target="_blank" rel="noopener">参考博客: Systemd 定时器教程</a> <code>配置和使用上比Crontab更繁杂, 但是有更多的可控制项</code></p>
+</blockquote>
+<hr>
+<h1 id="实用的工具"><a href="#实用的工具" class="headerlink" title="实用的工具"></a>实用的工具</h1><blockquote>
+<p><a href="https://linux.cn/article-10171-1.html" target="_blank" rel="noopener">命令行：增强版 </a></p>
+</blockquote>
+<h2 id="终端工具"><a href="#终端工具" class="headerlink" title="终端工具"></a>终端工具</h2><blockquote>
+<p><a href="/Skills/Application/Terminal.md">详细</a></p>
+</blockquote>
+<h2 id="图形化工具"><a href="#图形化工具" class="headerlink" title="图形化工具"></a>图形化工具</h2><h3 id="剪贴板管理"><a href="#剪贴板管理" class="headerlink" title="剪贴板管理"></a>剪贴板管理</h3><blockquote>
+<p><a href="https://linux.cn/article-7329-1.html" target="_blank" rel="noopener">参考博客: 面向 Linux 的 10 款最佳剪贴板管理器</a></p>
+</blockquote>
+<ul>
+<li>CopyQ 比较好用</li>
+</ul>
+<blockquote>
+<p><a href="https://www.jb51.net/LINUXjishu/498660.html" target="_blank" rel="noopener">参考博客: 这9个Linux命令非常危险 请大家慎用</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://linux.cn/article-8934-1.html" target="_blank" rel="noopener">参考博客: 关于 Linux 你可能不是非常了解的七件事</a></p>
+</blockquote>
+<h2 id="练习打字"><a href="#练习打字" class="headerlink" title="练习打字"></a>练习打字</h2><ol>
+<li>gtypist  </li>
+</ol>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2018-12-16T09:11:25.585Z" itemprop="dateUpdated">2018-12-16 17:11:25</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2018/12/15/Memo-Linux-Base-LinuxCommand/" target="_blank" rel="external">http://blog.kuangcp.top/2018/12/15/Memo-Linux-Base-LinuxCommand/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="http://blog.kuangcp.top">
+            <img src="/img/avatar.jpg" alt="Kuangcp">
+            Kuangcp
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/工具/">工具</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.kuangcp.top/2018/12/15/Memo-Linux-Base-LinuxCommand/&title=《Linux常用命令》 — Kuangcp Blog&pic=http://blog.kuangcp.top/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.kuangcp.top/2018/12/15/Memo-Linux-Base-LinuxCommand/&title=《Linux常用命令》 — Kuangcp Blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.kuangcp.top/2018/12/15/Memo-Linux-Base-LinuxCommand/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Linux常用命令》 — Kuangcp Blog&url=http://blog.kuangcp.top/2018/12/15/Memo-Linux-Base-LinuxCommand/&via=http://blog.kuangcp.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.kuangcp.top/2018/12/15/Memo-Linux-Base-LinuxCommand/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/12/15/Memo-Linux-Base-LinuxCompressFile/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Linux平台上压缩和解压工具</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/12/15/Memo-Linux-Base-LinuxBase/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Linux基础</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check" data-wechat="/img/wechat.png" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style="display:none">
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style="display:none">
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Kuangcp &copy; 2015 - 2018</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">赣ICP备17014189号-1</a><br>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.kuangcp.top/2018/12/15/Memo-Linux-Base-LinuxCommand/&title=《Linux常用命令》 — Kuangcp Blog&pic=http://blog.kuangcp.top/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.kuangcp.top/2018/12/15/Memo-Linux-Base-LinuxCommand/&title=《Linux常用命令》 — Kuangcp Blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.kuangcp.top/2018/12/15/Memo-Linux-Base-LinuxCommand/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Linux常用命令》 — Kuangcp Blog&url=http://blog.kuangcp.top/2018/12/15/Memo-Linux-Base-LinuxCommand/&via=http://blog.kuangcp.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.kuangcp.top/2018/12/15/Memo-Linux-Base-LinuxCommand/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACvUlEQVR42u3aQW7DMAwEwPz/0+41RRN7SUpOCoxPRdvIHB8sZqnHI76Op+tRvI4/1/Pvk/Und8fDw8PbwTtOr/MbVMtdxUtqxsPDw9vNe7docoPzDeC8oOpf85rx8PDwvpN33scmm0TeauPh4eH9d17vETRLnHwWDw8PbxsvaWrnL+7eg0vuuyBrwcPDw4t5+RTpe37eMt/Dw8PDG0/V54Ox3grJGCxaHw8PD28DrxciJFFs3gRvb6zx8PDwNn9nX1tiNSaYjM2ithsPDw9vKe+8iGpzfF5WtUXO14mCCTw8PLwBrzfiqr7oe5vHJBb5lbXg4eHhLeVNhl5rg9pkA0g2qmUzPTw8PLwg26w2tb2oYlWDXhie4eHh4d3OqzbKyWfXjrjw8PDw7udVz3wmm0RvxDVZofntAQ8PD2/A67XO+Zg/CW3n28zoTAQeHh5ei5efOBglxHFcm2AK4y48PDy8W3jJ0r1hVY/UfJR4eHh4i3i9opNDAL0mu7oBXFSIh4eHt41X/Vg+jsrDhckRATw8PLxP8aq3zF/r1YNc1a74bbV4eHh4H+Ilw/vealX2EVzNbwZ4eHh4rZNIVUxypKA36EoOGRQ2Bjw8PLxbeNXXdO/VnzTreYD74mc8PDy8bbxyq5rHAa3RV7WGwt6Ch4eHN+ZVjzH1IoPqxjN50BeRBB4eHt6Y1yt0VXiRP7LqAa8X3xjw8PDwFvF620NCqsav1blV+f/x8PDwFvGO4lWNdJMYt7rlFOIJPDw8vA286qs/Lzcn9VrqPD7Gw8PD28HLy8oPBORB7fy41UW0gYeHh7eNl0cM8+l8vl/lYcRFJIGHh4f3IV51QJUPruYHrfDw8PC+k1c9SjUZeuWHDJqTPTw8PLwxbxIxFBrcYuucBxZvK8TDw8PbwKuGCKsKqj6UZFsazffw8PDwrnk/9G2xhoQy/UIAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

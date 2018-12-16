@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>Linux目录结构 | Kuangcp Blog | Javaer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="基础">
+    <meta name="description" content="目录 start  Linux 目录结构 /root /home /proc 网络   /etc /etc/alternatives /etc/apt 使用 查看发行版 查看系统所有用户信息   /tmp    目录 end|2018-12-13 12:06| 码云 | CSDN | OSChina | cnblogs  Linux 目录结构 Linux 系统目录结构的大致分布以及说明  /roo">
+<meta name="keywords" content="基础">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux目录结构">
+<meta property="og:url" content="http://blog.kuangcp.top/2018/12/15/Memo-Linux-Base-LinuxDirectoryStructure/index.html">
+<meta property="og:site_name" content="Kuangcp Blog">
+<meta property="og:description" content="目录 start  Linux 目录结构 /root /home /proc 网络   /etc /etc/alternatives /etc/apt 使用 查看发行版 查看系统所有用户信息   /tmp    目录 end|2018-12-13 12:06| 码云 | CSDN | OSChina | cnblogs  Linux 目录结构 Linux 系统目录结构的大致分布以及说明  /roo">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-12-16T09:11:25.585Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linux目录结构">
+<meta name="twitter:description" content="目录 start  Linux 目录结构 /root /home /proc 网络   /etc /etc/alternatives /etc/apt 使用 查看发行版 查看系统所有用户信息   /tmp    目录 end|2018-12-13 12:06| 码云 | CSDN | OSChina | cnblogs  Linux 目录结构 Linux 系统目录结构的大致分布以及说明  /roo">
+    
+        <link rel="alternate" type="application/atom+xml" title="Kuangcp Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Kuangcp</h5>
+          <a href="mailto:kuangcp@aliyun.com" title="kuangcp@aliyun.com" class="mail">kuangcp@aliyun.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/">
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives">
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags">
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories">
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/kuangcp" target="_blank">
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Linux目录结构</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Linux目录结构</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-12-15T03:14:08.000Z" itemprop="datePublished" class="page-time">
+  2018-12-15
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Linux/">Linux</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Linux-目录结构"><span class="post-toc-number">1.</span> <span class="post-toc-text">Linux 目录结构</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#root"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">/root</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#home"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">/home</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#proc"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">/proc</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#网络"><span class="post-toc-number">1.3.1.</span> <span class="post-toc-text">网络</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#etc"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">/etc</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#etc-alternatives"><span class="post-toc-number">1.4.1.</span> <span class="post-toc-text">/etc/alternatives</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#etc-apt"><span class="post-toc-number">1.4.2.</span> <span class="post-toc-text">/etc/apt</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#使用"><span class="post-toc-number">1.4.3.</span> <span class="post-toc-text">使用</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#查看发行版"><span class="post-toc-number">1.4.4.</span> <span class="post-toc-text">查看发行版</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#查看系统所有用户信息"><span class="post-toc-number">1.4.5.</span> <span class="post-toc-text">查看系统所有用户信息</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#tmp"><span class="post-toc-number">1.5.</span> <span class="post-toc-text">/tmp</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-Memo-Linux-Base-LinuxDirectoryStructure" class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Linux目录结构</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-12-15 11:14:08" datetime="2018-12-15T03:14:08.000Z" itemprop="datePublished">2018-12-15</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Linux/">Linux</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style="display:none">
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p><strong>目录 start</strong></p>
+<ol>
+<li><a href="#linux-目录结构">Linux 目录结构</a><ol>
+<li><a href="#root">/root</a></li>
+<li><a href="#home">/home</a></li>
+<li><a href="#proc">/proc</a><ol>
+<li><a href="#网络">网络</a></li>
+</ol>
+</li>
+<li><a href="#etc">/etc</a><ol>
+<li><a href="#etcalternatives">/etc/alternatives</a></li>
+<li><a href="#etcapt">/etc/apt</a></li>
+<li><a href="#使用">使用</a></li>
+<li><a href="#查看发行版">查看发行版</a></li>
+<li><a href="#查看系统所有用户信息">查看系统所有用户信息</a></li>
+</ol>
+</li>
+<li><a href="#tmp">/tmp</a></li>
+</ol>
+</li>
+</ol>
+<p><strong>目录 end</strong>|<em>2018-12-13 12:06</em>| <a href="https://gitee.com/gin9" target="_blank" rel="noopener">码云</a> | <a href="http://blog.csdn.net/kcp606" target="_blank" rel="noopener">CSDN</a> | <a href="https://my.oschina.net/kcp1104" target="_blank" rel="noopener">OSChina</a> | <a href="http://www.cnblogs.com/kuangcp" target="_blank" rel="noopener">cnblogs</a></p>
+<hr>
+<h1 id="Linux-目录结构"><a href="#Linux-目录结构" class="headerlink" title="Linux 目录结构"></a>Linux 目录结构</h1><blockquote>
+<p>Linux 系统目录结构的大致分布以及说明</p>
+</blockquote>
+<h2 id="root"><a href="#root" class="headerlink" title="/root"></a>/root</h2><blockquote>
+<p>root用户的默认用户目录</p>
+</blockquote>
+<h2 id="home"><a href="#home" class="headerlink" title="/home"></a>/home</h2><blockquote>
+<p>非root用户的默认用户目录  </p>
+</blockquote>
+<hr>
+<h2 id="proc"><a href="#proc" class="headerlink" title="/proc"></a>/proc</h2><blockquote>
+<p>进程的目录, 一个个进程看起来是一个个目录(并不是真正的目录,这是一个虚拟文件系统), 使用进程号作为目录名</p>
+</blockquote>
+<h3 id="网络"><a href="#网络" class="headerlink" title="网络"></a>网络</h3><ol>
+<li>ARP: /proc/net/arp cat该文件, 如果发现里面有重复的mac地址, 并且有机器伪装成了网关的mac 就说明遭受了ARP攻击 <code>或者 arp -a</code><ul>
+<li>arping 10.91.255.254 能查看到真实的mac地址</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="etc"><a href="#etc" class="headerlink" title="/etc"></a>/etc</h2><blockquote>
+<p>系统以及应用的配置目录</p>
+</blockquote>
+<h3 id="etc-alternatives"><a href="#etc-alternatives" class="headerlink" title="/etc/alternatives"></a>/etc/alternatives</h3><p>alternative是可选项的意思.<br>首先，因为依赖关系的存在，一个软件包在系统里面可能出现新旧版本并存的情况.<br>在以前，要想用旧版本作为默认值就必须要手动修改配置文件，有些软件比较简单，有些却要修改很多文件，甚至一些相关软件的配置文件也要相应修改。</p>
+<p>update-alternatives 命令就是操作的这个目录, 实现的步骤往往是在该目录建立一个软链接, 然后又从这里建立软链接到 /usr/bin 下, 实现将命令加入到 PATH 中的目的</p>
+<ul>
+<li style="list-style: none"><input type="checkbox"> 学习</li>
+</ul>
+<h3 id="etc-apt"><a href="#etc-apt" class="headerlink" title="/etc/apt"></a>/etc/apt</h3><blockquote>
+<p>Debian 系 apt 包管理器的配置目录</p>
+</blockquote>
+<ol>
+<li>/etc/apt/sources.list.d/ 这个目录是放别的应用需要的软件列表</li>
+</ol>
+<hr>
+<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><blockquote>
+<p>具体配置文件的使用</p>
+</blockquote>
+<h3 id="查看发行版"><a href="#查看发行版" class="headerlink" title="查看发行版"></a>查看发行版</h3><ol>
+<li><code>cat /etc/issue</code> 通用</li>
+<li><code>cat /etc/redhat-release</code> redhat系</li>
+<li>screenfetch <code>先安装</code></li>
+<li>lsb_release -a</li>
+</ol>
+<p><em>查看内核版本</em><br><code>cat /proc/version</code><br><code>uname -a</code></p>
+<h3 id="查看系统所有用户信息"><a href="#查看系统所有用户信息" class="headerlink" title="查看系统所有用户信息"></a>查看系统所有用户信息</h3><blockquote>
+<p>/etc/passwd 包含了用户,用户组,用户home目录 shell类型等信息<br>看第三个参数:500以上的,就是后面建的用户了.其它则为系统的用户.</p>
+</blockquote>
+<h2 id="tmp"><a href="#tmp" class="headerlink" title="/tmp"></a>/tmp</h2><blockquote>
+<p>应用缓存目录, 在使用时存放缓存文件, 在计算机重启后就会被清理 </p>
+</blockquote>
+<ul>
+<li>在安装Linux时如果没有明确的分区, 就会属于 / 分区, 那么就要给 / 留有足够的大小, 不然 /tmp 分区不足会导致应用运行异常</li>
+<li>例如 Tomcat 在运行时就需要使用, 然后Deepin的截图也会将截图缓存到该目录下 …</li>
+</ul>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2018-12-16T09:11:25.585Z" itemprop="dateUpdated">2018-12-16 17:11:25</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2018/12/15/Memo-Linux-Base-LinuxDirectoryStructure/" target="_blank" rel="external">http://blog.kuangcp.top/2018/12/15/Memo-Linux-Base-LinuxDirectoryStructure/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="http://blog.kuangcp.top">
+            <img src="/img/avatar.jpg" alt="Kuangcp">
+            Kuangcp
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/基础/">基础</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.kuangcp.top/2018/12/15/Memo-Linux-Base-LinuxDirectoryStructure/&title=《Linux目录结构》 — Kuangcp Blog&pic=http://blog.kuangcp.top/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.kuangcp.top/2018/12/15/Memo-Linux-Base-LinuxDirectoryStructure/&title=《Linux目录结构》 — Kuangcp Blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.kuangcp.top/2018/12/15/Memo-Linux-Base-LinuxDirectoryStructure/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Linux目录结构》 — Kuangcp Blog&url=http://blog.kuangcp.top/2018/12/15/Memo-Linux-Base-LinuxDirectoryStructure/&via=http://blog.kuangcp.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.kuangcp.top/2018/12/15/Memo-Linux-Base-LinuxDirectoryStructure/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/12/15/Memo-Linux-Base-LinuxFile/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Linux文件系统</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/12/15/Memo-Linux-Base-LinuxCompressFile/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Linux平台上压缩和解压工具</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check" data-wechat="/img/wechat.png" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style="display:none">
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style="display:none">
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Kuangcp &copy; 2015 - 2018</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">赣ICP备17014189号-1</a><br>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.kuangcp.top/2018/12/15/Memo-Linux-Base-LinuxDirectoryStructure/&title=《Linux目录结构》 — Kuangcp Blog&pic=http://blog.kuangcp.top/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.kuangcp.top/2018/12/15/Memo-Linux-Base-LinuxDirectoryStructure/&title=《Linux目录结构》 — Kuangcp Blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.kuangcp.top/2018/12/15/Memo-Linux-Base-LinuxDirectoryStructure/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Linux目录结构》 — Kuangcp Blog&url=http://blog.kuangcp.top/2018/12/15/Memo-Linux-Base-LinuxDirectoryStructure/&via=http://blog.kuangcp.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.kuangcp.top/2018/12/15/Memo-Linux-Base-LinuxDirectoryStructure/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACuUlEQVR42u3aQW7jMBAEQP//095rFtjI3TNkkAVKp8B2JBYP5KiHr1d8vb9c333+9dvnz5+f8t0nz/+7uvDw8PAWQ8+Hmw89v1syznw8eHh4eLd5ye2eN4kEs1+38zHj4eHh/R5eTprVunnJjoeHh/d/8fIBPUcMCTufbjw8PLyf5LVBQ/vLPFDI73M4a8HDw8OLeXkX6ff8faW/h4eHh7fuqs+OBbTtrs0dPowWDw8P7wJvFrneOIzVHj4oxomHh4d3gff8gFmYm4ezeQTcTgceHh7eDV5e+CYHqtqDUy27jirw8PDwrvHa6GE2oHyPqnez53cFPDw8vKO8G7fLJyJv+edT8MoZeHh4eCPe7LhVXl63E5pHwMkv8fDw8G7w8iI4j2v3hfVmQxoOBQ8PD6/ktU2mTRssn4h8sorjAnh4eHiHeElB3Iaw7TaziXqHwQQeHh7egjc7VpUPerbE7wNiPDw8vHu8Az20siWWh7bJ30VJjYeHh7fmJUt53gDLe/ebQKSIJPDw8PAu8PLlexbgtqXzqRDkwyaBh4eHd5TXlq1J2b3ZbPKwoz50hYeHh7fmzYKD9nDqO7j2m9Cqy4eHh4c36gq1IUI7rPZu+fbz1+/x8PDwrvHOxgRJWysv0FexLx4eHt4FXttS2pTUOWYTRnzb5cPDw8O7wDsbmLZbzqyMHp4Fw8PDwzvK2zTv95OVx7XFCwAeHh7eNV7e/k9K6nYDmB1KiMp3PDw8vKO8d3klEW3b5m/BRUMODw8P7wJvH1icenAbfByLKvDw8PBGvPb1/t6xqtmG9AGMh4eHd403W6w3hfKNpleRteDh4eH9IC+Jd5PC93lxn337jyfi4eHh/QJeu7hvNoZZ8Y2Hh4f3M7w8CNgcDki2ijZ0+HB/PDw8vAu8/CW/LaNn07EH4+Hh4V3j/QEx5CvwM3HLuAAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

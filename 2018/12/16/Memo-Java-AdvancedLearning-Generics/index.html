@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>Java泛型 | Kuangcp Blog | Javaer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="泛型">
+    <meta name="description" content="目录 start  泛型 入门 简单使用 类型擦除   约束和局限性 泛型类型的继承规则 通配符类型 子类型限定的通配符 extends 超类型限定的通配符 super 应用   无限定通配符 通配符捕获   反射和泛型      目录 end|2018-12-13 12:06| 码云 | CSDN | OSChina | cnblogs  泛型 开始学习的兴趣来源  参考博客: Java总结篇系">
+<meta name="keywords" content="泛型">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java泛型">
+<meta property="og:url" content="http://blog.kuangcp.top/2018/12/16/Memo-Java-AdvancedLearning-Generics/index.html">
+<meta property="og:site_name" content="Kuangcp Blog">
+<meta property="og:description" content="目录 start  泛型 入门 简单使用 类型擦除   约束和局限性 泛型类型的继承规则 通配符类型 子类型限定的通配符 extends 超类型限定的通配符 super 应用   无限定通配符 通配符捕获   反射和泛型      目录 end|2018-12-13 12:06| 码云 | CSDN | OSChina | cnblogs  泛型 开始学习的兴趣来源  参考博客: Java总结篇系">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-12-16T09:11:25.585Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java泛型">
+<meta name="twitter:description" content="目录 start  泛型 入门 简单使用 类型擦除   约束和局限性 泛型类型的继承规则 通配符类型 子类型限定的通配符 extends 超类型限定的通配符 super 应用   无限定通配符 通配符捕获   反射和泛型      目录 end|2018-12-13 12:06| 码云 | CSDN | OSChina | cnblogs  泛型 开始学习的兴趣来源  参考博客: Java总结篇系">
+    
+        <link rel="alternate" type="application/atom+xml" title="Kuangcp Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Kuangcp</h5>
+          <a href="mailto:kuangcp@aliyun.com" title="kuangcp@aliyun.com" class="mail">kuangcp@aliyun.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/">
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives">
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags">
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories">
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/kuangcp" target="_blank">
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Java泛型</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Java泛型</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-12-16T09:11:25.585Z" itemprop="datePublished" class="page-time">
+  2018-12-16
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Java/">Java</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#泛型"><span class="post-toc-number">1.</span> <span class="post-toc-text">泛型</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#入门"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">入门</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#简单使用"><span class="post-toc-number">1.1.1.</span> <span class="post-toc-text">简单使用</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#类型擦除"><span class="post-toc-number">1.1.1.1.</span> <span class="post-toc-text">类型擦除</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#约束和局限性"><span class="post-toc-number">1.1.2.</span> <span class="post-toc-text">约束和局限性</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#泛型类型的继承规则"><span class="post-toc-number">1.1.3.</span> <span class="post-toc-text">泛型类型的继承规则</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#通配符类型"><span class="post-toc-number">1.1.4.</span> <span class="post-toc-text">通配符类型</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#子类型限定的通配符-extends"><span class="post-toc-number">1.1.4.1.</span> <span class="post-toc-text">子类型限定的通配符 extends</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#超类型限定的通配符-super"><span class="post-toc-number">1.1.4.2.</span> <span class="post-toc-text">超类型限定的通配符 super</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#应用"><span class="post-toc-number">1.1.4.2.1.</span> <span class="post-toc-text">应用</span></a></li></ol></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#无限定通配符"><span class="post-toc-number">1.1.4.3.</span> <span class="post-toc-text">无限定通配符</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#通配符捕获"><span class="post-toc-number">1.1.4.4.</span> <span class="post-toc-text">通配符捕获</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#反射和泛型"><span class="post-toc-number">1.1.5.</span> <span class="post-toc-text">反射和泛型</span></a></li></ol></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-Memo-Java-AdvancedLearning-Generics" class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Java泛型</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-12-16 17:11:25" datetime="2018-12-16T09:11:25.585Z" itemprop="datePublished">2018-12-16</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Java/">Java</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style="display:none">
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p><strong>目录 start</strong></p>
+<ol>
+<li><a href="#泛型">泛型</a><ol>
+<li><a href="#入门">入门</a><ol>
+<li><a href="#简单使用">简单使用</a><ol>
+<li><a href="#类型擦除">类型擦除</a></li>
+</ol>
+</li>
+<li><a href="#约束和局限性">约束和局限性</a></li>
+<li><a href="#泛型类型的继承规则">泛型类型的继承规则</a></li>
+<li><a href="#通配符类型">通配符类型</a><ol>
+<li><a href="#子类型限定的通配符-extends">子类型限定的通配符 extends</a></li>
+<li><a href="#超类型限定的通配符-super">超类型限定的通配符 super</a><ol>
+<li><a href="#应用">应用</a></li>
+</ol>
+</li>
+<li><a href="#无限定通配符">无限定通配符</a></li>
+<li><a href="#通配符捕获">通配符捕获</a></li>
+</ol>
+</li>
+<li><a href="#反射和泛型">反射和泛型</a></li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<p><strong>目录 end</strong>|<em>2018-12-13 12:06</em>| <a href="https://gitee.com/gin9" target="_blank" rel="noopener">码云</a> | <a href="http://blog.csdn.net/kcp606" target="_blank" rel="noopener">CSDN</a> | <a href="https://my.oschina.net/kcp1104" target="_blank" rel="noopener">OSChina</a> | <a href="http://www.cnblogs.com/kuangcp" target="_blank" rel="noopener">cnblogs</a></p>
+<hr>
+<h1 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h1><blockquote>
+<p><a href="https://mp.weixin.qq.com/s?__biz=MzAxOTc0NzExNg==&amp;mid=2665514015&amp;idx=1&amp;sn=12409f705c6d266e4cd062e78ce50be0&amp;chksm=80d67c5cb7a1f54a68ed83580b63b4acded0df525bb046166db2c00623a6bba0de3c5ad71884&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">开始学习的兴趣来源</a></p>
+</blockquote>
+<p><a href="http://www.cnblogs.com/lwbqqyumidi/p/3837629.html" target="_blank" rel="noopener">参考博客: Java总结篇系列：Java泛型</a><br>泛型，即“参数化类型”。一提到参数，最熟悉的就是定义方法时有形参，然后调用此方法时传递实参。<br>那么参数化类型怎么理解呢？顾名思义，就是将类型由原来的具体的类型参数化，类似于方法中的变量参数，此时类型也定义成参数形式（可以称之为类型形参），然后在使用/调用时传入具体的类型（类型实参）。<br><a href="http://www.infoq.com/cn/articles/cf-java-generics" target="_blank" rel="noopener">参考博客: Java深度历险（五）——Java泛型</a></p>
+<h2 id="入门"><a href="#入门" class="headerlink" title="入门"></a>入门</h2><blockquote>
+<p>泛型程序设计划分为三个熟练级别 基本级别就是仅仅使用泛型类,典型的是像ArrayList这样的集合–不必考虑他们的工作方式和原因,大多数人会停留在这个级别.直到出现了什么问题. 当把不同的泛型类混合在一起的时候,或是对类型参数一无所知的遗留代码进行对接时,可能会看到含糊不清的错误消息.如果这样的话,就需要系统的进行学习Java泛型来系统地解决问题.<br>泛型类可以看作普通类的工厂  – Java核心技术卷 2004(1.5)  </p>
+</blockquote>
+<h3 id="简单使用"><a href="#简单使用" class="headerlink" title="简单使用"></a>简单使用</h3><blockquote>
+<ul>
+<li><a href="https://github.com/Kuangcp/JavaBase/blob/master/src/main/java/com/generic/simple/Pair.java" target="_blank" rel="noopener">简单泛型类示例</a></li>
+</ul>
+</blockquote>
+<p>例如该行定义 : <code>public abstract class RoomCache&lt;P extends PlayerBO, M extends MemberBO, V extends VideoDataBO&lt;M&gt;, R extends RoomBO&lt;M, V&gt;&gt; extends AbstractCache&lt;PlatformRoomId, R&gt; {}</code></p>
+<ul>
+<li>类型变量使用大写的一个字母这是代表:<ul>
+<li><code>E</code> 集合的元素类型 </li>
+<li><code>K V</code> 表示表的关键字和值的类型 </li>
+<li><code>T U S</code> 等就表示任意类型</li>
+<li></li>
+</ul>
+</li>
+</ul>
+<h4 id="类型擦除"><a href="#类型擦除" class="headerlink" title="类型擦除"></a>类型擦除</h4><ul>
+<li>不同于C++的泛型,C++是将模板类组合出来的生成一个新的类,Java则是进行类型擦除,然后再类型强转</li>
+<li>例如 <code>public static &lt;T extends Comparable&gt; T min (T[] list)</code><ul>
+<li>擦除后就只剩下一个方法 <code>public static Comparable min(Comparable[] list)</code></li>
+</ul>
+</li>
+<li><p><a href="https://github.com/Kuangcp/JavaBase/blob/master/src/main/java/com/generic/simple/DateInterval.java" target="_blank" rel="noopener">泛型类擦除示例</a></p>
+</li>
+<li><p>例如该方法签名 <code>public static  &lt;T extends Comparable &amp; Serializable&gt; T getMax(T[]list)</code></p>
+<ul>
+<li>限制了必须是实现了两个接口的类才能使用, 估计为了少创关键字所以使用的是extends关键字来表示T要实现两个接口</li>
+<li>同样的可以加在类的签名上,进行限制类的泛型类型 <code>public class Pair &lt;T extends Comparable&gt;{}</code></li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>在Java的继承中,可以根据需要拥有多个接口超类型,但限定中至多只有一个类,如果用一个类作为限定,他必须是限定列表中的第一个</p>
+</blockquote>
+<hr>
+<h3 id="约束和局限性"><a href="#约束和局限性" class="headerlink" title="约束和局限性"></a>约束和局限性</h3><blockquote>
+<p>以下代码示例:涉及的类Pair在上述的代码中已经定义, Human和Student是继承关系<br>并且因为看的 Java核心技术卷 比较老 jdk是1.5的所以没有用7的菱形语法简化泛型 7可以省去右边的类型: <code>Pair&lt;Double&gt; pair = new Pair&lt;&gt;();</code></p>
+</blockquote>
+<ul>
+<li>| <em>不能使用基本类型实例化类型参数</em><ul>
+<li>也就是说没有<code>Pair&lt;double&gt;</code>只有<code>Pair&lt;Double&gt;</code></li>
+<li>因为类型擦除后,类型是Object并不能放double的值, 但是这样做与Java语言中基本类型的独立状态相一致.</li>
+<li>当包装器类型(wrapper type)不能接受替换时,可以使用独立的类和方法处理他们  </li>
+</ul>
+</li>
+<li>| <em>运行时类型查询(eq或者instanceof)只适用于原始类型</em><ul>
+<li>比如<code>Pair&lt;T&gt;</code> 和<code>Pair&lt;String&gt;</code>是等价的,因为类型擦除</li>
+<li><code>Pair&lt;String&gt; pair1</code> <code>Pair&lt;Date&gt; pair2</code> pair1.getClass()和pair2.getClass()是等价的都是返回Pair.class</li>
+</ul>
+</li>
+<li>| <em>不能抛出也不能捕获泛型类实例</em><ul>
+<li>错误的示例:<ul>
+<li><code>public class Problem&lt;T&gt; extends Exception{}</code></li>
+<li><code>public static &lt;T extends Throwable&gt; void doWork(){try{}catch(T t){}}</code></li>
+</ul>
+</li>
+<li>正确示例:<ul>
+<li>在异常声明中使用类型变量 </li>
+<li><code>public static &lt;T extends Throwable&gt; void doWork() throws T{.. catch(){throw t;}}</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>| <em>参数化类型的数组不合法</em></p>
+<ul>
+<li>例:<code>Pair&lt;String&gt;[] list = new Pair&lt;String&gt;[10];</code></li>
+<li>因为擦除后 list是Pair[]类型,然后就能转成Object[], 就失去了泛型的作用</li>
+<li>如果要使用的话最好直接使用集合 ArrayList:<code>ArrayList&lt;Pair&lt;String&gt;&gt;</code>,安全又高效<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Object[] array = list;</span><br><span class="line">array[<span class="number">0</span>] = <span class="string">"hi"</span>;<span class="comment">//  编译错误</span></span><br><span class="line">array[<span class="number">0</span>] = <span class="keyword">new</span> Pair&lt;Date&gt;(); <span class="comment">//通过数组存储的检测,但实际上类型错误了,所以禁止使用参数化类型的数组</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>| <em>不能实例化类型变量(T)</em></p>
+<ul>
+<li>非法 <code>new T(){}</code><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">Pair</span><span class="params">()</span></span>&#123;</span><br><span class="line">    first = <span class="keyword">new</span> T();</span><br><span class="line">    second = <span class="keyword">new</span> T();</span><br><span class="line">&#125;</span><br><span class="line">first = T.class.newInstance() <span class="comment">//非法 T.class是不合法的</span></span><br><span class="line"><span class="comment">//要实例化一个Pair&lt;T&gt;的对象就要如下:</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; <span class="function">Pair&lt;T&gt; <span class="title">initPair</span><span class="params">(Class&lt;T&gt; c)</span></span>&#123;</span><br><span class="line">    <span class="keyword">try</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Pair&lt;T&gt;(c.newInstance(), c.newInstance());</span><br><span class="line">    &#125;<span class="keyword">catch</span> (Exception e)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 如下调用</span></span><br><span class="line">Pair&lt;String&gt; pair = Pair.initPair(String.class);</span><br><span class="line"><span class="comment">// 因为Class本身是泛型, String.class其实是Class&lt;String&gt;的实例</span></span><br><span class="line"><span class="comment">// 也不能实例化为一个数组 new T[5]</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>| <em>泛型类的静态上下文中类型变量无效</em></p>
+<ul>
+<li>不能在静态域中使用类型变量 如下:</li>
+<li>如果这段代码能执行,那就可以声明一个 Singleton<random> 共享随机数生成类,</random></li>
+<li>但是声明之后,类型擦除,就只剩下了Singleton类,并不能做对应的事情,所以禁止这样的写法<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> T first; <span class="comment">// 错误</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> T <span class="title">getFirst</span><span class="params">()</span></span>&#123; <span class="comment">// 错误</span></span><br><span class="line">    <span class="keyword">return</span> first;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>| <em>注意泛型擦除后的冲突</em></p>
+<ul>
+<li>当类型擦除时,不能创建引发冲突的相关条件</li>
+<li>例如 新实现一个类型变量约束的equals方法就会和Object原方法冲突 补救方法就是重命名该方法了</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Pair</span>&lt;<span class="title">T</span>&gt;</span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span> <span class="params">(T value)</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> ..</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>泛型规范说明</code></p>
+<ul>
+<li><p>要想支持擦除的转换,就需要强行限制一个类或类型变量不能同时成为两个接口类型的子类,而这两个接口是同一接口的不同参数化</p>
+<ul>
+<li>以下代码就是非法的, GregorianCalendar 实现了两个接口,两个接口是Comparable接口的不同参数化,这是不允许的<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Calendar</span> <span class="keyword">implements</span> <span class="title">Comparable</span>&lt;<span class="title">Calendar</span>&gt;</span>&#123;&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">GregorianCalendar</span> <span class="keyword">extends</span> <span class="title">Calendar</span> <span class="keyword">implements</span> <span class="title">Comparable</span>&lt;<span class="title">GregorianCalendar</span>&gt;</span>&#123;&#125; <span class="comment">// 错误</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>但是如下又是合法的</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Calendar</span> <span class="keyword">implements</span> <span class="title">Comparable</span></span>&#123;&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">GregorianCalendar</span> <span class="keyword">extends</span> <span class="title">Calendar</span> <span class="keyword">implements</span> <span class="title">Comparable</span></span>&#123;&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>很有可能是桥方法有关,不可能有两个一样的桥方法(因为两个接口其实是一个接口的不同参数化,桥方法的方法签名是一致的)</p>
+</li>
+</ul>
+<hr>
+<h3 id="泛型类型的继承规则"><a href="#泛型类型的继承规则" class="headerlink" title="泛型类型的继承规则"></a>泛型类型的继承规则</h3><blockquote>
+<p>例如 父子类: Human Student  那么 Pair<human> Pair<student> 是继承(inherit)关系么,答案是否定的!!</student></human></p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Pair&lt;Human&gt; humans = <span class="keyword">new</span> Pair&lt;Human&gt;(man, woman);</span><br><span class="line">Pair&lt;Student&gt; classmates = humans;<span class="comment">// illegal, but suppose it wasn't</span></span><br><span class="line">classmates.setSecond(junior) <span class="comment">// 如果上面合法,那么这里是肯定可以执行的, 因为泛型类型变成了Student</span></span><br><span class="line"><span class="comment">//那么就有了问题了,原有的人类类型限制的对象中,出现了小学生</span></span><br><span class="line"><span class="comment">//所以不允许这样的类型变量约束的类进行多态</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 但是数组可以这样写是因为数组会有自己的检查保护</span></span><br><span class="line">Human[] humans = &#123;man, woman&#125;;</span><br><span class="line">Student[] students = humans;</span><br><span class="line">students[<span class="number">0</span>] = junior ;<span class="comment">// 虚拟机将抛出 ArrayStoreException 异常</span></span><br></pre></td></tr></table></figure>
+<hr>
+<blockquote>
+<p>永远可以将参数化类型转换为一个原始类型, Pair<human> 是原始类型Pair的一个子类型,转换成原始类型也会产生错误<br><a href="https://github.com/Kuangcp/JavaBase/blob/master/src/test/java/com/generic/simple/PairTest.java" target="_blank" rel="noopener">相关测试类</a><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Pair&lt;Human&gt; humans = <span class="keyword">new</span> Pair&lt;Human&gt;(man, woman);</span><br><span class="line">Pair other = humans;</span><br><span class="line">other.setFirst(<span class="keyword">new</span> String(<span class="string">"wtf"</span>))<span class="comment">// 只是会有一个编译时的警告(类型未检查),但实际上都看得出这明显是错误的</span></span><br><span class="line"><span class="comment">// 那么在后续代码中继续当做Human对象进行引用,必然就会有ClassCastException</span></span><br><span class="line"><span class="comment">// 所以这样的写法尽量避免,这里的设计 就失去了泛型程序设计提供的附加安全性.(挖的坑)</span></span><br></pre></td></tr></table></figure></human></p>
+</blockquote>
+<hr>
+<blockquote>
+<p>泛型类可以扩展或实现其他的泛型类,就这一点而言,和普通类没有什么区别</p>
+</blockquote>
+<ul>
+<li>例如 ArrayList<t> 实现List<t>接口, 这意味着一个ArrayList<student>可以转换为List<studnet> <ul>
+<li>但是一个ArrayList<student>不是ArrayList<human>或者List<student>.</student></human></student></li>
+</ul>
+</studnet></student></t></t></li>
+</ul>
+<hr>
+<h3 id="通配符类型"><a href="#通配符类型" class="headerlink" title="通配符类型"></a>通配符类型</h3><h4 id="子类型限定的通配符-extends"><a href="#子类型限定的通配符-extends" class="headerlink" title="子类型限定的通配符 extends"></a>子类型限定的通配符 extends</h4><blockquote>
+<p>通配符上限  顾名思义,就是限定为该类及其子类, 例如: <code>Pair&lt;? extends Human&gt;</code> 表示任何Pair泛型类型并且他的类型变量要为Human的子类  </p>
+</blockquote>
+<blockquote>
+<p>例如编写一个方法 <code>public static void printMessage(Pair&lt;Human&gt; human){}</code><br>正如上面所说, Pair<student>类型的变量是不能放入这个方法的,因为泛型变量是没有继承关系, 这时候就可以使用这个通配符:  </student></p>
+<blockquote>
+<p><code>public static void printMessage(Pair&lt;? extends Human&gt;)</code> 可以get不能set<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Pair&lt;Human&gt; humans = <span class="keyword">new</span> Pair&lt;Human&gt;(man, woman);</span><br><span class="line">Pair&lt;? extends Human&gt; classmates = humans;<span class="comment">// 编译通过</span></span><br><span class="line">classmates.setSecond(junior) <span class="comment">// 编译错误,泛型约束起作用了</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 分析其泛型类实现可以理解为:</span></span><br><span class="line">? <span class="function">extends Human <span class="title">getFirst</span><span class="params">()</span></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setFirst</span><span class="params">(? extends Human)</span></span></span><br><span class="line"><span class="function"><span class="comment">// 这样的话是不可能调用setFirst方法, 对于编译器来说,只是知道入参是Human的子类,但是类型并不明确,所以不能正常调用</span></span></span><br><span class="line"><span class="function"><span class="comment">// 使用get方法就不会有问题, 泛型起作用了.将get返回值赋值给Human的引用也是完全合法的,这就是引入该统通配符的关键之处</span></span></span><br></pre></td></tr></table></figure></p>
+</blockquote>
+</blockquote>
+<h4 id="超类型限定的通配符-super"><a href="#超类型限定的通配符-super" class="headerlink" title="超类型限定的通配符 super"></a>超类型限定的通配符 super</h4><blockquote>
+<p>通配符下限  顾名思义就是限定为父类, 通配符限定和类型变量限定十分相似, 但是可以指定一个超类型限定(supertype bound)<br><code>? super Student</code> 这个通配符就限定为Student的所有超类型(super关键字已经十分准确的描述了这种关系)  </p>
+<blockquote>
+<p>带有超类型限定的通配符的行为和前者相反,可以为方法提供参数,但不能使用返回值即 可以 set 但是不能get</p>
+</blockquote>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Pair&lt;? super Student&gt; 例如这种定义</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setFirst</span><span class="params">(? <span class="keyword">super</span> Student)</span></span></span><br><span class="line"><span class="function">? <span class="keyword">super</span> Student <span class="title">getFirst</span><span class="params">()</span></span></span><br><span class="line"><span class="function"><span class="comment">// 编译器不知道setFirst方法的确切类型,但是可以用任意Student对象(或子类型) 调用他, 而不能使用Human对象调用.</span></span></span><br><span class="line"><span class="function"><span class="comment">// 然而,如果调用getFirst,泛型没有起作用,只能将返回值用Object接收</span></span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><a href="https://github.com/Kuangcp/JavaBase/blob/master/src/test/java/com/generic/simple/PairTest.java" target="_blank" rel="noopener">以上两种情况的相关测试类</a> </p>
+</blockquote>
+<blockquote>
+<p>总结: 类定义上的泛型变量:  </p>
+<blockquote>
+<p>子类型限定: &lt;? extends Human&gt; 是限定了不能set,但是保证了get<br>超类型限定: &lt;? super Student&gt; 限定了不能正确get,但是保证了set.  </p>
+</blockquote>
+</blockquote>
+<h5 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h5><blockquote>
+<p><a href="https://www.ibm.com/developerworks/cn/java/j-jtp04298.html" target="_blank" rel="noopener">参考博客: 使用通配符简化泛型使用</a></p>
+</blockquote>
+<ul>
+<li><p>示例1:<code>public static &lt;T extends Comparable&lt;T&gt;&gt; T min(T[] list);</code></p>
+<ul>
+<li>限定了入参和返回值是 是实现了Comparable接口的某个类型 因为Comparable也是一个泛型类, 所以也进行限定类型</li>
+<li>这样的写法要比 T extends Comparable 更为彻底</li>
+<li>例如计算一个String数组的最小值 T 就是 String类型的, String是Comparable<string>的子类型<ul>
+<li>但是当处理GregorianCalendar, GregorianCalendar是Calendar的子类, 并且Calendar实现了<code>Comparable&lt;Calendar&gt;</code></li>
+<li>因此GregorianCalendar实现的是<code>Comparable&lt;Calendar&gt;</code>, 而不是Comparable<gregoriancalendar></gregoriancalendar></li>
+<li>这种情况下 <code>public static &lt;T extends Comparable&lt;? super T&gt;&gt; T min(T[] list)</code> 就是安全的</li>
+</ul>
+</string></li>
+</ul>
+</li>
+<li><p>示例2: <code>public static &lt;T extends ExcelTransform&gt; List&lt;T&gt; importExcel(Class&lt;T&gt; target)</code></p>
+<ul>
+<li>该方法实现了, 传入继承了ExcelTransform接口的类对象, 得到该类的List集合</li>
+<li><code>&lt;T extends ExcelTransform&gt; boolean</code> 这样写编译没报错, 那么就是说, 就是一个泛型的定义, 后面进行引用, 省的重复写</li>
+<li>简单的写法就是 <code>public static &lt;T&gt; List&lt;T&gt; importExcel(Class&lt;T&gt; target)</code></li>
+</ul>
+</li>
+<li><p>示例3: Spring4.x 添加的泛型依赖注入 , 使用的JPA就是依赖该技术   <a href="http://blog.csdn.net/u010837612/article/details/45582043" target="_blank" rel="noopener">spring学习笔记（14）——泛型依赖注入</a></p>
+</li>
+</ul>
+<blockquote>
+<p>对于应用程序员, 可能很快的学会掩盖这些声明, 想当然地认为库程序员做的都是正确的, 如果是一名库程序员, 一定要习惯于通配符<br>否则还要用户在代码中随意地添加强制类型转换直至可以通过编译.</p>
+</blockquote>
+<h4 id="无限定通配符"><a href="#无限定通配符" class="headerlink" title="无限定通配符"></a>无限定通配符</h4><blockquote>
+<p>TODO 对其使用场景 尚有疑问,以后再解</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 例如 Pair&lt;?&gt;</span></span><br><span class="line">? getFirst() <span class="comment">// 方法的返回值只能赋值给一个Object</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setFirst</span><span class="params">(?)</span> <span class="comment">// 方法不能被调用,甚至不能用Object调用.</span></span></span><br><span class="line"><span class="function"><span class="comment">// Pair&lt;?&gt; 和 Pair 本质的不同在于: 可以用任意Object对象调用原始的Pair类的setObject(set方法,因为类型擦除 入参是Object, 简称setObject)方法</span></span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>例如 <a href="https://github.com/Kuangcp/JavaBase/blob/master/src/test/java/com/generic/simple/PairTest.java" target="_blank" rel="noopener">这个hasNull()方法</a>用来测试一个pair是否包含了指定的对象, 他不需要实际的类型.</li>
+</ul>
+<h4 id="通配符捕获"><a href="#通配符捕获" class="headerlink" title="通配符捕获"></a>通配符捕获</h4><blockquote>
+<p>TODO 学习和理解使用场景</p>
+</blockquote>
+<ul>
+<li><p>如果编写一个交换的方法  </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">swap</span> <span class="params">(Pair&lt;?&gt; p)</span></span>&#123;</span><br><span class="line">    ? temp = p.getFirst(); <span class="comment">// 错误, 不允许将?作为类型</span></span><br><span class="line">    p.setFirst(p.getSecond());</span><br><span class="line">    p.setSecond(temp);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>但是可以编写一个辅助方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; <span class="function"><span class="keyword">void</span> <span class="title">swapHelper</span><span class="params">(Pair&lt;T&gt; p)</span></span>&#123;</span><br><span class="line">    T temp = p.getFirst();</span><br><span class="line">    p.setFirst(p.getSecond());</span><br><span class="line">    p.setSecond(temp);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>swapHelper是一个泛型方法, 而swap不是, 它具有固定的Pair&lt;?&gt;类型的参数, 那么现在就可以这样写:</p>
+<ul>
+<li><code>public static void swap(Pair&lt;?&gt; p){swapHelper(p);}</code></li>
+<li>这种情况下, swapHelper方法的参数T捕获通配符, 它不知道是哪种类型的通配符,但是这是一个明确的类型 并且<t>swapHelper 在T指出类型时,才有明确的含义</t></li>
+<li>当然,这种情况下并不是一定要用通配符, 而且我们也实现了没有通配符的泛型方法</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>但是下面这个通配符类型出现在计算结果中间的示例</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">maxMinBonus</span><span class="params">(Student[] students, Pair&lt;? <span class="keyword">super</span> Student&gt; result)</span></span>&#123;</span><br><span class="line">    minMaxBonus(students, result);</span><br><span class="line">    swapHelper(result);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 在这里,通配符捕获机制是不可避免的, 但是这种捕获只有在许多限制情况下才是合法的.</span></span><br><span class="line"><span class="comment">// 对于编译器而言, 必须能够确信通配符表达的是单个, 确定的类型.</span></span><br></pre></td></tr></table></figure>
+<h3 id="反射和泛型"><a href="#反射和泛型" class="headerlink" title="反射和泛型"></a>反射和泛型</h3><blockquote>
+<p><a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Class.html" target="_blank" rel="noopener">官方Java7的Class文档</a> | <a href=""></a><br>现在Class类是泛型的, 例如String.class实际上是Class<string>类的对象(事实上是唯一的对象)<br>类型参数十分有用, 这是因为他允许Class<t>方法的返回类型更加具有针对性.下面Class<t>的方法就使用了类型参数<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">T <span class="title">newInstance</span><span class="params">()</span></span></span><br><span class="line"><span class="function">T <span class="title">cast</span><span class="params">(Object obj)</span></span></span><br><span class="line"><span class="function">T[] <span class="title">getEnumConstants</span><span class="params">()</span></span></span><br><span class="line"><span class="function">Class&lt;? <span class="keyword">super</span> T&gt; <span class="title">getSuperclass</span><span class="params">()</span></span></span><br><span class="line"><span class="function">Constructor&lt;T&gt; <span class="title">getConstructor</span><span class="params">(Class... paramterTypes)</span></span></span><br><span class="line"><span class="function">Constructor&lt;T&gt; <span class="title">getDeclaredConstructor</span><span class="params">(Class... paramterTypes)</span></span></span><br></pre></td></tr></table></figure></t></t></string></p>
+</blockquote>
+<ul>
+<li>newInstance方法返回一个示例, 这个实例所属的类由默认的构造器获得, 它的返回类型目前被声明为T, 其类型与Class<t>描述的类相同, 这样就免除了类型转换.</t></li>
+<li>如果给定的类型确实是T的一个子类型, cast方法就会返回一个现在声明为类型T的对象, 否则, 抛出一个BadCastException异常</li>
+<li>如果这个类不是enum类或类型T的枚举值的数组, getEnumConstants方法将返回Null.</li>
+<li>最后, getConstructor与getDeclaredConstructor方法返回一个Constructor<t>对象.Constructor类也已经变成泛型, 以便 newInstance方法有一个正确的返回类型.</t></li>
+</ul>
+<p>TODO 还要继续看书</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 传入一个Class对象, 得到Class对应类型的实例</span></span><br><span class="line"><span class="keyword">public</span> &lt;T&gt; <span class="function">T <span class="title">get</span><span class="params">(Class&lt;T&gt; target, String name)</span></span>;</span><br><span class="line"><span class="comment">// 加上约束</span></span><br><span class="line"><span class="keyword">public</span> &lt;T extends Runable&gt; <span class="function">T <span class="title">get</span><span class="params">(Class&lt;T&gt; target, String name)</span></span>;</span><br></pre></td></tr></table></figure>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2018-12-16T09:11:25.585Z" itemprop="dateUpdated">2018-12-16 17:11:25</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2018/12/16/Memo-Java-AdvancedLearning-Generics/" target="_blank" rel="external">http://blog.kuangcp.top/2018/12/16/Memo-Java-AdvancedLearning-Generics/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="http://blog.kuangcp.top">
+            <img src="/img/avatar.jpg" alt="Kuangcp">
+            Kuangcp
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/泛型/">泛型</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.kuangcp.top/2018/12/16/Memo-Java-AdvancedLearning-Generics/&title=《Java泛型》 — Kuangcp Blog&pic=http://blog.kuangcp.top/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.kuangcp.top/2018/12/16/Memo-Java-AdvancedLearning-Generics/&title=《Java泛型》 — Kuangcp Blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.kuangcp.top/2018/12/16/Memo-Java-AdvancedLearning-Generics/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Java泛型》 — Kuangcp Blog&url=http://blog.kuangcp.top/2018/12/16/Memo-Java-AdvancedLearning-Generics/&via=http://blog.kuangcp.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.kuangcp.top/2018/12/16/Memo-Java-AdvancedLearning-Generics/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/12/16/Memo-Java-Tool-Gradle/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Gradle.md</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/12/16/Memo-Java-AdvancedLearning-ClassFile/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Java字节码</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check" data-wechat="/img/wechat.png" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style="display:none">
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style="display:none">
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Kuangcp &copy; 2015 - 2018</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">赣ICP备17014189号-1</a><br>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.kuangcp.top/2018/12/16/Memo-Java-AdvancedLearning-Generics/&title=《Java泛型》 — Kuangcp Blog&pic=http://blog.kuangcp.top/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.kuangcp.top/2018/12/16/Memo-Java-AdvancedLearning-Generics/&title=《Java泛型》 — Kuangcp Blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.kuangcp.top/2018/12/16/Memo-Java-AdvancedLearning-Generics/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Java泛型》 — Kuangcp Blog&url=http://blog.kuangcp.top/2018/12/16/Memo-Java-AdvancedLearning-Generics/&via=http://blog.kuangcp.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.kuangcp.top/2018/12/16/Memo-Java-AdvancedLearning-Generics/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACp0lEQVR42u3aQVLDMAwF0N7/0mULQ5t+SRZk8bLKQOL4mRnbfPnxiK/n+Prezu+W391fv3vswsPDwzva9XcfSzqUPHn91jU1agcPDw9vjZd0aH5//ZV3Xc/bxMPDw7sz77pbk71ulYqHh4d3f95kM50PxL8tDHh4eHgxrxe/zrfXeaywnrXg4eHhxbx8+3uf+5X6Hh4eHt7CgYAkJuiFDnnMUegtHh4e3gIvn3DnG99qwNELiPHw8PC2eb0i/TyWTUprycGvD0OMh4eH94e8fIrPt7aTrXk1UI6axsPDwxvzepN4dUKf/7awxcfDw8Nb480PPPUC1moQXP0JHh4e3h5vvlGedzcf4sLygIeHh7fGSz5Z5fXijN4hsKiyh4eHh3eIV40YeiFv7zhsdbjfPo+Hh4d3lFct0s9D3qT93nC8aAcPDw9vgZdMzb0wonogdXLoKkLi4eHhHeLlXe+VzXohRa84F22p8fDw8Ma8amGpWsqqBrV58FH4Ch4eHt5RXq+hU5HBJJKIlg08PDy8BV61WtQrdM23y5NwGQ8PD+8sb7LlTULeSUBcvQp/MTw8PLwBL5ncJ8Fu9aBAsiyVgw88PDy8BV4eBFRLXL3SV9LdcoSBh4eHt8zrdSgvUE2Cj7xlPDw8vD3e2WMBvaiiF0xEywMeHh7eMi8pOPWih95wVKPkF1Q8PDy8NV4O6y0D1Yg2L4Z9eBIPDw/vKO9ZvJKNbG9yP9Xyj3fx8PDwFnjVI035pF89QDC5P3Dh4eHhFXm9xSCZ9HuHD5LvFrbgeHh4eGu83jmlSVCbLBi9BQwPDw/vbrxq+HvdZnUQqwsGHh4e3h14yfOTAlsyHPnBLDw8PLw9XnVbnEcJeVfy4lnhLTw8PLwFXu+f/O0I41jX8fDw8E7yvgCDNkEFvFXEUAAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

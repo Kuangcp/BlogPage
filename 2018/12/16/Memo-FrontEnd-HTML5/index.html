@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>HTML5.md | Kuangcp Blog | Javaer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="H5">
+    <meta name="description" content="目录 start  HTML5 参考资料 特俗字符 基础结构标签 head meta title base link style   script 常用结构 form label 关于引用 插入和删除     数据存储 cookie LocalStorage和SessionStorage 清除       XML XML文件头含义 XML的元素    目录 end|2018-12-13 12:06">
+<meta name="keywords" content="H5">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HTML5.md">
+<meta property="og:url" content="http://blog.kuangcp.top/2018/12/16/Memo-FrontEnd-HTML5/index.html">
+<meta property="og:site_name" content="Kuangcp Blog">
+<meta property="og:description" content="目录 start  HTML5 参考资料 特俗字符 基础结构标签 head meta title base link style   script 常用结构 form label 关于引用 插入和删除     数据存储 cookie LocalStorage和SessionStorage 清除       XML XML文件头含义 XML的元素    目录 end|2018-12-13 12:06">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-12-16T09:11:25.581Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="HTML5.md">
+<meta name="twitter:description" content="目录 start  HTML5 参考资料 特俗字符 基础结构标签 head meta title base link style   script 常用结构 form label 关于引用 插入和删除     数据存储 cookie LocalStorage和SessionStorage 清除       XML XML文件头含义 XML的元素    目录 end|2018-12-13 12:06">
+    
+        <link rel="alternate" type="application/atom+xml" title="Kuangcp Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Kuangcp</h5>
+          <a href="mailto:kuangcp@aliyun.com" title="kuangcp@aliyun.com" class="mail">kuangcp@aliyun.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/">
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives">
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags">
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories">
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/kuangcp" target="_blank">
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">HTML5.md</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">HTML5.md</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-12-16T09:11:25.581Z" itemprop="datePublished" class="page-time">
+  2018-12-16
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/前端/">前端</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#HTML5"><span class="post-toc-number">1.</span> <span class="post-toc-text">HTML5</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#参考资料"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">参考资料</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#特俗字符"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">特俗字符</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#基础结构标签"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">基础结构标签</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#head"><span class="post-toc-number">1.3.1.</span> <span class="post-toc-text">head</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#meta"><span class="post-toc-number">1.3.1.1.</span> <span class="post-toc-text">meta</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#title"><span class="post-toc-number">1.3.1.2.</span> <span class="post-toc-text">title</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#base"><span class="post-toc-number">1.3.1.3.</span> <span class="post-toc-text">base</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#link"><span class="post-toc-number">1.3.1.4.</span> <span class="post-toc-text">link</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#style"><span class="post-toc-number">1.3.1.5.</span> <span class="post-toc-text">style</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#script"><span class="post-toc-number">1.3.2.</span> <span class="post-toc-text">script</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#常用结构"><span class="post-toc-number">1.3.3.</span> <span class="post-toc-text">常用结构</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#form"><span class="post-toc-number">1.3.3.1.</span> <span class="post-toc-text">form</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#label"><span class="post-toc-number">1.3.3.2.</span> <span class="post-toc-text">label</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#关于引用"><span class="post-toc-number">1.3.3.3.</span> <span class="post-toc-text">关于引用</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#插入和删除"><span class="post-toc-number">1.3.3.4.</span> <span class="post-toc-text">插入和删除</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#数据存储"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">数据存储</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#cookie"><span class="post-toc-number">1.4.1.</span> <span class="post-toc-text">cookie</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#LocalStorage和SessionStorage"><span class="post-toc-number">1.4.2.</span> <span class="post-toc-text">LocalStorage和SessionStorage</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#清除"><span class="post-toc-number">1.4.2.1.</span> <span class="post-toc-text">清除</span></a></li></ol></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#XML"><span class="post-toc-number">2.</span> <span class="post-toc-text">XML</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#XML文件头含义"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">XML文件头含义</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#XML的元素"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">XML的元素</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-Memo-FrontEnd-HTML5" class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">HTML5.md</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-12-16 17:11:25" datetime="2018-12-16T09:11:25.581Z" itemprop="datePublished">2018-12-16</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/前端/">前端</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style="display:none">
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p><strong>目录 start</strong></p>
+<ol>
+<li><a href="#html5">HTML5</a><ol>
+<li><a href="#参考资料">参考资料</a></li>
+<li><a href="#特俗字符">特俗字符</a></li>
+<li><a href="#基础结构标签">基础结构标签</a><ol>
+<li><a href="#head">head</a><ol>
+<li><a href="#meta">meta</a></li>
+<li><a href="#title">title</a></li>
+<li><a href="#base">base</a></li>
+<li><a href="#link">link</a></li>
+<li><a href="#style">style</a></li>
+</ol>
+</li>
+<li><a href="#script">script</a></li>
+<li><a href="#常用结构">常用结构</a><ol>
+<li><a href="#form">form</a></li>
+<li><a href="#label">label</a></li>
+<li><a href="#关于引用">关于引用</a></li>
+<li><a href="#插入和删除">插入和删除</a></li>
+</ol>
+</li>
+</ol>
+</li>
+<li><a href="#数据存储">数据存储</a><ol>
+<li><a href="#cookie">cookie</a></li>
+<li><a href="#localstorage和sessionstorage">LocalStorage和SessionStorage</a><ol>
+<li><a href="#清除">清除</a></li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li><a href="#xml">XML</a><ol>
+<li><a href="#xml文件头含义">XML文件头含义</a></li>
+<li><a href="#xml的元素">XML的元素</a></li>
+</ol>
+</li>
+</ol>
+<p><strong>目录 end</strong>|<em>2018-12-13 12:06</em>| <a href="https://gitee.com/gin9" target="_blank" rel="noopener">码云</a> | <a href="http://blog.csdn.net/kcp606" target="_blank" rel="noopener">CSDN</a> | <a href="https://my.oschina.net/kcp1104" target="_blank" rel="noopener">OSChina</a> | <a href="http://www.cnblogs.com/kuangcp" target="_blank" rel="noopener">cnblogs</a></p>
+<hr>
+<h1 id="HTML5"><a href="#HTML5" class="headerlink" title="HTML5"></a>HTML5</h1><h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><blockquote>
+<p><a href="http://www.runoob.com/html/html5-intro.html" target="_blank" rel="noopener">HTML5 教程 | 菜鸟教程</a><br><a href="http://www.w3school.com.cn/html5/" target="_blank" rel="noopener">HTML5 教程 | W3School</a></p>
+</blockquote>
+<h2 id="特俗字符"><a href="#特俗字符" class="headerlink" title="特俗字符"></a>特俗字符</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">空格:&amp;nbsp;代表一个半角空格</span><br><span class="line"><span class="tag">&lt; <span class="attr">:</span>&amp;<span class="attr">lt</span>;</span></span><br><span class="line"><span class="tag">&gt;</span> :&amp;gt;</span><br><span class="line">&amp; ：&amp;amp;</span><br><span class="line">￥ :&amp;yen;</span><br><span class="line">× :&amp;times</span><br><span class="line">÷ ：&amp;divide;</span><br></pre></td></tr></table></figure>
+<h2 id="基础结构标签"><a href="#基础结构标签" class="headerlink" title="基础结构标签"></a>基础结构标签</h2><h3 id="head"><a href="#head" class="headerlink" title="head"></a>head</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span> 元素是所有头部元素的容器。<span class="tag">&lt;<span class="name">head</span>&gt;</span> 内的元素可包含脚本，指示浏览器在何处可以找到样式表，提供元信息，等等。</span><br><span class="line">以下标签都可以添加到 head 部分：<span class="tag">&lt;<span class="name">title</span>&gt;</span>、<span class="tag">&lt;<span class="name">base</span>&gt;</span>、<span class="tag">&lt;<span class="name">link</span>&gt;</span>、<span class="tag">&lt;<span class="name">meta</span>&gt;</span>、<span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="xml"> 以及 <span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="undefined">。</span></span></span><br></pre></td></tr></table></figure>
+<h4 id="meta"><a href="#meta" class="headerlink" title="meta"></a>meta</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">元数据（metadata）是关于数据的信息。</span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span>&gt;</span> 标签提供关于 HTML 文档的元数据。元数据不会显示在页面上，但是对于机器是可读的。</span><br><span class="line">典型的情况是，meta 元素被用于规定页面的描述、关键词、文档的作者、最后修改时间以及其他元数据。</span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span>&gt;</span> 标签始终位于 head 元素中。</span><br><span class="line">元数据可用于浏览器（如何显示内容或重新加载页面），搜索引擎（关键词），或其他 web 服务。</span><br><span class="line">针对搜索引擎的关键词</span><br><span class="line">一些搜索引擎会利用 meta 元素的 name 和 content 属性来索引您的页面。</span><br><span class="line">下面的 meta 元素定义页面的描述：</span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"description"</span> <span class="attr">content</span>=<span class="string">"Free Web tutorials on HTML, CSS, XML"</span> /&gt;</span></span><br><span class="line">下面的 meta 元素定义页面的关键词：</span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"keywords"</span> <span class="attr">content</span>=<span class="string">"HTML, CSS, XML"</span> /&gt;</span></span><br><span class="line">name 和 content 属性的作用是描述页面的内容。</span><br></pre></td></tr></table></figure>
+<h4 id="title"><a href="#title" class="headerlink" title="title"></a>title</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">title</span>&gt;</span> 标签定义文档的标题。</span><br><span class="line">title 元素在所有 HTML/XHTML 文档中都是必需的。</span><br><span class="line">title 元素能够：</span><br><span class="line">    定义浏览器工具栏中的标题</span><br><span class="line">    提供页面被添加到收藏夹时显示的标题</span><br><span class="line">    显示在搜索引擎结果中的页面标题</span><br></pre></td></tr></table></figure>
+<h4 id="base"><a href="#base" class="headerlink" title="base"></a>base</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">base</span>&gt;</span> 标签为页面上的所有链接规定默认地址或默认目标（target）：</span><br></pre></td></tr></table></figure>
+<h4 id="link"><a href="#link" class="headerlink" title="link"></a>link</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">link</span>&gt;</span> 标签定义文档与外部资源之间的关系。</span><br><span class="line"><span class="tag">&lt;<span class="name">link</span>&gt;</span> 标签最常用于连接样式表：</span><br></pre></td></tr></table></figure>
+<h4 id="style"><a href="#style" class="headerlink" title="style"></a>style</h4><blockquote>
+<p><code>&lt;style&gt;</code> 标签用于为 HTML 文档定义样式信息。您可以在 style 元素内规定 HTML 元素在浏览器中呈现的样式：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">"text/css"</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="undefined">    body &#123;background-color:yellow&#125;</span></span><br><span class="line"><span class="undefined">    p &#123;color:blue&#125;</span></span><br><span class="line"><span class="undefined">  </span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<h3 id="script"><a href="#script" class="headerlink" title="script"></a>script</h3><p><code>&lt;script&gt; 标签用于定义客户端脚本，比如 JavaScript。</code></p>
+<hr>
+<blockquote>
+<p>以上的link script style 等引用外部资源的标签要注意路径问题</p>
+<ol>
+<li>/ 开头则是相对于项目的根路径来定位的</li>
+<li>开头为空,就是相对于该页面的的相对路径.<code>被URL尾部多输入一个/坑过,所以最好采用第一种稳妥</code></li>
+<li>..开头就是相对于该页面的相对父路径</li>
+</ol>
+</blockquote>
+<h3 id="常用结构"><a href="#常用结构" class="headerlink" title="常用结构"></a>常用结构</h3><h4 id="form"><a href="#form" class="headerlink" title="form"></a>form</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">"save.php"</span> <span class="attr">method</span>=<span class="string">"post"</span> &gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">label</span>&gt;</span>爱好:<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">select</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">"看书"</span>&gt;</span>看书<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">"旅游"</span>&gt;</span>旅游<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">"运动"</span>&gt;</span>运动<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">"购物"</span>&gt;</span>购物<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="label"><a href="#label" class="headerlink" title="label"></a>label</h4><p>label标签不会向用户呈现任何特殊效果，它的作用是为鼠标用户改进了可用性。如果你在 label 标签内点击文本，就会触发此控件。<br>就是说，当用户单击选中该label标签时，浏览器就会自动将焦点转到和标签相关的表单控件上（就自动选中和该label标签相关连的表单控件上）。<br>注意：标签的 for 属性中的值应当与相关控件的 id 属性值一定要相同。</p>
+<h4 id="关于引用"><a href="#关于引用" class="headerlink" title="关于引用"></a>关于引用</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">blockquote</span>&gt;</span>这是长的引用。<span class="tag">&lt;/<span class="name">blockquote</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">q</span>&gt;</span>这是短的引用。<span class="tag">&lt;/<span class="name">q</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><code>使用 blockquote 元素的话，浏览器会插入换行和外边距，而 q 元素不会有任何特殊的呈现。</code></p>
+<h4 id="插入和删除"><a href="#插入和删除" class="headerlink" title="插入和删除"></a>插入和删除</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>一打有 <span class="tag">&lt;<span class="name">del</span>&gt;</span>二十<span class="tag">&lt;/<span class="name">del</span>&gt;</span> <span class="tag">&lt;<span class="name">ins</span>&gt;</span>十二<span class="tag">&lt;/<span class="name">ins</span>&gt;</span> 件。<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="数据存储"><a href="#数据存储" class="headerlink" title="数据存储"></a>数据存储</h2><h3 id="cookie"><a href="#cookie" class="headerlink" title="cookie"></a>cookie</h3><h3 id="LocalStorage和SessionStorage"><a href="#LocalStorage和SessionStorage" class="headerlink" title="LocalStorage和SessionStorage"></a>LocalStorage和SessionStorage</h3><blockquote>
+<p><a href="http://www.cnblogs.com/st-leslie/p/5617130.html" target="_blank" rel="noopener">基础详细的一篇博客</a></p>
+</blockquote>
+<h4 id="清除"><a href="#清除" class="headerlink" title="清除"></a>清除</h4><blockquote>
+<p><a href="https://segmentfault.com/q/1010000000123500" target="_blank" rel="noopener">HTML5中的localStorage什么时候会被清空?</a><br><a href="http://www.zhangxinxu.com/wordpress/2012/09/%E7%BF%BB%E8%AF%91%EF%BC%9A%E6%B8%85%E9%99%A4%E5%90%84%E4%B8%AA%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%AD%E7%9A%84%E6%95%B0%E6%8D%AE%E7%A0%94%E7%A9%B6/" target="_blank" rel="noopener">翻译：清除各个浏览器中的数据研究</a></p>
+</blockquote>
+<ul>
+<li>自己在火狐中尝试了下,清除 网络内容缓存 对localStorage没有影响</li>
+</ul>
+<hr>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br><span class="line">307</span><br><span class="line">308</span><br><span class="line">309</span><br><span class="line">310</span><br><span class="line">311</span><br><span class="line">312</span><br><span class="line">313</span><br><span class="line">314</span><br><span class="line">315</span><br><span class="line">316</span><br><span class="line">317</span><br><span class="line">318</span><br><span class="line">319</span><br><span class="line">320</span><br><span class="line">321</span><br><span class="line">322</span><br><span class="line">323</span><br><span class="line">324</span><br><span class="line">325</span><br><span class="line">326</span><br><span class="line">327</span><br><span class="line">328</span><br><span class="line">329</span><br><span class="line">330</span><br><span class="line">331</span><br><span class="line">332</span><br><span class="line">333</span><br><span class="line">334</span><br><span class="line">335</span><br><span class="line">336</span><br><span class="line">337</span><br><span class="line">338</span><br><span class="line">339</span><br><span class="line">340</span><br><span class="line">341</span><br><span class="line">342</span><br><span class="line">343</span><br><span class="line">344</span><br><span class="line">345</span><br><span class="line">346</span><br><span class="line">347</span><br><span class="line">348</span><br><span class="line">349</span><br><span class="line">350</span><br><span class="line">351</span><br><span class="line">352</span><br><span class="line">353</span><br><span class="line">354</span><br><span class="line">355</span><br><span class="line">356</span><br><span class="line">357</span><br><span class="line">358</span><br></pre></td><td class="code"><pre><span class="line">1.为了确保浏览器能够正确读取字符的编码，整个字符编码必须放置在文档的前512个字符中</span><br><span class="line">2.HTML中不需要声明JavaScript的type属性</span><br><span class="line"></span><br><span class="line">刷新iframe 的父页面</span><br><span class="line">  iframe页面是内嵌到父页面的，当点击iframe页面的服务器控件时，默认只刷新iframe页面，父页面是不会刷新的。若想刷新父页面，可以使用js来实现，如</span><br><span class="line">     1. parent.location.reload();</span><br><span class="line">     这种方法会重新加载整个页面。但如果要在原页面的基础上传递参数，则可以使用下面的方法：</span><br><span class="line">     2.top.document.location.href='xxx.aspx?id=xx'。</span><br><span class="line">     但这两种方法都有一个共同的缺点，就是iframe内嵌页面的状态不会保存了，刷新后会重新回到第一次加载的状态。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">=========================1、输入框点击清空==============</span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">name</span>=<span class="string">"textfield"</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">id</span>=<span class="string">"textfield"</span> <span class="attr">value</span>=<span class="string">"请输入内容"</span> <span class="attr">onclick</span>=<span class="string">"this.value=''"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">2、输入框点击显示提示内容</span><br><span class="line"></span><br><span class="line">操作：鼠标点击输入框出现提示内容，再次点击清空内容可以进行输入。</span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"textfield2"</span> <span class="attr">id</span>=<span class="string">"textfield2"</span> <span class="attr">onblur</span>=<span class="string">"note_click(this);"</span> <span class="attr">onclick</span>=<span class="string">"note_click(this)"</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript">  <span class="function"><span class="keyword">function</span> <span class="title">note_click</span>(<span class="params">target</span>)</span></span></span><br><span class="line"><span class="undefined">  &#123;</span></span><br><span class="line"><span class="javascript">   <span class="keyword">if</span>(target.value==<span class="string">''</span>)</span></span><br><span class="line"><span class="undefined">   &#123;</span></span><br><span class="line"><span class="javascript">    target.style.color=<span class="string">"#B0B0B0"</span>;</span></span><br><span class="line"><span class="javascript">    target.value=<span class="string">"请输入数字"</span>;</span></span><br><span class="line"><span class="undefined">   &#125;</span></span><br><span class="line"><span class="javascript">   <span class="keyword">else</span> <span class="keyword">if</span>(target.value==<span class="string">"请输入数字"</span>)</span></span><br><span class="line"><span class="undefined">   &#123;</span></span><br><span class="line"><span class="javascript">    target.style.color=<span class="string">"#000000"</span>;</span></span><br><span class="line"><span class="javascript">    target.value=<span class="string">""</span>;</span></span><br><span class="line"><span class="undefined">   &#125;</span></span><br><span class="line"><span class="undefined">  &#125;</span></span><br><span class="line"><span class="undefined"> </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"> ====================================【HTML标签笔记】==========================================</span><br><span class="line">                                    </span><br><span class="line"><span class="tag">&lt;<span class="name">i</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span>：斜体</span><br><span class="line"><span class="tag">&lt;<span class="name">u</span>&gt;</span><span class="tag">&lt;/<span class="name">u</span>&gt;</span>：下划线</span><br><span class="line"><span class="tag">&lt;<span class="name">b</span>&gt;</span><span class="tag">&lt;/<span class="name">b</span>&gt;</span>:粗体</span><br><span class="line"><span class="tag">&lt;<span class="name">strong</span>&gt;</span><span class="tag">&lt;/<span class="name">strong</span>&gt;</span>:更粗</span><br><span class="line"><span class="tag">&lt;<span class="name">s</span>&gt;</span><span class="tag">&lt;/<span class="name">s</span>&gt;</span>:删除线</span><br><span class="line"><span class="tag">&lt;<span class="name">sup</span>&gt;</span><span class="tag">&lt;/<span class="name">sup</span>&gt;</span>上标</span><br><span class="line"><span class="tag">&lt;<span class="name">sub</span>&gt;</span><span class="tag">&lt;/<span class="name">sub</span>&gt;</span>下标</span><br><span class="line">face:字体设置</span><br><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">align</span>=<span class="string">"right"</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span>  //align：设置水平对齐方式</span><br><span class="line"><span class="tag">&lt;<span class="name">hr</span>&gt;</span>：水平线</span><br><span class="line">noshade:去掉阴影部分</span><br><span class="line"><span class="tag">&lt;<span class="name">pre</span>&gt;</span><span class="tag">&lt;/<span class="name">pre</span>&gt;</span>:预排版标记</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">HTML项目符号</span><br><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">li</span>&gt;</span>  </span><br><span class="line"><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line">常用属性type，取值：disc代表小黑点，circle代表空心圆，square代表实心方块</span><br><span class="line">注意：<span class="tag">&lt;<span class="name">ul</span>&gt;</span>和<span class="tag">&lt;<span class="name">li</span>&gt;</span>是块元素</span><br><span class="line"></span><br><span class="line">HTML是编号列表（有序列表）</span><br><span class="line"><span class="tag">&lt;<span class="name">ol</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ol</span>&gt;</span></span><br><span class="line">常用属性：type和start</span><br><span class="line"></span><br><span class="line">滚动字幕标记<span class="tag">&lt;<span class="name">marquee</span>&gt;</span></span><br><span class="line">常用属性：direction:滚动方向，取值：up,down,left,right</span><br><span class="line">          width:滚动宽度</span><br><span class="line">          height:滚动高度</span><br><span class="line">          bgcolor:滚动背景色</span><br><span class="line">          scrollamount:滚动步长值</span><br><span class="line">          scrolldelay:两步之间的停留时间，以毫秒为单位，1s=1000毫秒</span><br><span class="line">          loop:循环滚动次数</span><br><span class="line">图片标记</span><br><span class="line"><span class="tag">&lt;<span class="name">img</span> 属性=<span class="string">"值"</span>&gt;</span></span><br><span class="line">常用属性:height</span><br><span class="line">         width</span><br><span class="line">         align:left/center/right</span><br><span class="line">         src（图片路径/相对路径）</span><br><span class="line">         Hspace:图片与左右文字之间的距离（水平距离）</span><br><span class="line">         Vspace:图片与上下文字之间的距离（垂直距离）</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">超级链接 (行内元素)</span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> 属性=<span class="string">"值"</span>&gt;</span>.......<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">  href：目标文件的地址URL，该URL可以是相对地址，也可以是绝对地址</span><br><span class="line">  target:目标文件的显示窗口</span><br><span class="line">         _blank:在新窗口中打开目标文件</span><br><span class="line">         _self:在当前窗口中打开（默认打开），相当于“替换”操作。</span><br><span class="line">         -parent:在父级窗口来打开目标文件</span><br><span class="line">         _top：在顶级窗口来打开目标文件。</span><br><span class="line">         1.（1）远程的绝对地址</span><br><span class="line"> 访问远程的文件，总是以域名、开机名开头</span><br><span class="line">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"http://xxx.com"</span>&gt;</span>协议是http://的就是远程的绝对地址</span><br><span class="line">  (2)本地的绝对路径</span><br><span class="line">    访问本地的绝对路径，是以file:///开头的绝对地址</span><br><span class="line">2.相对地址URL</span><br><span class="line"> （1）当前文件和目标文件是同级关系</span><br><span class="line">　（２）当前文件与目标文件所在的文件夹是同级关系，先找“文件夹名”，然后再找“文件名”，也就是目标文件位于下一级。</span><br><span class="line">   (3)目标文件位于上一层目录中，往上找对应的目录，再找目录中的文件。往上找使用../符号表示</span><br><span class="line">     ../代表上一层目录</span><br><span class="line">     ../../代表上两层目录</span><br><span class="line">     ............</span><br><span class="line">  ---------特殊的链接---------</span><br><span class="line"> <span class="tag">&lt;<span class="name">a</span> 属性=<span class="string">"xx/Winrar.rar"</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span>下载Winrar解压缩文件</span><br><span class="line">   邮箱链接</span><br><span class="line">   <span class="tag">&lt;<span class="name">a</span> 属性=<span class="string">“mailto:邮箱地址”</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">  普通空链接</span><br><span class="line">  <span class="tag">&lt;<span class="name">a</span> 属性=<span class="string">"#"</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span> </span><br><span class="line">     js链接</span><br><span class="line">  <span class="tag">&lt;<span class="name">a</span> 属性=<span class="string">"javascript:window.close()"</span>&gt;</span>关闭窗口的意思<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">    ------锚点链接-------</span><br><span class="line">      含义：锚点链接，是在一个网页的不同区域进行跳转，锚点理解为“定义记号”。</span><br><span class="line">      定义锚点：<span class="tag">&lt;<span class="name">a</span>  <span class="attr">name</span>=<span class="string">"锚点名称"</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">      跳转到锚点（记号）</span><br><span class="line">       语法：<span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"锚点名称"</span>&gt;</span>........<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">        例如：<span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#锚点名称"</span>&gt;</span>.........<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  --------<span class="tag">&lt;<span class="name">meta</span>&gt;</span>标记------------</span><br><span class="line"> <span class="tag">&lt;<span class="name">meta</span>&gt;</span>的主要作用，是提供网页的元信息，比如，指定网页的搜索关键字。</span><br><span class="line"> <span class="tag">&lt;<span class="name">meta</span>&gt;</span>标记有两个属性1.http-equiv和name</span><br><span class="line">   （1）设置网页的字符集</span><br><span class="line">      <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"Content-Type"</span> <span class="attr">content</span>=<span class="string">"text/html;charset="</span><span class="attr">utf-8</span>"/&gt;</span></span><br><span class="line">   （2）网页自动刷新</span><br><span class="line">      <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"refresh"</span> <span class="attr">content</span>=<span class="string">"2"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"refresh"</span> <span class="attr">content</span>=<span class="string">"2;url=http://www.baidu.com"</span>&gt;</span>//二秒钟后，跳转到百度</span><br><span class="line">   2.name属性</span><br><span class="line">   name属性主要用于设置网页的搜索关键字、版权信息、作者等。</span><br><span class="line">    (1)设置网页搜索关键字</span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"keywords"</span> <span class="attr">content</span>=<span class="string">"关键字内容"</span>/&gt;</span></span><br><span class="line">    (2)设置网页描述信息</span><br><span class="line">      <span class="tag">&lt;<span class="name">title</span>&gt;</span><span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"description"</span> <span class="attr">content</span>=<span class="string">"描述信息内容"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">   ------XHTML简介----------</span><br><span class="line">   XHTML的目地是为了取代HTML</span><br><span class="line">   XHTML的标记和HTML一模一样</span><br><span class="line">   XHTML的语法要比HTML严格的多</span><br><span class="line">   XHTML是可扩展超文本标注预言</span><br><span class="line">    ----------XHTML编写规范--------------</span><br><span class="line">   所有标记和属性要全小写</span><br><span class="line">   单边标记必须关闭如<span class="tag">&lt;<span class="name">br</span>/&gt;</span></span><br><span class="line">   所有的属性都必须有值，如：<span class="tag">&lt;<span class="name">hr</span> <span class="attr">noshade</span>&gt;</span>-----&gt;<span class="tag">&lt;<span class="name">hr</span> <span class="attr">noshade</span>=<span class="string">"noshade"</span>/&gt;</span></span><br><span class="line">   标记之间要顺序嵌套，外层套内层，一层套一层。</span><br><span class="line">   XHTML网页必须要有DTD文档类型定义代码。</span><br><span class="line"></span><br><span class="line">     ------DTD文档类型定义------------</span><br><span class="line">   DTD文档类型定义的目地：是一种验证机制，也就是说检验一下你写的XHTML标记语言是否合法。</span><br><span class="line">   </span><br><span class="line"></span><br><span class="line">    DTD一共有三大类型</span><br><span class="line">      （1）严格型的DTD</span><br><span class="line">        在严格的DTD中，不能再使用各种表现的标记，如:<span class="tag">&lt;<span class="name">font</span>&gt;</span>、<span class="tag">&lt;<span class="name">b</span>&gt;</span>、<span class="tag">&lt;<span class="name">body</span> <span class="attr">bgcolor</span>&gt;</span>等，(要求必须使用CSS来取代各种表现标记。)</span><br><span class="line">   严格型DTD表现方式：<span class="meta">&lt;!DOCTYPE html PUBLIC"-//W3C//DTD XHTML 1.0 Strict//EN""http://www.w3.org/TR/xhtml1/DTD/xhtml-strict.dtd&gt;</span></span><br><span class="line">      (2)过渡型DTD</span><br><span class="line">         在过渡型的DTD中，可以继续使用HTML中的表现的写法。</span><br><span class="line">         这些表现标记，还可以使用。如：<span class="tag">&lt;<span class="name">font</span>&gt;</span>、<span class="tag">&lt;<span class="name">b</span>&gt;</span>、<span class="tag">&lt;<span class="name">body</span> <span class="attr">bgcolor</span>&gt;</span></span><br><span class="line">    过渡型的DTD的表达方式：<span class="meta">&lt;!DOCTYPE html PUBLIC"-//W3C//DTD XHTML 1.0 Transitional//EN""http://www.w3.org/TR/xhtml1/DTD/xhtml-Transitional.dtd&gt;</span></span><br><span class="line">      (3)框架的DTD</span><br><span class="line">    框架的DTD表现方式:<span class="meta">&lt;!DOCTYPE html PUBLIC"-//W3C//DTD XHTML 1.0 Frameset//EN""http://www.w3.org/TR/xhtml1/DTD/xhtml-frameset.dtd&gt;</span></span><br><span class="line">         ----------表格学习--------------</span><br><span class="line">   表格标签-------块元素</span><br><span class="line">    1.表格的结构</span><br><span class="line">      <span class="tag">&lt;<span class="name">table</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">tr</span>&gt;</span>  //代表的行，这里代表一行</span><br><span class="line">      <span class="tag">&lt;<span class="name">td</span>&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span>  //代表单元格</span><br><span class="line">      <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">table</span>&gt;</span></span><br><span class="line">     2.<span class="tag">&lt;<span class="name">table</span>&gt;</span>属性</span><br><span class="line">      1.width:宽度</span><br><span class="line">      2.height:高度</span><br><span class="line">      3.Align:表格水平对其方式,left、center、right</span><br><span class="line">      4.Border:边框粗细</span><br><span class="line">      5.bgcolor:表格背景色</span><br><span class="line">      6.background:背景图片URL</span><br><span class="line">      7.cellpadding:单元格边线到内容间的距离（填充距离）</span><br><span class="line">      8.cellspacing:单元格与单元格之间的距离（间距）</span><br><span class="line">      9.bordercolor:边框颜色</span><br><span class="line">      10.rules:合并单元格边框线，取值：all //友情提醒因为学习的html没有接触css所以才用rules，rules兼容性不好，一般都用CSS取代他。</span><br><span class="line">      </span><br><span class="line">       3.<span class="tag">&lt;<span class="name">tr</span>&gt;</span>属性----行标记</span><br><span class="line">         1.bgcolor:</span><br><span class="line">         2.height:</span><br><span class="line">         3.align:</span><br><span class="line">         4.valign:垂直居中，取值top（上）、middle(中)、bottom(下)</span><br><span class="line"></span><br><span class="line">       4.<span class="tag">&lt;<span class="name">td</span>&gt;</span>或<span class="tag">&lt;<span class="name">th</span>&gt;</span>属性</span><br><span class="line">         1.width:</span><br><span class="line">         2.height:</span><br><span class="line">         3.bgcolor:</span><br><span class="line">         4.background:</span><br><span class="line">         5.align:</span><br><span class="line">         6.valign:</span><br><span class="line">         7.rowspan:上下单元格合并</span><br><span class="line">         8.colspan:左右单元格合并     </span><br><span class="line">       </span><br><span class="line">      -------表单学习------</span><br><span class="line">    1.表单的概念</span><br><span class="line">    表单主要用来获取客户端用户数据（信息）的，如注册表单、查询表单、登录表单等。</span><br><span class="line">    2.<span class="tag">&lt;<span class="name">form</span>&gt;</span>标记属性------块元素</span><br><span class="line">      name:</span><br><span class="line">      method:表单的提交方式,取值：get/post</span><br><span class="line">      action:制定表单的处理程序，一般是PHP文件</span><br><span class="line">      enctype:制定表单数据的编码方式（解密方式），这个属性只能用在method="post"的情况下.</span><br><span class="line">           （1）application/x-www-form-urldecoded  //默认的传递</span><br><span class="line">            (2) multipart/form-data  //如果你上传文件，该值必须它自己</span><br><span class="line">        注意：上传文件一定要有enctype="multipart/form-data"</span><br><span class="line"></span><br><span class="line">       3.GET方法和POST方法</span><br><span class="line">      （1）GET提交方式</span><br><span class="line">         GET方式，是将表单数据追加到action指定的处理程序的后面，然后向服务器发送请求。</span><br><span class="line">            注意：地址栏传数据的方式，默认就是GET方式。，</span><br><span class="line">         GET方式的特点：1.GET方式不能提交敏感数据，如：密码。。</span><br><span class="line">                        2.GET方式值提交少量数据，因为地址栏的长度有限制，大约100外字符</span><br><span class="line">                        3.GET方式下不能上传附件</span><br><span class="line">         (2)POST表单提交方式</span><br><span class="line">              POST提交方式，它不是将表单数据追加到地址上，而是直接传给表单处理程序。</span><br><span class="line"></span><br><span class="line">             POST方式的特点：</span><br><span class="line">                1.POST提交的数据相对安全。</span><br><span class="line">                2.POST可以提交海量数据。</span><br><span class="line">                3.POST方式可以上传附件。</span><br><span class="line">    </span><br><span class="line">             单行文本域</span><br><span class="line">    语法格式<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> 属性 =<span class="string">"值"</span>/&gt;</span></span><br><span class="line">    常用属性：     </span><br><span class="line">        name:文本框的名字，只能以字母开头</span><br><span class="line">        type:表单元素的类型</span><br><span class="line">        value:文本框中的值</span><br><span class="line">        size：文本框的长度，以“字符”为单位。</span><br><span class="line">        maxLength：最多可以输入多少个字符，超出的就输不进去了。</span><br><span class="line">        readonly：只读属性。可以选中，但不能修改，如readonly="readonly"</span><br><span class="line">        disabled:禁用属性，不能选中，不能修改，如:disabled="disabled"</span><br><span class="line"></span><br><span class="line">          单行密码域</span><br><span class="line">        语法格式<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"password"</span> 属性 =<span class="string">"值"</span>&gt;</span></span><br><span class="line">        常用属性和单行文本域属性一样。</span><br><span class="line">           </span><br><span class="line">          单选按钮</span><br><span class="line">     语法格式<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"radio"</span> <span class="attr">name</span>=<span class="string">"sex"</span> 属性 =<span class="string">"值"</span> /&gt;</span></span><br><span class="line">      常用属性：</span><br><span class="line">              Name:元素的名称</span><br><span class="line">              Value：元素的值，该value中数据将发往服务器。</span><br><span class="line">              Cheaked:默认选择哪一项，如:cheacked="checked"</span><br><span class="line">      注意：一组单选按钮，只能选择一个，但name的值必须一致。</span><br><span class="line"> </span><br><span class="line">             复选框</span><br><span class="line">     语法格式：<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"checkbox"</span> 属性=<span class="string">"值"</span>/&gt;</span></span><br><span class="line">      常用属性：</span><br><span class="line">            name：元素名称</span><br><span class="line">            value：元素的值</span><br><span class="line">            checked:默认选中，如checked="checked"</span><br><span class="line">             </span><br><span class="line">              下拉列表</span><br><span class="line">       语法格式：<span class="tag">&lt;<span class="name">select</span> <span class="attr">name</span>=<span class="string">""</span>&gt;</span></span><br><span class="line">                   <span class="tag">&lt;<span class="name">option</span>&gt;</span>xxx内容<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">                 <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line">        常用属性：name</span><br><span class="line">        option属性：value和selected</span><br><span class="line">               selected：默认选中，如selected="selected"</span><br><span class="line"></span><br><span class="line">               文本区域</span><br><span class="line">           <span class="tag">&lt;<span class="name">textarea</span> <span class="attr">name</span>=<span class="string">"名称"</span> <span class="attr">cols</span>=<span class="string">"宽度"</span> <span class="attr">row</span>=<span class="string">"高度"</span>&gt;</span><span class="tag">&lt;/<span class="name">textarea</span>&gt;</span></span><br><span class="line">             常用属性：name:</span><br><span class="line">                       cols:宽度，是指多少个字符串</span><br><span class="line">                       rows:高度，是指几行高</span><br><span class="line">                提示：<span class="tag">&lt;<span class="name">textarea</span>&gt;</span>和<span class="tag">&lt;/<span class="name">textarea</span>&gt;</span>之间是默认文本</span><br><span class="line">  </span><br><span class="line">                    各种按钮学习</span><br><span class="line">       提交按钮：<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">value</span>=<span class="string">"提交表单"</span>/&gt;</span></span><br><span class="line">       重置按钮：<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"reset"</span> <span class="attr">value</span>=<span class="string">"重置填写"</span>/&gt;</span></span><br><span class="line">       图片按钮: <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"image"</span> <span class="attr">src</span>=<span class="string">"图片后缀"</span>/&gt;</span></span><br><span class="line">       普通按钮：要与js结合使用，如下代码：<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">onclick</span>=<span class="string">"javascript:windows.close()"</span> <span class="attr">value</span>=<span class="string">"关闭窗口"</span>/&gt;</span></span><br><span class="line">         </span><br><span class="line">            上传文件域</span><br><span class="line">       语法格式：<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"file"</span> 属性=<span class="string">“属性”/</span>&gt;</span></span><br><span class="line">       常用属性：</span><br><span class="line">               name：表单元素的名称</span><br><span class="line">               value：表单元素的值，这个值其实就是上传的文件名。</span><br><span class="line">        语法格式例子：<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"file"</span> <span class="attr">name</span>=<span class="string">"uploadfile"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">                  隐藏域</span><br><span class="line">      功能：隐藏域就是看不见的一个框。传递一些值，而这个值又不想让别人看见。</span><br><span class="line">      用处：主要用于php后台程序。</span><br><span class="line">      语法格式：<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"hidden"</span> <span class="attr">name</span>=<span class="string">""</span> <span class="attr">value</span>=<span class="string">""</span>/&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">实战运用：制作网页http://www.chinayarn.com/mart/index2011.asp/http://www.nanshanski.com/index-cn.asp/http://www.jingying.com.cn/参考如下</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    html的注释：<span class="comment">&lt;!--内容--&gt;</span>     //注意注释的内容是不会显示的，注释的目地是为了维护方便。</span><br><span class="line"></span><br><span class="line">      -----网页多媒体-----</span><br><span class="line">网页上的视频大多数为flash格式的，因为flash的兼容性比较好。</span><br><span class="line">    以flash动画为例，播放flash动画的代码如下，这个代码不用记，看懂就行。</span><br><span class="line">    <span class="tag">&lt;<span class="name">object</span> <span class="attr">classid</span>=<span class="string">"clsid:D27CDB6E-AE6D-11cf-96B8-444553540000"</span> <span class="attr">codebase</span>=<span class="string">"http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,29,0"</span>  </span></span><br><span class="line"><span class="tag"><span class="attr">width</span>=<span class="string">"1000"</span> <span class="attr">height</span>=<span class="string">"202"</span> &gt;</span>  </span><br><span class="line"><span class="tag">&lt;<span class="name">param</span> <span class="attr">name</span>=<span class="string">"movie"</span> <span class="attr">value</span>=<span class="string">"images/banner.swf"</span>&gt;</span>  </span><br><span class="line"><span class="tag">&lt;<span class="name">param</span> <span class="attr">name</span>=<span class="string">"quality"</span> <span class="attr">value</span>=<span class="string">"heigh"</span>&gt;</span>  </span><br><span class="line"><span class="tag">&lt;<span class="name">param</span> <span class="attr">name</span>=<span class="string">"wmode"</span> <span class="attr">value</span>=<span class="string">"trandsparent"</span>&gt;</span>  </span><br><span class="line"><span class="tag">&lt;<span class="name">embed</span>        <span class="attr">src</span>=<span class="string">"images/banner.swf"</span>  <span class="attr">width</span>=<span class="string">"1000"</span> <span class="attr">height</span>=<span class="string">"202"</span>  <span class="attr">quality</span>=<span class="string">"high"</span> <span class="attr">pluginspage</span>=<span class="string">"http://www.macromedia.com/go/getflashplayer"</span> <span class="attr">wmode</span>=<span class="string">"transparent"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">embed</span>&gt;</span>  </span><br><span class="line"><span class="tag">&lt;/<span class="name">object</span>&gt;</span>  </span><br><span class="line">             以上标记的说明：<span class="tag">&lt;<span class="name">object</span>&gt;</span>标记，是IE中引入多媒体的标记。</span><br><span class="line">                             <span class="tag">&lt;<span class="name">embed</span>&gt;</span>标记：是netscape中引入多媒体的标记</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    ----------图片热点（图像地图）---------</span><br><span class="line">    图片热点含义：绘一张图片加多个链接，默认情况下，一张图只能加一个链接。</span><br><span class="line">    标记结构：</span><br><span class="line">          <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"xxx.jpg/png"</span> <span class="attr">usemap</span>=<span class="string">"#Map"</span> /&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">map</span> <span class="attr">id</span>=<span class="string">"Map"</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">area</span> <span class="attr">shape</span>=<span class="string">"热区形状"</span> <span class="attr">coords</span>=<span class="string">"热区坐标"</span> <span class="attr">href</span>=<span class="string">"链接地址"</span> /&gt;</span></span><br><span class="line">          <span class="tag">&lt;/<span class="name">map</span>&gt;</span></span><br><span class="line">        (1)<span class="tag">&lt;<span class="name">area</span>&gt;</span>标记常用属性</span><br><span class="line">               shape:热区的形状，取值：rect（矩形），circle（圆形），polygon（多边形）</span><br><span class="line">               coords:热区的坐标（位置）</span><br><span class="line">           如果shape="rect"时，那么，coords="x1,y1,x2,y2" 例如：corrds=“50，50，200，150”</span><br><span class="line">                                  *(x1,y1)为矩形左上角的坐标值,(x2,y2)为矩形右上角坐标值。so (x2-x1)和(y2-y1)可知矩形的长和宽。</span><br><span class="line">           如果shape="circle"时，那么，coords="x,y,r",其中(x,y)为圆心坐标，而r是圆的半径。</span><br><span class="line"></span><br><span class="line">        -----------普通框架-----------</span><br><span class="line">    1.框架的概念：框架技术：将一个浏览器窗口划分成若干个小窗口，每个小窗口显示一个独立的网页。</span><br><span class="line">    </span><br><span class="line">    2.框架集和框架页</span><br><span class="line">     框架集<span class="tag">&lt;<span class="name">frameset</span>&gt;</span>:主要用来划分窗口的</span><br><span class="line">     框架页<span class="tag">&lt;<span class="name">frame</span>&gt;</span>:主要用来制定窗口默认显示的网页地址</span><br><span class="line"></span><br><span class="line">     框架与窗户很像</span><br><span class="line">       打比方： 一个窗户由窗格（框架集）和玻璃（框架页）构成。</span><br><span class="line">                先规划窗格，然后再确定每个窗格中放的玻璃。（先有结构，后有内容。）</span><br><span class="line"></span><br><span class="line">      框架网页的DID必须是：<span class="meta">&lt;!DOCTYPE html PUBLIC"-//W3C//DTD XHTML 1.0 Frameset//EN""http://www.w3.org/TR/xhtml1/DTD/xhtml-frameset.dtd&gt;</span></span><br><span class="line">            代码如下：<span class="tag">&lt;<span class="name">frameset</span> <span class="attr">cols</span>=<span class="string">"200,*"</span> <span class="attr">frameborder</span>=<span class="string">"yes"</span> <span class="attr">border</span>=<span class="string">""</span>&gt;</span></span><br><span class="line">                      <span class="tag">&lt;<span class="name">frame</span> <span class="attr">src</span>=<span class="string">"xx.html"</span>/&gt;</span></span><br><span class="line">                      <span class="tag">&lt;<span class="name">frame</span> <span class="attr">src</span>=<span class="string">"xx.html"</span>/&gt;</span></span><br><span class="line">                      <span class="tag">&lt;/<span class="name">frameset</span>&gt;</span></span><br><span class="line">                      （1）<span class="tag">&lt;<span class="name">frameset</span>&gt;</span>常用属性属性</span><br><span class="line">                              cols：划分左右型框架</span><br><span class="line">                                1.cols="200,*" //左框架的宽度为200px，剩下的都是右框架。</span><br><span class="line">                                2.cols="180,*,180" //左框架和右框架的宽分别为180px，剩下的都是中间框架。</span><br><span class="line">                                3.cols="20%,*" //另类写法，划分框架时，可以用百分比来表示</span><br><span class="line">                              rows：划分上下型框架</span><br><span class="line">                                1.rows="200,*" //上框架的高度为200px，剩下的都是下框架。</span><br><span class="line">                                2.row="180,*,180" //上框架和下框架的高度分别为180px，剩下的的都是中间框架。</span><br><span class="line">                       注意：cols和rows不能两个同时用。</span><br><span class="line">                      （2）frameborder:是否显示框架的边框线，取值1或0，亦yes/no</span><br><span class="line">                           border:边框线的粗细</span><br><span class="line">                           bordercolor:边框的颜色</span><br><span class="line">                           3.<span class="tag">&lt;<span class="name">frame</span>&gt;</span>框架页的属性</span><br><span class="line">                              (1)src：该小窗口中，默认显示的网页地址。</span><br><span class="line">                                 noresize:不能调整小窗口的大小，如noresize="noresize"</span><br><span class="line">                                 scrolling:是否显示滚动条，取值：auto,no,yes</span><br><span class="line">                                 name:给当前小窗口起个名字，这个name就是给<span class="tag">&lt;<span class="name">a</span>&gt;</span>标记target属性来用的。</span><br><span class="line">                          提示做网站后台时，返回首页的相关代码：<span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">""</span> <span class="attr">target</span>=<span class="string">"_top"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h1 id="XML"><a href="#XML" class="headerlink" title="XML"></a>XML</h1><h2 id="XML文件头含义"><a href="#XML文件头含义" class="headerlink" title="XML文件头含义"></a>XML文件头含义</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">web-app 是web.xml的根节点标签名称</span><br><span class="line">version 是版本的意思</span><br><span class="line">xmlns是web.xml文件用到的命名空间</span><br><span class="line">xmlns:xsi是指web.xml遵循xml规范</span><br><span class="line">xsi:schemaLocation是指具体用到的schema资源（对文档的限制）</span><br></pre></td></tr></table></figure>
+<h2 id="XML的元素"><a href="#XML的元素" class="headerlink" title="XML的元素"></a>XML的元素</h2><p>XML中元素的标记是自定义的，并具有明确的含义，其组织结构是树形的层次结构，每个元素及其<br>子元素 并不是XML规范好的，而是用户根据自己需要来自定义的，就像是我写坦克大战时用的文件<br>保存法，就需要有一定的格式来读取（辨认）所读取的数据是什么类型<br>      XML文档结构清晰，易读，而且是根据开放的标准建立的</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2018-12-16T09:11:25.581Z" itemprop="dateUpdated">2018-12-16 17:11:25</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2018/12/16/Memo-FrontEnd-HTML5/" target="_blank" rel="external">http://blog.kuangcp.top/2018/12/16/Memo-FrontEnd-HTML5/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="http://blog.kuangcp.top">
+            <img src="/img/avatar.jpg" alt="Kuangcp">
+            Kuangcp
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/H5/">H5</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.kuangcp.top/2018/12/16/Memo-FrontEnd-HTML5/&title=《HTML5.md》 — Kuangcp Blog&pic=http://blog.kuangcp.top/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.kuangcp.top/2018/12/16/Memo-FrontEnd-HTML5/&title=《HTML5.md》 — Kuangcp Blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.kuangcp.top/2018/12/16/Memo-FrontEnd-HTML5/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《HTML5.md》 — Kuangcp Blog&url=http://blog.kuangcp.top/2018/12/16/Memo-FrontEnd-HTML5/&via=http://blog.kuangcp.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.kuangcp.top/2018/12/16/Memo-FrontEnd-HTML5/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/12/16/Memo-Skills-SoftwareDesignEngineer/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">SoftwareDesignEngineer.md</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/12/16/Memo-Website/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Website.md</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check" data-wechat="/img/wechat.png" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style="display:none">
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style="display:none">
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Kuangcp &copy; 2015 - 2018</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">赣ICP备17014189号-1</a><br>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.kuangcp.top/2018/12/16/Memo-FrontEnd-HTML5/&title=《HTML5.md》 — Kuangcp Blog&pic=http://blog.kuangcp.top/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.kuangcp.top/2018/12/16/Memo-FrontEnd-HTML5/&title=《HTML5.md》 — Kuangcp Blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.kuangcp.top/2018/12/16/Memo-FrontEnd-HTML5/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《HTML5.md》 — Kuangcp Blog&url=http://blog.kuangcp.top/2018/12/16/Memo-FrontEnd-HTML5/&via=http://blog.kuangcp.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.kuangcp.top/2018/12/16/Memo-FrontEnd-HTML5/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACIklEQVR42u3aW26DQBAEQN//0uQAiXH3LI7EUnxZxgIKS6N5vV7xcfw68rP51fIrDA8MDIzbMo7T4/wG5785B5//Jn82DAyM5zDeRbAkFCbId9fMP394ZgwMDIyA0YbvloeBgYHRMlaCb56AYmBgYMxCZNIUywN0DrusFsfAwLghI++6///nr8w3MDAwbsU4RsfKMDIfFRTPg4GBsTVjNlbMw/FVQwUMDAyMvH2WXHo94LYFNgYGxt6MPLC2K195Wpm384p/AAMDYyNG22hLQnBeoObdszxAY2Bg7Mdox5ZtYE3eWV6+YmBgYMxWK1aSy9mINNoWwcDA2IjRLnWdh902sWvP1msZGBgYWzDaYjIvU9s3NwvoGBgYT2Cst7pmDbW8rE3uhYGBsTejXbCYjTPbb9pmHwYGxhMY33isdlGsbfnVgwEMDIybM9rO3KwcbVe+8vUyDAyMpzFmIS+vkmcjTwwMDIz1hbCVnYf8bN0jxMDA2ILRjgbbpv9shLmypoaBgbEfY7Y8sbJyMSuY6/kGBgbGRow8jObDg1k7L08x6wwUAwPj5oyjPNrSNHqLy6seGBgYezNml27TwWT9ok0rhxgMDIzbMpIgO+vh5VeOytSVBBEDA2MLxqxZ3z7WtcMGDAwMjFmKtp78DRc4MDAwMOJErW2WzdbO/vgeAwPjAYyVUnMlBUxeUDSuwMDA2JrRlo6zW7blcTt+wMDA2JTxA8NCiYdo9TulAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>
