@@ -21,18 +21,18 @@
     
     
     <meta name="keywords" content="Nginx">
-    <meta name="description" content="目录 start  Nginx Nginx的安装 命令安装 编译安装 Docker安装并做反向代理   命令使用 配置使用 本地静态文件Web服务器 反向代理多个服务 配置https certbot来配置Https   配置Websocket反向代理   防盗链 负载均衡 跨域问题的配置 静态服务器将后台反代理     问题    目录 end|2018-12-13 12:06| 码云 | CSD">
+    <meta name="description" content="目录 start  Nginx Nginx的安装 命令安装 编译安装 Docker安装并做反向代理   命令使用 配置使用 本地静态文件Web服务器 反向代理多个服务 配置https certbot来配置Https   配置Websocket反向代理   防盗链 负载均衡 跨域问题的配置 静态服务器将后台反代理     问题    目录 end|2018-12-17 20:45| 码云 | CSD">
 <meta name="keywords" content="Nginx">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Nginx">
 <meta property="og:url" content="http://blog.kuangcp.top/2018/12/15/Memo-Linux-Tool-Nginx/index.html">
 <meta property="og:site_name" content="Kuangcp Blog">
-<meta property="og:description" content="目录 start  Nginx Nginx的安装 命令安装 编译安装 Docker安装并做反向代理   命令使用 配置使用 本地静态文件Web服务器 反向代理多个服务 配置https certbot来配置Https   配置Websocket反向代理   防盗链 负载均衡 跨域问题的配置 静态服务器将后台反代理     问题    目录 end|2018-12-13 12:06| 码云 | CSD">
+<meta property="og:description" content="目录 start  Nginx Nginx的安装 命令安装 编译安装 Docker安装并做反向代理   命令使用 配置使用 本地静态文件Web服务器 反向代理多个服务 配置https certbot来配置Https   配置Websocket反向代理   防盗链 负载均衡 跨域问题的配置 静态服务器将后台反代理     问题    目录 end|2018-12-17 20:45| 码云 | CSD">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-12-16T09:11:25.585Z">
+<meta property="og:updated_time" content="2018-12-17T13:25:18.707Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Nginx">
-<meta name="twitter:description" content="目录 start  Nginx Nginx的安装 命令安装 编译安装 Docker安装并做反向代理   命令使用 配置使用 本地静态文件Web服务器 反向代理多个服务 配置https certbot来配置Https   配置Websocket反向代理   防盗链 负载均衡 跨域问题的配置 静态服务器将后台反代理     问题    目录 end|2018-12-13 12:06| 码云 | CSD">
+<meta name="twitter:description" content="目录 start  Nginx Nginx的安装 命令安装 编译安装 Docker安装并做反向代理   命令使用 配置使用 本地静态文件Web服务器 反向代理多个服务 配置https certbot来配置Https   配置Websocket反向代理   防盗链 负载均衡 跨域问题的配置 静态服务器将后台反代理     问题    目录 end|2018-12-17 20:45| 码云 | CSD">
     
         <link rel="alternate" type="application/atom+xml" title="Kuangcp Blog" href="/atom.xml">
     
@@ -217,7 +217,7 @@
 </ol>
 </li>
 </ol>
-<p><strong>目录 end</strong>|<em>2018-12-13 12:06</em>| <a href="https://gitee.com/gin9" target="_blank" rel="noopener">码云</a> | <a href="http://blog.csdn.net/kcp606" target="_blank" rel="noopener">CSDN</a> | <a href="https://my.oschina.net/kcp1104" target="_blank" rel="noopener">OSChina</a> | <a href="http://www.cnblogs.com/kuangcp" target="_blank" rel="noopener">cnblogs</a></p>
+<p><strong>目录 end</strong>|<em>2018-12-17 20:45</em>| <a href="https://gitee.com/gin9" target="_blank" rel="noopener">码云</a> | <a href="http://blog.csdn.net/kcp606" target="_blank" rel="noopener">CSDN</a> | <a href="https://my.oschina.net/kcp1104" target="_blank" rel="noopener">OSChina</a> | <a href="http://www.cnblogs.com/kuangcp" target="_blank" rel="noopener">cnblogs</a></p>
 <hr>
 <h1 id="Nginx"><a href="#Nginx" class="headerlink" title="Nginx"></a>Nginx</h1><h2 id="Nginx的安装"><a href="#Nginx的安装" class="headerlink" title="Nginx的安装"></a>Nginx的安装</h2><h3 id="命令安装"><a href="#命令安装" class="headerlink" title="命令安装"></a>命令安装</h3><ul>
 <li>安装<code>sudo apt install nginx</code></li>
@@ -279,7 +279,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">  # listen 6050;</span><br><span class="line">  client_max_body_size 4G;</span><br><span class="line">  listen  80;  ## listen for ipv4; this line is default and implied</span><br><span class="line">  server_name static.me.com;</span><br><span class="line">  root /home/mini/Sync;</span><br><span class="line">  location / &#123;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>再在 <code>/etc/hosts</code>文件中配置下域名即可访问</p>
 <blockquote>
-<p>在服务器中配置， 出现403错误， 将 /etc/nginx/nginx.conf 中第一行的 user 改成 root</p>
+<p>在服务器中配置， 出现403错误, 将 /etc/nginx/nginx.conf 中第一行的 <code>user nginx;</code> 改成 root</p>
 </blockquote>
 <h4 id="反向代理多个服务"><a href="#反向代理多个服务" class="headerlink" title="反向代理多个服务"></a>反向代理多个服务</h4><ul>
 <li>修改默认配置文件 <code>/etc/nginx/nginx.conf</code><ul>
@@ -333,7 +333,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2018-12-16T09:11:25.585Z" itemprop="dateUpdated">2018-12-16 17:11:25</time>
+    最后更新时间：<time datetime="2018-12-17T13:25:18.707Z" itemprop="dateUpdated">2018-12-17 21:25:18</time>
 </span><br>
 
 

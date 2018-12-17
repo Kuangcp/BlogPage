@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>SpringBoot.md | Kuangcp Blog | Javaer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="目录 start  SpringBoot 思考 参考教程 系列   开始使用 安装SpringBootCLI 测试模块 配置文件 多种配置文件并切换 yml方式 yml和Properties结合   应用配置文件   日志模块 Web模块 Lisener ServletContextListener   上传下载文件 错误页面跳转配置 跨域   全局异常处理 HTTPS的配置 线程池 项目部署 生">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SpringBoot.md">
+<meta property="og:url" content="http://blog.kuangcp.top/2018/12/17/Memo-Java-Spring-SpringBoot/index.html">
+<meta property="og:site_name" content="Kuangcp Blog">
+<meta property="og:description" content="目录 start  SpringBoot 思考 参考教程 系列   开始使用 安装SpringBootCLI 测试模块 配置文件 多种配置文件并切换 yml方式 yml和Properties结合   应用配置文件   日志模块 Web模块 Lisener ServletContextListener   上传下载文件 错误页面跳转配置 跨域   全局异常处理 HTTPS的配置 线程池 项目部署 生">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-12-17T13:25:18.707Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SpringBoot.md">
+<meta name="twitter:description" content="目录 start  SpringBoot 思考 参考教程 系列   开始使用 安装SpringBootCLI 测试模块 配置文件 多种配置文件并切换 yml方式 yml和Properties结合   应用配置文件   日志模块 Web模块 Lisener ServletContextListener   上传下载文件 错误页面跳转配置 跨域   全局异常处理 HTTPS的配置 线程池 项目部署 生">
+    
+        <link rel="alternate" type="application/atom+xml" title="Kuangcp Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Kuangcp</h5>
+          <a href="mailto:kuangcp@aliyun.com" title="kuangcp@aliyun.com" class="mail">kuangcp@aliyun.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/">
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives">
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags">
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories">
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/kuangcp" target="_blank">
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">SpringBoot.md</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">SpringBoot.md</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-12-17T13:25:18.707Z" itemprop="datePublished" class="page-time">
+  2018-12-17
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#SpringBoot"><span class="post-toc-number">1.</span> <span class="post-toc-text">SpringBoot</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#思考"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">思考</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#参考教程"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">参考教程</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#系列"><span class="post-toc-number">1.2.1.</span> <span class="post-toc-text">系列</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#开始使用"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">开始使用</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#安装SpringBootCLI"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">安装SpringBootCLI</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#测试模块"><span class="post-toc-number">1.5.</span> <span class="post-toc-text">测试模块</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#配置文件"><span class="post-toc-number">1.6.</span> <span class="post-toc-text">配置文件</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#多种配置文件并切换"><span class="post-toc-number">1.6.1.</span> <span class="post-toc-text">多种配置文件并切换</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#yml方式"><span class="post-toc-number">1.6.1.1.</span> <span class="post-toc-text">yml方式</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#yml和Properties结合"><span class="post-toc-number">1.6.1.2.</span> <span class="post-toc-text">yml和Properties结合</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#应用配置文件"><span class="post-toc-number">1.6.2.</span> <span class="post-toc-text">应用配置文件</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#日志模块"><span class="post-toc-number">1.7.</span> <span class="post-toc-text">日志模块</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Web模块"><span class="post-toc-number">1.8.</span> <span class="post-toc-text">Web模块</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Lisener"><span class="post-toc-number">1.8.1.</span> <span class="post-toc-text">Lisener</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#ServletContextListener"><span class="post-toc-number">1.8.1.1.</span> <span class="post-toc-text">ServletContextListener</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#上传下载文件"><span class="post-toc-number">1.8.2.</span> <span class="post-toc-text">上传下载文件</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#错误页面跳转配置"><span class="post-toc-number">1.8.3.</span> <span class="post-toc-text">错误页面跳转配置</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#跨域"><span class="post-toc-number">1.8.4.</span> <span class="post-toc-text">跨域</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#全局异常处理"><span class="post-toc-number">1.9.</span> <span class="post-toc-text">全局异常处理</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#HTTPS的配置"><span class="post-toc-number">1.10.</span> <span class="post-toc-text">HTTPS的配置</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#线程池"><span class="post-toc-number">1.11.</span> <span class="post-toc-text">线程池</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#项目部署"><span class="post-toc-number">1.12.</span> <span class="post-toc-text">项目部署</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#生成指定文件"><span class="post-toc-number">1.12.1.</span> <span class="post-toc-text">生成指定文件</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#war"><span class="post-toc-number">1.12.1.1.</span> <span class="post-toc-text">war</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#jar"><span class="post-toc-number">1.12.1.2.</span> <span class="post-toc-text">jar</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#构建docker镜像"><span class="post-toc-number">1.12.2.</span> <span class="post-toc-text">构建docker镜像</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#手动方式"><span class="post-toc-number">1.12.2.1.</span> <span class="post-toc-text">手动方式</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#gradle结合docker"><span class="post-toc-number">1.12.2.2.</span> <span class="post-toc-text">gradle结合docker</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#热部署"><span class="post-toc-number">1.12.3.</span> <span class="post-toc-text">热部署</span></a></li></ol></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-Memo-Java-Spring-SpringBoot" class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">SpringBoot.md</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-12-17 21:25:18" datetime="2018-12-17T13:25:18.707Z" itemprop="datePublished">2018-12-17</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style="display:none">
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p><strong>目录 start</strong></p>
+<ol>
+<li><a href="#springboot">SpringBoot</a><ol>
+<li><a href="#思考">思考</a></li>
+<li><a href="#参考教程">参考教程</a><ol>
+<li><a href="#系列">系列</a></li>
+</ol>
+</li>
+<li><a href="#开始使用">开始使用</a></li>
+<li><a href="#安装springbootcli">安装SpringBootCLI</a></li>
+<li><a href="#测试模块">测试模块</a></li>
+<li><a href="#配置文件">配置文件</a><ol>
+<li><a href="#多种配置文件并切换">多种配置文件并切换</a><ol>
+<li><a href="#yml方式">yml方式</a></li>
+<li><a href="#yml和properties结合">yml和Properties结合</a></li>
+</ol>
+</li>
+<li><a href="#应用配置文件">应用配置文件</a></li>
+</ol>
+</li>
+<li><a href="#日志模块">日志模块</a></li>
+<li><a href="#web模块">Web模块</a><ol>
+<li><a href="#lisener">Lisener</a><ol>
+<li><a href="#servletcontextlistener">ServletContextListener</a></li>
+</ol>
+</li>
+<li><a href="#上传下载文件">上传下载文件</a></li>
+<li><a href="#错误页面跳转配置">错误页面跳转配置</a></li>
+<li><a href="#跨域">跨域</a></li>
+</ol>
+</li>
+<li><a href="#全局异常处理">全局异常处理</a></li>
+<li><a href="#https的配置">HTTPS的配置</a></li>
+<li><a href="#线程池">线程池</a></li>
+<li><a href="#项目部署">项目部署</a><ol>
+<li><a href="#生成指定文件">生成指定文件</a><ol>
+<li><a href="#war">war</a></li>
+<li><a href="#jar">jar</a></li>
+</ol>
+</li>
+<li><a href="#构建docker镜像">构建docker镜像</a><ol>
+<li><a href="#手动方式">手动方式</a></li>
+<li><a href="#gradle结合docker">gradle结合docker</a></li>
+</ol>
+</li>
+<li><a href="#热部署">热部署</a></li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<p><strong>目录 end</strong>|<em>2018-12-13 12:06</em>| <a href="https://gitee.com/gin9" target="_blank" rel="noopener">码云</a> | <a href="http://blog.csdn.net/kcp606" target="_blank" rel="noopener">CSDN</a> | <a href="https://my.oschina.net/kcp1104" target="_blank" rel="noopener">OSChina</a> | <a href="http://www.cnblogs.com/kuangcp" target="_blank" rel="noopener">cnblogs</a></p>
+<hr>
+<h1 id="SpringBoot"><a href="#SpringBoot" class="headerlink" title="SpringBoot"></a>SpringBoot</h1><blockquote>
+<p><a href="https://spring.io/projects/spring-boot#learn" target="_blank" rel="noopener">首页</a></p>
+</blockquote>
+<blockquote>
+<p>一个简化Spring开发的框架,微服务SpringCloud的基础<br><a href="https://docs.spring.io/spring-boot/docs/1.5.14.RELEASE/reference/htmlsingle/" target="_blank" rel="noopener">1.5.14 官方文档</a></p>
+</blockquote>
+<ul>
+<li><a href="https://github.com/spring-projects/spring-boot/releases" target="_blank" rel="noopener">Github:Springboot</a></li>
+</ul>
+<h2 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h2><ul>
+<li><p><a href="https://www.zhihu.com/question/39483566" target="_blank" rel="noopener">SpringBoot优缺点</a> </p>
+<ul>
+<li><code>大大降低编程门槛, 但是, 将大量细节隐藏在默认配置中, 需要详细阅读文档和源码才能更好的玩转SpringBoot, 不然到处是坑</code></li>
+</ul>
+</li>
+<li><p><a href="https://www.cnblogs.com/trgl/p/7353782.html" target="_blank" rel="noopener">SpringBoot启动流程解析</a><code>原理才是王道</code></p>
+</li>
+<li><p><a href="https://yq.aliyun.com/articles/6056" target="_blank" rel="noopener">spring boot应用启动原理分析 </a></p>
+</li>
+<li><p>Spring 是单例模式, 全部使用IOC容器进行管理, 那么怎么处理并发呢, </p>
+<ul>
+<li>答案是 ? 多线程 然后 ThreadLocal 分别存储了各自的数据, 所以才说, 不能在Controller层 放置属性, 使其具有状态, 从而导致并发问题</li>
+<li>那么WebSocket服务器, 处理并发会不会有并发问题?</li>
+</ul>
+</li>
+<li><p><a href="http://www.ityouknow.com/springboot/2018/06/12/spring-boo-java-simple.html" target="_blank" rel="noopener">为什么说 Java 程序员到了必须掌握 Spring Boot 的时候？</a></p>
+</li>
+</ul>
+<blockquote>
+<p><a href="https://spring.io/guides/gs/actuator-service/" target="_blank" rel="noopener">Guide</a></p>
+</blockquote>
+<h2 id="参考教程"><a href="#参考教程" class="headerlink" title="参考教程"></a>参考教程</h2><ul>
+<li><a href="http://springboot.fun/" target="_blank" rel="noopener">SpringBoot中文索引</a></li>
+<li><a href="http://www.spring4all.com/article/246" target="_blank" rel="noopener">参考博客: Spring Boot 入门系列</a></li>
+<li><a href="https://juejin.im/post/598dd709f265da3e213f0c57" target="_blank" rel="noopener">Springboot探索</a></li>
+<li><a href="http://blog.csdn.net/jsyxcjw/article/details/46763639" target="_blank" rel="noopener">SpringBoot入门</a></li>
+</ul>
+<h3 id="系列"><a href="#系列" class="headerlink" title="系列"></a>系列</h3><ul>
+<li><a href="https://github.com/guoxiaoxu/guo-projects/tree/master/guns-admin/note" target="_blank" rel="noopener">一系列专栏</a></li>
+<li><a href="http://tengj.top/tags/Spring-Boot/" target="_blank" rel="noopener">个人博客专栏: SpringBoot干货系列</a></li>
+<li><a href="http://www.ityouknow.com/spring-boot" target="_blank" rel="noopener">SpringBoot系列文章</a></li>
+<li><a href="https://www.jianshu.com/u/092df3f77bca" target="_blank" rel="noopener">恒宇少年</a><code>大量Boot博客</code></li>
+</ul>
+<h2 id="开始使用"><a href="#开始使用" class="headerlink" title="开始使用"></a>开始使用</h2><blockquote>
+<p>使用Idea的话就可以直接创建项目 使用别的可以下载zip进行导入 | <a href="http://start.spring.io/" target="_blank" rel="noopener">官方初始项目构建 下载地址</a></p>
+</blockquote>
+<p><em>目录结构最好如下</em> <code>*Application类要处于所有用了Springboot注解的类的顶级目录, 这样默认才能扫描到</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">├── config/</span><br><span class="line">├── controller/</span><br><span class="line">├── dao/</span><br><span class="line">├── domain/</span><br><span class="line">├── GraduateApplication.java</span><br><span class="line">├── service/</span><br><span class="line">├── ServletInitializer.java</span><br><span class="line">└── util/</span><br></pre></td></tr></table></figure></p>
+<h2 id="安装SpringBootCLI"><a href="#安装SpringBootCLI" class="headerlink" title="安装SpringBootCLI"></a>安装SpringBootCLI</h2><ul>
+<li>使用 SDKMAN 进行安装<ul>
+<li>使用git bash运行  <code>curl -s get.sdkman.io | bash</code></li>
+<li><code>source &quot;/Users/{yourname}/.sdkman/bin/sdkman-init.sh&quot;</code>根据实际目录去运行</li>
+<li>spring –version</li>
+</ul>
+</li>
+<li>官方下载地址 <a href="https://repo.spring.io/release/org/springframework/boot/spring-boot-cli/" target="_blank" rel="noopener">所有版本</a></li>
+</ul>
+<h2 id="测试模块"><a href="#测试模块" class="headerlink" title="测试模块"></a>测试模块</h2><ul>
+<li style="list-style: none"><input type="checkbox"> 了解这些测试注解 的作用和使用场景</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 依赖于Springboot环境的测试类的必备注解</span></span><br><span class="line"><span class="meta">@RunWith</span>(SpringRunner.class)</span><br><span class="line"><span class="meta">@SpringBootTest</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用内存数据库测试</span></span><br><span class="line"><span class="meta">@ComponentScan</span>(<span class="string">"com.github.kuagncp"</span>) <span class="comment">// 如果有类没注入需要手动设置扫面</span></span><br><span class="line"><span class="meta">@RunWith</span>(SpringJUnit4ClassRunner.class)</span><br><span class="line"><span class="meta">@DataJpaTest</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>可以使用MockMvc来测试Controller层的代码</li>
+<li>可以使用MockMvc的SpringSecurity支持来测试安全模块</li>
+<li>使用 WebIntegraionTest 测试运行中的Web容器<ul>
+<li>启动嵌入式的Servlet容器来进行测试，下断言</li>
+</ul>
+</li>
+<li>使用随机端口启动服务器 配置local.server.port=0</li>
+<li>使用Selenium来测试HTML页面，模拟浏览器的动作，查看系统运行状态</li>
+</ul>
+<hr>
+<h2 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h2><blockquote>
+<p>配置文件(<code>application.properties或者yml</code>)加载顺序 <a href="https://docs.spring.io/spring-boot/docs/1.5.9.RELEASE/reference/htmlsingle/#boot-features-external-config-application-property-files" target="_blank" rel="noopener">官方文档说明</a></p>
+<blockquote>
+<p>1.当前Jar/War目录下的/config目录 <code>file:./config/</code><br>2.当前目录 <code>file:./</code><br>3.classpath 里的/config目录 <code>classpath:/config/</code><br>4.classpath 根目录 <code>classpath:/</code>  </p>
+</blockquote>
+</blockquote>
+<blockquote>
+<p>自定义配置文件名就要运行时加参数  </p>
+<blockquote>
+<p><code>java -jar myproject.jar --spring.config.name=myproject</code><br><code>java -jar myproject.jar --spring.config.location=classpath:/default.properties,classpath:/override.properties</code> <br></p>
+</blockquote>
+</blockquote>
+<ul>
+<li><a href="http://www.itwendao.com/article/detail/391009.html" target="_blank" rel="noopener">配置文件的使用</a></li>
+<li><a href="https://www.tuicool.com/articles/veUjQba" target="_blank" rel="noopener">Spring boot配置文件 application.properties</a></li>
+<li><a href="https://my.oschina.net/wangnian/blog/666641" target="_blank" rel="noopener">SpringBoot常用配置</a></li>
+<li><a href="https://segmentfault.com/a/1190000008968295" target="_blank" rel="noopener">使用Gradle整合SpringBoot+Vue.js-开发调试与打包</a></li>
+<li><p><a href="https://yq.aliyun.com/articles/182720" target="_blank" rel="noopener">配置文件加密</a></p>
+</li>
+<li><p><a href="http://www.cnblogs.com/java-zhao/p/5542154.html" target="_blank" rel="noopener">自定义配置文件</a><code>将应用配置外置并注入成bean</code></p>
+</li>
+<li><a href="http://www.cnblogs.com/xiaoqi/p/6955288.html" target="_blank" rel="noopener">配置文件外置</a></li>
+</ul>
+<h3 id="多种配置文件并切换"><a href="#多种配置文件并切换" class="headerlink" title="多种配置文件并切换"></a>多种配置文件并切换</h3><h4 id="yml方式"><a href="#yml方式" class="headerlink" title="yml方式"></a>yml方式</h4><ul>
+<li><p>单文件<code>配置文件 application.yml</code></p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line"><span class="attr">     profiles:</span></span><br><span class="line"><span class="attr">       active:</span> <span class="string">development</span> <span class="comment"># 选用开发模式</span></span><br><span class="line"><span class="bullet">   -</span><span class="bullet">--</span></span><br><span class="line"><span class="attr">   spring:</span></span><br><span class="line"><span class="attr">     profiles:</span> <span class="string">development</span></span><br><span class="line">     <span class="string">//一系列配置</span></span><br><span class="line"><span class="bullet">   -</span><span class="bullet">--</span></span><br><span class="line"><span class="attr">   spring:</span></span><br><span class="line"><span class="attr">     profiles:</span> <span class="string">production</span></span><br><span class="line">     <span class="string">//一系列配置</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>或者 多文件放 <code>application-{profile}.yml</code></p>
+</li>
+</ul>
+<h4 id="yml和Properties结合"><a href="#yml和Properties结合" class="headerlink" title="yml和Properties结合"></a>yml和Properties结合</h4><ul>
+<li>格式：<code>application-{profile}.properties</code></li>
+<li>将上面的开发部分，发行部分的配置创建两个配置文件 <code>application-dev.properties</code> 和 <code>application-prod.properties</code></li>
+<li>在主配置文件<code>application.yml</code>中指明<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line"><span class="attr">  profiles:</span></span><br><span class="line"><span class="attr">    active:</span> <span class="string">dev或者是prod</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="应用配置文件"><a href="#应用配置文件" class="headerlink" title="应用配置文件"></a>应用配置文件</h3><blockquote>
+<p>依赖于 <code>org.springframework.boot:spring-boot-configuration-processor</code><br>配置对应的实体类<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="meta">@ConfigurationProperties</span>(prefix = <span class="string">"graduate.main"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainConfig</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String delimiter;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<p>应用配置类<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@EnableConfigurationProperties</span>(MainConfig.class)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AutoCustomConfig</span> </span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>application.yml<br><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">graduate:</span></span><br><span class="line"><span class="attr">  main:</span></span><br><span class="line"><span class="attr">    delimiter:</span> <span class="string">,</span></span><br></pre></td></tr></table></figure></p>
+<hr>
+<h2 id="日志模块"><a href="#日志模块" class="headerlink" title="日志模块"></a>日志模块</h2><p>默认可以通过 application.properties 配置框架的日志,以及应用具体到包和类的日志等级,日志文件等等</p>
+<blockquote>
+<p><a href="https://www.cnblogs.com/lixuwu/p/5804793.html" target="_blank" rel="noopener">参考博客: Spring boot——logback 基础使用篇（一）</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://springframework.guru/using-logback-spring-boot/" target="_blank" rel="noopener">参考博客: springboot use logback</a><code>能根据Profile配置,还能写if</code></p>
+</blockquote>
+<p>使用 logback 则需要配置 logback.xml 或者 logback-spring.xml 建议使用后者</p>
+<hr>
+<h2 id="Web模块"><a href="#Web模块" class="headerlink" title="Web模块"></a>Web模块</h2><h3 id="Lisener"><a href="#Lisener" class="headerlink" title="Lisener"></a>Lisener</h3><h4 id="ServletContextListener"><a href="#ServletContextListener" class="headerlink" title="ServletContextListener"></a>ServletContextListener</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@WebListener</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ApplicationContext</span> <span class="keyword">implements</span> <span class="title">ServletContextListener</span> </span>&#123;</span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">contextInitialized</span><span class="params">(ServletContextEvent event)</span> </span>&#123;</span><br><span class="line">    System.out.println(<span class="string">"Servlet容器初始化"</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">contextDestroyed</span><span class="params">(ServletContextEvent event)</span> </span>&#123;</span><br><span class="line">    System.out.println(<span class="string">"Servlet容器销毁"</span>);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="上传下载文件"><a href="#上传下载文件" class="headerlink" title="上传下载文件"></a>上传下载文件</h3><blockquote>
+<p>第一种直接上传到应用的webroot或者resources目录下，第二种上传到数据库中，第三种使用ftp。</p>
+</blockquote>
+<ul>
+<li><a href="http://www.cnblogs.com/studyCenter/p/6665171.html" target="_blank" rel="noopener">Springboot上传文件</a></li>
+<li>上传文件有大小限制，使用如下方法进行配置 <a href="http://makaidong.com/studyDetail/11882_45833.html" target="_blank" rel="noopener">参考博客</a><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> MultipartConfigElement <span class="title">multipartConfigElement</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    MultipartConfigFactory factory = <span class="keyword">new</span> MultipartConfigFactory();</span><br><span class="line">    <span class="comment">//单个文件最大</span></span><br><span class="line">    factory.setMaxFileSize(<span class="string">"80MB"</span>); <span class="comment">//KB,MB</span></span><br><span class="line">    <span class="comment">// 设置总上传数据总大小</span></span><br><span class="line">    factory.setMaxRequestSize(<span class="string">"102400KB"</span>);</span><br><span class="line">    <span class="keyword">return</span> factory.createMultipartConfig();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="错误页面跳转配置"><a href="#错误页面跳转配置" class="headerlink" title="错误页面跳转配置"></a>错误页面跳转配置</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MvcConfig</span> <span class="keyword">extends</span> <span class="title">WebMvcConfigurerAdapter</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> EmbeddedServletContainerCustomizer <span class="title">containerCustomizer</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> (container -&gt; &#123;</span><br><span class="line">            ErrorPage error401Page = <span class="keyword">new</span> ErrorPage(HttpStatus.FORBIDDEN, <span class="string">"/403.html"</span>);</span><br><span class="line">            ErrorPage error404Page = <span class="keyword">new</span> ErrorPage(HttpStatus.NOT_FOUND, <span class="string">"/404.html"</span>);</span><br><span class="line">            ErrorPage error500Page = <span class="keyword">new</span> ErrorPage(HttpStatus.INTERNAL_SERVER_ERROR, <span class="string">"/500.html"</span>);</span><br><span class="line">            container.addErrorPages(error401Page, error404Page, error500Page);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="跨域"><a href="#跨域" class="headerlink" title="跨域"></a>跨域</h3><blockquote>
+<p>不同的域名（主机）端口都会导致跨域问题</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CorsConfig</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> CorsConfiguration <span class="title">buildConfig</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        CorsConfiguration corsConfiguration = <span class="keyword">new</span> CorsConfiguration();</span><br><span class="line">        corsConfiguration.addAllowedOrigin(<span class="string">"*"</span>); <span class="comment">// 允许任何域名使用</span></span><br><span class="line">        corsConfiguration.addAllowedHeader(<span class="string">"*"</span>); <span class="comment">// 允许任何头</span></span><br><span class="line">        corsConfiguration.addAllowedMethod(<span class="string">"*"</span>); <span class="comment">// 允许任何方法（post、get等）</span></span><br><span class="line">        <span class="keyword">return</span> corsConfiguration;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> CorsFilter <span class="title">corsFilter</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        UrlBasedCorsConfigurationSource source = <span class="keyword">new</span> UrlBasedCorsConfigurationSource();</span><br><span class="line">        source.registerCorsConfiguration(<span class="string">"/**"</span>, buildConfig()); <span class="comment">// 4</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> CorsFilter(source);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="全局异常处理"><a href="#全局异常处理" class="headerlink" title="全局异常处理"></a>全局异常处理</h2><ol>
+<li>新建类, 加上注解 ControllerAdvice</li>
+<li>方法上使用注解 <code>ExceptionHandler(Exception.class)</code> 处理所有异常</li>
+<li>然后返回值的写法和普通Controller一样, 返回JSON就<code>ResponseBody</code></li>
+</ol>
+<hr>
+<h2 id="HTTPS的配置"><a href="#HTTPS的配置" class="headerlink" title="HTTPS的配置"></a>HTTPS的配置</h2><blockquote>
+<p><a href="https://www.drissamri.be/blog/java/enable-https-in-spring-boot/" target="_blank" rel="noopener">参考博客</a></p>
+</blockquote>
+<ul>
+<li>签发证书：<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">keytool -genkey -<span class="built_in">alias</span> tomcat -storetype PKCS12 -keyalg RSA -keysize 2048 -keystore keystore.p12 -validity 3650</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">server:</span></span><br><span class="line"><span class="attr">  context-path:</span> <span class="string">/myth</span></span><br><span class="line"><span class="attr">  ssl:</span></span><br><span class="line"><span class="attr">    key-store:</span> <span class="attr">classpath:keystore.p12</span></span><br><span class="line"><span class="attr">    key-store-password:</span> <span class="string">demo1429336</span></span><br><span class="line"><span class="attr">    key-store-type:</span> <span class="string">PKCS12</span></span><br><span class="line"><span class="attr">    key-alias:</span> <span class="string">tomcat</span></span><br><span class="line"><span class="attr">  port:</span> <span class="number">8888</span></span><br><span class="line"><span class="attr">  session:</span></span><br><span class="line"><span class="attr">    timeout:</span> <span class="number">3000</span></span><br></pre></td></tr></table></figure>
+<p><code>任意的一个@Configuration注解类里添加</code><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> TomcatEmbeddedServletContainerFactory <span class="title">servletContainerFactory</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    TomcatEmbeddedServletContainerFactory factory =</span><br><span class="line">        <span class="keyword">new</span> TomcatEmbeddedServletContainerFactory() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">postProcessContext</span><span class="params">(Context context)</span> </span>&#123;</span><br><span class="line">                <span class="comment">//SecurityConstraint必须存在，可以通过其为不同的URL设置不同的重定向策略。</span></span><br><span class="line">                SecurityConstraint securityConstraint = <span class="keyword">new</span> SecurityConstraint();</span><br><span class="line">                securityConstraint.setUserConstraint(<span class="string">"CONFIDENTIAL"</span>);</span><br><span class="line">                SecurityCollection collection = <span class="keyword">new</span> SecurityCollection();</span><br><span class="line">                collection.addPattern(<span class="string">"/*"</span>);</span><br><span class="line">                securityConstraint.addCollection(collection);</span><br><span class="line">                context.addConstraint(securityConstraint);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">    factory.addAdditionalTomcatConnectors(createHttpConnector());</span><br><span class="line">    <span class="keyword">return</span> factory;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> Connector <span class="title">createHttpConnector</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    Connector connector = <span class="keyword">new</span> Connector(<span class="string">"org.apache.coyote.http11.Http11NioProtocol"</span>);</span><br><span class="line">    connector.setScheme(<span class="string">"http"</span>);</span><br><span class="line">    connector.setSecure(<span class="keyword">false</span>);</span><br><span class="line">    connector.setPort(<span class="number">8887</span>);<span class="comment">//http端口（这是要新增加的一个端口）</span></span><br><span class="line">    connector.setRedirectPort(<span class="number">8888</span>);<span class="comment">// https 端口配置文件中tomcat启动的默认端口</span></span><br><span class="line">    <span class="keyword">return</span> connector;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>另一种方式 <a href="http://www.cnblogs.com/xinzhao/p/4950689.html" target="_blank" rel="noopener">参考博客</a><br><code>方式不一样，没有成功</code><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">############ 证书颁发机构</span></span><br><span class="line"><span class="comment"># CA机构私钥</span></span><br><span class="line">openssl genrsa -out ca.key 2048</span><br><span class="line"><span class="comment"># CA证书</span></span><br><span class="line">openssl req -x509 -new -key ca.key -out ca.crt</span><br><span class="line"><span class="comment">############ 服务端</span></span><br><span class="line"><span class="comment"># 生成服务端私钥</span></span><br><span class="line">openssl genrsa -out server.key 2048</span><br><span class="line"><span class="comment"># 生成服务端证书请求文件</span></span><br><span class="line">openssl req -new -key server.key -out server.csr</span><br><span class="line"><span class="comment"># 使用CA证书生成服务端证书  关于sha256，默认使用的是sha1，在新版本的chrome中会被认为是不安全的，因为使用了过时的加密算法。</span></span><br><span class="line">openssl x509 -req -sha256 -<span class="keyword">in</span> server.csr -CA ca.crt -CAkey ca.key -CAcreateserial -days 3650 -out server.crt    </span><br><span class="line"><span class="comment"># 打包服务端的资料为pkcs12格式(非必要，只是换一种格式存储上一步生成的证书) 生成过程中，需要创建访问密码，请记录下来。</span></span><br><span class="line">openssl pkcs12 -<span class="built_in">export</span> -<span class="keyword">in</span> server.crt -inkey server.key -out server.pkcs12</span><br><span class="line"><span class="comment"># 生成服务端的keystore（.jks文件, 非必要，Java程序通常使用该格式的证书） 生成过程中，需要创建访问密码，请记录下来。</span></span><br><span class="line">keytool -importkeystore -srckeystore server.pkcs12 -destkeystore server.jks -srcstoretype pkcs12</span><br><span class="line"><span class="comment"># 把ca证书放到keystore中（非必要）</span></span><br><span class="line">keytool -importcert -keystore server.jks -file ca.crt</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<h2 id="线程池"><a href="#线程池" class="headerlink" title="线程池"></a>线程池</h2><ul>
+<li><a href="https://hacpai.com/article/1501152977477?p=1&amp;m=0" target="_blank" rel="noopener">参考博客</a></li>
+<li>多线程以及异常处理 <a href="http://www.liuhaihua.cn/archives/496733.html" target="_blank" rel="noopener">参考博客</a><ul>
+<li>因为多线程的特性，所以异常只能在子线程中处理不能抛出到主线程里，但是 Spring实现的线程池可以返回一个异常信息对象</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="项目部署"><a href="#项目部署" class="headerlink" title="项目部署"></a>项目部署</h2><h3 id="生成指定文件"><a href="#生成指定文件" class="headerlink" title="生成指定文件"></a>生成指定文件</h3><h4 id="war"><a href="#war" class="headerlink" title="war"></a>war</h4><ul>
+<li><p>部署为war必须的类，一般在创建项目时选war就会自动生成，选jar就要手动添加</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ServletInitializer</span> <span class="keyword">extends</span> <span class="title">SpringBootServletInitializer</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> SpringApplicationBuilder <span class="title">configure</span><span class="params">(SpringApplicationBuilder application)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> application.sources(DemoApplication.class);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>maven： <code>mvn war</code> 即可 mvn package -DskipTests</p>
+</li>
+<li>gradle: <code>gradle war</code> 然后 <code>gradle bootRepackage</code> 即可</li>
+</ul>
+<h4 id="jar"><a href="#jar" class="headerlink" title="jar"></a>jar</h4><ul>
+<li>没有特殊的配置，打包即用<ul>
+<li>maven: <code>mvn package</code> 即可生成可执行的jar</li>
+<li>gradle:<code>gradle jar</code> 然后 <code>gradle bootRepackage</code> 也生成可执行jar</li>
+</ul>
+</li>
+</ul>
+<h3 id="构建docker镜像"><a href="#构建docker镜像" class="headerlink" title="构建docker镜像"></a>构建docker镜像</h3><blockquote>
+<p>方便监控应用状态，cpu 内存 流量, <a href="https://spring.io/guides/gs/spring-boot-docker/" target="_blank" rel="noopener">官方文档</a></p>
+</blockquote>
+<h4 id="手动方式"><a href="#手动方式" class="headerlink" title="手动方式"></a>手动方式</h4><ul>
+<li>先构建得到war或jar，然后根据dockerfile构建一个镜像<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">FROM</span> frolvlad/alpine-oraclejdk8:slim</span><br><span class="line"><span class="keyword">ADD</span><span class="bash"> weixin-1.0.0.war app.war</span></span><br><span class="line"><span class="bash">ENTRYPOINT [<span class="string">"java"</span>,<span class="string">"-jar"</span>,<span class="string">"/app.war"</span>]</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="gradle结合docker"><a href="#gradle结合docker" class="headerlink" title="gradle结合docker"></a>gradle结合docker</h4><h3 id="热部署"><a href="#热部署" class="headerlink" title="热部署"></a>热部署</h3><blockquote>
+<p><a href="https://nilzzzz.github.io/2017/11/SpringBoot1/" target="_blank" rel="noopener">参考博客: SpringBoot热部署</a></p>
+</blockquote>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2018-12-17T13:25:18.707Z" itemprop="dateUpdated">2018-12-17 21:25:18</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2018/12/17/Memo-Java-Spring-SpringBoot/" target="_blank" rel="external">http://blog.kuangcp.top/2018/12/17/Memo-Java-Spring-SpringBoot/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="http://blog.kuangcp.top">
+            <img src="/img/avatar.jpg" alt="Kuangcp">
+            Kuangcp
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.kuangcp.top/2018/12/17/Memo-Java-Spring-SpringBoot/&title=《SpringBoot.md》 — Kuangcp Blog&pic=http://blog.kuangcp.top/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.kuangcp.top/2018/12/17/Memo-Java-Spring-SpringBoot/&title=《SpringBoot.md》 — Kuangcp Blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.kuangcp.top/2018/12/17/Memo-Java-Spring-SpringBoot/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《SpringBoot.md》 — Kuangcp Blog&url=http://blog.kuangcp.top/2018/12/17/Memo-Java-Spring-SpringBoot/&via=http://blog.kuangcp.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.kuangcp.top/2018/12/17/Memo-Java-Spring-SpringBoot/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/12/17/Memo-Java-Spring-SpringMVC/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">SpringMVC.md</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/12/17/Memo-Java-Spring-SpringAOP/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">SpringAOP.md</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check" data-wechat="/img/wechat.png" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style="display:none">
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style="display:none">
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Kuangcp &copy; 2015 - 2018</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">赣ICP备17014189号-1</a><br>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.kuangcp.top/2018/12/17/Memo-Java-Spring-SpringBoot/&title=《SpringBoot.md》 — Kuangcp Blog&pic=http://blog.kuangcp.top/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.kuangcp.top/2018/12/17/Memo-Java-Spring-SpringBoot/&title=《SpringBoot.md》 — Kuangcp Blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.kuangcp.top/2018/12/17/Memo-Java-Spring-SpringBoot/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《SpringBoot.md》 — Kuangcp Blog&url=http://blog.kuangcp.top/2018/12/17/Memo-Java-Spring-SpringBoot/&via=http://blog.kuangcp.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.kuangcp.top/2018/12/17/Memo-Java-Spring-SpringBoot/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACtklEQVR42u3aQZKDMAwEwPz/07sPSDAjyc6yVc2JSgi4fUDOyK9XfPy8HdVv38+vrsk/2Xbg4eHhjYf+PtDq0K/ukD9xPQWFO+Dh4eEd4yW3W1PXsN716zEkBQYPDw/vCbxk7TpZ6+ZTgIeHh/e/ePmv1uFFHnzg4eHhPY2XhBHV0CH57eQ+m7MWPDw8vE5S+soj1L89P9Lfw8PDwxt31ZMi0VsiJ222vAxc3hMPDw/vAK8X0eahQH79roAYDw8P7zQv2eSUB7gTcK9s3IwQDw8P7zCvGonmj59MVt6Ku+ns4eHh4R3g5aFtvk0qZydtsDWs8F8BDw8Pb8Dr/flPXu7VJfJkWV/eNICHh4c34M23WE2W49UpLscTeHh4eAd4eQQwYedTMylazeqHh4eH17pPL1ZIWlzVQU+2Mlz+Cg8PD28rb+/LOp+U9bJ4XqLw8PDwTvN6rf1kUnp364UaH87x8PDwDvCqr/Jq439SGJKFe74Ex8PDw9vFy2OFSWGYvOLzb8t7yvDw8PBavPJFQYRa3YKwfu5kQy0eHh7eaV5C7UWxeUx8Og7Gw8PDm/PmL+gqbz1xk02uUa3Dw8PDG/MmIUI+xGoonBeDQuKCh4eHt4nXe6HnpaXZiysuvpvRLR4eHl6Llyxnq82nyRRUt21FxQwPDw/vi7w8gNjb4qouo8thBB4eHt5WXv6yzkPV6laD6tNvpgMPDw/vMC9/EU+i2+pSPgksLj/Bw8PD28o7FxD0Ao5qqHEDxsPDwzvA6zWiem2tagnJzzcceHh4eEXevBhMtmr1YohC6IyHh4d3jDdZ+FYX2Ukk0atsH36Fh4eH9xjeN6+c3BkPDw/vCbxeg6rXDJsUJDw8PLzTvGoQUB10Neqtbmi4fAoeHh7eAV71T351S1YS+06i4W39PTw8PLz74xe0E5xxVLhqWgAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

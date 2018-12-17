@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>CodeExcellentCode.md | Kuangcp Blog | Javaer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="目录 start  写出优秀的代码 代码的坏味道 《代码整洁之道》 命名 函数 注释 格式 异常      目录 end|2018-12-13 12:06| 码云 | CSDN | OSChina | cnblogs  写出优秀的代码 代码整洁之道  代码的坏味道如果在代码中，存在下面的情况之一者，则说明代码需要清除腐败。  代码中存在许多大型的类和复杂的函数 函数的名称很晦涩或者会误导人。如果函">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CodeExcellentCode.md">
+<meta property="og:url" content="http://blog.kuangcp.top/2018/12/17/Memo-Skills-SoftwareEngineering-CodeExcellentCode/index.html">
+<meta property="og:site_name" content="Kuangcp Blog">
+<meta property="og:description" content="目录 start  写出优秀的代码 代码的坏味道 《代码整洁之道》 命名 函数 注释 格式 异常      目录 end|2018-12-13 12:06| 码云 | CSDN | OSChina | cnblogs  写出优秀的代码 代码整洁之道  代码的坏味道如果在代码中，存在下面的情况之一者，则说明代码需要清除腐败。  代码中存在许多大型的类和复杂的函数 函数的名称很晦涩或者会误导人。如果函">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-12-17T13:25:18.703Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CodeExcellentCode.md">
+<meta name="twitter:description" content="目录 start  写出优秀的代码 代码的坏味道 《代码整洁之道》 命名 函数 注释 格式 异常      目录 end|2018-12-13 12:06| 码云 | CSDN | OSChina | cnblogs  写出优秀的代码 代码整洁之道  代码的坏味道如果在代码中，存在下面的情况之一者，则说明代码需要清除腐败。  代码中存在许多大型的类和复杂的函数 函数的名称很晦涩或者会误导人。如果函">
+    
+        <link rel="alternate" type="application/atom+xml" title="Kuangcp Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Kuangcp</h5>
+          <a href="mailto:kuangcp@aliyun.com" title="kuangcp@aliyun.com" class="mail">kuangcp@aliyun.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/">
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives">
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags">
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories">
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/kuangcp" target="_blank">
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">CodeExcellentCode.md</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">CodeExcellentCode.md</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-12-17T13:25:18.703Z" itemprop="datePublished" class="page-time">
+  2018-12-17
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#写出优秀的代码"><span class="post-toc-number">1.</span> <span class="post-toc-text">写出优秀的代码</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#代码的坏味道"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">代码的坏味道</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#《代码整洁之道》"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">《代码整洁之道》</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#命名"><span class="post-toc-number">1.2.1.</span> <span class="post-toc-text">命名</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#函数"><span class="post-toc-number">1.2.2.</span> <span class="post-toc-text">函数</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#注释"><span class="post-toc-number">1.2.3.</span> <span class="post-toc-text">注释</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#格式"><span class="post-toc-number">1.2.4.</span> <span class="post-toc-text">格式</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#异常"><span class="post-toc-number">1.2.5.</span> <span class="post-toc-text">异常</span></a></li></ol></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-Memo-Skills-SoftwareEngineering-CodeExcellentCode" class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">CodeExcellentCode.md</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-12-17 21:25:18" datetime="2018-12-17T13:25:18.703Z" itemprop="datePublished">2018-12-17</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style="display:none">
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p><strong>目录 start</strong></p>
+<ol>
+<li><a href="#写出优秀的代码">写出优秀的代码</a><ol>
+<li><a href="#代码的坏味道">代码的坏味道</a></li>
+<li><a href="#代码整洁之道">《代码整洁之道》</a><ol>
+<li><a href="#命名">命名</a></li>
+<li><a href="#函数">函数</a></li>
+<li><a href="#注释">注释</a></li>
+<li><a href="#格式">格式</a></li>
+<li><a href="#异常">异常</a></li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<p><strong>目录 end</strong>|<em>2018-12-13 12:06</em>| <a href="https://gitee.com/gin9" target="_blank" rel="noopener">码云</a> | <a href="http://blog.csdn.net/kcp606" target="_blank" rel="noopener">CSDN</a> | <a href="https://my.oschina.net/kcp1104" target="_blank" rel="noopener">OSChina</a> | <a href="http://www.cnblogs.com/kuangcp" target="_blank" rel="noopener">cnblogs</a></p>
+<hr>
+<h1 id="写出优秀的代码"><a href="#写出优秀的代码" class="headerlink" title="写出优秀的代码"></a>写出优秀的代码</h1><blockquote>
+<p>代码整洁之道</p>
+</blockquote>
+<h2 id="代码的坏味道"><a href="#代码的坏味道" class="headerlink" title="代码的坏味道"></a>代码的坏味道</h2><p>如果在代码中，存在下面的情况之一者，则说明代码需要清除腐败。</p>
+<ol>
+<li>代码中存在许多大型的类和复杂的函数</li>
+<li>函数的名称很晦涩或者会误导人。如果函数名称没有良好地反应函数的用途，那么会造成惊人的副作用。</li>
+<li>没有任何结构：应该在哪里找某个功能非常不清晰。</li>
+<li>内容重复：有许多相互独立的代码在做着同一件事情。</li>
+<li>高耦合性：复杂的模块相互连接和依赖关系，将意味着某个地方的小小改动就会影响整个代码，甚至会影响看起来不相关的模块。</li>
+<li>当数据流过系统时，它将在各个表示方法之间转化。</li>
+<li>API变得模糊不清。由于考虑不周，增加了新功能，曾经整洁的接口现在在范围上变得宽泛。</li>
+<li>API在不同代码版本中快速地变换。</li>
+<li>公共API中泄露了部分私有实现，以便可以进行别的快速的修改。</li>
+<li>代码中到处都是权宜之计：治标不治本的修改。它们隐藏了真正的问题。系统的外围尽是这种修改，结果导致缺陷隐藏在系统的核心。</li>
+<li>有些函数的参数太多。这些函数有许多并不使用的参数，而只是将他们传递给下一级函数调用。</li>
+<li>你发现代码太可怕了，以至于你都不想去修改它。你不知道它是会改善的，还是会轻微地破坏它，或是它更糟糕。</li>
+<li>添加新功能时没有提供任何支持文档：现有的文档过时了。</li>
+<li>你发现有的注释说：“不要动这段代码……”</li>
+</ol>
+<h2 id="《代码整洁之道》"><a href="#《代码整洁之道》" class="headerlink" title="《代码整洁之道》"></a>《代码整洁之道》</h2><h3 id="命名"><a href="#命名" class="headerlink" title="命名"></a>命名</h3><ul>
+<li>有意义，短而精悍</li>
+<li>类用名词，方法用动词，还要特别注意语境</li>
+<li>普通变量：首单词小写，其后使用驼峰法命名</li>
+<li>常量：全部大写</li>
+<li>命名有意义，简单直接明了就不需要注释了</li>
+</ul>
+<h3 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h3><ul>
+<li>短小，只做一件事，if while for try catch中只写一句话（调用一个函数），并且减少嵌套</li>
+<li>如果非要用 switch 语句就要尽量简化他</li>
+<li>函数参数越少越好，最好没有</li>
+<li>函数参数最好不要使用输出类型</li>
+<li>分隔指令（动作，会改变数据）与查询（只做一件事）</li>
+<li>使用异常代替返回特定的错误码</li>
+<li>把try catch 抽离封装到函数内</li>
+<li>避免重复</li>
+</ul>
+<h3 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h3><ul>
+<li>注释越少越好，注释往往得不到维护，代码变动了，注释却没有变，这时候的注释就是错误的引导了（坏注释）</li>
+<li>注释都是程序猿的自言自语，不要说废话</li>
+<li>避免 坏注释，多余的注释</li>
+</ul>
+<h3 id="格式"><a href="#格式" class="headerlink" title="格式"></a>格式</h3><ul>
+<li>赋值，一般的类、方法的缩进格式我已经了解</li>
+<li>注意：函数的参数，最好是这种格式 fun(int a, int b, ){} 逗号后要加空格<ul>
+<li>一行字符在20-120之间，不过我一般是达到不使用滑动条看代码即可</li>
+</ul>
+</li>
+<li>函数的排布，最好是越底层越在下面的行数上</li>
+</ul>
+<h3 id="异常"><a href="#异常" class="headerlink" title="异常"></a>异常</h3><ul>
+<li>避免null：避免函数返回值是null以及函数入参是null</li>
+<li>尽量避免可控异常（throws）的出现，因为破坏了封装</li>
+</ul>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2018-12-17T13:25:18.703Z" itemprop="dateUpdated">2018-12-17 21:25:18</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2018/12/17/Memo-Skills-SoftwareEngineering-CodeExcellentCode/" target="_blank" rel="external">http://blog.kuangcp.top/2018/12/17/Memo-Skills-SoftwareEngineering-CodeExcellentCode/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="http://blog.kuangcp.top">
+            <img src="/img/avatar.jpg" alt="Kuangcp">
+            Kuangcp
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.kuangcp.top/2018/12/17/Memo-Skills-SoftwareEngineering-CodeExcellentCode/&title=《CodeExcellentCode.md》 — Kuangcp Blog&pic=http://blog.kuangcp.top/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.kuangcp.top/2018/12/17/Memo-Skills-SoftwareEngineering-CodeExcellentCode/&title=《CodeExcellentCode.md》 — Kuangcp Blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.kuangcp.top/2018/12/17/Memo-Skills-SoftwareEngineering-CodeExcellentCode/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《CodeExcellentCode.md》 — Kuangcp Blog&url=http://blog.kuangcp.top/2018/12/17/Memo-Skills-SoftwareEngineering-CodeExcellentCode/&via=http://blog.kuangcp.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.kuangcp.top/2018/12/17/Memo-Skills-SoftwareEngineering-CodeExcellentCode/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/12/17/Memo-Book-PythonBooks/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">PythonBooks.md</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/12/17/Memo-Skills-RegularExpression/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">RegularExpression.md</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check" data-wechat="/img/wechat.png" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style="display:none">
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style="display:none">
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Kuangcp &copy; 2015 - 2018</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">赣ICP备17014189号-1</a><br>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.kuangcp.top/2018/12/17/Memo-Skills-SoftwareEngineering-CodeExcellentCode/&title=《CodeExcellentCode.md》 — Kuangcp Blog&pic=http://blog.kuangcp.top/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.kuangcp.top/2018/12/17/Memo-Skills-SoftwareEngineering-CodeExcellentCode/&title=《CodeExcellentCode.md》 — Kuangcp Blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.kuangcp.top/2018/12/17/Memo-Skills-SoftwareEngineering-CodeExcellentCode/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《CodeExcellentCode.md》 — Kuangcp Blog&url=http://blog.kuangcp.top/2018/12/17/Memo-Skills-SoftwareEngineering-CodeExcellentCode/&via=http://blog.kuangcp.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.kuangcp.top/2018/12/17/Memo-Skills-SoftwareEngineering-CodeExcellentCode/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAADKklEQVR42u3aQW7jMBAEwPz/014g2MMe1nb3jAJYTOkUyBDFog4dzvDrK74e31dy/987z55K3vJs5NdvvPjCxsbGvgn78fLKecmzz556PatktrkFGxsb+1R2Eid5OOULt5p6HJnY2NjY2LNAyie9CT9sbGxs7DbAXvPaiNovMTY2NjZ2XlTawJKNSj5++3mwsbGxz2ZvWrCf9vcP9rexsbGxP5L9KK9khNl7219n8//7LDY2NvZB7OQ4Tn7U8qrIyd/Slqvq12BjY2N/PDuPkDaoNs2AC4pByXfGxsbGPoK9qcPUOVmGZd24DWLygvITNjY29gezk6OT7STykdslSEJxuC3BxsbGvhX79SZkFmAJNW8tzGbyZjRsbGzso9lJVCT3Z+2EPKjyo6JRixcbGxv7tuwZNW8zzNrGM1I7Z2xsbOyT2G2EtEGVMGZhOft42NjY2Cexi7UpwW0DYN+cKEbAxsbGPo6d/yufbzmuagNsFuhNoxcbGxv7CHYSSElQ7Zu7s7iabYqwsbGxz2PvNxL51JMx82ND+4YENjY29t3ZeZm+baxurs0CRYuIjY2NfRC7xbeHL9v2bXKnZdddDmxsbOxbsZP4STYe+9hrC0az2PvPVgQbGxv75uxZJOw3JMWERkGVfzxsbGzsM9hFISY4ytNG4Owz7EtU2NjY2CexW8zmoE971DKfYVvAwsbGxj6DXfQQykXJR0siarZdefoUNjY29qHslpSEU7soSUzm40RdEWxsbOybszeHb5KW7WyjkoPbO9jY2NjnsffHH/OgapvBeTErj0xsbGzs89htVLStgnark7w3D8g3JSdsbGzsI9g/fSCmLQ9dddxnldvY2NjYN2TP2rqboznXNozbJgE2Njb2eew2rlpG2xjOm775J8HGxsY+lb0Pg4SXx9Vs+fLFrfHY2NjYN2Fv2qubMlBeotos0NO5YWNjYx/H3hSVNkc2r4qxfCbY2NjYv5k9Y8w2MPkRnOEnwcbGxv7F7NkGoB3hqkV8uhDY2NjYx7FnsbQpS+UlpHYOFxzcwcbGxr4Ve9bovaCsExz9STY/s6XHxsbGPoL9B1wn1JidcrSPAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>
