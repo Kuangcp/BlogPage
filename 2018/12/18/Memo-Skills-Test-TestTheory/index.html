@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>测试理论 | Kuangcp Blog | Javaer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="测试">
+    <meta name="description" content="目录 start  测试 为何要使用测试 基础知识 测试替身 虚设对象 存根对象 伪装替身 模拟对象     测试类别 单元测试 【A/B测试】 A/B测试的应用场景 元素/控件层面 功能层面 产品层面 公司层面   相关问题   【冒烟测试】   TDD 测试驱动开发 什么是TDD TDD实践   Mock BDD    目录 end|2018-12-14 20:38| 码云 | CSDN |">
+<meta name="keywords" content="测试">
+<meta property="og:type" content="article">
+<meta property="og:title" content="测试理论">
+<meta property="og:url" content="http://blog.kuangcp.top/2018/12/18/Memo-Skills-Test-TestTheory/index.html">
+<meta property="og:site_name" content="Kuangcp Blog">
+<meta property="og:description" content="目录 start  测试 为何要使用测试 基础知识 测试替身 虚设对象 存根对象 伪装替身 模拟对象     测试类别 单元测试 【A/B测试】 A/B测试的应用场景 元素/控件层面 功能层面 产品层面 公司层面   相关问题   【冒烟测试】   TDD 测试驱动开发 什么是TDD TDD实践   Mock BDD    目录 end|2018-12-14 20:38| 码云 | CSDN |">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/Kuangcp/ImageRepos/master/Tech/Book/Java7Developer/p286.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/Kuangcp/ImageRepos/master/Tech/Book/Java7Developer/p276.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/Kuangcp/ImageRepos/master/Tech/Book/Java7Developer/p283.jpg">
+<meta property="og:updated_time" content="2018-12-18T01:16:56.877Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="测试理论">
+<meta name="twitter:description" content="目录 start  测试 为何要使用测试 基础知识 测试替身 虚设对象 存根对象 伪装替身 模拟对象     测试类别 单元测试 【A/B测试】 A/B测试的应用场景 元素/控件层面 功能层面 产品层面 公司层面   相关问题   【冒烟测试】   TDD 测试驱动开发 什么是TDD TDD实践   Mock BDD    目录 end|2018-12-14 20:38| 码云 | CSDN |">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Kuangcp/ImageRepos/master/Tech/Book/Java7Developer/p286.jpg">
+    
+        <link rel="alternate" type="application/atom+xml" title="Kuangcp Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Kuangcp</h5>
+          <a href="mailto:kuangcp@aliyun.com" title="kuangcp@aliyun.com" class="mail">kuangcp@aliyun.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/">
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives">
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags">
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories">
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/kuangcp" target="_blank">
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">测试理论</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">测试理论</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-12-18T01:16:56.877Z" itemprop="datePublished" class="page-time">
+  2018-12-18
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/测试/">测试</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#测试"><span class="post-toc-number">1.</span> <span class="post-toc-text">测试</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#为何要使用测试"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">为何要使用测试</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#基础知识"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">基础知识</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#测试替身"><span class="post-toc-number">1.2.1.</span> <span class="post-toc-text">测试替身</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#虚设对象"><span class="post-toc-number">1.2.1.1.</span> <span class="post-toc-text">虚设对象</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#存根对象"><span class="post-toc-number">1.2.1.2.</span> <span class="post-toc-text">存根对象</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#伪装替身"><span class="post-toc-number">1.2.1.3.</span> <span class="post-toc-text">伪装替身</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#模拟对象"><span class="post-toc-number">1.2.1.4.</span> <span class="post-toc-text">模拟对象</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#测试类别"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">测试类别</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#单元测试"><span class="post-toc-number">1.3.1.</span> <span class="post-toc-text">单元测试</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#【A-B测试】"><span class="post-toc-number">1.3.2.</span> <span class="post-toc-text">【A/B测试】</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#A-B测试的应用场景"><span class="post-toc-number">1.3.2.1.</span> <span class="post-toc-text">A/B测试的应用场景</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#元素-控件层面"><span class="post-toc-number">1.3.2.1.1.</span> <span class="post-toc-text">元素/控件层面</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#功能层面"><span class="post-toc-number">1.3.2.1.2.</span> <span class="post-toc-text">功能层面</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#产品层面"><span class="post-toc-number">1.3.2.1.3.</span> <span class="post-toc-text">产品层面</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#公司层面"><span class="post-toc-number">1.3.2.1.4.</span> <span class="post-toc-text">公司层面</span></a></li></ol></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#相关问题"><span class="post-toc-number">1.3.2.2.</span> <span class="post-toc-text">相关问题</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#【冒烟测试】"><span class="post-toc-number">1.3.3.</span> <span class="post-toc-text">【冒烟测试】</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#TDD-测试驱动开发"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">TDD 测试驱动开发</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#什么是TDD"><span class="post-toc-number">1.4.1.</span> <span class="post-toc-text">什么是TDD</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#TDD实践"><span class="post-toc-number">1.4.2.</span> <span class="post-toc-text">TDD实践</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Mock"><span class="post-toc-number">1.5.</span> <span class="post-toc-text">Mock</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#BDD"><span class="post-toc-number">1.6.</span> <span class="post-toc-text">BDD</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-Memo-Skills-Test-TestTheory" class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">测试理论</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-12-18 09:16:56" datetime="2018-12-18T01:16:56.877Z" itemprop="datePublished">2018-12-18</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/测试/">测试</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style="display:none">
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p><strong>目录 start</strong></p>
+<ol>
+<li><a href="#测试">测试</a><ol>
+<li><a href="#为何要使用测试">为何要使用测试</a></li>
+<li><a href="#基础知识">基础知识</a><ol>
+<li><a href="#测试替身">测试替身</a><ol>
+<li><a href="#虚设对象">虚设对象</a></li>
+<li><a href="#存根对象">存根对象</a></li>
+<li><a href="#伪装替身">伪装替身</a></li>
+<li><a href="#模拟对象">模拟对象</a></li>
+</ol>
+</li>
+</ol>
+</li>
+<li><a href="#测试类别">测试类别</a><ol>
+<li><a href="#单元测试">单元测试</a></li>
+<li><a href="#ab测试">【A/B测试】</a><ol>
+<li><a href="#ab测试的应用场景">A/B测试的应用场景</a><ol>
+<li><a href="#元素控件层面">元素/控件层面</a></li>
+<li><a href="#功能层面">功能层面</a></li>
+<li><a href="#产品层面">产品层面</a></li>
+<li><a href="#公司层面">公司层面</a></li>
+</ol>
+</li>
+<li><a href="#相关问题">相关问题</a></li>
+</ol>
+</li>
+<li><a href="#冒烟测试">【冒烟测试】</a></li>
+</ol>
+</li>
+<li><a href="#tdd-测试驱动开发">TDD 测试驱动开发</a><ol>
+<li><a href="#什么是tdd">什么是TDD</a></li>
+<li><a href="#tdd实践">TDD实践</a></li>
+</ol>
+</li>
+<li><a href="#mock">Mock</a></li>
+<li><a href="#bdd">BDD</a></li>
+</ol>
+</li>
+</ol>
+<p><strong>目录 end</strong>|<em>2018-12-14 20:38</em>| <a href="https://gitee.com/gin9" target="_blank" rel="noopener">码云</a> | <a href="http://blog.csdn.net/kcp606" target="_blank" rel="noopener">CSDN</a> | <a href="https://my.oschina.net/kcp1104" target="_blank" rel="noopener">OSChina</a> | <a href="http://www.cnblogs.com/kuangcp" target="_blank" rel="noopener">cnblogs</a></p>
+<hr>
+<h1 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h1><blockquote>
+<p><a href="http://www.yinwang.org/blog-cn/2016/09/14/tests" target="_blank" rel="noopener">参考博客: 测试的道理</a></p>
+</blockquote>
+<h2 id="为何要使用测试"><a href="#为何要使用测试" class="headerlink" title="为何要使用测试"></a>为何要使用测试</h2><ol>
+<li>帮助理解需求<ul>
+<li>单元测试应该反映Use Case，把被测单元当成黑盒测试其外部行为。</li>
+</ul>
+</li>
+<li>提高实现质量<ul>
+<li>单元测试不保证程序做正确的事，但能帮助保证程序正确地做事，从而提高实现质量。</li>
+</ul>
+</li>
+<li>测试成本低<ul>
+<li>相比集成测试、验收测试，单元测试所依赖的外部环境少，自动化程度高，时间短，节约了测试成本。</li>
+</ul>
+</li>
+<li>反馈速度快<ul>
+<li>单元测试提供快速反馈，把bug消灭在开发阶段，减少问题流到集成测试、验收测试和用户，降低了软件质量控制的成本。</li>
+</ul>
+</li>
+<li>利于重构<ul>
+<li>由于有单元测试作为回归测试用例，有助于预防在重构过程中引入bug。</li>
+</ul>
+</li>
+<li>文档作用<ul>
+<li>单元测试提供了被测单元的使用场景，起到了使用文档的作用。</li>
+</ul>
+</li>
+<li>对设计的反馈<ul>
+<li>一个模块很难进行单元测试通常是不良设计的信号，单元测试可以反过来指导设计出高内聚、低耦合的模块。</li>
+</ul>
+</li>
+</ol>
+<h2 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h2><blockquote>
+<p><a href="https://mp.weixin.qq.com/s?__biz=MzAxOTc0NzExNg==&amp;mid=2665513524&amp;idx=1&amp;sn=8967771a4ac2a2b3b9bca019207e275a&amp;chksm=80d67a77b7a1f36167ca66f9bdad810202d8790be1f15977dacd03348ee2b139f65ba58e4187&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">码农翻身: 张大胖和单元测试</a></p>
+</blockquote>
+<ul>
+<li><a href="/Java/AdvancedLearning/ProgramThinking.md#tdd-测试驱动开发">个人笔记: TDD 测试驱动开发</a></li>
+</ul>
+<h3 id="测试替身"><a href="#测试替身" class="headerlink" title="测试替身"></a>测试替身</h3><blockquote>
+<p>泛指任何出于测试目的的替换真实对象的假冒对象，为了解决测试代码的依赖项问题。<br>四种方式： 虚设，伪装，存根，模拟</p>
+</blockquote>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/Kuangcp/ImageRepos/master/Tech/Book/Java7Developer/p286.jpg" alt="p286" title="">
+                </div>
+                <div class="image-caption">p286</div>
+            </figure>
+<h4 id="虚设对象"><a href="#虚设对象" class="headerlink" title="虚设对象"></a>虚设对象</h4><ul>
+<li>他是用来填充参数列表，填补那些总也不会用的必填域。大多数情况下，甚至可以传入null，就是把需要的参数虚拟出来<ul>
+<li>只是为了避免NPE，让代码能跑起来</li>
+</ul>
+</li>
+</ul>
+<h4 id="存根对象"><a href="#存根对象" class="headerlink" title="存根对象"></a>存根对象</h4><ul>
+<li>用来代替真实环境对象，需要有做出相同响应的对象，就是存根对象<ul>
+<li>将一些外部类或三方资源，写一个类，以及对应的方法，来提供测试运行</li>
+</ul>
+</li>
+</ul>
+<h4 id="伪装替身"><a href="#伪装替身" class="headerlink" title="伪装替身"></a>伪装替身</h4><ul>
+<li>伪装替身，可以看作是存根的升级。他做的工作几乎是和生产代码是一样的，单位了满足测试需求也会使用便捷的方式<ul>
+<li>例如 内存数据库HSQLDB 的使用，</li>
+</ul>
+</li>
+</ul>
+<h4 id="模拟对象"><a href="#模拟对象" class="headerlink" title="模拟对象"></a>模拟对象</h4><ul>
+<li><p>存根对象的调用通常会返回形同的结果。所以不能模拟任何与状态有关的行为，模拟对象就能够更好的胜任</p>
+<ul>
+<li>在准备要用的模拟对象时，告诉他会有哪些调用，以及对应的相应，模拟会和DI结合更好。可以用一个虚拟的对象，这个对象完全按照已知方式行动</li>
+</ul>
+</li>
+<li><p>模拟类库：<a href="http://mockito.org" target="_blank" rel="noopener">Mockito官网</a></p>
+<ul>
+<li>调用mock()方法创建模拟对象，并将模拟目标类型的class对象作为参数传进去。</li>
+<li>然后要把模拟对象需要的行为记录下来，通过 when方法表明要记录哪些方法的行为，然后用thenReturn方法指定期望结果。</li>
+</ul>
+</li>
+</ul>
+<h2 id="测试类别"><a href="#测试类别" class="headerlink" title="测试类别"></a>测试类别</h2><ul>
+<li style="list-style: none"><input type="checkbox"> 单元测试, 集成测试</li>
+</ul>
+<h3 id="单元测试"><a href="#单元测试" class="headerlink" title="单元测试"></a>单元测试</h3><ul>
+<li>3A 原则: <ul>
+<li>Arrange: 初始化测试对象或者准备测试数据</li>
+<li>Act : 调用被测方法</li>
+<li>Assert: 断言</li>
+</ul>
+</li>
+</ul>
+<h3 id="【A-B测试】"><a href="#【A-B测试】" class="headerlink" title="【A/B测试】"></a>【A/B测试】</h3><blockquote>
+<p>对照实验，也叫随机实验和 A/B测试 <a href="https://www.zhihu.com/question/20045543" target="_blank" rel="noopener">参考来源:知乎问题</a> | <a href="http://www.appadhoc.com/" target="_blank" rel="noopener">相关三方平台</a></p>
+</blockquote>
+<blockquote>
+<p>A/B测试其实是一种“先验”的实验体系，属于预测型结论，与“后验”的归纳性结论差别巨大。A/B测试的目的在于通过科学的实验设计、采样样本代表性、流量分割与小流量测试等方式来获得具有代表性的实验结论，并确信该结论在推广到全部流量可信。<br>说句题外话，大量的大数据公司都在尝试通过“后验”结论进行未来行为预测，个人觉得然并卵，主要是因为数据不全、脏数据、随机事件、建模人为因素等等影响，方向无比正确，现实无比残酷</p>
+</blockquote>
+<h4 id="A-B测试的应用场景"><a href="#A-B测试的应用场景" class="headerlink" title="A/B测试的应用场景"></a>A/B测试的应用场景</h4><ul>
+<li>A/B测试这种方法论的应用非常广泛，这里讨论在Web产品、移动产品、数字广告优化领域的应用。应用场景由小到大可以可以分为：<ul>
+<li>元素/控件层面</li>
+<li>功能层面</li>
+<li>产品层面</li>
+<li>公司层面</li>
+</ul>
+</li>
+</ul>
+<h5 id="元素-控件层面"><a href="#元素-控件层面" class="headerlink" title="元素/控件层面"></a>元素/控件层面</h5><p>灰度发布 和 A/B测试：重要页面的修改和流程上的调优，通过灰度发布到1%或者5%的用户，看其实际对用户的数据影响（访问时间增加、留存提高、下单率提高等），决定此修改到底是100%发布还是被砍掉<br>Google：<br>每个月从上百个A/B测试中找到十几个有效方案，月营收提升2%左右，10亿美元的规模<br>广告位左移一个像素带来X%的增收，左移两个像素带来Y%的亏损<br>任何产品改动需要A/B测试才能上线<br>Facebook：<br>6个月内所有版本完全线上灰度发布，通过不断进行用户流量分割的方式进行实验，获得无Bug口碑</p>
+<blockquote>
+<p>灰度发布就是,先把一部分线上的业务分流到新系统上, 然后看情况, 再判断是否全部上线</p>
+</blockquote>
+<h5 id="功能层面"><a href="#功能层面" class="headerlink" title="功能层面"></a>功能层面</h5><p>无论是推荐算法还是定价策略<br>为了简单理解，说个定价策略，如上图。<br>一个价格包含这个几个因素：</p>
+<blockquote>
+<p>1.价格区间：<br>用我最朴素的理解，人类是喜欢折扣的不理性动物：人们明显更乐意花45折买一个价值900块钱的东西而不是花67折买一个价值600块的东西，尽管东西一样，最终价格一样都是400块。<br>所以你看电商广告都是打折配合几个垫背的低价来卖。。。</p>
+</blockquote>
+<blockquote>
+<p>2.价格精度：<br>以前去超市经常能发现2.99元或者8.99，现在都变成2.32或者4.23，这是弄啥嘞？<br>这里面太多心理学与营销的东西就不说了，在某些情况下，即使几分钱的价格变化对用户转化的影响是巨大的，比如一个东西原来卖400元，那现在改成399还是401可能对总营收的影响并不巨大，但是配合用户转化率的变化，可能营收的差异就天差地别了。</p>
+</blockquote>
+<blockquote>
+<p>3.价格周期：<br>伴随着产品迭代、促销等等因素影响，什么时候降价是对自己最有利的策略，完全可以A/B测试来解决</p>
+</blockquote>
+<h5 id="产品层面"><a href="#产品层面" class="headerlink" title="产品层面"></a>产品层面</h5><p>A/B测试在产品层面的应用主要是通过“灰度发布”来实现的。<br>就目前移动端的产品来说，iOS的应用商店审核期是个大大大坑，任何BUG打补丁还得再来一遍，也就意味着补丁的审核期内用户带着BUG使用，这个太致命了，用户的获取成本高的吓人，因为这个流失太不值得了，基于A/B测试的灰度发布更重要的不是优化，而是保护性发布，先通过小流量的实际用户测试，有BUG或者新版本体验不好，可以立即回滚到老版本，简单有效。</p>
+<h5 id="公司层面"><a href="#公司层面" class="headerlink" title="公司层面"></a>公司层面</h5><p>A/B测试其实也是谷歌管理方法论，具体文章请参考：</p>
+<ul>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MzAxMjYyNDQxMQ==&amp;mid=207326881&amp;idx=1&amp;sn=1819eb391b8892ee44b2412df7e3e24b&amp;scene=1&amp;key=0acd51d81cb052bc0a3d80b5d616574c3980264cc57e79a82de989417043424df4559c1bdf2c5fcb4ed9236d4b71ec26&amp;ascene=0&amp;uin=NzEwNzE5MDIw&amp;devicetype=iMac+MacBookPro12%2C1+OSX+OSX+10.10.4+build(14E46" target="_blank" rel="noopener">Google 的产品策略：两边下注 </a>&amp;version=11020113&amp;pass_ticket=N7rowGeMgSIo27M2UKuWi1JsLuQ2wgA2f6hPaARrza5teBqjdjGkx5S6hAcmdLxo)</li>
+</ul>
+<h4 id="相关问题"><a href="#相关问题" class="headerlink" title="相关问题"></a>相关问题</h4><blockquote>
+<p>辛普森悖论（Simpson’s Paradox）亦有人译为辛普森诡论，为英国统计学家E.H.辛普森（E.H.Simpson）于1951年提出的悖论，即在某个条件下的两组数据，分别讨论时都会满足某种性质，可是一旦合并考虑，却可能导致相反的结论。<br><a href="https://www.guokr.com/article/6222/" target="_blank" rel="noopener">相关:辛普森悖论：诡异的男女比例</a></p>
+</blockquote>
+<p>大多数的产品或功能上线前都会进行测试，实际上很多的测试行为并不科学，特别是很多定向的用户测试经常会有这个弊端，简单来说，如果新上线的一个功能，所有的研发工程师都说好，那是不是意味着所有的用户都觉得好？很多情况下是否定的。当然这个例子比较简单，实际上很多A/B测试方法并没有考虑到这个问题，以至于最后得出的结论跟实际情况差异巨大。<br>要解决这个问题，对采样、聚类、流量分割等要求非常的高，这也是为什么A/B测试工具不能像很多统计工具一样，埋个点看数据，再根据数据反推业务逻辑，而是要充分与业务结合，从一开始就应该考虑业务策略，让用户去选择适合其口味的产品。<br> 现在的创业者面临着前所未有的竞争压力，好的想法与用户接受的想法有着各种不可逾越的鸿沟。特别是伴随着激烈的竞争，谁能领先一步可能就变成了赢者通吃的局面。</p>
+<blockquote>
+<p>相关专栏: <a href="https://zhuanlan.zhihu.com/milmax/20394728" target="_blank" rel="noopener">[A/B]那些年，我们追过的AB Testing （一）</a> | <a href="https://zhuanlan.zhihu.com/milmax/20507473" target="_blank" rel="noopener">[A/B]那些年，我们追过的AB Testing （二）从“People you may know”到growth hacking</a></p>
+</blockquote>
+<hr>
+<h3 id="【冒烟测试】"><a href="#【冒烟测试】" class="headerlink" title="【冒烟测试】"></a>【冒烟测试】</h3><blockquote>
+<p>冒烟测试源自硬件行业，对一个硬件或者硬件组件改动后，直接给设备加电，看看设备会不会冒烟，没冒烟，就表示待测组件是通过了测试。<br>目的是确认软件基本功能正常，可以进行后续的正式测试工作。</p>
+</blockquote>
+<hr>
+<h2 id="TDD-测试驱动开发"><a href="#TDD-测试驱动开发" class="headerlink" title="TDD 测试驱动开发"></a>TDD 测试驱动开发</h2><blockquote>
+<p>Java程序员修炼之道 测试驱动开发章节</p>
+</blockquote>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/Kuangcp/ImageRepos/master/Tech/Book/Java7Developer/p276.jpg" alt="p276.jpg" title="">
+                </div>
+                <div class="image-caption">p276.jpg</div>
+            </figure>
+<p><code>TDD带来的好处</code></p>
+<ul>
+<li>更清晰的代码 只写需要的代码</li>
+<li>更好的设计  有些开发人员管TDD叫测试驱动的设计</li>
+<li>更出色的灵活性 TDD会鼓励按接口编码</li>
+<li>更快速的反馈  不会直到系统上线才知道bug的存在</li>
+</ul>
+<p><code>红 - 绿 - 重构循环</code></p>
+<ul>
+<li>先编写不能通过测试的红色代码，就是一个简单的思路编写</li>
+<li><p>然后修改，让测试通过，然后完善设计，进行重构编写，又进入红绿阶段，然后再重构</p>
+</li>
+<li><p>重构是为了通过测试你写的快速实现，重构减轻自己和别人的技术债务(临时凑合出来的设计或代码将来会付出更多的工作)</p>
+<ul>
+<li>有了通过测试， 就可以放心的重构，应该实现的业务逻辑就不可能会被忽视</li>
+</ul>
+</li>
+<li><code>多个测试用例 为了覆盖更多情况</code><ul>
+<li>按照TDD风格，就应该为之前编写的测试用例，进行多路径全覆盖，这个测试依然是红绿重构循环。</li>
+</ul>
+</li>
+</ul>
+<p><code>深入思考 红 绿 重构循环</code></p>
+<ul>
+<li>失败测试（红）<ul>
+<li>一些开发人员喜欢编写编译失败的测试，喜欢等到绿色步骤才提供实现代码</li>
+<li>也有一些开发人员喜欢先把测试调用的方法签名写出来，这样虽然编译能通过，但还是失败</li>
+</ul>
+</li>
+<li>通过测试<ul>
+<li>这一步应该尽量少写代码，只要能测试通过即可。</li>
+</ul>
+</li>
+<li>重构<ul>
+<li>许多地方需要重构，一般是： 去掉硬编码的变量，</li>
+<li>或把大方法拆分，对于面向对象来说应该遵循 SOLID 原则 <a href="/Java/模式之禅.md">解释SOLID原则</a></li>
+<li>可以把通用的设置和拆卸代码提取出来。可以重命名测试，以便于更准确地反应他的意图，根据静态分析工具例如<code>CheckStyle</code> <code>FindBugs</code><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/Kuangcp/ImageRepos/master/Tech/Book/Java7Developer/p283.jpg" alt="p283.jpg" title="">
+                </div>
+                <div class="image-caption">p283.jpg</div>
+            </figure></li>
+</ul>
+</li>
+<li>应该尽可能的遵守单个测试循环的开发模型，不要同时开多个测试循环，一堆红色</li>
+</ul>
+<h3 id="什么是TDD"><a href="#什么是TDD" class="headerlink" title="什么是TDD"></a>什么是TDD</h3><blockquote>
+<p><a href="http://baike.baidu.com/item/TDD/9064369" target="_blank" rel="noopener">百度百科词条</a>, 简单来讲就是红绿循环, 红 绿 红…<br>TDD是测试驱动开发（Test-Driven Development）的英文简称，是敏捷开发中的一项核心实践和技术，也是一种设计方法论。<br>TDD的原理是在开发功能代码之前，先编写单元测试用例代码，测试代码确定需要编写什么产品代码。TDD虽是敏捷方法的核心实践，但不只适用于XP（Extreme Programming），同样可以适用于其他开发方法和过程。</p>
+</blockquote>
+<ul>
+<li>个人理解：引用Mockito框架中的 “when thenReturn” and “when thenThrow“ 由预定输入，运行方法或模块后，需要返回预定的数据或者抛出预定的异常，这就是已经写好了测试</li>
+<li>然后根据测试原型，去思考真正的功能代码的实现，当代码实现后，能够通过之前写的测试就代表着一个方法或模块的开发成功，然后开发下一个</li>
+<li>要想做到这样的地步，首先基础的环境要思考好，耦合的问题要明确，确定公共模块之后，再一个个的TDD进行开发。一个很好的思想，不用担心你之后的改动会让代码变得丑陋不堪</li>
+</ul>
+<blockquote>
+<p>优点：在任意一个开发节点都可以拿出一个可以使用，含少量bug并具一定功能和能够发布的产品。<br>缺点：增加代码量。测试代码是系统代码的两倍或更多，但是同时节省了调试程序及挑错时间。</p>
+</blockquote>
+<pre><code>单元测试是用来对一个模块、一个函数或者一个类来进行正确性检验的测试工作。
+比如对函数abs()，我们可以编写出以下几个测试用例：
+输入正数，比如1、1.2、0.99，期待返回值与输入相同；
+输入负数，比如-1、-1.2、-0.99，期待返回值与输入相反；
+输入0，期待返回0；
+输入非数值类型，比如None、[]、{}，期待抛出TypeError。
+把上面的测试用例放到一个测试模块里，就是一个完整的单元测试。
+</code></pre><h3 id="TDD实践"><a href="#TDD实践" class="headerlink" title="TDD实践"></a>TDD实践</h3><p><a href="https://my.oschina.net/bysu/blog/1635549" target="_blank" rel="noopener">java测试驱动开发(TDD)之《井字游戏》 </a></p>
+<hr>
+<h2 id="Mock"><a href="#Mock" class="headerlink" title="Mock"></a>Mock</h2><blockquote>
+<p><a href="http://www.uml.org.cn/Test/201708143.asp?artid=19745" target="_blank" rel="noopener">参考博客: 面向开发的测试技术（一）：Mock </a></p>
+</blockquote>
+<p>既然使用模拟技术, 就要让模块的设计更易于测试, 也就是耦合更低, 之间的依赖更少, 一个正向循环呢</p>
+<ol>
+<li>Mockito <a href="https://site.mockito.org/" target="_blank" rel="noopener">Official Site</a> 该框架有多种语言的实现 Java Python …</li>
+<li>Easy Mock <a href="http://easymock.org/" target="_blank" rel="noopener">Official Site</a> </li>
+</ol>
+<hr>
+<h2 id="BDD"><a href="#BDD" class="headerlink" title="BDD"></a>BDD</h2><blockquote>
+<p>行为驱动开发  behavior-driven development 作为TDD的一个变种 </p>
+</blockquote>
+<blockquote>
+<p><a href="https://docs.cucumber.io/bdd/" target="_blank" rel="noopener">cucumber about bdd</a> </p>
+</blockquote>
+<p>它的重点是描述程序的行为, 而不是一组需要通过的单元测试</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2018-12-18T01:16:56.877Z" itemprop="dateUpdated">2018-12-18 09:16:56</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2018/12/18/Memo-Skills-Test-TestTheory/" target="_blank" rel="external">http://blog.kuangcp.top/2018/12/18/Memo-Skills-Test-TestTheory/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="http://blog.kuangcp.top">
+            <img src="/img/avatar.jpg" alt="Kuangcp">
+            Kuangcp
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/测试/">测试</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.kuangcp.top/2018/12/18/Memo-Skills-Test-TestTheory/&title=《测试理论》 — Kuangcp Blog&pic=http://blog.kuangcp.top/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.kuangcp.top/2018/12/18/Memo-Skills-Test-TestTheory/&title=《测试理论》 — Kuangcp Blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.kuangcp.top/2018/12/18/Memo-Skills-Test-TestTheory/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《测试理论》 — Kuangcp Blog&url=http://blog.kuangcp.top/2018/12/18/Memo-Skills-Test-TestTheory/&via=http://blog.kuangcp.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.kuangcp.top/2018/12/18/Memo-Skills-Test-TestTheory/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/12/18/Memo-Skills-Ecology-MSA/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">MSA.md</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/12/18/Memo-Functional-Kotlin/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Kotlin.md</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check" data-wechat="/img/wechat.png" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style="display:none">
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style="display:none">
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Kuangcp &copy; 2015 - 2018</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">赣ICP备17014189号-1</a><br>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.kuangcp.top/2018/12/18/Memo-Skills-Test-TestTheory/&title=《测试理论》 — Kuangcp Blog&pic=http://blog.kuangcp.top/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.kuangcp.top/2018/12/18/Memo-Skills-Test-TestTheory/&title=《测试理论》 — Kuangcp Blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.kuangcp.top/2018/12/18/Memo-Skills-Test-TestTheory/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《测试理论》 — Kuangcp Blog&url=http://blog.kuangcp.top/2018/12/18/Memo-Skills-Test-TestTheory/&via=http://blog.kuangcp.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.kuangcp.top/2018/12/18/Memo-Skills-Test-TestTheory/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACsUlEQVR42u3aS25CMRAEQO5/aSJlFSnh0T22AUXlVUT4uFjYQ8/cbvG6f69buR696v5j/X7m9atuJxYeHh7eaBOP1vWGfn9ku/V7ufI94+Hh4Z3mXR/ELfgRoz3Dr/cTXR54eHh4b+W1+OQKyYtyPDw8vP/HWwka2mgDDw8P7xN4yY///NBvr4S8ZD+YteDh4eHFvJVD+V1/H+zv4eHh4S101fNLYnZVzIKGYrd4eHh4B3j5R84Cgny8IGHkt0D9jeLh4eHFvPb4Tv6bxL4zRkvFw8PDO8fLh5zy9v9KuZxfQk+uHDw8PLxjvPZiyD+gLbLXxxQ23Ht4eHh48XnehhFJQTwLbfNSu2iJ4eHh4W3itRHALJbNL4DN6SseHh7eYV5+fF+PCyTPTPCzSwsPDw/vlbxrxnrRnAe+eZEdZS14eHh4W3mzBlX7nPzxNoaIinI8PDy8rbx2Q3lJ3W6uDTiiwh0PDw/vAK/tkq0U1m1fLhoISEp/PDw8vK289of9rjbYShixVFLj4eHhbeKtN++TQ3xXRFuw8fDw8A7w8o9pS+RkBKEdyWrjYDw8PLwTvDYqnQ1jrUS9efstGrrCw8PDW+a1YUH7FrMGWDFQhYeHh/dyXl5At1FCG8u2X1/0znh4eHgHeO0xPRsvyDGzMAIPDw/vlbw8DliJJJYGp+IAFw8PD+9zePlaGczKMXmogYeHh3eCtxKt7m2b5QMEs7EDPDw8vF282dHftsqSC2ClMRaV1Hh4eHibePnKQ9V8u7NIYiXkxcPDw9vF2xUxtEHGLCyuY2I8PDy8Y7w6vRgNZs2uljaG+ONiwMPDw3sTry2dTwwltK/Cw8PD+xxeHi4koUMSTySP4+Hh4b2S14YRbUSbA9pW3JNH8PDw8A7wZiNNbeDbNswOdvPw8PDw5rwvfCwDJyBML1cAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

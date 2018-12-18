@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>ZenOfPattern.md | Kuangcp Blog | Javaer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="目录 start  设计模式之禅 软件设计的一些原则 思维原则 奥卡姆剃刀原理   首要原则 勿重复造轮子 减法优于加法 抽象优于实现 组合优于继承 查询与命令分离 够用原则 最少知识原则   面向对象的S.O.L.I.D 原则 单一职责原则 开闭原则 里氏代换原则 接口隔离原则 依赖倒置原则   其他原则 共同封闭原则 共同重用原则 好莱坞原则 高内聚低耦合 惯例优于配置原则 关注点分离 契约式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ZenOfPattern.md">
+<meta property="og:url" content="http://blog.kuangcp.top/2018/12/18/Memo-Java-ZenOfPattern/index.html">
+<meta property="og:site_name" content="Kuangcp Blog">
+<meta property="og:description" content="目录 start  设计模式之禅 软件设计的一些原则 思维原则 奥卡姆剃刀原理   首要原则 勿重复造轮子 减法优于加法 抽象优于实现 组合优于继承 查询与命令分离 够用原则 最少知识原则   面向对象的S.O.L.I.D 原则 单一职责原则 开闭原则 里氏代换原则 接口隔离原则 依赖倒置原则   其他原则 共同封闭原则 共同重用原则 好莱坞原则 高内聚低耦合 惯例优于配置原则 关注点分离 契约式">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/Kuangcp/ImageRepos/master/Tech/UML/Adapter.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Kuangcp/ImageRepos/master/Tech/Model/Observer.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Kuangcp/ImageRepos/master/Tech/Model/Decorator.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Kuangcp/ImageRepos/master/Tech/Model/State_zhijin.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Kuangcp/ImageRepos/master/Tech/Model/State_zhijin2.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Kuangcp/ImageRepos/master/Tech/Model/State_TCP.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Kuangcp/ImageRepos/master/Tech/Model/Command.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Kuangcp/ImageRepos/master/Tech/Model/Bridge.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Kuangcp/ImageRepos/master/Tech/Model/AbstractFactory.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Kuangcp/ImageRepos/master/Tech/Model/Clone.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Kuangcp/ImageRepos/master/Tech/Model/Builder.png">
+<meta property="og:updated_time" content="2018-12-18T01:16:56.921Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ZenOfPattern.md">
+<meta name="twitter:description" content="目录 start  设计模式之禅 软件设计的一些原则 思维原则 奥卡姆剃刀原理   首要原则 勿重复造轮子 减法优于加法 抽象优于实现 组合优于继承 查询与命令分离 够用原则 最少知识原则   面向对象的S.O.L.I.D 原则 单一职责原则 开闭原则 里氏代换原则 接口隔离原则 依赖倒置原则   其他原则 共同封闭原则 共同重用原则 好莱坞原则 高内聚低耦合 惯例优于配置原则 关注点分离 契约式">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Kuangcp/ImageRepos/master/Tech/UML/Adapter.png">
+    
+        <link rel="alternate" type="application/atom+xml" title="Kuangcp Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Kuangcp</h5>
+          <a href="mailto:kuangcp@aliyun.com" title="kuangcp@aliyun.com" class="mail">kuangcp@aliyun.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/">
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives">
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags">
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories">
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/kuangcp" target="_blank">
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">ZenOfPattern.md</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">ZenOfPattern.md</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-12-18T01:16:56.921Z" itemprop="datePublished" class="page-time">
+  2018-12-18
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#设计模式之禅"><span class="post-toc-number">1.</span> <span class="post-toc-text">设计模式之禅</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#软件设计的一些原则"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">软件设计的一些原则</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#思维原则"><span class="post-toc-number">1.1.1.</span> <span class="post-toc-text">思维原则</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#奥卡姆剃刀原理"><span class="post-toc-number">1.1.1.1.</span> <span class="post-toc-text">奥卡姆剃刀原理</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#首要原则"><span class="post-toc-number">1.1.2.</span> <span class="post-toc-text">首要原则</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#勿重复造轮子"><span class="post-toc-number">1.1.2.1.</span> <span class="post-toc-text">勿重复造轮子</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#减法优于加法"><span class="post-toc-number">1.1.2.2.</span> <span class="post-toc-text">减法优于加法</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#抽象优于实现"><span class="post-toc-number">1.1.2.3.</span> <span class="post-toc-text">抽象优于实现</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#组合优于继承"><span class="post-toc-number">1.1.2.4.</span> <span class="post-toc-text">组合优于继承</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#查询与命令分离"><span class="post-toc-number">1.1.2.5.</span> <span class="post-toc-text">查询与命令分离</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#够用原则"><span class="post-toc-number">1.1.2.6.</span> <span class="post-toc-text">够用原则</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#最少知识原则"><span class="post-toc-number">1.1.2.7.</span> <span class="post-toc-text">最少知识原则</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#面向对象的S-O-L-I-D-原则"><span class="post-toc-number">1.1.3.</span> <span class="post-toc-text">面向对象的S.O.L.I.D 原则</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#单一职责原则"><span class="post-toc-number">1.1.3.1.</span> <span class="post-toc-text">单一职责原则</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#开闭原则"><span class="post-toc-number">1.1.3.2.</span> <span class="post-toc-text">开闭原则</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#里氏代换原则"><span class="post-toc-number">1.1.3.3.</span> <span class="post-toc-text">里氏代换原则</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#接口隔离原则"><span class="post-toc-number">1.1.3.4.</span> <span class="post-toc-text">接口隔离原则</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#依赖倒置原则"><span class="post-toc-number">1.1.3.5.</span> <span class="post-toc-text">依赖倒置原则</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#其他原则"><span class="post-toc-number">1.1.4.</span> <span class="post-toc-text">其他原则</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#共同封闭原则"><span class="post-toc-number">1.1.4.1.</span> <span class="post-toc-text">共同封闭原则</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#共同重用原则"><span class="post-toc-number">1.1.4.2.</span> <span class="post-toc-text">共同重用原则</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#好莱坞原则"><span class="post-toc-number">1.1.4.3.</span> <span class="post-toc-text">好莱坞原则</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#高内聚低耦合"><span class="post-toc-number">1.1.4.4.</span> <span class="post-toc-text">高内聚低耦合</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#惯例优于配置原则"><span class="post-toc-number">1.1.4.5.</span> <span class="post-toc-text">惯例优于配置原则</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#关注点分离"><span class="post-toc-number">1.1.4.6.</span> <span class="post-toc-text">关注点分离</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#契约式设计"><span class="post-toc-number">1.1.4.7.</span> <span class="post-toc-text">契约式设计</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#无环依赖原则"><span class="post-toc-number">1.1.4.8.</span> <span class="post-toc-text">无环依赖原则</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#设计模式"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">设计模式</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#基础"><span class="post-toc-number">1.2.1.</span> <span class="post-toc-text">基础</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#策略者模式"><span class="post-toc-number">1.2.2.</span> <span class="post-toc-text">策略者模式</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-创建型设计模式"><span class="post-toc-number">1.2.3.</span> <span class="post-toc-text">1.创建型设计模式</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-结构型设计模式"><span class="post-toc-number">1.2.4.</span> <span class="post-toc-text">2.结构型设计模式</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-行为设计模式"><span class="post-toc-number">1.2.5.</span> <span class="post-toc-text">3.行为设计模式</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#【常见设计模式】"><span class="post-toc-number">1.2.6.</span> <span class="post-toc-text">【常见设计模式】</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#适配器模式"><span class="post-toc-number">1.2.6.1.</span> <span class="post-toc-text">适配器模式</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#中介者模式"><span class="post-toc-number">1.2.6.2.</span> <span class="post-toc-text">中介者模式</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#观察者模式"><span class="post-toc-number">1.2.6.3.</span> <span class="post-toc-text">观察者模式</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#单例模式"><span class="post-toc-number">1.2.6.3.1.</span> <span class="post-toc-text">单例模式</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#装饰器模式"><span class="post-toc-number">1.2.6.3.2.</span> <span class="post-toc-text">装饰器模式</span></a></li></ol></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#原型模式"><span class="post-toc-number">1.2.6.4.</span> <span class="post-toc-text">原型模式</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#生成器模式"><span class="post-toc-number">1.2.6.5.</span> <span class="post-toc-text">生成器模式</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#实践"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">实践</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#经验之谈"><span class="post-toc-number">1.3.1.</span> <span class="post-toc-text">经验之谈</span></a></li></ol></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-Memo-Java-ZenOfPattern" class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">ZenOfPattern.md</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-12-18 09:16:56" datetime="2018-12-18T01:16:56.921Z" itemprop="datePublished">2018-12-18</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style="display:none">
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p><strong>目录 start</strong></p>
+<ol>
+<li><a href="#设计模式之禅">设计模式之禅</a><ol>
+<li><a href="#软件设计的一些原则">软件设计的一些原则</a><ol>
+<li><a href="#思维原则">思维原则</a><ol>
+<li><a href="#奥卡姆剃刀原理">奥卡姆剃刀原理</a></li>
+</ol>
+</li>
+<li><a href="#首要原则">首要原则</a><ol>
+<li><a href="#勿重复造轮子">勿重复造轮子</a></li>
+<li><a href="#减法优于加法">减法优于加法</a></li>
+<li><a href="#抽象优于实现">抽象优于实现</a></li>
+<li><a href="#组合优于继承">组合优于继承</a></li>
+<li><a href="#查询与命令分离">查询与命令分离</a></li>
+<li><a href="#够用原则">够用原则</a></li>
+<li><a href="#最少知识原则">最少知识原则</a></li>
+</ol>
+</li>
+<li><a href="#面向对象的solid-原则">面向对象的S.O.L.I.D 原则</a><ol>
+<li><a href="#单一职责原则">单一职责原则</a></li>
+<li><a href="#开闭原则">开闭原则</a></li>
+<li><a href="#里氏代换原则">里氏代换原则</a></li>
+<li><a href="#接口隔离原则">接口隔离原则</a></li>
+<li><a href="#依赖倒置原则">依赖倒置原则</a></li>
+</ol>
+</li>
+<li><a href="#其他原则">其他原则</a><ol>
+<li><a href="#共同封闭原则">共同封闭原则</a></li>
+<li><a href="#共同重用原则">共同重用原则</a></li>
+<li><a href="#好莱坞原则">好莱坞原则</a></li>
+<li><a href="#高内聚低耦合">高内聚低耦合</a></li>
+<li><a href="#惯例优于配置原则">惯例优于配置原则</a></li>
+<li><a href="#关注点分离">关注点分离</a></li>
+<li><a href="#契约式设计">契约式设计</a></li>
+<li><a href="#无环依赖原则">无环依赖原则</a></li>
+</ol>
+</li>
+</ol>
+</li>
+<li><a href="#设计模式">设计模式</a><ol>
+<li><a href="#基础">基础</a></li>
+<li><a href="#策略者模式">策略者模式</a></li>
+<li><a href="#1创建型设计模式">1.创建型设计模式</a></li>
+<li><a href="#2结构型设计模式">2.结构型设计模式</a></li>
+<li><a href="#3行为设计模式">3.行为设计模式</a></li>
+<li><a href="#常见设计模式">【常见设计模式】</a><ol>
+<li><a href="#适配器模式">适配器模式</a></li>
+<li><a href="#中介者模式">中介者模式</a></li>
+<li><a href="#观察者模式">观察者模式</a><ol>
+<li><a href="#单例模式">单例模式</a></li>
+<li><a href="#装饰器模式">装饰器模式</a></li>
+</ol>
+</li>
+<li><a href="#原型模式">原型模式</a></li>
+<li><a href="#生成器模式">生成器模式</a></li>
+</ol>
+</li>
+</ol>
+</li>
+<li><a href="#实践">实践</a><ol>
+<li><a href="#经验之谈">经验之谈</a></li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<p><strong>目录 end</strong>|<em>2018-12-13 12:06</em>| <a href="https://gitee.com/gin9" target="_blank" rel="noopener">码云</a> | <a href="http://blog.csdn.net/kcp606" target="_blank" rel="noopener">CSDN</a> | <a href="https://my.oschina.net/kcp1104" target="_blank" rel="noopener">OSChina</a> | <a href="http://www.cnblogs.com/kuangcp" target="_blank" rel="noopener">cnblogs</a></p>
+<hr>
+<h1 id="设计模式之禅"><a href="#设计模式之禅" class="headerlink" title="设计模式之禅"></a>设计模式之禅</h1><h2 id="软件设计的一些原则"><a href="#软件设计的一些原则" class="headerlink" title="软件设计的一些原则"></a>软件设计的一些原则</h2><h3 id="思维原则"><a href="#思维原则" class="headerlink" title="思维原则"></a>思维原则</h3><h4 id="奥卡姆剃刀原理"><a href="#奥卡姆剃刀原理" class="headerlink" title="奥卡姆剃刀原理"></a>奥卡姆剃刀原理</h4><h3 id="首要原则"><a href="#首要原则" class="headerlink" title="首要原则"></a>首要原则</h3><h4 id="勿重复造轮子"><a href="#勿重复造轮子" class="headerlink" title="勿重复造轮子"></a>勿重复造轮子</h4><p>-<code>DRY Don’t Repeat Yourself</code><br>是一个最简单的法则，也是最容易被理解的。但它也可能是最难被应用的（因为要做到这样，我们需要在泛型设计上做相当的努力，这并不是一件容易的事）。它意味着，当我们在两个或多个地方的时候发现一些相似的代码的时候，我们需要把他们的共性抽象出来形一个唯一的新方法，并且改变现有的地方的代码让他们以一些合适的参数调用这个新的方法。</p>
+<h4 id="减法优于加法"><a href="#减法优于加法" class="headerlink" title="减法优于加法"></a>减法优于加法</h4><ul>
+<li><code>KISS Keep It Simple, Stupid</code><br>KISS原则在设计上可能最被推崇的，在家装设计，界面设计 ，操作设计上，复杂的东西越来越被众人所BS了，而简单的东西越来越被人所认可，比如这些UI的设计和我们中国网页（尤其是新浪的网页）者是负面的例子。<br>“宜家”（IKEA）简约、效率的家居设计、生产思路；“微软”（Microsoft）“所见即所得”的理念；“谷歌”（Google)简约、直接的商业风格，无一例外的遵循了“kiss”原则，<br>也正是“kiss”原则，成就了这些看似神奇的商业经典。而苹果公司的iPhone/iPad将这个原则实践到了极至。</li>
+</ul>
+<p>把一个事情搞复杂是一件简单的事，但要把一个复杂的事变简单，这是一件复杂的事。</p>
+<h4 id="抽象优于实现"><a href="#抽象优于实现" class="headerlink" title="抽象优于实现"></a>抽象优于实现</h4><p>-<code>Program to an interface, not an implementation</code></p>
+<ul>
+<li>这是设计模式中最根本的哲学，注重接口，而不是实现，依赖接口，而不是实现。接口是抽象是稳定的，实现则是多种多样的。</li>
+<li>以后面我们会面向对象的SOLID原则中会提到我们的依赖倒置原则，就是这个原则的的另一种样子。</li>
+</ul>
+<h4 id="组合优于继承"><a href="#组合优于继承" class="headerlink" title="组合优于继承"></a>组合优于继承</h4><p><code>【Composition over inheritance】</code></p>
+<ul>
+<li>多使用组合而不是继承, 但是这个观点是存在一定的争议的, 还是要有度的,合理搭配最为重要<ul>
+<li>组合就是将原来继承方式中的父类放到子类作为属性?</li>
+</ul>
+</li>
+</ul>
+<p>组合<br>1.（对象）组合是一种通过创建一个组合了其它对象的对象，从而获得新功能的复用方法。<br>2.将功能委托给所组合的一个对象，从而获得新功能。<br>3.有些时候也称之为”聚合”（aggregation）或”包容”（containment），尽管有些作者对这些术语赋予了专门的含义</p>
+<ul>
+<li style="list-style: none"><input type="checkbox"> 再度思考</li>
+</ul>
+<blockquote>
+<p><a href="http://www.cnblogs.com/narutow/p/8117352.html" target="_blank" rel="noopener">参考博客: 组合、委托与继承，面向对象中类之间的基本关系漫游</a><br><a href="https://www.xuebuyuan.com/1639556.html" target="_blank" rel="noopener">参考博客: 优先使用（对象）组合，而非（类）继承</a></p>
+</blockquote>
+<h4 id="查询与命令分离"><a href="#查询与命令分离" class="headerlink" title="查询与命令分离"></a>查询与命令分离</h4><p><code>【CQS Command-Query Separation】</code></p>
+<ul>
+<li>查询命令分离原则<ul>
+<li>查询：当一个方法返回一个值来回应一个问题的时候，它就具有查询的性质；</li>
+<li>命令：当一个方法要改变对象的状态的时候，它就具有命令的性质；</li>
+</ul>
+</li>
+</ul>
+<h4 id="够用原则"><a href="#够用原则" class="headerlink" title="够用原则"></a>够用原则</h4><p><code>【YAGNI  You Ain’t Gonna Need It 】</code></p>
+<ul>
+<li>这个原则简而言之为——只考虑和设计必须的功能，避免过度设计。只实现目前需要的功能，在以后您需要更多功能时，可以再进行添加。<ul>
+<li>如无必要，勿增复杂性。</li>
+<li>软件开发先是一场沟通博弈。 </li>
+</ul>
+</li>
+</ul>
+<h4 id="最少知识原则"><a href="#最少知识原则" class="headerlink" title="最少知识原则"></a>最少知识原则</h4><blockquote>
+<p>【Law of Demeter – 迪米特法则】</p>
+<ul>
+<li>迪米特法则(Law of Demeter)，又称“最少知识原则” <code>（Principle of Least Knowledge）</code>，其来源于1987年荷兰大学的一个叫做Demeter的项目。</li>
+<li>Craig Larman把Law of Demeter又称作“不要和陌生人说话”。在《程序员修炼之道》中讲LoD的那一章叫作“解耦合与迪米特法则”。</li>
+<li>关于迪米特法则有一些很形象的比喻：<ul>
+<li>如果你想让你的狗跑的话，你会对狗狗说还是对四条狗腿说？</li>
+<li>如果你去店里买东西，你会把钱交给店员，还是会把钱包交给店员让他自己拿？ </li>
+</ul>
+</li>
+<li>正式表述如下:</li>
+<li>对于对象 ‘O’ 中一个方法’M’，M应该只能够访问以下对象中的方法:<ul>
+<li>对象O；</li>
+<li>与O直接相关的Component Object；</li>
+<li>由方法M创建或者实例化的对象；</li>
+<li>作为方法M的参数的对象。</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<blockquote>
+<p><a href="http://zhangyi.xyz/demeter-law-and-refactoring/" target="_blank" rel="noopener">参考博客: 迪米特法则与重构</a></p>
+</blockquote>
+<hr>
+<h3 id="面向对象的S-O-L-I-D-原则"><a href="#面向对象的S-O-L-I-D-原则" class="headerlink" title="面向对象的S.O.L.I.D 原则"></a>面向对象的S.O.L.I.D 原则</h3><ul>
+<li>一般来说这是面向对象的五大设计原则，但是，我觉得这些原则可适用于所有的软件开发。</li>
+</ul>
+<h4 id="单一职责原则"><a href="#单一职责原则" class="headerlink" title="单一职责原则"></a>单一职责原则</h4><p><code>Single Responsibility Principle (SRP)</code></p>
+<ul>
+<li>关于单一职责原则，其核心的思想是：<code>一个类，只做一件事，并把这件事做好，且只有一个引起它变化的原因。</code><ul>
+<li>Unix/Linux是这一原则的完美体现者。各个程序都独立负责一个单一的事。</li>
+<li>Windows是这一原则的反面示例。几乎所有的程序都交织耦合在一起。 </li>
+</ul>
+</li>
+</ul>
+<h4 id="开闭原则"><a href="#开闭原则" class="headerlink" title="开闭原则"></a>开闭原则</h4><p><code>Open/Closed Principle (OCP)</code></p>
+<ul>
+<li>关于开发封闭原则，其核心的思想是：模块是可扩展的，而不可修改的。也就是说，<code>对扩展是开放的，而对修改是封闭的。</code><ul>
+<li>对扩展开放，意味着有新的需求或变化时，可以对现有代码进行扩展，以适应新的情况。</li>
+<li>对修改封闭，意味着类一旦设计完成，就可以独立完成其工作，而不要对类进行任何修改。</li>
+</ul>
+</li>
+</ul>
+<h4 id="里氏代换原则"><a href="#里氏代换原则" class="headerlink" title="里氏代换原则"></a>里氏代换原则</h4><p><code>Liskov substitution principle (LSP)</code></p>
+<ul>
+<li>软件工程大师Robert C. Martin把里氏代换原则最终简化为一句话：<code>“Subtypes must be substitutable for their base types”。</code></li>
+<li><p>也就是，子类必须能够替换成它们的基类。</p>
+<blockquote>
+<p>即：子类应该可以替换任何基类能够出现的地方，并且经过替换以后，代码还能正常工作。另外，不应该在代码中出现if/else之类对子类类型进行判断的条件。<br>里氏替换原则LSP是使代码符合开闭原则的一个重要保证。正是由于子类型的可替换性才使得父类型的模块在无需修改的情况下就可以扩展。</p>
+</blockquote>
+</li>
+<li><p>这么说来，似乎有点教条化，我非常建议大家看看这个原则个两个最经典的案例——<code>“正方形不是长方形”</code>和<code>“鸵鸟不是鸟”</code>。</p>
+</li>
+<li>通过这两个案例，你会明白《墨子小取》中说的——<code>“娣，美人也，爱娣，非爱美人也….盗，人也；恶盗，非恶人也。”</code>——妹妹虽然是美人，但喜欢妹妹并不代表喜欢美人。</li>
+<li>盗贼是人，但讨厌盗贼也并不代表就讨厌人类。这个原则让你考虑的不是语义上对象的间的关系，而是实际需求的环境。</li>
+<li>在很多情况下，在设计初期我们类之间的关系不是很明确，LSP则给了我们一个判断和设计类之间关系的基准：需不需要继承，以及怎样设计继承关系。</li>
+<li><h4 id="接口隔离原则"><a href="#接口隔离原则" class="headerlink" title="接口隔离原则"></a>接口隔离原则</h4><code>Interface Segregation Principle (ISP)</code></li>
+<li>接口隔离原则意思是把功能实现在接口中，而不是类中，使用多个专门的接口比使用单一的总接口要好。</li>
+<li>举个例子，我们对电脑有不同的使用方式，比如：写作，通讯，看电影，打游戏，上网，编程，计算，数据等，如果我们把这些功能都声明在电脑的抽类里面，那么，我们的上网本，PC机，服务器，</li>
+<li>笔记本的实现类都要实现所有的这些接口，这就显得太复杂了。所以，我们可以把其这些功能接口隔离开来，比如：工作学习接口，编程开发接口，上网娱乐接口，计算和数据服务接口，这样，我们的不同功能的电脑就可以有所选择地继承这些接口。</li>
+<li>这个原则可以提升我们“搭积木式”的软件开发。对于设计来说，Java中的各种Event Listener和Adapter，对于软件开发来说，不同的用户权限有不同的功能，不同的版本有不同的功能，都是这个原则的应用。</li>
+</ul>
+<h4 id="依赖倒置原则"><a href="#依赖倒置原则" class="headerlink" title="依赖倒置原则"></a>依赖倒置原则</h4><p><code>Dependency Inversion Principle (DIP)</code><br>高层模块不应该依赖于低层模块的实现，而是依赖于高层抽象。<br>举个例子，墙面的开关不应该依赖于电灯的开关实现，而是应该依赖于一个抽象的开关的标准接口，这样，当我们扩展程序的时候，我们的开关同样可以控制其它不同的灯，甚至不同的电器。<br>也就是说，电灯和其它电器继承并实现我们的标准开关接口，而我们的开关产商就可不需要关于其要控制什么样的设备，只需要关心那个标准的开关标准。这就是依赖倒置原则。<br>这就好像浏览器并不依赖于后面的web服务器，其只依赖于HTTP协议。这个原则实在是太重要了，社会的分工化，标准化都是这个设计原则的体现。</p>
+<blockquote>
+<p>下面有几点指导意见，帮助你避免在面向对象设计中违反依赖倒置原则：  </p>
+<blockquote>
+<p>变量不能持有具体类的引用，就像订单方法代码中，你看不到new一样。<br>不要让派生自具体类，要派生就派生抽象类abstract<br>不要覆盖基类中已实现的方法，除非你要覆盖的是比较特殊的一部分代码。  </p>
+</blockquote>
+</blockquote>
+<h3 id="其他原则"><a href="#其他原则" class="headerlink" title="其他原则"></a>其他原则</h3><h4 id="共同封闭原则"><a href="#共同封闭原则" class="headerlink" title="共同封闭原则"></a>共同封闭原则</h4><p><code>Common Closure Principle（CCP）</code><br>一个包中所有的类应该对同一种类型的变化关闭。一个变化影响一个包，便影响了包中所有的类。一个更简短的说法是：一起修改的类，应该组合在一起（同一个包里）。如果必须修改应用程序里的代码，我们希望所有的修改都发生在一个包里（修改关闭），而不是遍布在很多包里。CCP原则就是把因为某个同样的原因而需要修改的所有类组合进一个包里。如果2个类从物理上或者从概念上联系得非常紧密，它们通常一起发生改变，那么它们应该属于同一个包。</p>
+<p>CCP延伸了开闭原则（OCP）的“关闭”概念，当因为某个原因需要修改时，把需要修改的范围限制在一个最小范围内的包里。</p>
+<h4 id="共同重用原则"><a href="#共同重用原则" class="headerlink" title="共同重用原则"></a>共同重用原则</h4><p><code>Common Reuse Principle (CRP)</code><br>包的所有类被一起重用。如果你重用了其中的一个类，就重用全部。换个说法是，没有被一起重用的类不应该被组合在一起。CRP原则帮助我们决定哪些类应该被放到同一个包里。依赖一个包就是依赖这个包所包含的一切。当一个包发生了改变，并发布新的版本，使用这个包的所有用户都必须在新的包环境下验证他们的工作，即使被他们使用的部分没有发生任何改变。因为如果包中包含有未被使用的类，即使用户不关心该类是否改变，但用户还是不得不升级该包并对原来的功能加以重新测试。</p>
+<p>CCP则让系统的维护者受益。CCP让包尽可能大（CCP原则加入功能相关的类），CRP则让包尽可能小（CRP原则剔除不使用的类）。它们的出发点不一样，但不相互冲突。</p>
+<h4 id="好莱坞原则"><a href="#好莱坞原则" class="headerlink" title="好莱坞原则"></a>好莱坞原则</h4><p><code>Hollywood Principle</code><br>好莱坞原则就是一句话——“don’t call us, we’ll call<br>you.”。意思是，好莱坞的经纪人们不希望你去联系他们，而是他们会在需要的时候来联系你。也就是说，所有的组件都是被动的，所有的组件初始化和调用都由容器负责。组件处在一个容器当中，由容器负责管理。</p>
+<p>简单的来讲，就是由容器控制程序之间的关系，而非传统实现中，由程序代码直接操控。这也就是所谓“控制反转”的概念所在：</p>
+<pre><code>不创建对象，而是描述创建对象的方式。
+在代码中，对象与服务没有直接联系，而是容器负责将这些联系在一起。
+</code></pre><p>控制权由应用代码中转到了外部容器，控制权的转移，是所谓反转。</p>
+<p>好莱坞原则就是IoC（Inversion of Control）或DI（Dependency Injection）的基础原则。这个原则很像依赖倒置原则，依赖接口，而不是实例，但是这个原则要解决的是怎么把这个实例传入调用类中？你可能把其声明成成员，你可以通过构造函数，你可以通过函数参数。但是<br>IoC可以让你通过配置文件，一个由Service Container<br>读取的配置文件来产生实际配置的类。但是程序也有可能变得不易读了，程序的性能也有可能还会下降。</p>
+<h4 id="高内聚低耦合"><a href="#高内聚低耦合" class="headerlink" title="高内聚低耦合"></a>高内聚低耦合</h4><p><code>【 High Cohesion &amp; Low/Loose coupling &amp; – 高内聚， 低耦合 】</code></p>
+<ul>
+<li>这个原则是UNIX操作系统设计的经典原则，把模块间的耦合降到最低，而努力让一个模块做到精益求精。<ul>
+<li>内聚：一个模块内各个元素彼此结合的紧密程度</li>
+<li>耦合：一个软件结构内不同模块之间互连程度的度量</li>
+</ul>
+</li>
+<li>内聚意味着重用和独立，耦合意味着多米诺效应牵一发动全身</li>
+</ul>
+<blockquote>
+<p>凝聚&gt;松耦合&gt;重用  <a href="http://www.jdon.com/forum/messageList.shtml?thread=45977#23144139" target="_blank" rel="noopener">参考博客: 为什么我停止使用Spring?</a></p>
+</blockquote>
+<h4 id="惯例优于配置原则"><a href="#惯例优于配置原则" class="headerlink" title="惯例优于配置原则"></a>惯例优于配置原则</h4><p><code>Convention over Configuration（CoC）</code><br>简单点说，就是将一些公认的配置方式和信息作为内部缺省的规则来使用。例如，Hibernate的映射文件，如果约定字段名和类属性一致的话，基本上就可以不要这个配置文件了。你的应用只需要指定不convention的信息即可，从而减少了大量convention而又不得不花时间和精力啰里啰嗦的东东。配置文件很多时候相当的影响开发效率。</p>
+<p>Rails 中很少有配置文件（但不是没有，数据库连接就是一个配置文件），Rails 的fans号称期开发效率是 java 开发的 10<br>倍，估计就是这个原因。Maven也使用了CoC原则，当你执行mvn<br>-compile命令的时候，不需要指源文件放在什么地方，而编译以后的class文件放置在什么地方也没有指定，这就是CoC原则。</p>
+<h4 id="关注点分离"><a href="#关注点分离" class="headerlink" title="关注点分离"></a>关注点分离</h4><p><code>Separation of Concerns (SoC)</code></p>
+<blockquote>
+<p>　是计算机科学中最重要的努力目标之一。这个原则，就是在软件开发中，通过各种手段，将问题的各个关注点分开。如果一个问题能分解为独立且较小的问题，就是相对较易解决的。<br>问题太过于复杂，要解决问题需要关注的点太多，而程序员的能力是有限的，不能同时关注于问题的各个方面。正如程序员的记忆力相对于计算机知识来说那么有限一样，<br>程序员解决问题的能力相对于要解决的问题的复杂性也是一样的非常有限。在我们分析问题的时候，如果我们把所有的东西混在一起讨论，那么就只会有一个结果——乱。</p>
+</blockquote>
+<p>我记得在上一家公司有一个项目，讨论就讨论了1年多，项目本来不复杂，但是没有使用SoC，全部的东西混为一谈，再加上一堆程序员注入了各种不同的观点和想法，整个项目一下子就失控了。<br>最后，本来一个1年的项目做了3年。</p>
+<p>实现关注点分离的方法主要有两种，一种是标准化，另一种是抽象与包装。标准化就是制定一套标准，让使用者都遵守它，将人们的行为统一起来，这样使用标准的人就不用担心别人会有很多种不同的实现，使自己的程序不能和别人的配合。<br>JavaEE就是一个标准的大集合。每个开发者只需要关注于标准本身和他所在做的事情就行了。就像是开发镙丝钉的人只专注于开发镙丝钉就行了，而不用关注镙帽是怎么生产的，反正镙帽和镙丝钉按标来就一定能合得上。不断地把程序的某些部分抽像差包装起来，也是实现关注点分离的好方法。<br>一旦一个函数被抽像出来并实现了，那么使用函数的人就不用关心这个函数是如何实现的，同样的，一旦一个类被抽像并实现了，类的使用者也不用再关注于这个类的内部是如何实现的。<br>诸如组件，分层，面向服务，等等这些概念都是在不同的层次上做抽像和包装，以使得使用者不用关心它的内部实现细节。<br>说白了还是“高内聚，低耦合”。</p>
+<blockquote>
+<p><a href="http://www.cnblogs.com/wenhongyu/p/7992028.html" target="_blank" rel="noopener">参考博客: 理论篇：关注点分离(Separation of concerns, SoC)</a></p>
+</blockquote>
+<h4 id="契约式设计"><a href="#契约式设计" class="headerlink" title="契约式设计"></a>契约式设计</h4><p><code>Design by Contract (DbC)</code><br>DbC的核心思想是对软件系统中的元素之间相互合作以及“责任”与“义务”的比喻。这种比喻从商业活动中“客户”与“供应商”达成“契约”而得来。例如：</p>
+<pre><code>供应商必须提供某种产品（责任），并且他有权期望客户已经付款（权利）。
+客户必须付款（责任），并且有权得到产品（权利）。
+契约双方必须履行那些对所有契约都有效的责任，如法律和规定等。
+</code></pre><p>同样的，如果在程序设计中一个模块提供了某种功能，那么它要：</p>
+<pre><code>期望所有调用它的客户模块都保证一定的进入条件：这就是模块的先验条件（客户的义务和供应商的权利，这样它就不用去处理不满足先验条件的情况）。
+保证退出时给出特定的属性：这就是模块的后验条件——（供应商的义务，显然也是客户的权利）。
+在进入时假定，并在退出时保持一些特定的属性：不变式。
+</code></pre><p>契约就是这些权利和义务的正式形式。我们可以用“三个问题”来总结DbC，并且作为设计者要经常问：</p>
+<pre><code>它期望的是什么？
+它要保证的是什么？
+它要保持的是什么？
+</code></pre><p>根据Bertrand<br>Meyer氏提出的DBC概念的描述，对于类的一个方法，都有一个前提条件以及一个后续条件，前提条件说明方法接受什么样的参数数据等，只有前提条件得到满足时，这个方法才能被调用；同时后续条件用来说明这个方法完成时的状态，如果一个方法的执行会导致这个方法的后续条件不成立，那么这个方法也不应该正常返回。</p>
+<p>现在把前提条件以及后续条件应用到继承子类中，子类方法应该满足：</p>
+<pre><code>前提条件不强于基类．
+后续条件不弱于基类．
+</code></pre><p>换句话说，通过基类的接口调用一个对象时，用户只知道基类前提条件以及后续条件。因此继承类不得要求用户提供比基类方法要求的更强的前提条件，亦即，继承类方法必须接受任何基类方法能接受的任何条件（参数）。同样，继承类必须顺从基类的所有后续条件，亦即，继承类方法的行为和输出不得违反由基类建立起来的任何约束，不能让用户对继承类方法的输出感到困惑。</p>
+<p>这样，我们就有了基于契约的LSP，基于契约的LSP是LSP的一种强化。</p>
+<h4 id="无环依赖原则"><a href="#无环依赖原则" class="headerlink" title="无环依赖原则"></a>无环依赖原则</h4><p><code>Acyclic Dependencies Principle (ADP)</code><br>包之间的依赖结构必须是一个直接的无环图形，也就是说，在依赖结构中不允许出现环（循环依赖）。如果包的依赖形成了环状结构，怎么样打破这种循环依赖呢？有2种方法可以打破这种循环依赖关系：第一种方法是创建新的包，如果A、B、C形成环路依赖，那么把这些共同类抽出来放在一个新的包D里。这样就把C依赖A变成了C依赖D以及A依赖D，从而打破了循环依赖关系。第二种方法是使用DIP（依赖倒置原则）和ISP（接口分隔原则）设计原则。</p>
+<p>无环依赖原则（ADP）为我们解决包之间的关系耦合问题。在设计模块时，不能有循环依赖。</p>
+<hr>
+<h2 id="设计模式"><a href="#设计模式" class="headerlink" title="设计模式"></a>设计模式</h2><blockquote>
+<p><a href="https://java-design-patterns.com/" target="_blank" rel="noopener">java design patterns</a></p>
+</blockquote>
+<h3 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h3><blockquote>
+<p><a href="http://www.cnblogs.com/x-xk/archive/2013/01/21/2864916.html" target="_blank" rel="noopener">设计模式基础</a><br><a href="http://www.baike.com/wiki/GoF" target="_blank" rel="noopener">参考博客: GoF解释</a><br><a href="http://blog.csdn.net/column/details/zsxdesignpattern.html" target="_blank" rel="noopener">参考博客: 设计模式专栏</a></p>
+</blockquote>
+<blockquote>
+<p><a href="http://blog.csdn.net/u011240877/article/details/45381071" target="_blank" rel="noopener">23种经典设计模式UML类图汇总 </a><br><a href="http://blog.csdn.net/chen4013874/article/details/51347535" target="_blank" rel="noopener">参考博客: 23种设计模式UML表示形式</a><br><a href="http://blog.csdn.net/tingting256/article/details/52534663" target="_blank" rel="noopener">参考博客: 23中设计模式类图和原理详解</a><br><a href="http://blog.csdn.net/qq_25827845/article/details/52510803" target="_blank" rel="noopener">参考博客: 23种设计模式类图总结 </a> </p>
+</blockquote>
+<h3 id="策略者模式"><a href="#策略者模式" class="headerlink" title="策略者模式"></a>策略者模式</h3><blockquote>
+<p>定义了算法族，分别封装起来，让它们之间可以相互替换，此模式让算法的变化独立于使用算法的用户。<br><a href="http://blog.csdn.net/hguisu/article/details/7558249" target="_blank" rel="noopener">参考博客: 设计模式 ( 十八 ) 策略模式Strategy（对象行为型） </a><br><a href="http://www.cnblogs.com/zdd-java/p/6143935.html" target="_blank" rel="noopener">参考博客: Java消除ifelse</a></p>
+</blockquote>
+<p>也就是说将一种需求的多种实现算法分别封装起来, 然后利用多态, 让调用方选择任一实现</p>
+<h3 id="1-创建型设计模式"><a href="#1-创建型设计模式" class="headerlink" title="1.创建型设计模式"></a>1.创建型设计模式</h3><blockquote>
+<p>单例模式(Singleton)<br>原型模式(Prototype)<br>建造者(Builder)<br>抽象工厂(Abstract Factory)<br>工厂方法(Factory Method)   </p>
+</blockquote>
+<ul>
+<li>抽象了实例化过程，它们帮助一个系统独立于如何创建，组合和表示它的那些对象。</li>
+<li>一个类创建型模型使用继承改变被实例化的类，而一个对象创建型模型将实例化委托给另一个对象</li>
+<li>将一组固定行为的硬编码转移为定义一个较小的基本行为集，这些行为可以被组合成任意数目的更复杂性的行为。这样创建有特定行为的对象要求的不仅仅是实例化一个类</li>
+</ul>
+<p><em>Builder</em></p>
+<ul>
+<li>生成器 Builder，是一种对象构建模式，模式通常包含Builder，ConcreteBuilder。Director 和 Product四部分</li>
+</ul>
+<p><em>Abstract Factory</em></p>
+<ul>
+<li>提供一个创建一系列相关或相互依赖对象的接口，而无需指定它们具体的类</li>
+</ul>
+<p><em>Factory Method</em></p>
+<ul>
+<li>定义一个用于创建对象的接口，让子类决定实例化哪一个类。Factory Method 使一个类的实例化延迟到其子类</li>
+</ul>
+<p><em>Prototype</em></p>
+<ul>
+<li>用原型实例指定创建对象的种类，并且通过拷贝这些原型创建新的对象。 </li>
+</ul>
+<p><em>Singleton</em></p>
+<ul>
+<li>保证一个类仅有一个实例，并提供一个访问它的全局访问点。</li>
+</ul>
+<h3 id="2-结构型设计模式"><a href="#2-结构型设计模式" class="headerlink" title="2.结构型设计模式"></a>2.结构型设计模式</h3><blockquote>
+<p>适配器模式(<strong>Adapter</strong>)<br>桥接模式(<strong>Bridge</strong>)<br>组合模式(<strong>Compontent</strong>)<br>代理模式(<strong>Proxy</strong>)<br>享元模式(<strong>Flyweight</strong>)<br>外观模式(<strong>Facade</strong>)<br>装饰模式(<strong>Decorator</strong>)  </p>
+</blockquote>
+<ul>
+<li>结构型设计模式涉及如何组合类和对象以获得更大的结构</li>
+<li>结构型模式采用继承机制来组合接口或实现。</li>
+<li>结构型对象模式不是对接口和实现进行组合，而是描述了如何对一些对象进行组合，从而实现新功能</li>
+</ul>
+<hr>
+<ul>
+<li><strong>Composite模式</strong><br>它将对象组合成树形结构以表示“部分-整体”</li>
+<li><strong>Flyweight模式</strong><br>该模式为共享对象定义了一个结构，强调对象的空间效率，自由共享</li>
+<li><p><strong>Facade模式</strong>（外观模式）<br>描述了如何用单个对象表示整个子系统（外部与其内部通信必须通过一个统一的对象进行交互），模式中的facade用来表示一组对象，<br>外观设计模式提供一个高层次的接口是的子系统易于使用。<br><strong>适用情况:</strong></p>
+<blockquote>
+<p> 1.为复杂的子系统提供一个简单的接口<br> 2.客户程序与抽象类的实现部分有很大依赖性<br> 3.构建一个层次结构的子系统时，适用外观模式定义子系统每层的入口</p>
+</blockquote>
+</li>
+<li><p><strong>Bridge模式</strong> 将对象的抽象和实现分离，从而可以独立的改变他们。</p>
+</li>
+<li><strong>Decorator模式</strong><br>描述如何动态地为对象添加职责，模式采用递归方式组合对象，从而允许添加任意多的对象职责。</li>
+</ul>
+<h3 id="3-行为设计模式"><a href="#3-行为设计模式" class="headerlink" title="3.行为设计模式"></a>3.行为设计模式</h3><blockquote>
+<p>策略模式(<strong>Strategy</strong>)<br>命令模式(<strong>Command</strong>)<br>状态模式(<strong>State</strong>)<br>解释器模式(<strong>Interpreter</strong>)<br>模板方法(<strong>Template Method</strong>)<br>责任链模式(<strong>Chain of Responsibility</strong>)<br>迭代器模式(<strong>Iterator</strong>)<br>中介者模式(<strong>Mediator</strong>)<br>备忘录模式(<strong>Memento</strong>)<br>观察者模式(<strong>Observe</strong>)<br>访问者模式(<strong>Visitor</strong>)  </p>
+</blockquote>
+<ul>
+<li>行为设计模式涉及算法和对象间职责的分配，行为模式描述对象和类的模式以及其通信模式</li>
+<li>行为模式使用继承机制在类间派发行为</li>
+</ul>
+<hr>
+<h3 id="【常见设计模式】"><a href="#【常见设计模式】" class="headerlink" title="【常见设计模式】"></a>【常见设计模式】</h3><h4 id="适配器模式"><a href="#适配器模式" class="headerlink" title="适配器模式"></a>适配器模式</h4><ul>
+<li><strong>适配器 模式</strong>（Adapter）：适配器是的一个接口与其他接口兼容，从而给出了多个不同接口的同一抽象。一般分类结构和对象结构两种：</li>
+<li><em>类适配器</em>：适配器类继承被适配类，实现某个接口，在客户端类中可以根据需求来建立子类</li>
+<li><em>对象适配器</em>：适配器不是继承，是使用直接关联，或称委托方式<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/Kuangcp/ImageRepos/master/Tech/UML/Adapter.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+</li>
+</ul>
+<h4 id="中介者模式"><a href="#中介者模式" class="headerlink" title="中介者模式"></a>中介者模式</h4><ul>
+<li><strong>中介者 模式</strong>：包装了一系列对象相互作用的方式，使得对象间的相互作用是独立变化，但是与中介者紧密联系</li>
+</ul>
+<h4 id="观察者模式"><a href="#观察者模式" class="headerlink" title="观察者模式"></a>观察者模式</h4><ul>
+<li><strong>观察者 模式 Observer</strong>：一个目标物件管理相依于它的管理物件，并且在它本身的状态发生改变时发出通知，这种模式常用来实现事件处理系统。（也称发布-订阅，模型-视图，源-收听者模式）<ul>
+<li>观察者（接口）：更新信息，展示信息，给 <strong>被观察者（形参）</strong> 注册上观察者</li>
+<li>被观察者（接口）：发出更新通知（遍历观察者集合并注册），当自身发生改动时发出通知消息</li>
+</ul>
+</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/Kuangcp/ImageRepos/master/Tech/Model/Observer.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<h5 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h5><blockquote>
+<p>Singleton 一个类只有一个实例易于外界访问 Spring将该模式运用的出神入化</p>
+</blockquote>
+<ul>
+<li><a href="http://www.cnblogs.com/atwanli/articles/5104898.html" target="_blank" rel="noopener">单例模式与高并发</a>当某个单例对象中含有不具有并发性的对象 就会发生并发问题, 由于只有一个对象, 为了确保数据一致, 就需要加锁, 这样就带来了严重的性能下降, 而Spring是怎么做的呢<ul>
+<li><a href="https://blog.csdn.net/java_fancy/article/details/7439657" target="_blank" rel="noopener">参考博客 Spring如何处理线程并发</a></li>
+<li><a href="https://bbs.csdn.net/topics/390873889" target="_blank" rel="noopener">参考博客: springmvc是单例的，开发的时候会不会影响性能呢？</a></li>
+<li><a href="http://www.xuebuyuan.com/1628190.html" target="_blank" rel="noopener">参考博客: Spring并发访问的线程安全性问题</a> <code>Controller或者Service层中定义共享对象, 但是使用线程安全对象</code></li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p><a href="https://bbs.csdn.net/topics/310136305" target="_blank" rel="noopener">参考博客: 单例模式和Static的区别! </a> </p>
+<ul>
+<li style="list-style: none"><input type="checkbox"> <code>static 有可能被实例化多个出来么</code></li>
+</ul>
+</blockquote>
+<h5 id="装饰器模式"><a href="#装饰器模式" class="headerlink" title="装饰器模式"></a>装饰器模式</h5><ul>
+<li><strong>装饰器模式</strong> 创建一个新类为某一个类动态添加新功能或增强原有的功能，避免代码重复或具体子类的数量增加</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/Kuangcp/ImageRepos/master/Tech/Model/Decorator.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<ul>
+<li><strong>策略模式</strong> 优点：灵活添加同一问题的不同解决方案</li>
+<li><strong>状态模式</strong> 允许对象在内部状态时变更其行为，并且修改其类：<ul>
+<li>环境类（Context）：定义客户感兴趣的接口，维护一个子类的实例，这个实例就是当前状态</li>
+<li>抽象状态类（State）：定义一个接口以封装与Context的一个特定状态相关的行为</li>
+<li>具体状态类（concreteState）：每一子类实现与Context的一个状态相关的行为</li>
+<li><strong>例题</strong>：纸巾售卖机:有四个状态!<ul>
+<li>【状态图】</li>
+<li><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/Kuangcp/ImageRepos/master/Tech/Model/State_zhijin.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure></li>
+<li>【类图】</li>
+<li><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/Kuangcp/ImageRepos/master/Tech/Model/State_zhijin2.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure></li>
+</ul>
+</li>
+<li><strong>例题</strong>：TCP连接状态:<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/Kuangcp/ImageRepos/master/Tech/Model/State_TCP.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure></li>
+</ul>
+</li>
+<li><strong>命令模式 command</strong>：<ul>
+<li>行为请求者 与 请求实现者 之间 紧耦合 的关系</li>
+<li><strong>将一个请求封装成一个对象</strong>，从而可用不同的请求对客户进行参数化，支持可撤销的操作</li>
+<li>下例：使用了接口来实现多态，子类是多个的，方法同名并功能多样的<ul>
+<li>代码复用好，代码结构清晰【参数类表最好不要出现标志变量，最好分离出另一个方法】</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/Kuangcp/ImageRepos/master/Tech/Model/Command.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<ul>
+<li><strong>桥接模式</strong> ： 便于扩展，实现与抽象分离（解耦）对一个模块修改不影响别的模块</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/Kuangcp/ImageRepos/master/Tech/Model/Bridge.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<ul>
+<li><strong>抽象工厂模式</strong> ： 提供一个创建一系列相关实例相互依赖的对象。<ul>
+<li>当一个系统要独立于它的产品的创建，组合和表示时</li>
+<li>当一个系统要由多个产品系列中的一个来配置时</li>
+<li>当需强调一系列相关的产品对象的设计以便进行联合使用时</li>
+<li>想提供一组对象而不显示他们的实现过程，只显示他们的接口</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Kuangcp/ImageRepos/master/Tech/Model/AbstractFactory.png" alt=""></p>
+<h4 id="原型模式"><a href="#原型模式" class="headerlink" title="原型模式"></a>原型模式</h4><blockquote>
+<p>struts2 就是采用该模式</p>
+<ul>
+<li><strong>原型模式</strong> ： 对象创建模型： 允许一个对象创建另一个可定制的对象，封装实例化细节。<ul>
+<li>实现Cloneable接口（Java自带接口），重写clone方法（在这里实例化对象，new或反射，按需求来修改）</li>
+<li>该例，组合关系，在对方使用clone来代替构造器来实例化对象，并做好了绑定操作，大量减少代码量</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/Kuangcp/ImageRepos/master/Tech/Model/Clone.png" alt=""> </p>
+<h4 id="生成器模式"><a href="#生成器模式" class="headerlink" title="生成器模式"></a>生成器模式</h4><ul>
+<li><strong>生成器模式</strong>：</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/Kuangcp/ImageRepos/master/Tech/Model/Builder.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<h2 id="实践"><a href="#实践" class="headerlink" title="实践"></a>实践</h2><h3 id="经验之谈"><a href="#经验之谈" class="headerlink" title="经验之谈"></a>经验之谈</h3><ul>
+<li><a href="https://www.ibm.com/developerworks/cn/java/design/" target="_blank" rel="noopener">IBM 社区 Java 设计模式专题</a></li>
+<li><a href="http://www.cnblogs.com/x-xk/archive/2012/12/21/2823401.html" target="_blank" rel="noopener">一个鸭子游戏引发的设计（多态，继承，抽象，接口，策略者模式）</a></li>
+<li><p><a href="www.cnblogs.com/x-xk/archive/2013/01/06/2830742.html">不要再盲目的new了！你要学着针对接口编程！（具体方法，Factory，Abstract Factory</a></p>
+</li>
+<li><p><a href="https://mp.weixin.qq.com/s/aGMz1u0Oh4ZHTDBFvgq0lg" target="_blank" rel="noopener">参考博客: 为什么我墙裂建议大家使用枚举来实现单例。</a></p>
+</li>
+<li style="list-style: none"><input type="checkbox"> 自己用Java重写一下这个例子, 并做出自己的总结</li>
+</ul>
+<p>反模式<br>末日金字塔: 多层嵌套</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2018-12-18T01:16:56.921Z" itemprop="dateUpdated">2018-12-18 09:16:56</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2018/12/18/Memo-Java-ZenOfPattern/" target="_blank" rel="external">http://blog.kuangcp.top/2018/12/18/Memo-Java-ZenOfPattern/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="http://blog.kuangcp.top">
+            <img src="/img/avatar.jpg" alt="Kuangcp">
+            Kuangcp
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.kuangcp.top/2018/12/18/Memo-Java-ZenOfPattern/&title=《ZenOfPattern.md》 — Kuangcp Blog&pic=http://blog.kuangcp.top/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.kuangcp.top/2018/12/18/Memo-Java-ZenOfPattern/&title=《ZenOfPattern.md》 — Kuangcp Blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.kuangcp.top/2018/12/18/Memo-Java-ZenOfPattern/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《ZenOfPattern.md》 — Kuangcp Blog&url=http://blog.kuangcp.top/2018/12/18/Memo-Java-ZenOfPattern/&via=http://blog.kuangcp.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.kuangcp.top/2018/12/18/Memo-Java-ZenOfPattern/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/12/18/Memo-Java-AdvancedLearning-ClassFile/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Java字节码</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/12/18/Memo-Database-Oracle/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Oracle</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check" data-wechat="/img/wechat.png" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style="display:none">
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style="display:none">
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Kuangcp &copy; 2015 - 2018</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">赣ICP备17014189号-1</a><br>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.kuangcp.top/2018/12/18/Memo-Java-ZenOfPattern/&title=《ZenOfPattern.md》 — Kuangcp Blog&pic=http://blog.kuangcp.top/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.kuangcp.top/2018/12/18/Memo-Java-ZenOfPattern/&title=《ZenOfPattern.md》 — Kuangcp Blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.kuangcp.top/2018/12/18/Memo-Java-ZenOfPattern/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《ZenOfPattern.md》 — Kuangcp Blog&url=http://blog.kuangcp.top/2018/12/18/Memo-Java-ZenOfPattern/&via=http://blog.kuangcp.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.kuangcp.top/2018/12/18/Memo-Java-ZenOfPattern/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACJElEQVR42u3aQW7DMAwEwPz/0y7Qa2F1SalJLY1ORuLEGh8IiuTrFa/reyXX1U9+PuXu2wULAwPjsYxruMYbGv/PeHN394w/v6ViYGAcwEiCbBIKe5jxr8Z7w8DAwBiH114AxcDAwHgnIwmjyXbz52JgYJzMyANfHkbzRPOtZ3EMDIwHMtY2BtZef6y/gYGB8W8YV3FVD6hJkzIPr7e7wsDA2JrR21a1Jdkr3uUvAgMD4xxGtVifJ3nV43G12IeBgbE3Y2ZzvYGMpJ1QbTBgYGCcxugV2pL0rvdtFKwxMDC2ZiRBLYHN35nzbv8BAwNja0b1INobmKgG0KnJEQwMjAMY89EsKeFVE8FoLAMDA2NTRq8BkKSAM4G7GtYxMDB2ZVRL/DNDEjOh/BcwBgbG1oz3jH/1Wp55oomBgbE3o2Bd1LbM081yaoiBgXEwIymTVWF5GlpoBmBgYBzDmAmgvfZk3v4sBFwMDIyNGL0S/0wDIL+uFuMwMDB2ZVTTvupRNkHmIf72uRgYGMczZgpk1QZnklwWpkUwMDC2YPQGIGbunBnaaI56YGBgPJxxFVchXYuL+71jMAYGxjmMatKWj1D8RWFuPvXEwMB4LqMaFntBcCZMR68MAwPjAEa1cZgEyurWe20JDAwMjHGY6zUVqgfaQmqIgYGBESSCawfI8gYnBgbGCYxVobA6otF7ERgYGKcxeo2BfFu9puOysTAMDIxnM74A/gY84g1AZbAAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>
