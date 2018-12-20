@@ -21,18 +21,18 @@
     
     
     <meta name="keywords" content="工具">
-    <meta name="description" content="目录 start  Linux操作压缩文档 tar tar归档和压缩   rar zip gzip xz 7Z 总结    目录 end|2018-12-13 20:53| 码云 | CSDN | OSChina | cnblogs  Linux操作压缩文档 Linux默认自带ZIP压缩，最大支持4GB压缩，RAR的压缩比大于4GB.  tar1  这五个是独立的参数, 五个参数之间互斥  c :">
+    <meta name="description" content="目录 start  Linux操作压缩文档 tar tar归档和压缩   rar zip gzip xz 7Z 总结    目录 end|2018-12-13 20:53| 码云 | CSDN | OSChina | cnblogs  Linux操作压缩文档 Linux默认自带ZIP压缩，最大支持4GB压缩，RAR的压缩比大于4GB.     文件名模式 解压方式     *.tar 用 tar">
 <meta name="keywords" content="工具">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linux平台上压缩和解压工具">
 <meta property="og:url" content="http://blog.kuangcp.top/2018/12/15/Memo-Linux-Base-LinuxCompressFile/index.html">
 <meta property="og:site_name" content="Kuangcp Blog">
-<meta property="og:description" content="目录 start  Linux操作压缩文档 tar tar归档和压缩   rar zip gzip xz 7Z 总结    目录 end|2018-12-13 20:53| 码云 | CSDN | OSChina | cnblogs  Linux操作压缩文档 Linux默认自带ZIP压缩，最大支持4GB压缩，RAR的压缩比大于4GB.  tar1  这五个是独立的参数, 五个参数之间互斥  c :">
+<meta property="og:description" content="目录 start  Linux操作压缩文档 tar tar归档和压缩   rar zip gzip xz 7Z 总结    目录 end|2018-12-13 20:53| 码云 | CSDN | OSChina | cnblogs  Linux操作压缩文档 Linux默认自带ZIP压缩，最大支持4GB压缩，RAR的压缩比大于4GB.     文件名模式 解压方式     *.tar 用 tar">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-12-18T01:16:56.917Z">
+<meta property="og:updated_time" content="2018-12-20T12:59:38.760Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux平台上压缩和解压工具">
-<meta name="twitter:description" content="目录 start  Linux操作压缩文档 tar tar归档和压缩   rar zip gzip xz 7Z 总结    目录 end|2018-12-13 20:53| 码云 | CSDN | OSChina | cnblogs  Linux操作压缩文档 Linux默认自带ZIP压缩，最大支持4GB压缩，RAR的压缩比大于4GB.  tar1  这五个是独立的参数, 五个参数之间互斥  c :">
+<meta name="twitter:description" content="目录 start  Linux操作压缩文档 tar tar归档和压缩   rar zip gzip xz 7Z 总结    目录 end|2018-12-13 20:53| 码云 | CSDN | OSChina | cnblogs  Linux操作压缩文档 Linux默认自带ZIP压缩，最大支持4GB压缩，RAR的压缩比大于4GB.     文件名模式 解压方式     *.tar 用 tar">
     
         <link rel="alternate" type="application/atom+xml" title="Kuangcp Blog" href="/atom.xml">
     
@@ -160,7 +160,7 @@
     <aside class="post-widget">
         <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
             <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Linux操作压缩文档"><span class="post-toc-number">1.</span> <span class="post-toc-text">Linux操作压缩文档</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#tar"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">tar</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#tar归档和压缩"><span class="post-toc-number">1.1.1.</span> <span class="post-toc-text">tar归档和压缩</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#rar"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">rar</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#zip"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">zip</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#gzip"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">gzip</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#xz"><span class="post-toc-number">1.5.</span> <span class="post-toc-text">xz</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#7Z"><span class="post-toc-number">1.6.</span> <span class="post-toc-text">7Z</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#总结"><span class="post-toc-number">1.7.</span> <span class="post-toc-text">总结</span></a></li></ol></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Linux操作压缩文档"><span class="post-toc-number">1.</span> <span class="post-toc-text">Linux操作压缩文档</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#tar"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">tar</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#tar归档和压缩"><span class="post-toc-number">1.1.1.</span> <span class="post-toc-text">tar归档和压缩</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#rar"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">rar</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#zip"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">zip</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#gzip"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">gzip</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#xz"><span class="post-toc-number">1.5.</span> <span class="post-toc-text">xz</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#7Z"><span class="post-toc-number">1.6.</span> <span class="post-toc-text">7Z</span></a></li></ol></li></ol>
         </nav>
     </aside>
 
@@ -206,7 +206,66 @@
 <h1 id="Linux操作压缩文档"><a href="#Linux操作压缩文档" class="headerlink" title="Linux操作压缩文档"></a>Linux操作压缩文档</h1><blockquote>
 <p>Linux默认自带ZIP压缩，最大支持4GB压缩，RAR的压缩比大于4GB.</p>
 </blockquote>
-<h2 id="tar"><a href="#tar" class="headerlink" title="tar"></a>tar</h2><p>1  <code>这五个是独立的参数, 五个参数之间互斥</code></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">文件名模式</th>
+<th style="text-align:left">解压方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">*.tar</td>
+<td style="text-align:left">用 tar -xvf 解压</td>
+</tr>
+<tr>
+<td style="text-align:left"><em>.tar.gz 和 </em>.tgz</td>
+<td style="text-align:left">用 tar -xzf 解压</td>
+</tr>
+<tr>
+<td style="text-align:left">*.tar.xz</td>
+<td style="text-align:left">用 tar -xJf 解压</td>
+</tr>
+<tr>
+<td style="text-align:left">*.tar.Z</td>
+<td style="text-align:left">用tar -xZf 解压</td>
+</tr>
+<tr>
+<td style="text-align:left">*.tar.bz2</td>
+<td style="text-align:left">用tar -xjf 解压</td>
+</tr>
+<tr>
+<td style="text-align:left">-</td>
+<td style="text-align:left">-</td>
+</tr>
+<tr>
+<td style="text-align:left">*.gz</td>
+<td style="text-align:left">用 gzip -d 或者 gunzip 解压</td>
+</tr>
+<tr>
+<td style="text-align:left">*.bz2</td>
+<td style="text-align:left">用 bzip2 -d或者用bunzip2 解压</td>
+</tr>
+<tr>
+<td style="text-align:left">*.Z</td>
+<td style="text-align:left">用 uncompress 解压</td>
+</tr>
+<tr>
+<td style="text-align:left">*.xz</td>
+<td style="text-align:left">用 xz -d 解压</td>
+</tr>
+<tr>
+<td style="text-align:left">*.rar</td>
+<td style="text-align:left">用 unrar e 解压</td>
+</tr>
+<tr>
+<td style="text-align:left">*.zip</td>
+<td style="text-align:left">用 unzip 解压</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="tar"><a href="#tar" class="headerlink" title="tar"></a>tar</h2><p>1  <code>这五个是独立的参数, 五个参数 有且仅有一个</code></p>
 <ul>
 <li>c : 打包 压缩</li>
 <li>x : 解压</li>
@@ -216,9 +275,6 @@
 </ul>
 <p>2 <code>可选参数</code><br>2.1 <code>下面的参数是根据需要在压缩或解压档案时可选的。</code></p>
 <ul>
-<li>z：有gzip属性的</li>
-<li>j：有bz2属性的</li>
-<li>Z：有compress属性的</li>
 <li>v：显示所有过程</li>
 <li>O：将文件解开到标准输出</li>
 </ul>
@@ -249,25 +305,49 @@
 </li>
 </ul>
 <hr>
-<h3 id="tar归档和压缩"><a href="#tar归档和压缩" class="headerlink" title="tar归档和压缩"></a>tar归档和压缩</h3><blockquote>
+<h3 id="tar归档和压缩"><a href="#tar归档和压缩" class="headerlink" title="tar归档和压缩"></a>tar归档和压缩</h3><table>
+<thead>
+<tr>
+<th style="text-align:center">字母</th>
+<th style="text-align:center">压缩方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">z</td>
+<td style="text-align:center">gz</td>
+</tr>
+<tr>
+<td style="text-align:center">Z</td>
+<td style="text-align:center">Z</td>
+</tr>
+<tr>
+<td style="text-align:center">j</td>
+<td style="text-align:center">bz2</td>
+</tr>
+<tr>
+<td style="text-align:center">J</td>
+<td style="text-align:center">xz</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<blockquote>
 <p>压缩</p>
 <ul>
-<li>tar -cf a.tar *.txt <strong>仅仅归档,没有压缩</strong><ol>
-<li><code>-czf</code> tar.gz <strong>gz压缩</strong></li>
-<li><code>-cjf</code> tar.bz2 </li>
-<li><code>-cZf</code> tar.Z</li>
-<li><code>-cJf</code> tar.xz</li>
-</ol>
+<li>tar -cf a.tar *.txt <strong>仅仅归档,没有压缩</strong><ul>
+<li>tar -czf a.tar.gz *.txt<code>归档, 并使用gz格式压缩归档包, 以此类推</code></li>
+</ul>
 </li>
 </ul>
 </blockquote>
 <blockquote>
 <p>解压</p>
 <ul>
-<li><code>tar -xf file.tar</code>      // 解压 .tar</li>
-<li><code>tar -xzf file.tar.gz</code>  // 解压 .tar.gz 或者 .tgz</li>
-<li><code>tar -xjf file.tar.bz2</code> // 解压 .tar.bz2</li>
-<li><code>tar -xZf file.tar.Z</code>  // 解压 .tar.Z</li>
+<li><code>tar -xf file.tar</code>      // 解压 .tar 归档文件<ul>
+<li>tar -xzf a.tar.gz <code>解压使用gz格式压缩的压缩包, 以此类推</code></li>
+</ul>
+</li>
 </ul>
 </blockquote>
 <hr>
@@ -379,53 +459,6 @@
 <ul>
 <li style="list-style: none"><input type="checkbox"> 7z命令的 学习使用</li>
 </ul>
-<hr>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><table>
-<thead>
-<tr>
-<th style="text-align:left">文件名模式</th>
-<th style="text-align:left">解压方式</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">*.tar</td>
-<td style="text-align:left">用 tar -xvf 解压</td>
-</tr>
-<tr>
-<td style="text-align:left">*.gz</td>
-<td style="text-align:left">用 gzip -d或者gunzip 解压</td>
-</tr>
-<tr>
-<td style="text-align:left"><em>.tar.gz和</em>.tgz</td>
-<td style="text-align:left">用 tar -xzf 解压</td>
-</tr>
-<tr>
-<td style="text-align:left">*.bz2</td>
-<td style="text-align:left">用 bzip2 -d或者用bunzip2 解压</td>
-</tr>
-<tr>
-<td style="text-align:left">*.tar.bz2</td>
-<td style="text-align:left">用tar -xjf 解压</td>
-</tr>
-<tr>
-<td style="text-align:left">*.Z</td>
-<td style="text-align:left">用 uncompress 解压</td>
-</tr>
-<tr>
-<td style="text-align:left">*.tar.Z</td>
-<td style="text-align:left">用tar -xZf 解压</td>
-</tr>
-<tr>
-<td style="text-align:left">*.rar</td>
-<td style="text-align:left">用 unrar e 解压</td>
-</tr>
-<tr>
-<td style="text-align:left">*.zip</td>
-<td style="text-align:left">用 unzip 解压</td>
-</tr>
-</tbody>
-</table>
 
         </div>
 
@@ -434,12 +467,12 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2018-12-18T01:16:56.917Z" itemprop="dateUpdated">2018-12-18 09:16:56</time>
+    最后更新时间：<time datetime="2018-12-20T12:59:38.760Z" itemprop="dateUpdated">2018-12-20 20:59:38</time>
 </span><br>
 
 
         
-        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2018/12/15/Memo-Linux-Base-LinuxCompressFile/" target="_blank" rel="external">http://blog.kuangcp.top/2018/12/15/Memo-Linux-Base-LinuxCompressFile/</a>
+        当前：<a href="/2018/12/15/Memo-Linux-Base-LinuxCompressFile/" target="_blank" rel="external">http://blog.kuangcp.top/2018/12/15/Memo-Linux-Base-LinuxCompressFile/</a>
         
     </div>
     

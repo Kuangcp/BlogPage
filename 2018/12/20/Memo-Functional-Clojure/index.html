@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>Clojure.md | Kuangcp Blog | Javaer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="基础,函数式编程">
+    <meta name="description" content="目录 start  Clojure 安装 基础    目录 end|2018-12-13 12:06| 码云 | CSDN | OSChina | cnblogs  Clojure 似乎是Lisp的方言 参考博客 Clojure 学习笔记 :0 零基础教程  安装 Clojure官网下载地址 解压后运行jar包进入REPL java -cp clojure-1.8.0.jar clojure.ma">
+<meta name="keywords" content="基础,函数式编程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Clojure.md">
+<meta property="og:url" content="http://blog.kuangcp.top/2018/12/20/Memo-Functional-Clojure/index.html">
+<meta property="og:site_name" content="Kuangcp Blog">
+<meta property="og:description" content="目录 start  Clojure 安装 基础    目录 end|2018-12-13 12:06| 码云 | CSDN | OSChina | cnblogs  Clojure 似乎是Lisp的方言 参考博客 Clojure 学习笔记 :0 零基础教程  安装 Clojure官网下载地址 解压后运行jar包进入REPL java -cp clojure-1.8.0.jar clojure.ma">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-12-20T12:59:38.756Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Clojure.md">
+<meta name="twitter:description" content="目录 start  Clojure 安装 基础    目录 end|2018-12-13 12:06| 码云 | CSDN | OSChina | cnblogs  Clojure 似乎是Lisp的方言 参考博客 Clojure 学习笔记 :0 零基础教程  安装 Clojure官网下载地址 解压后运行jar包进入REPL java -cp clojure-1.8.0.jar clojure.ma">
+    
+        <link rel="alternate" type="application/atom+xml" title="Kuangcp Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Kuangcp</h5>
+          <a href="mailto:kuangcp@aliyun.com" title="kuangcp@aliyun.com" class="mail">kuangcp@aliyun.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/">
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives">
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags">
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories">
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/kuangcp" target="_blank">
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Clojure.md</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Clojure.md</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-12-20T12:59:38.756Z" itemprop="datePublished" class="page-time">
+  2018-12-20
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Clojure/">Clojure</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Clojure"><span class="post-toc-number">1.</span> <span class="post-toc-text">Clojure</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#安装"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">安装</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#基础"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">基础</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-Memo-Functional-Clojure" class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Clojure.md</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-12-20 20:59:38" datetime="2018-12-20T12:59:38.756Z" itemprop="datePublished">2018-12-20</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Clojure/">Clojure</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style="display:none">
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p><strong>目录 start</strong></p>
+<ol>
+<li><a href="#clojure">Clojure</a><ol>
+<li><a href="#安装">安装</a></li>
+<li><a href="#基础">基础</a></li>
+</ol>
+</li>
+</ol>
+<p><strong>目录 end</strong>|<em>2018-12-13 12:06</em>| <a href="https://gitee.com/gin9" target="_blank" rel="noopener">码云</a> | <a href="http://blog.csdn.net/kcp606" target="_blank" rel="noopener">CSDN</a> | <a href="https://my.oschina.net/kcp1104" target="_blank" rel="noopener">OSChina</a> | <a href="http://www.cnblogs.com/kuangcp" target="_blank" rel="noopener">cnblogs</a></p>
+<hr>
+<h1 id="Clojure"><a href="#Clojure" class="headerlink" title="Clojure"></a>Clojure</h1><blockquote>
+<p>似乎是Lisp的方言 <a href="https://www.jianshu.com/p/32b7ef3659db" target="_blank" rel="noopener">参考博客 Clojure 学习笔记 :0 零基础教程</a></p>
+</blockquote>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><ul>
+<li><a href="https://clojure.org/community/downloads" target="_blank" rel="noopener">Clojure官网下载地址</a><ul>
+<li>解压后运行jar包进入REPL <code>java -cp clojure-1.8.0.jar clojure.main</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h2><p>Clojure的设计原则可以概括成5个词汇：简单、专注、实用、一致和清晰。这不是我概括的，而是《The joy of clojure》概括的。<br>（1）简单： 鼓励纯函数，极简的语法（少数special form），个人也认为clojure不能算是多范式的语言（有部分OO特性），为了支持多范式引入的复杂度，我们在C++和Scala身上都看到了。<br>（2）专注：前缀运算符不需要去考虑优先级，也没有什么菱形继承的问题，动态类型系统（有利有弊），REPL提供的探索式编程方法（告别修改/编译/运行的死循环，所见即所得）。<br>（3）实用：前面提到，构建在JVM之上，跟Java语言的互操作非常容易。直接调用Java方法，不去发明一套新的调用语法，努力规避Java语言中繁琐的地方(doto,箭头宏等等）。<br>（4）清晰：纯函数（前面提到），immutable var，immutable数据结构，STM避免锁问题。不可变减少了心智的负担，降低了多线程编程的难度，纯函数也更利于测试和调试。<br>（5）一致：语法的一致性：例如doseq和for宏类似，都支持destructring,支持相同的guard语句（when,while）。数据结构的一致性：sequence抽象之上的各种高阶函数。</p>
+<ul>
+<li>命令式语言 Java Groovy Scala都是用一个内存和状态模型，把变量映射到一个内存位置<ul>
+<li>Clojure是将值作为重点，Clojure的值一旦创建就不能修改。变量和值建立映射关系，如果再次赋值，不是修改变量，而是映射到新的值上</li>
+<li>(def &lt;名称&gt; &lt;值&gt;)</li>
+</ul>
+</li>
+</ul>
+<p><code>Hello World</code><br><code>java -cp clojure-1.8.0.jar clojure.main</code>进入REPL终端<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">user =&gt; (def hello(fn [] "hello"))</span><br><span class="line">user =&gt; (hello)</span><br></pre></td></tr></table></figure></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2018-12-20T12:59:38.756Z" itemprop="dateUpdated">2018-12-20 20:59:38</time>
+</span><br>
+
+
+        
+        当前：<a href="/2018/12/20/Memo-Functional-Clojure/" target="_blank" rel="external">http://blog.kuangcp.top/2018/12/20/Memo-Functional-Clojure/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="http://blog.kuangcp.top">
+            <img src="/img/avatar.jpg" alt="Kuangcp">
+            Kuangcp
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/函数式编程/">函数式编程</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/基础/">基础</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.kuangcp.top/2018/12/20/Memo-Functional-Clojure/&title=《Clojure.md》 — Kuangcp Blog&pic=http://blog.kuangcp.top/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.kuangcp.top/2018/12/20/Memo-Functional-Clojure/&title=《Clojure.md》 — Kuangcp Blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.kuangcp.top/2018/12/20/Memo-Functional-Clojure/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Clojure.md》 — Kuangcp Blog&url=http://blog.kuangcp.top/2018/12/20/Memo-Functional-Clojure/&via=http://blog.kuangcp.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.kuangcp.top/2018/12/20/Memo-Functional-Clojure/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/12/20/Memo-Skills-CS-Network/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Network.md</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/12/20/Memo-Functional-FPBase/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">FPBase.md</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check" data-wechat="/img/wechat.png" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style="display:none">
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style="display:none">
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Kuangcp &copy; 2015 - 2018</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">赣ICP备17014189号-1</a><br>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.kuangcp.top/2018/12/20/Memo-Functional-Clojure/&title=《Clojure.md》 — Kuangcp Blog&pic=http://blog.kuangcp.top/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.kuangcp.top/2018/12/20/Memo-Functional-Clojure/&title=《Clojure.md》 — Kuangcp Blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.kuangcp.top/2018/12/20/Memo-Functional-Clojure/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Clojure.md》 — Kuangcp Blog&url=http://blog.kuangcp.top/2018/12/20/Memo-Functional-Clojure/&via=http://blog.kuangcp.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.kuangcp.top/2018/12/20/Memo-Functional-Clojure/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACI0lEQVR42u3aQXLDIAwF0Nz/0uk2nY7pl8CdGp5XmQ7BelmoSOj1ip/3x/P5l59rrtb33rL4wcDAeCzjPXyu1uRBjHce75/EhoGBcQ7jKqxkzTgd52m6+l4MDAyM6nbVlD1OuxgYGBjzjPyVSe2JgYGBkTCSdJl8ThJu9Yi5uBbHwMB4IKOXFv/m8y33GxgYGI9ivIvPTFh5oOWoMDAwtmbkCS4h5Ye8+YSLgYFxGqM3/jXf4s+pU4dFDAyMLRjVwYhqE62aiPPYLv9vYGBgbMeoHv7GGyWhJzmzfIWJgYGxNaP64l4a7V1n5j83BgbG3ozk2Ncbg8hL2TyGZhWOgYGxBaNX0OZXkr3COGnqYWBgnMbID2H5wa43ZtFst2FgYBzGqD4z4eattxsBGBgY/54xk+Z6Dbs8lS8uXzEwMB7FSArFmeK2elGal8rf1mNgYGzNmB+2qL6sdzlaPp9iYGBsypgJundk7CXuQqcQAwNjI8aqAYs80LUDHBgYGCczeg39Xk9snLKjEhoDA+MAxqr0Wr167O3Z7ORhYGBswUjSXG/AYv67v6zHwMDYlHFHGr1jBwwMjJMZa0vQtd9qDltgYGBsyqi29WfK4HywrJxwMTAwDmD0El/1xb2fKWreYWBgYFyEnrfG5n+swlgYBgbG8YxeiNXEneyz7P8GBgbGQxj52NaqNTOXmhgYGKcxqoMRzaPbuASNd566yMTAwHge4wvaW2qYeXKxkwAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

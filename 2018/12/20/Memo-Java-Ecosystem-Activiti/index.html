@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>Activiti.md | Kuangcp Blog | Javaer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="目录 start  Activiti 相关书籍 相关仓库 基础概念 什么是流程 流程引擎 BPMN流程图 数据库的设计 1.资源库流程规则表 2.运行时数据库表 3.历史数据库表 4.组织机构表 5.通用数据表   核心配置文件 大致原理讲解      目录 end|2018-12-13 12:06| 码云 | CSDN | OSChina | cnblogs  Activiti 参考笔记  相关">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Activiti.md">
+<meta property="og:url" content="http://blog.kuangcp.top/2018/12/20/Memo-Java-Ecosystem-Activiti/index.html">
+<meta property="og:site_name" content="Kuangcp Blog">
+<meta property="og:description" content="目录 start  Activiti 相关书籍 相关仓库 基础概念 什么是流程 流程引擎 BPMN流程图 数据库的设计 1.资源库流程规则表 2.运行时数据库表 3.历史数据库表 4.组织机构表 5.通用数据表   核心配置文件 大致原理讲解      目录 end|2018-12-13 12:06| 码云 | CSDN | OSChina | cnblogs  Activiti 参考笔记  相关">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/Kuangcp/ImageRepos/master/Tech/activiti/activiti-first.png">
+<meta property="og:image" content="http://www.icoolxue.com/play/5796">
+<meta property="og:updated_time" content="2018-12-20T12:59:38.760Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Activiti.md">
+<meta name="twitter:description" content="目录 start  Activiti 相关书籍 相关仓库 基础概念 什么是流程 流程引擎 BPMN流程图 数据库的设计 1.资源库流程规则表 2.运行时数据库表 3.历史数据库表 4.组织机构表 5.通用数据表   核心配置文件 大致原理讲解      目录 end|2018-12-13 12:06| 码云 | CSDN | OSChina | cnblogs  Activiti 参考笔记  相关">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Kuangcp/ImageRepos/master/Tech/activiti/activiti-first.png">
+    
+        <link rel="alternate" type="application/atom+xml" title="Kuangcp Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Kuangcp</h5>
+          <a href="mailto:kuangcp@aliyun.com" title="kuangcp@aliyun.com" class="mail">kuangcp@aliyun.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/">
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives">
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags">
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories">
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/kuangcp" target="_blank">
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Activiti.md</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Activiti.md</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-12-20T12:59:38.760Z" itemprop="datePublished" class="page-time">
+  2018-12-20
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Activiti"><span class="post-toc-number">1.</span> <span class="post-toc-text">Activiti</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#相关书籍"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">相关书籍</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#相关仓库"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">相关仓库</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#基础概念"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">基础概念</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#什么是流程"><span class="post-toc-number">1.3.1.</span> <span class="post-toc-text">什么是流程</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#流程引擎"><span class="post-toc-number">1.3.2.</span> <span class="post-toc-text">流程引擎</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#BPMN流程图"><span class="post-toc-number">1.3.3.</span> <span class="post-toc-text">BPMN流程图</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#数据库的设计"><span class="post-toc-number">1.3.4.</span> <span class="post-toc-text">数据库的设计</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-资源库流程规则表"><span class="post-toc-number">1.3.4.1.</span> <span class="post-toc-text">1.资源库流程规则表</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-运行时数据库表"><span class="post-toc-number">1.3.4.2.</span> <span class="post-toc-text">2.运行时数据库表</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#3-历史数据库表"><span class="post-toc-number">1.3.4.3.</span> <span class="post-toc-text">3.历史数据库表</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#4-组织机构表"><span class="post-toc-number">1.3.4.4.</span> <span class="post-toc-text">4.组织机构表</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#5-通用数据表"><span class="post-toc-number">1.3.4.5.</span> <span class="post-toc-text">5.通用数据表</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#核心配置文件"><span class="post-toc-number">1.3.5.</span> <span class="post-toc-text">核心配置文件</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#大致原理讲解"><span class="post-toc-number">1.3.6.</span> <span class="post-toc-text">大致原理讲解</span></a></li></ol></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-Memo-Java-Ecosystem-Activiti" class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Activiti.md</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-12-20 20:59:38" datetime="2018-12-20T12:59:38.760Z" itemprop="datePublished">2018-12-20</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style="display:none">
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p><strong>目录 start</strong></p>
+<ol>
+<li><a href="#activiti">Activiti</a><ol>
+<li><a href="#相关书籍">相关书籍</a></li>
+<li><a href="#相关仓库">相关仓库</a></li>
+<li><a href="#基础概念">基础概念</a><ol>
+<li><a href="#什么是流程">什么是流程</a></li>
+<li><a href="#流程引擎">流程引擎</a></li>
+<li><a href="#bpmn流程图">BPMN流程图</a></li>
+<li><a href="#数据库的设计">数据库的设计</a><ol>
+<li><a href="#1资源库流程规则表">1.资源库流程规则表</a></li>
+<li><a href="#2运行时数据库表">2.运行时数据库表</a></li>
+<li><a href="#3历史数据库表">3.历史数据库表</a></li>
+<li><a href="#4组织机构表">4.组织机构表</a></li>
+<li><a href="#5通用数据表">5.通用数据表</a></li>
+</ol>
+</li>
+<li><a href="#核心配置文件">核心配置文件</a></li>
+<li><a href="#大致原理讲解">大致原理讲解</a></li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<p><strong>目录 end</strong>|<em>2018-12-13 12:06</em>| <a href="https://gitee.com/gin9" target="_blank" rel="noopener">码云</a> | <a href="http://blog.csdn.net/kcp606" target="_blank" rel="noopener">CSDN</a> | <a href="https://my.oschina.net/kcp1104" target="_blank" rel="noopener">OSChina</a> | <a href="http://www.cnblogs.com/kuangcp" target="_blank" rel="noopener">cnblogs</a></p>
+<hr>
+<h1 id="Activiti"><a href="#Activiti" class="headerlink" title="Activiti"></a>Activiti</h1><blockquote>
+<p><a href="https://github.com/dragonhht/Notes/blob/master/Java/Activiti%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.md" target="_blank" rel="noopener">参考笔记</a></p>
+</blockquote>
+<h2 id="相关书籍"><a href="#相关书籍" class="headerlink" title="相关书籍"></a>相关书籍</h2><blockquote>
+<p>Activiti实战  </p>
+<blockquote>
+<p><a href="https://github.com/henryyan/kft-activiti-demo" target="_blank" rel="noopener">activiti示例</a><code>作者:书籍的源码</code><br><a href="https://github.com/henryyan/activiti-in-action-codes" target="_blank" rel="noopener">activiti实战源码</a> <code>这本书的每个章节的实战源码</code> </p>
+</blockquote>
+</blockquote>
+<hr>
+<blockquote>
+<p>Activiti权威指南  </p>
+<blockquote>
+</blockquote>
+</blockquote>
+<h2 id="相关仓库"><a href="#相关仓库" class="headerlink" title="相关仓库"></a>相关仓库</h2><ul>
+<li><a href="https://gitee.com/wyy396731037/springboot-activiti" target="_blank" rel="noopener">springboot-activiti</a> <code>整合activiti的Springboot示例</code></li>
+<li><a href="https://gitee.com/fengyexjtu/spring-boot-activiti" target="_blank" rel="noopener">spring-boot-activiti</a><code>跑起来的小案例</code></li>
+</ul>
+<hr>
+<h2 id="基础概念"><a href="#基础概念" class="headerlink" title="基础概念"></a>基础概念</h2><hr>
+<h3 id="什么是流程"><a href="#什么是流程" class="headerlink" title="什么是流程"></a>什么是流程</h3><hr>
+<h3 id="流程引擎"><a href="#流程引擎" class="headerlink" title="流程引擎"></a>流程引擎</h3><hr>
+<h3 id="BPMN流程图"><a href="#BPMN流程图" class="headerlink" title="BPMN流程图"></a>BPMN流程图</h3><p><a href="http://www.jikexueyuan.com/course/1777_2.html?ss=1" target="_blank" rel="noopener">案例视频</a><br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/Kuangcp/ImageRepos/master/Tech/activiti/activiti-first.png" alt="最简单示例图" title="">
+                </div>
+                <div class="image-caption">最简单示例图</div>
+            </figure><br><code>bpmn是最原始的单纯的流程定义文件，与Springboot整合就是bpmn20.xml文件(区别在于动态注入)</code></p>
+<blockquote>
+<p>bpmn文件2.0结点是definitions节点，这个元素中可以定义多个流程定义（建议每个文件只包含一个流程定义,可简化维护难度).<br>definitions元素最少也要包含xmlns和targetNamespace的声明，targetNamespace可以是任意值，它用来对流程实例进行分类<br><a href="https://gitee.com/kcp1104/codes/9cm6pdsqo5vrauij41xbk68#FirstDemo.bpmn20.xml" target="_blank" rel="noopener">最简单的示例 FirstDemo.bpmn20.xml</a></p>
+</blockquote>
+<hr>
+<h3 id="数据库的设计"><a href="#数据库的设计" class="headerlink" title="数据库的设计"></a>数据库的设计</h3><blockquote>
+<p>所有表都以ACT开头</p>
+</blockquote>
+<h4 id="1-资源库流程规则表"><a href="#1-资源库流程规则表" class="headerlink" title="1.资源库流程规则表"></a>1.资源库流程规则表</h4><blockquote>
+<p>ACT_RE开头</p>
+</blockquote>
+<h4 id="2-运行时数据库表"><a href="#2-运行时数据库表" class="headerlink" title="2.运行时数据库表"></a>2.运行时数据库表</h4><blockquote>
+<p>ACT_RU开头</p>
+</blockquote>
+<h4 id="3-历史数据库表"><a href="#3-历史数据库表" class="headerlink" title="3.历史数据库表"></a>3.历史数据库表</h4><blockquote>
+<p>ACT_HI开头</p>
+</blockquote>
+<h4 id="4-组织机构表"><a href="#4-组织机构表" class="headerlink" title="4.组织机构表"></a>4.组织机构表</h4><blockquote>
+<p>ACT_ID开头</p>
+</blockquote>
+<h4 id="5-通用数据表"><a href="#5-通用数据表" class="headerlink" title="5.通用数据表"></a>5.通用数据表</h4><blockquote>
+<p>ACT_GE开头</p>
+</blockquote>
+<hr>
+<h3 id="核心配置文件"><a href="#核心配置文件" class="headerlink" title="核心配置文件"></a>核心配置文件</h3><blockquote>
+<p>activiti.cfg.xml 含数据库配置,默认的JDBC是默认Mybatis连接池</p>
+</blockquote>
+<h3 id="大致原理讲解"><a href="#大致原理讲解" class="headerlink" title="大致原理讲解"></a>大致原理讲解</h3><p>[<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://www.icoolxue.com/play/5796" alt="来源](https://raw.githubusercontent.com/Kuangcp/ImageRepos/master/Tech/activiti/simple.png)" title="">
+                </div>
+                <div class="image-caption">来源](https://raw.githubusercontent.com/Kuangcp/ImageRepos/master/Tech/activiti/simple.png)</div>
+            </figure></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2018-12-20T12:59:38.760Z" itemprop="dateUpdated">2018-12-20 20:59:38</time>
+</span><br>
+
+
+        
+        当前：<a href="/2018/12/20/Memo-Java-Ecosystem-Activiti/" target="_blank" rel="external">http://blog.kuangcp.top/2018/12/20/Memo-Java-Ecosystem-Activiti/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="http://blog.kuangcp.top">
+            <img src="/img/avatar.jpg" alt="Kuangcp">
+            Kuangcp
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.kuangcp.top/2018/12/20/Memo-Java-Ecosystem-Activiti/&title=《Activiti.md》 — Kuangcp Blog&pic=http://blog.kuangcp.top/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.kuangcp.top/2018/12/20/Memo-Java-Ecosystem-Activiti/&title=《Activiti.md》 — Kuangcp Blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.kuangcp.top/2018/12/20/Memo-Java-Ecosystem-Activiti/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Activiti.md》 — Kuangcp Blog&url=http://blog.kuangcp.top/2018/12/20/Memo-Java-Ecosystem-Activiti/&via=http://blog.kuangcp.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.kuangcp.top/2018/12/20/Memo-Java-Ecosystem-Activiti/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/12/20/Memo-Java-AdvancedLearning-Thread/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Java线程</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/12/20/Memo-Java-Ecosystem-Blade/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Blade.md</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check" data-wechat="/img/wechat.png" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style="display:none">
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style="display:none">
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Kuangcp &copy; 2015 - 2018</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">赣ICP备17014189号-1</a><br>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.kuangcp.top/2018/12/20/Memo-Java-Ecosystem-Activiti/&title=《Activiti.md》 — Kuangcp Blog&pic=http://blog.kuangcp.top/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.kuangcp.top/2018/12/20/Memo-Java-Ecosystem-Activiti/&title=《Activiti.md》 — Kuangcp Blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.kuangcp.top/2018/12/20/Memo-Java-Ecosystem-Activiti/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Activiti.md》 — Kuangcp Blog&url=http://blog.kuangcp.top/2018/12/20/Memo-Java-Ecosystem-Activiti/&via=http://blog.kuangcp.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.kuangcp.top/2018/12/20/Memo-Java-Ecosystem-Activiti/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACrklEQVR42u3aMZLjQAgF0Ln/pb1Vm6v9gcZ28BS5PB6J14GggL+/+Hr9v5LvX8er98tzDBcuPDw8vFbo58ecH3wO5Qk2OaDC0eDh4eGt8ZIQz78845Mk8XS3p2+i5IGHh4f3VV5STCev+OT+1Xjw8PDwfpl3ZpxTRTNEPDw8vJ/kVV/ieYOglzaSI77ca8HDw8OrTZeabdlvfV6c7+Hh4eENpur5CzdPJNW/jqLFw8PDW+AlJfLkPZw0JvKiPH96ISw8PDy8Ii95cN4ymKwaJOO06poCHh4e3h7vbllcHYONcto5Tjw8PLwFXjJ67w2oJs3iu2MzPDw8vLu8XnCTNYIkeeQtiWgnAg8PD2+Bl5fR+UrBRvLIGyKPvRY8PDy8Ma9a2lYxd+9ZXWXAw8PD+ySvGlA1nVQbH3nBXVg4wMPDw2vxqqFUx/lJo6EKKIzW8PDw8BZ4k6WBHnVeKJdHcXh4eHhXeQksf8xGq2KSePDw8PC2edWydbIONW8QJ4tZeHh4eHu86nJVFVMNuldkPyYGPDw8vI/weq2H+QJWb63q8VDw8PDw1niTAVX+4Hzklt//zf/i4eHhLfDyojZZL0julh9WNUU1A8LDw8Mr8sqN0bjFcKsdnBTfeHh4eJ/kVdeb8qFX3t7NAeVmBB4eHt4C7xzK/HWcNHPnzQg8PDy8b/HuLg30qtzqYtab+PHw8PAWePkLvVc0V1u6eYOjutqFh4eHd4v3Kl63XvH52Y8OCA8PD2+B13v5TkLvfZMfxIXtCTw8PLyAlySDBNNruVbHb/n/4uHh4W3zqitZSYaptip6GezNoePh4eF9lbfRnM3bE73lLTw8PLxf4FVD7N0zTy1vms54eHh4a7y8GTHpFveK6dHh4uHh4S3wJgOwHJ9/7i11jS48PDy8lPcPNje7YC0vFscAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>
