@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>CharacterEncoding.md | Kuangcp Blog | Javaer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="目录 start  字符编码 ascii ANSI Unicode UTF UTF-8 UTF-16     汉字编码发展史    目录 end|2018-12-13 12:06| 码云 | CSDN | OSChina | cnblogs  字符编码 字符编码笔记：ASCII，Unicode 和 UTF-8 | 阮一峰的文章有哪些常见性错误   字符编码参考博客: Ansi,UTF8,Unico">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CharacterEncoding.md">
+<meta property="og:url" content="http://blog.kuangcp.top/2018/11/21/Memo-Skills-CS-CharacterEncoding/index.html">
+<meta property="og:site_name" content="Kuangcp Blog">
+<meta property="og:description" content="目录 start  字符编码 ascii ANSI Unicode UTF UTF-8 UTF-16     汉字编码发展史    目录 end|2018-12-13 12:06| 码云 | CSDN | OSChina | cnblogs  字符编码 字符编码笔记：ASCII，Unicode 和 UTF-8 | 阮一峰的文章有哪些常见性错误   字符编码参考博客: Ansi,UTF8,Unico">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-12-21T03:02:53.238Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CharacterEncoding.md">
+<meta name="twitter:description" content="目录 start  字符编码 ascii ANSI Unicode UTF UTF-8 UTF-16     汉字编码发展史    目录 end|2018-12-13 12:06| 码云 | CSDN | OSChina | cnblogs  字符编码 字符编码笔记：ASCII，Unicode 和 UTF-8 | 阮一峰的文章有哪些常见性错误   字符编码参考博客: Ansi,UTF8,Unico">
+    
+        <link rel="alternate" type="application/atom+xml" title="Kuangcp Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Kuangcp</h5>
+          <a href="mailto:kuangcp@aliyun.com" title="kuangcp@aliyun.com" class="mail">kuangcp@aliyun.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/">
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives">
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags">
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories">
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/kuangcp" target="_blank">
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">CharacterEncoding.md</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">CharacterEncoding.md</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-11-21T02:56:52.000Z" itemprop="datePublished" class="page-time">
+  2018-11-21
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#字符编码"><span class="post-toc-number">1.</span> <span class="post-toc-text">字符编码</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#ascii"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">ascii</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#ANSI"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">ANSI</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Unicode"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">Unicode</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#UTF"><span class="post-toc-number">1.3.1.</span> <span class="post-toc-text">UTF</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#UTF-8"><span class="post-toc-number">1.3.1.1.</span> <span class="post-toc-text">UTF-8</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#UTF-16"><span class="post-toc-number">1.3.1.2.</span> <span class="post-toc-text">UTF-16</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#汉字编码发展史"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">汉字编码发展史</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-Memo-Skills-CS-CharacterEncoding" class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">CharacterEncoding.md</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-11-21 10:56:52" datetime="2018-11-21T02:56:52.000Z" itemprop="datePublished">2018-11-21</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style="display:none">
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p><strong>目录 start</strong></p>
+<ol>
+<li><a href="#字符编码">字符编码</a><ol>
+<li><a href="#ascii">ascii</a></li>
+<li><a href="#ansi">ANSI</a></li>
+<li><a href="#unicode">Unicode</a><ol>
+<li><a href="#utf">UTF</a><ol>
+<li><a href="#utf-8">UTF-8</a></li>
+<li><a href="#utf-16">UTF-16</a></li>
+</ol>
+</li>
+</ol>
+</li>
+<li><a href="#汉字编码发展史">汉字编码发展史</a></li>
+</ol>
+</li>
+</ol>
+<p><strong>目录 end</strong>|<em>2018-12-13 12:06</em>| <a href="https://gitee.com/gin9" target="_blank" rel="noopener">码云</a> | <a href="http://blog.csdn.net/kcp606" target="_blank" rel="noopener">CSDN</a> | <a href="https://my.oschina.net/kcp1104" target="_blank" rel="noopener">OSChina</a> | <a href="http://www.cnblogs.com/kuangcp" target="_blank" rel="noopener">cnblogs</a></p>
+<hr>
+<h1 id="字符编码"><a href="#字符编码" class="headerlink" title="字符编码"></a>字符编码</h1><blockquote>
+<p><a href="http://www.ruanyifeng.com/blog/2007/10/ascii_unicode_and_utf-8.html" target="_blank" rel="noopener">字符编码笔记：ASCII，Unicode 和 UTF-8</a> | <a href="https://www.v2ex.com/t/343634" target="_blank" rel="noopener">阮一峰的文章有哪些常见性错误</a></p>
+</blockquote>
+<blockquote>
+<p><a href="http://blog.jobbole.com/39309/" target="_blank" rel="noopener">字符编码</a><br><a href="https://blog.csdn.net/xiongxiao/article/details/3741731" target="_blank" rel="noopener">参考博客: Ansi,UTF8,Unicode,ASCII编码的区别</a></p>
+</blockquote>
+<ul>
+<li>字符内码(charcter code)指的是用来代表字符的内码.读者在输入和存储文档时都要使用内码,内码分为<ul>
+<li>单字节内码 – Single-Byte character sets (SBCS), 也就是第一个字节 0-127 </li>
+<li>双字节内码 – Double-Byte character sets)(DBCS), 也就是第二个字节 128-255</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="ascii"><a href="#ascii" class="headerlink" title="ascii"></a>ascii</h2><blockquote>
+<p>ascii American Standard Code for Information Interchange  美国信息交换标准代码 属于单字节内码 并等同于国际标准ISO/IEC 646</p>
+</blockquote>
+<ol>
+<li>0-31 以及 127 是控制字符或通信专用字符 （其余为可显示字符）</li>
+<li>32～126(共95个)是字符(32是空格）<ul>
+<li>其中48～57为0到9十个阿拉伯数字</li>
+<li>65～90为26个大写英文字母</li>
+<li>97～122号为26个小写英文字母</li>
+<li>其余为一些标点符号、运算符号等。</li>
+</ul>
+</li>
+</ol>
+<p>同时还要注意，在标准ASCII中，其最高位(b7)用作奇偶校验位。<br>Linux <code>man ascii</code> 就可以查看, 没有这个手册就安装 <code>ascii</code> 用这个程序来展示  </p>
+<blockquote>
+<p><a href="http://www.cnblogs.com/xmxu/archive/2012/07/10/2584032.html" target="_blank" rel="noopener">参考博客: ASCII码表</a></p>
+</blockquote>
+<h2 id="ANSI"><a href="#ANSI" class="headerlink" title="ANSI"></a>ANSI</h2><blockquote>
+<p>ANSI/ISO8859-1-1987 或称 Latin 1  </p>
+</blockquote>
+<p>这个编码就是 ascii 的扩展, 但是只是扩展了一个字节, 然后各个国家的编码又不一致(不同的代码页), 导致了十分混乱<br>至于简体中文编码GB2312，实际上它是 ANSI 的一个代码页 936</p>
+<hr>
+<h2 id="Unicode"><a href="#Unicode" class="headerlink" title="Unicode"></a>Unicode</h2><blockquote>
+<p><a href="http://www.unicode.org/" target="_blank" rel="noopener">unicode.org</a> | <a href="https://en.wikipedia.org/wiki/Unicode" target="_blank" rel="noopener">wikipedia</a></p>
+</blockquote>
+<p>Unicode 是一个囊括了世界上所有字符的字符集，其中每一个字符都对应有唯一的编码值, 但是并不是一个具体实现的编码方案, 不能直接使用<br>其实现有 UTF-8 UTF-16 UTF-32 …<br>目前最新版本 11 已经包括 137,439 个字符</p>
+<hr>
+<h3 id="UTF"><a href="#UTF" class="headerlink" title="UTF"></a>UTF</h3><blockquote>
+<p>UTF: UCS Transformation Format, UCS: Unicode Character Set</p>
+</blockquote>
+<p>它是将Unicode编码规则和计算机的实际编码对应起来的一个规则。现在流行的UTF有2种：UTF-8和UTF-16.</p>
+<h4 id="UTF-8"><a href="#UTF-8" class="headerlink" title="UTF-8"></a>UTF-8</h4><blockquote>
+<p>UTF-8 是一种Unicode的实现方式, 是一种变长编码方案(1-6), 在表示中文时是采用三字节的方式, 已基本覆盖WEB领域</p>
+</blockquote>
+<p><strong>依据首字节的最高位来限定</strong></p>
+<ul>
+<li>1字节 0xxxxxxx </li>
+<li>2字节 110xxxxx 10xxxxxx </li>
+<li>3字节 1110xxxx 10xxxxxx 10xxxxxx </li>
+<li>4字节 11110xxx 10xxxxxx 10xxxxxx 10xxxxxx </li>
+<li>5字节 111110xx 10xxxxxx 10xxxxxx 10xxxxxx 10xxxxxx </li>
+<li>6字节 1111110x 10xxxxxx 10xxxxxx 10xxxxxx 10xxxxxx 10xxxxxx </li>
+</ul>
+<blockquote>
+<p><a href="http://www.cnblogs.com/chenwenbiao/archive/2011/08/11/2134503.html" target="_blank" rel="noopener">参考博客: UTF-8编码规则（转） </a></p>
+</blockquote>
+<h4 id="UTF-16"><a href="#UTF-16" class="headerlink" title="UTF-16"></a>UTF-16</h4><ul>
+<li><a href="https://en.wikipedia.org/wiki/CESU-8" target="_blank" rel="noopener">CESU-8</a></li>
+</ul>
+<h2 id="汉字编码发展史"><a href="#汉字编码发展史" class="headerlink" title="汉字编码发展史"></a>汉字编码发展史</h2><p>最早是制定的GB2312-80 兼容 ascii 采用的是双字节编码方式, 其中一共编码了6763个常用简体汉字, Big5，是台湾使用的编码标准，编码了台湾使用的繁体汉字，大概有8千多个。HKSCS，是中国香港使用的编码标准，字体也是繁体，但跟Big5有所不同。<br>后来，由于各方面的原因，国际上又制定了针对中文的统一字符集GBK和GB18030，其中GBK已经在Windows、Linux等多种操作系统中被实现。<br>GBK兼容GB2312，并增加了大量不常用汉字，还加入了几乎所有的Big5中的繁体汉字。但是GBK中的繁体汉字和Big5中的几乎不兼容。  </p>
+<p>GB2312、GBK到GB18030都属于双字节字符集 (DBCS)</p>
+<blockquote>
+<p><a href="http://www.chi2ko.com/tool/CJK.htm" target="_blank" rel="noopener">字体编辑用中日韩汉字Unicode编码表</a><br><a href="http://www.cnblogs.com/sosoft/p/3456631.html" target="_blank" rel="noopener">参考博客: Unicode中文和特殊字符的编码范围</a><br><a href="https://blog.csdn.net/yuan892173701/article/details/8731490" target="_blank" rel="noopener">参考博客: 中文标点符号具体unicode码</a><br><a href="https://www.qqxiuzi.cn/zh/hanzi-unicode-bianma.php" target="_blank" rel="noopener">汉字 Unicode 编码范围</a></p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">类别</th>
+<th style="text-align:center">字数</th>
+<th style="text-align:center">范围</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">基本汉字</td>
+<td style="text-align:center">20902字</td>
+<td style="text-align:center">4E00-9FA5</td>
+</tr>
+<tr>
+<td style="text-align:center">基本汉字补充</td>
+<td style="text-align:center">74字</td>
+<td style="text-align:center">9FA6-9FEF</td>
+</tr>
+<tr>
+<td style="text-align:center">扩展A</td>
+<td style="text-align:center">6582字</td>
+<td style="text-align:center">3400-4DB5</td>
+</tr>
+<tr>
+<td style="text-align:center">扩展B</td>
+<td style="text-align:center">42711字</td>
+<td style="text-align:center">20000-2A6D6</td>
+</tr>
+<tr>
+<td style="text-align:center">扩展C</td>
+<td style="text-align:center">4149字</td>
+<td style="text-align:center">2A700-2B734</td>
+</tr>
+<tr>
+<td style="text-align:center">扩展D</td>
+<td style="text-align:center">222字</td>
+<td style="text-align:center">2B740-2B81D</td>
+</tr>
+<tr>
+<td style="text-align:center">扩展E</td>
+<td style="text-align:center">5762字</td>
+<td style="text-align:center">2B820-2CEA1</td>
+</tr>
+<tr>
+<td style="text-align:center">扩展F</td>
+<td style="text-align:center">7473字</td>
+<td style="text-align:center">2CEB0-2EBE0</td>
+</tr>
+<tr>
+<td style="text-align:center">康熙部首</td>
+<td style="text-align:center">214字</td>
+<td style="text-align:center">2F00-2FD5</td>
+</tr>
+<tr>
+<td style="text-align:center">部首扩展</td>
+<td style="text-align:center">115字</td>
+<td style="text-align:center">2E80-2EF3</td>
+</tr>
+<tr>
+<td style="text-align:center">兼容汉字</td>
+<td style="text-align:center">477字</td>
+<td style="text-align:center">F900-FAD9</td>
+</tr>
+<tr>
+<td style="text-align:center">兼容扩展</td>
+<td style="text-align:center">542字</td>
+<td style="text-align:center">2F800-2FA1D</td>
+</tr>
+<tr>
+<td style="text-align:center">PUA(GBK)部件</td>
+<td style="text-align:center">81字</td>
+<td style="text-align:center">E815-E86F</td>
+</tr>
+<tr>
+<td style="text-align:center">部件扩展</td>
+<td style="text-align:center">452字</td>
+<td style="text-align:center">E400-E5E8</td>
+</tr>
+<tr>
+<td style="text-align:center">PUA增补</td>
+<td style="text-align:center">207字</td>
+<td style="text-align:center">E600-E6CF</td>
+</tr>
+<tr>
+<td style="text-align:center">汉字笔画</td>
+<td style="text-align:center">36字</td>
+<td style="text-align:center">31C0-31E3</td>
+</tr>
+<tr>
+<td style="text-align:center">汉字结构</td>
+<td style="text-align:center">12字</td>
+<td style="text-align:center">2FF0-2FFB</td>
+</tr>
+<tr>
+<td style="text-align:center">汉语注音</td>
+<td style="text-align:center">43字</td>
+<td style="text-align:center">3105-312F</td>
+</tr>
+<tr>
+<td style="text-align:center">注音扩展</td>
+<td style="text-align:center">22字</td>
+<td style="text-align:center">31A0-31BA</td>
+</tr>
+<tr>
+<td style="text-align:center">〇</td>
+<td style="text-align:center">1字</td>
+<td style="text-align:center">3007</td>
+</tr>
+</tbody>
+</table>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2018-12-21T03:02:53.238Z" itemprop="dateUpdated">2018-12-21 11:02:53</time>
+</span><br>
+
+
+        
+        当前：<a href="/2018/11/21/Memo-Skills-CS-CharacterEncoding/" target="_blank" rel="external">http://blog.kuangcp.top/2018/11/21/Memo-Skills-CS-CharacterEncoding/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="http://blog.kuangcp.top">
+            <img src="/img/avatar.jpg" alt="Kuangcp">
+            Kuangcp
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.kuangcp.top/2018/11/21/Memo-Skills-CS-CharacterEncoding/&title=《CharacterEncoding.md》 — Kuangcp Blog&pic=http://blog.kuangcp.top/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.kuangcp.top/2018/11/21/Memo-Skills-CS-CharacterEncoding/&title=《CharacterEncoding.md》 — Kuangcp Blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.kuangcp.top/2018/11/21/Memo-Skills-CS-CharacterEncoding/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《CharacterEncoding.md》 — Kuangcp Blog&url=http://blog.kuangcp.top/2018/11/21/Memo-Skills-CS-CharacterEncoding/&via=http://blog.kuangcp.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.kuangcp.top/2018/11/21/Memo-Skills-CS-CharacterEncoding/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/11/21/Memo-Skills-CS-Arithmetic/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Arithmetic.md</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/11/21/Memo-Skills-CS-Computer/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Computer.md</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check" data-wechat="/img/wechat.png" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style="display:none">
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style="display:none">
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Kuangcp &copy; 2015 - 2018</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">赣ICP备17014189号-1</a><br>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.kuangcp.top/2018/11/21/Memo-Skills-CS-CharacterEncoding/&title=《CharacterEncoding.md》 — Kuangcp Blog&pic=http://blog.kuangcp.top/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.kuangcp.top/2018/11/21/Memo-Skills-CS-CharacterEncoding/&title=《CharacterEncoding.md》 — Kuangcp Blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.kuangcp.top/2018/11/21/Memo-Skills-CS-CharacterEncoding/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《CharacterEncoding.md》 — Kuangcp Blog&url=http://blog.kuangcp.top/2018/11/21/Memo-Skills-CS-CharacterEncoding/&via=http://blog.kuangcp.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.kuangcp.top/2018/11/21/Memo-Skills-CS-CharacterEncoding/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACr0lEQVR42u3aQW4jMQwEQP//09kHBJ7tJiXHh5qTYSeySgFEpanXK35+fj3Pn777mefxn0d7HmH14OHh4a2n/nu4d6+fP30eJ1+41RLg4eHhXeMlm3U+xeRJJp3M5z8WPDw8vC/gvdv08zGT0drihIeHh/edvPbrW+RzecDDw8P7Nl5y8M0jiU0Q3C7fsawFDw8P70IX6XteX+nv4eHh4a276snRdrZNt1cQhjExHh4e3gXe5upAe/huFyt5J4ok8PDw8I7y2n/vz5aEfNL5yHh4eHi3eUn0kDfDNle4kgi4bn3h4eHhXeDlm367rSelYtb0yn8XDw8P7wZv1vif1ZxZ2JFHEnh4eHif4c2+pl2C5J02kkjCZTw8PLwbvH0BaN9pX7cR8PAvgIeHhzfitRHDqQ09v5qwyqrx8PDwDvHyrTk6sJZlZtidy4sEHh4e3jXepg3WXj5ItvtZw+ztnTI8PDy8o7w2UNhs9G3c0DbP3s4NDw8P7yhvtsXnG/0sXGiXBg8PD+/zvA1mv7knBWO26Hh4eHg3eG1LPh80Lzn5ZYJ8hnh4eHi3ebMJzeKJTcyx+RQPDw/vFO/UBal8mdrYIofh4eHh/RUvP6rOLhy03zULcN9mLXh4eHhr3tngdTbF9njdXszCw8PDu8ebtaBmLbGk5MxmEtUcPDw8vKO8HLBphj2/sw878PDw8D7J2xyvk0N2ezh+xU9R9/Dw8PAWvJ/yaVdutgTPRaI4oOPh4eFd4LXbbtvo2kSxmzLzah88PDy8kpc3umZbcLvdt4tSXB3Aw8PDO8qbXbraHH830UNRwPDw8PC+jJcECnkhyaPeYvnw8PDwvoCXNKvyY3ob+LYRMx4eHt49XhtG5Efh9tpBexy/EuPi4eHhHWqAnTpM59HG2SXAw8PDW/P+ASquRfKOIX+TAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

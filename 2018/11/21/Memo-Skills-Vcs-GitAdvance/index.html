@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>Git深入学习 | Kuangcp Blog | Javaer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Advanced">
+    <meta name="description" content="目录 start  Git Advance 版本控制系统(VCS) Tips 清理仓库大文件 gc     提交行为准则    目录 end|2018-12-14 20:38| 码云 | CSDN | OSChina | cnblogs  Git Advance版本控制系统(VCS) 码农翻身:小李的版本管理系统   Tips git ls-files 列出文件列表 git ls-files |">
+<meta name="keywords" content="Advanced">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Git深入学习">
+<meta property="og:url" content="http://blog.kuangcp.top/2018/11/21/Memo-Skills-Vcs-GitAdvance/index.html">
+<meta property="og:site_name" content="Kuangcp Blog">
+<meta property="og:description" content="目录 start  Git Advance 版本控制系统(VCS) Tips 清理仓库大文件 gc     提交行为准则    目录 end|2018-12-14 20:38| 码云 | CSDN | OSChina | cnblogs  Git Advance版本控制系统(VCS) 码农翻身:小李的版本管理系统   Tips git ls-files 列出文件列表 git ls-files |">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-12-21T03:02:53.238Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Git深入学习">
+<meta name="twitter:description" content="目录 start  Git Advance 版本控制系统(VCS) Tips 清理仓库大文件 gc     提交行为准则    目录 end|2018-12-14 20:38| 码云 | CSDN | OSChina | cnblogs  Git Advance版本控制系统(VCS) 码农翻身:小李的版本管理系统   Tips git ls-files 列出文件列表 git ls-files |">
+    
+        <link rel="alternate" type="application/atom+xml" title="Kuangcp Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Kuangcp</h5>
+          <a href="mailto:kuangcp@aliyun.com" title="kuangcp@aliyun.com" class="mail">kuangcp@aliyun.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/">
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives">
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags">
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories">
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/kuangcp" target="_blank">
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Git深入学习</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Git深入学习</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-11-21T02:56:52.000Z" itemprop="datePublished" class="page-time">
+  2018-11-21
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Git/">Git</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Git-Advance"><span class="post-toc-number">1.</span> <span class="post-toc-text">Git Advance</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#版本控制系统-VCS"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">版本控制系统(VCS)</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Tips"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">Tips</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#清理仓库大文件"><span class="post-toc-number">1.2.1.</span> <span class="post-toc-text">清理仓库大文件</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#gc"><span class="post-toc-number">1.2.1.1.</span> <span class="post-toc-text">gc</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#提交行为准则"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">提交行为准则</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-Memo-Skills-Vcs-GitAdvance" class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Git深入学习</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-11-21 10:56:52" datetime="2018-11-21T02:56:52.000Z" itemprop="datePublished">2018-11-21</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Git/">Git</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style="display:none">
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p><strong>目录 start</strong></p>
+<ol>
+<li><a href="#git-advance">Git Advance</a><ol>
+<li><a href="#版本控制系统vcs">版本控制系统(VCS)</a></li>
+<li><a href="#tips">Tips</a><ol>
+<li><a href="#清理仓库大文件">清理仓库大文件</a><ol>
+<li><a href="#gc">gc</a></li>
+</ol>
+</li>
+</ol>
+</li>
+<li><a href="#提交行为准则">提交行为准则</a></li>
+</ol>
+</li>
+</ol>
+<p><strong>目录 end</strong>|<em>2018-12-14 20:38</em>| <a href="https://gitee.com/gin9" target="_blank" rel="noopener">码云</a> | <a href="http://blog.csdn.net/kcp606" target="_blank" rel="noopener">CSDN</a> | <a href="https://my.oschina.net/kcp1104" target="_blank" rel="noopener">OSChina</a> | <a href="http://www.cnblogs.com/kuangcp" target="_blank" rel="noopener">cnblogs</a></p>
+<hr>
+<h1 id="Git-Advance"><a href="#Git-Advance" class="headerlink" title="Git Advance"></a>Git Advance</h1><h2 id="版本控制系统-VCS"><a href="#版本控制系统-VCS" class="headerlink" title="版本控制系统(VCS)"></a>版本控制系统(VCS)</h2><ul>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MzAxOTc0NzExNg==&amp;mid=2665513204&amp;idx=1&amp;sn=c4c493d771a167a84ace01c3e016417e&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">码农翻身:小李的版本管理系统</a></li>
+</ul>
+<hr>
+<h2 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h2><ul>
+<li><code>git ls-files</code> 列出文件列表<ul>
+<li><code>git ls-files | xargs wc -l</code> 计算文件中程序代码行数 通过工具：<code>xargs</code> <code>wc</code> (中文命名的文件编码问题无法计算行数)</li>
+<li><code>git ls-files | xargs cat | wc -l</code> 计算行数总和</li>
+</ul>
+</li>
+<li><p><a href="http://www.worldhello.net/2016/02/29/git-bisect-on-git.html" target="_blank" rel="noopener">二分查找捉虫记</a><code>通过分析提交历史查到哪次提交引起的Bug然后检出,修复</code></p>
+</li>
+<li><p><a href="https://developer.github.com/v3/" target="_blank" rel="noopener">API: github开发接口</a></p>
+</li>
+</ul>
+<h3 id="清理仓库大文件"><a href="#清理仓库大文件" class="headerlink" title="清理仓库大文件"></a>清理仓库大文件</h3><ul>
+<li><a href="https://git-scm.com/book/zh/v2/Git-%E5%B7%A5%E5%85%B7-%E9%87%8D%E5%86%99%E5%8E%86%E5%8F%B2" target="_blank" rel="noopener">official:7.6 Git 工具 - 重写历史</a></li>
+</ul>
+<blockquote>
+<p><a href="https://rtyley.github.io/bfg-repo-cleaner/" target="_blank" rel="noopener">Tool: bfg-cleaner</a></p>
+</blockquote>
+<blockquote>
+<p><a href="http://blog.csdn.net/meteor1113/article/details/4407209" target="_blank" rel="noopener">参考博客 从git中永久删除文件以节省空间</a> |<br><a href="http://zhongmingmao.me/2017/04/19/git-reduce/" target="_blank" rel="noopener">参考博客4 减小磁盘占用</a><br><a href="https://www.v2ex.com/t/297802" target="_blank" rel="noopener">删除仓库的某个时间点之前的历史记录，减少.git 目录大小</a><br><a href="http://www.open-open.com/lib/view/open1414632626075.html" target="_blank" rel="noopener">如何清洗 Git Repo 代码仓库</a>  </p>
+</blockquote>
+<blockquote>
+<p><a href="https://www.tuicool.com/articles/vAVVZrA" target="_blank" rel="noopener">参考博客: 寻找并删除Git记录中的大文件</a></p>
+<ol>
+<li>找出大文件 <code>git rev-list --objects --all | grep &quot;$(git verify-pack -v .git/objects/pack/*.idx | sort -k 3 -n | tail -10 | awk &#39;{print$1}&#39;)&quot;</code></li>
+<li>删除文件, 重写提交 <code>git filter-branch --force --index-filter &#39;git rm --cached --ignore-unmatch 文件的路径&#39; --prune-empty --tag-name-filter cat -- --all</code></li>
+<li>强制推送 <code>git push origin --force --all</code><ul>
+<li><code>git push origin --force --tags</code></li>
+</ul>
+</li>
+<li>使用<code>git pull rebase</code>来更新分支，而不是 <code>git merge</code> 不然大文件又从别的分支回来了</li>
+</ol>
+</blockquote>
+<blockquote>
+<p>要注意, 所有的分支都必须pull rebase , 只要还有一个人留有对大文件的引用, 大文件就一直在仓库</p>
+</blockquote>
+<h4 id="gc"><a href="#gc" class="headerlink" title="gc"></a>gc</h4><blockquote>
+<p>只能压缩一部分空间<br><code>git gc -h</code>:</p>
+<ul>
+<li><code>--aggressive</code> 默认使用较快速的方式检查文档库,并完成清理,当需要比较久的时间,偶尔使用即可</li>
+<li><code>--prune[=&lt;日期&gt;]</code> 清除未引用的对</li>
+<li><code>--auto</code> 启用自动垃圾回收模式</li>
+<li><code>--force</code> 强制执行 gc 即使另外一个 gc 正在执行</li>
+</ul>
+</blockquote>
+<h2 id="提交行为准则"><a href="#提交行为准则" class="headerlink" title="提交行为准则"></a>提交行为准则</h2><blockquote>
+<p><a href="http://www.cnblogs.com/chenlong828/archive/2008/09/22/1296193.html" target="_blank" rel="noopener">参考博客: SVN提交更新的一个准则</a></p>
+<ol>
+<li>提交之前先更新<ul>
+<li>SVN更新的原则是要随时更新，随时提交。当完成了一个小功能，能够通过编译并且并且自己测试之后，谨慎地提交。</li>
+<li>如果提交过程中产生了冲突，则需要同之前的开发人员联系，两个人一起协商解决冲突，解决冲突之后，需要两人一起测试保证解决冲突之后，程序不会影响其他功能。</li>
+<li>如果提交过程中产生了更新，则也是需要重新编译并且完成自己的一些必要测试，再进行提交。</li>
+</ul>
+</li>
+<li>保持原子性的提交<ul>
+<li>每次提交的间歇尽可能地短，以一个小时，两个小时的开发工作为宜。如在更改UI界面的时候，可以每完成一个UI界面的修改或者设计，就提交一次。在开发功能模块的时候，可以每完成一个小细节功能的测试，就提交一次，在修改bug的时候，每修改掉一个bug并且确认修改了这个bug，也就提交一次。我们提倡多提交，也就能多为代码添加上保险。</li>
+</ul>
+</li>
+<li>提交时注意不要提交本地自动生成的文件<ul>
+<li>对于Java来说, IDE自身配置文件, 和字节码文件是无需提交的 例如 .idea目录 iml文件 </li>
+</ul>
+</li>
+<li>不要提交不能通过编译的代码<ul>
+<li>代码在提交之前，首先要确认自己能够在本地编译。如果在代码中使用了第三方类库，要考虑到项目组成员中有些成员可能没有安装相应的第三方类库，项目经理在准备项目工作区域的时候，需要考虑到这样的情况，确保开发小组成员在签出代码之后能够在统一的环境中进行编译。</li>
+</ul>
+</li>
+<li>不要提交自己不明白的代码<ul>
+<li>提交之后, 你的代码将被项目成员所分享。如果提交了你不明白的代码，你看不懂，别人也看不懂，如果在以后出现了问题将会成为项目质量的隐患。因此在引入任何第三方代码之前，确保你对这个代码有一个很清晰的了解。</li>
+</ul>
+</li>
+<li>提前协调好项目组成员的工作计划<ul>
+<li>在自己准备开始进行某项功能的修改之前，先给工作小组的成员谈谈自己的修改计划，让大家都能了解你的思想，了解你即将对软件作出的修改，这样能尽可能的减少在开发过程中可能出现的冲突，提高开发效率。同时你也能够在和成员的交流中发现自己之前设计的不足，完善你的设计。</li>
+</ul>
+</li>
+<li>对提交的信息采用明晰的标注<ul>
+<li>+) 表示增加了功能</li>
+<li>*) 表示对某些功能进行了更改</li>
+<li>-) 表示删除了文件，或者对某些功能进行了裁剪，删除，屏蔽。</li>
+<li>b) 表示修正了具体的某个bug</li>
+</ul>
+</li>
+</ol>
+</blockquote>
+<ul>
+<li style="list-style: none"><input type="checkbox"> cherry pick </li>
+</ul>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2018-12-21T03:02:53.238Z" itemprop="dateUpdated">2018-12-21 11:02:53</time>
+</span><br>
+
+
+        
+        当前：<a href="/2018/11/21/Memo-Skills-Vcs-GitAdvance/" target="_blank" rel="external">http://blog.kuangcp.top/2018/11/21/Memo-Skills-Vcs-GitAdvance/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="http://blog.kuangcp.top">
+            <img src="/img/avatar.jpg" alt="Kuangcp">
+            Kuangcp
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Advanced/">Advanced</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.kuangcp.top/2018/11/21/Memo-Skills-Vcs-GitAdvance/&title=《Git深入学习》 — Kuangcp Blog&pic=http://blog.kuangcp.top/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.kuangcp.top/2018/11/21/Memo-Skills-Vcs-GitAdvance/&title=《Git深入学习》 — Kuangcp Blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.kuangcp.top/2018/11/21/Memo-Skills-Vcs-GitAdvance/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Git深入学习》 — Kuangcp Blog&url=http://blog.kuangcp.top/2018/11/21/Memo-Skills-Vcs-GitAdvance/&via=http://blog.kuangcp.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.kuangcp.top/2018/11/21/Memo-Skills-Vcs-GitAdvance/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/11/21/Memo-Skills-Test-TestNG/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">TestNG</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/11/21/Memo-Java-AdvancedLearning-Java11/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Java11</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check" data-wechat="/img/wechat.png" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style="display:none">
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style="display:none">
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Kuangcp &copy; 2015 - 2018</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">赣ICP备17014189号-1</a><br>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.kuangcp.top/2018/11/21/Memo-Skills-Vcs-GitAdvance/&title=《Git深入学习》 — Kuangcp Blog&pic=http://blog.kuangcp.top/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.kuangcp.top/2018/11/21/Memo-Skills-Vcs-GitAdvance/&title=《Git深入学习》 — Kuangcp Blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.kuangcp.top/2018/11/21/Memo-Skills-Vcs-GitAdvance/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Git深入学习》 — Kuangcp Blog&url=http://blog.kuangcp.top/2018/11/21/Memo-Skills-Vcs-GitAdvance/&via=http://blog.kuangcp.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.kuangcp.top/2018/11/21/Memo-Skills-Vcs-GitAdvance/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACMUlEQVR42u3aMY7DMAwF0dz/0l5g242180m5MDWqgiSQ9VIwpMjPB6/rd9298/c1+XS9Pk8sGTJkvJZBtlsf5W63u5+A7xlQZciQcQCDPIaE1/Xj0+BOziZDhgwZ6zDKj7gGy5AhQ8begNspXNe71dJKGTJknMMgRSxPAft7PliLy5Ah44WMTmH59OsH+xsyZMh4CePatGrhstba/LKDDBkyRjPWKVonvvFxjfX3g0AsQ4aMAxikAcAfTw7EL93QsJoMGTJGM3YVselYRhpwWwAZMmS8nLFr5Cu9MkvTyn/2lyFDxlDGhhEHEHb5QAYHo49lyJAxiJGGxbTg5MVqMa2UIUPGaEbaHuiPefHmRLHElSFDxmhGetHW7yTyn6NWJMuQIWMGIx3wql3cd76DUlUZMmSMZnSC5q6gzFukG/4rZMiQ8UIGSdr4tX6nfOWJowwZMs5k8CPyhI8cJU03b78pQ4aMYxhpgtgPrLXLtS8nkSFDxmgGH4aoNRQ7vPi6TYYMGUcy0mpxjUmTxbiglSFDxsGMWnHLj1i7vAtSQxkyZIxgkLSMtA3SlDG4+sc7y5AhYx7jChdP40h6lyaat2eQIUPGaEZnUCwd+UrfJ8+VIUPGOQweBNNUkiSOtSmvIHuVIUPGIEZnPIKMTewtXIMqXIYMGQczePOStx82tzBlyJBxJCNtNJKydtvlmgwZMg5gdC7r16EwDdzFe0EZMmSMZnQaA/0hjF0BWoYMGUMZP8Dq+ghrtZlnAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

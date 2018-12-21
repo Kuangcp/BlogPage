@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>ProgramThinking | Kuangcp Blog | Javaer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="目录 start  开发思想 抽象 命令式编程和响应式编程 命令式编程 响应式编程   面向过程 面向对象 OOP 面向过程和面向对象的对比   DDD 领域驱动设计 聚合 参考实践项目   数据的操作 CURD CQRS   组件模型 SOA MSA   Other 国际化的配置     设计软件的方法 契约式设计 精益思想   编程习惯 晓风轻的经验 接口定义 日志建议 异常处理 工具类规范">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ProgramThinking">
+<meta property="og:url" content="http://blog.kuangcp.top/2018/11/21/Memo-Java-AdvancedLearning-ProgramThinking/index.html">
+<meta property="og:site_name" content="Kuangcp Blog">
+<meta property="og:description" content="目录 start  开发思想 抽象 命令式编程和响应式编程 命令式编程 响应式编程   面向过程 面向对象 OOP 面向过程和面向对象的对比   DDD 领域驱动设计 聚合 参考实践项目   数据的操作 CURD CQRS   组件模型 SOA MSA   Other 国际化的配置     设计软件的方法 契约式设计 精益思想   编程习惯 晓风轻的经验 接口定义 日志建议 异常处理 工具类规范">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-12-21T03:02:53.350Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ProgramThinking">
+<meta name="twitter:description" content="目录 start  开发思想 抽象 命令式编程和响应式编程 命令式编程 响应式编程   面向过程 面向对象 OOP 面向过程和面向对象的对比   DDD 领域驱动设计 聚合 参考实践项目   数据的操作 CURD CQRS   组件模型 SOA MSA   Other 国际化的配置     设计软件的方法 契约式设计 精益思想   编程习惯 晓风轻的经验 接口定义 日志建议 异常处理 工具类规范">
+    
+        <link rel="alternate" type="application/atom+xml" title="Kuangcp Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Kuangcp</h5>
+          <a href="mailto:kuangcp@aliyun.com" title="kuangcp@aliyun.com" class="mail">kuangcp@aliyun.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/">
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives">
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags">
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories">
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/kuangcp" target="_blank">
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">ProgramThinking</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">ProgramThinking</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-11-21T02:56:52.000Z" itemprop="datePublished" class="page-time">
+  2018-11-21
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Engineering/">Engineering</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#开发思想"><span class="post-toc-number">1.</span> <span class="post-toc-text">开发思想</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#抽象"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">抽象</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#命令式编程和响应式编程"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">命令式编程和响应式编程</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#命令式编程"><span class="post-toc-number">1.2.1.</span> <span class="post-toc-text">命令式编程</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#响应式编程"><span class="post-toc-number">1.2.2.</span> <span class="post-toc-text">响应式编程</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#面向过程"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">面向过程</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#面向对象"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">面向对象</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#OOP"><span class="post-toc-number">1.4.1.</span> <span class="post-toc-text">OOP</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#面向过程和面向对象的对比"><span class="post-toc-number">1.4.2.</span> <span class="post-toc-text">面向过程和面向对象的对比</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#DDD-领域驱动设计"><span class="post-toc-number">1.5.</span> <span class="post-toc-text">DDD 领域驱动设计</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#聚合"><span class="post-toc-number">1.5.1.</span> <span class="post-toc-text">聚合</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#参考实践项目"><span class="post-toc-number">1.5.2.</span> <span class="post-toc-text">参考实践项目</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#数据的操作"><span class="post-toc-number">1.6.</span> <span class="post-toc-text">数据的操作</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#CURD"><span class="post-toc-number">1.6.1.</span> <span class="post-toc-text">CURD</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#CQRS"><span class="post-toc-number">1.6.2.</span> <span class="post-toc-text">CQRS</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#组件模型"><span class="post-toc-number">1.7.</span> <span class="post-toc-text">组件模型</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#SOA"><span class="post-toc-number">1.7.1.</span> <span class="post-toc-text">SOA</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#MSA"><span class="post-toc-number">1.7.2.</span> <span class="post-toc-text">MSA</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Other"><span class="post-toc-number">1.8.</span> <span class="post-toc-text">Other</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#国际化的配置"><span class="post-toc-number">1.8.1.</span> <span class="post-toc-text">国际化的配置</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#设计软件的方法"><span class="post-toc-number">2.</span> <span class="post-toc-text">设计软件的方法</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#契约式设计"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">契约式设计</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#精益思想"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">精益思想</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#编程习惯"><span class="post-toc-number">3.</span> <span class="post-toc-text">编程习惯</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#晓风轻的经验"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">晓风轻的经验</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#接口定义"><span class="post-toc-number">3.1.1.</span> <span class="post-toc-text">接口定义</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#日志建议"><span class="post-toc-number">3.1.2.</span> <span class="post-toc-text">日志建议</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#异常处理"><span class="post-toc-number">3.1.3.</span> <span class="post-toc-text">异常处理</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#工具类规范"><span class="post-toc-number">3.1.4.</span> <span class="post-toc-text">工具类规范</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#代码质量分析"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">代码质量分析</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Checkstyle"><span class="post-toc-number">3.2.1.</span> <span class="post-toc-text">Checkstyle</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#FindBugs"><span class="post-toc-number">3.2.2.</span> <span class="post-toc-text">FindBugs</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#阿里巴巴的代码检查"><span class="post-toc-number">3.2.3.</span> <span class="post-toc-text">阿里巴巴的代码检查</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#配置文件"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">配置文件</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-Memo-Java-AdvancedLearning-ProgramThinking" class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">ProgramThinking</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-11-21 10:56:52" datetime="2018-11-21T02:56:52.000Z" itemprop="datePublished">2018-11-21</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Engineering/">Engineering</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style="display:none">
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p><strong>目录 start</strong></p>
+<ol>
+<li><a href="#开发思想">开发思想</a><ol>
+<li><a href="#抽象">抽象</a></li>
+<li><a href="#命令式编程和响应式编程">命令式编程和响应式编程</a><ol>
+<li><a href="#命令式编程">命令式编程</a></li>
+<li><a href="#响应式编程">响应式编程</a></li>
+</ol>
+</li>
+<li><a href="#面向过程">面向过程</a></li>
+<li><a href="#面向对象">面向对象</a><ol>
+<li><a href="#oop">OOP</a></li>
+<li><a href="#面向过程和面向对象的对比">面向过程和面向对象的对比</a></li>
+</ol>
+</li>
+<li><a href="#ddd-领域驱动设计">DDD 领域驱动设计</a><ol>
+<li><a href="#聚合">聚合</a></li>
+<li><a href="#参考实践项目">参考实践项目</a></li>
+</ol>
+</li>
+<li><a href="#数据的操作">数据的操作</a><ol>
+<li><a href="#curd">CURD</a></li>
+<li><a href="#cqrs">CQRS</a></li>
+</ol>
+</li>
+<li><a href="#组件模型">组件模型</a><ol>
+<li><a href="#soa">SOA</a></li>
+<li><a href="#msa">MSA</a></li>
+</ol>
+</li>
+<li><a href="#other">Other</a><ol>
+<li><a href="#国际化的配置">国际化的配置</a></li>
+</ol>
+</li>
+</ol>
+</li>
+<li><a href="#设计软件的方法">设计软件的方法</a><ol>
+<li><a href="#契约式设计">契约式设计</a></li>
+<li><a href="#精益思想">精益思想</a></li>
+</ol>
+</li>
+<li><a href="#编程习惯">编程习惯</a><ol>
+<li><a href="#晓风轻的经验">晓风轻的经验</a><ol>
+<li><a href="#接口定义">接口定义</a></li>
+<li><a href="#日志建议">日志建议</a></li>
+<li><a href="#异常处理">异常处理</a></li>
+<li><a href="#工具类规范">工具类规范</a></li>
+</ol>
+</li>
+<li><a href="#代码质量分析">代码质量分析</a><ol>
+<li><a href="#checkstyle">Checkstyle</a></li>
+<li><a href="#findbugs">FindBugs</a></li>
+<li><a href="#阿里巴巴的代码检查">阿里巴巴的代码检查</a></li>
+</ol>
+</li>
+<li><a href="#配置文件">配置文件</a></li>
+</ol>
+</li>
+</ol>
+<p><strong>目录 end</strong>|<em>2018-12-13 12:06</em>| <a href="https://gitee.com/gin9" target="_blank" rel="noopener">码云</a> | <a href="http://blog.csdn.net/kcp606" target="_blank" rel="noopener">CSDN</a> | <a href="https://my.oschina.net/kcp1104" target="_blank" rel="noopener">OSChina</a> | <a href="http://www.cnblogs.com/kuangcp" target="_blank" rel="noopener">cnblogs</a></p>
+<hr>
+<h1 id="开发思想"><a href="#开发思想" class="headerlink" title="开发思想"></a>开发思想</h1><blockquote>
+<p>有关开发的理论性思想,编写,测试,部署等</p>
+</blockquote>
+<h2 id="抽象"><a href="#抽象" class="headerlink" title="抽象"></a>抽象</h2><ul>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MzAxOTc0NzExNg==&amp;mid=2665513062&amp;idx=1&amp;sn=a3b4a2962d8e82471192d9606b0a2722&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">码农翻身:抽象：程序员必备的能力 </a></li>
+</ul>
+<blockquote>
+<p>稍微注意一下就会发现: 抽象层次越高，接口的语意就越模糊，适用的范围就越广，到最后就会变成数学模型或者概念。<br>但是抽象成数学模型和算法通常是可遇而不可求的， 这种情况下，我们需要退而求其次，试图抽象成若干个正交的概念，来降低复杂度。<br>你在处理x轴相关的事情时，不用考虑其他的y和z 相关的东西，因为你知道他们不会受到影响， 这样问题的复杂度就从3维一下子下降到1维！更容易把握了。<br>如果你说了，我的整个系统还没法抽象成正交的概念， 那只好再退一步，在局部使用接口。<br>其实 一组定义良好的接口一定是正交的，不然的话接口之间的依赖就会让实现非常麻烦。 </p>
+<blockquote>
+<p>在著名的《设计模式》一书中，其实在反复强调一点: 发现变化并且封装变化，针对接口编程而不是实现编程。 很多人看书是只关注具体的模式，而忽略了模式的本质目的。  </p>
+</blockquote>
+</blockquote>
+<p>抽象能力的高低，很大程度上反映了一个程序员的能力的高低</p>
+<ul>
+<li><a href="http://ifeve.com/%e8%ae%a1%e7%ae%97%e6%9c%ba%e7%a7%91%e5%ad%a6%e4%b8%ad%e6%8a%bd%e8%b1%a1%e7%9a%84%e5%a5%bd%e5%a4%84%e4%b8%8e%e9%97%ae%e9%a2%98-%e4%bc%aa%e5%85%b1%e4%ba%ab%e5%ae%9e%e4%be%8b%e5%88%86%e6%9e%90/" target="_blank" rel="noopener">计算机科学中抽象的好处与问题—伪共享实例分析</a><code>计算机科学中的任何问题都可以通过加上一层间接层来解决，这是很正确的，但是也正是因为一层一层的抽象和包装，导致出了问题后很难定位，你都不知道问题究竟是出现在哪一层。所以要想提高技术水平不仅要知其然（看得见最顶层的包装）也要知其所以然（看得见底层的包装），每一层如果都懂或者说了解一些，那么出了问题很大程度上都可以凭直觉定位，即使不能凭直觉也可以通过各种手段debug，只会最顶层的抽象很多时候就只能望bug兴叹了。</code></li>
+</ul>
+<h2 id="命令式编程和响应式编程"><a href="#命令式编程和响应式编程" class="headerlink" title="命令式编程和响应式编程"></a>命令式编程和响应式编程</h2><h3 id="命令式编程"><a href="#命令式编程" class="headerlink" title="命令式编程"></a>命令式编程</h3><blockquote>
+<p>编写改变状态的一条条命令</p>
+</blockquote>
+<h3 id="响应式编程"><a href="#响应式编程" class="headerlink" title="响应式编程"></a>响应式编程</h3><blockquote>
+<p><a href="http://reactivex.io/intro.html" target="_blank" rel="noopener">ReactiveX</a></p>
+</blockquote>
+<p>组合异步的序列<br>设计模式是 观察者模式的扩展, 数据结构是序列串流, 避免了并发, 是非阻塞的</p>
+<p>数据流驱动</p>
+<p>异步</p>
+<ul>
+<li>非阻塞<ul>
+<li>不是 (同步非阻塞 : 当时不阻塞后续回调) 而是异步</li>
+</ul>
+</li>
+</ul>
+<p>多路复用</p>
+<hr>
+<h2 id="面向过程"><a href="#面向过程" class="headerlink" title="面向过程"></a>面向过程</h2><blockquote>
+<p>只有数据和函数, 使用函数改变数据状态</p>
+</blockquote>
+<h2 id="面向对象"><a href="#面向对象" class="headerlink" title="面向对象"></a>面向对象</h2><blockquote>
+<p>OO  Object Oriented</p>
+</blockquote>
+<blockquote>
+<p><a href="http://www.jdon.com/48231" target="_blank" rel="noopener">参考博客: 再见面向对象编程？</a></p>
+</blockquote>
+<blockquote>
+<p>思考:</p>
+<ul>
+<li>遇到需求时, 先分析需要哪些独立的实体, 然后分析用户的行为, 行为就是API</li>
+<li>实体的基本属性和行为确定好, 并且确定好各自的生命周期(一般是属性, 状态的变化)</li>
+<li>并且要注意设计时要尽量解耦, 即使需求上是和时间, 天气, 等一些外部状态影响的, 但是也应该在此之上抽象, 解耦, 方便测试和开发<blockquote>
+<ul>
+<li>例如 <code>活动</code> 具有 开始时间和结束时间 的需求, 如果只用时间去设计行为的话, 测试的时候就需要去模拟那些时间, 如果引入<code>状态</code>这个属性(开启,关闭)</li>
+<li>就可以方便的调试了, 只需更改这个状态即可控制 活动 这个对象的行为, 当然, 变化的时间也是通过控制 <code>状态</code> 来控制 活动 的</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+<p><code>编写出完成需求的代码不难, 难的是写出, 优雅, 简洁, 设计良好, 可读性, 扩展性高的代码</code></p>
+<h3 id="OOP"><a href="#OOP" class="headerlink" title="OOP"></a>OOP</h3><blockquote>
+<p><a href="https://en.wikipedia.org/wiki/Object-oriented_programming" target="_blank" rel="noopener">维基 OOP</a> | <a href="https://zh.wikipedia.org/wiki/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1" target="_blank" rel="noopener">中文版</a></p>
+</blockquote>
+<h3 id="面向过程和面向对象的对比"><a href="#面向过程和面向对象的对比" class="headerlink" title="面向过程和面向对象的对比"></a>面向过程和面向对象的对比</h3><blockquote>
+<p>示例 把大象塞进冰箱:</p>
+<blockquote>
+<p>面向过程, 冰箱开门() 冰箱装进( 大象) 冰箱关门()<br>面向对象 冰箱.开门().装入(大象).关门()</p>
+</blockquote>
+</blockquote>
+<ul>
+<li>面向过程<ul>
+<li>优点：性能比面向对象高，因为类调用时需要实例化，开销比较大，比较消耗资源;比如单片机、嵌入式开发、Linux/Unix等一般采用面向过程开发，性能是最重要的因素。</li>
+<li>缺点：没有面向对象易维护、易复用、易扩展</li>
+</ul>
+</li>
+<li>面向对象    <ul>
+<li>优点：易维护、易复用、易扩展，由于面向对象有封装、继承、多态性的特性，可以设计出低耦合的系统，使系统更加灵活、更加易于维护</li>
+<li>缺点：性能比面向过程低</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="DDD-领域驱动设计"><a href="#DDD-领域驱动设计" class="headerlink" title="DDD 领域驱动设计"></a>DDD 领域驱动设计</h2><blockquote>
+<p><a href="http://www.jdon.com/ddd.html" target="_blank" rel="noopener">领域驱动设计(DDD:Domain-Driven Design)</a><code>入门贴</code></p>
+</blockquote>
+<blockquote>
+<p><a href="http://ishare.iask.sina.com.cn/f/69200951.html" target="_blank" rel="noopener">领域驱动设计 软件核心复杂性应对之道 Eric J. Evans 在线阅读</a><br><a href="http://www.infoq.com/cn/minibooks/domain-driven-design-quickly" target="_blank" rel="noopener">领域驱动设计精简版 </a></p>
+</blockquote>
+<blockquote>
+<p><a href="http://kb.cnblogs.com/page/117717/" target="_blank" rel="noopener">参考博客</a> | <a href="http://www.cnblogs.com/netfocus/p/3307971.html" target="_blank" rel="noopener">讨论</a> | <a href="http://www.cnblogs.com/netfocus/archive/2011/10/10/2204949.html" target="_blank" rel="noopener">基础</a></p>
+</blockquote>
+<blockquote>
+<p><a href="http://www.cnblogs.com/netfocus/archive/2012/09/08/2676985.html" target="_blank" rel="noopener">参考博客: 危险的DDD聚合根</a> 初步感受是DDD禁不起变化, 必须要在起初就设计好一个完备的体系<br><a href="http://www.jdon.com/47313" target="_blank" rel="noopener">参考博客: DDD应用的思考</a><code>提出了关于领域设计的困惑</code></p>
+</blockquote>
+<h3 id="聚合"><a href="#聚合" class="headerlink" title="聚合"></a>聚合</h3><p>聚合根的修改行为应该属于聚合根实体对象自己，用聚合根行为守护其内部状态的一致性是DDD设计核心，如果聚合根内部的状态直接暴露给外界（通过领域服务）任意修改，那么会导致状态变化混乱，难以调试和跟踪。</p>
+<ul>
+<li>现在书写的这个项目就和这个理念相一致, 但是总说是OOP 没有提及DDD <em>TODO</em><ul>
+<li>整个系统中涉及到的实体对象, 需要持久化的属就独立出来作为一个PO对象, 然后Spring Data JPA 接管DAO操作</li>
+<li>然后在对象中建立 修改PO对象行为 的方法, 而不是以往 MVC 那样的设计, 业务全在Service里面, 对实体自身属性的基本操作也在Service里面</li>
+</ul>
+</li>
+</ul>
+<h3 id="参考实践项目"><a href="#参考实践项目" class="headerlink" title="参考实践项目"></a>参考实践项目</h3><blockquote>
+<p><a href="https://github.com/tangxuehua/enode" target="_blank" rel="noopener">enode</a><code>C#实现</code><br><a href="https://github.com/liangzeng/cqrs" target="_blank" rel="noopener">CQRS</a></p>
+</blockquote>
+<hr>
+<h2 id="数据的操作"><a href="#数据的操作" class="headerlink" title="数据的操作"></a>数据的操作</h2><h3 id="CURD"><a href="#CURD" class="headerlink" title="CURD"></a>CURD</h3><h3 id="CQRS"><a href="#CQRS" class="headerlink" title="CQRS"></a>CQRS</h3><blockquote>
+<p><a href="http://www.cqrs.nu/" target="_blank" rel="noopener">www.cqrs.nu</a><code>CQRS Guides</code><br><a href="https://docs.microsoft.com/en-us/azure/architecture/patterns/event-sourcing" target="_blank" rel="noopener">event-sourcing</a>| <a href="https://docs.microsoft.com/zh-cn/azure/architecture/patterns/event-sourcing" target="_blank" rel="noopener">中文版</a>   <code>微软关于azure的技术性文档</code>  </p>
+</blockquote>
+<blockquote>
+<p><a href="https://ookami86.github.io/event-sourcing-in-practice/" target="_blank" rel="noopener">event-sourcing-in-practice</a><br><a href="https://www.cnblogs.com/netfocus/category/361988.html" target="_blank" rel="noopener">参考博客:  CQRS &amp; Event Sourcing </a><br><a href="https://www.jianshu.com/p/9a3f8d514fcd" target="_blank" rel="noopener">参考博客: 领域驱动设计的实践 – CQRS &amp; Event Sourcing</a> <code>图文并茂的讲解CQRS思想</code></p>
+</blockquote>
+<blockquote>
+<p><a href="https://github.com/kloiasoft/eventapis" target="_blank" rel="noopener">eventapis</a><code>Java实现的CQRS</code><br><a href="http://cqrsjourney.github.io/" target="_blank" rel="noopener">CQRS journey</a> <code>微软团队的项目</code></p>
+</blockquote>
+<hr>
+<h2 id="组件模型"><a href="#组件模型" class="headerlink" title="组件模型"></a>组件模型</h2><h3 id="SOA"><a href="#SOA" class="headerlink" title="SOA"></a>SOA</h3><blockquote>
+<p><a href="http://www.jdon.com/soa.html" target="_blank" rel="noopener">参考博客: SOA面向服务架构</a></p>
+</blockquote>
+<p><em><a href="http://www.jdon.com/45857" target="_blank" rel="noopener">Spring Web 应用的最大败笔</a></em></p>
+<ul>
+<li>传统意义上的SOA 内部封装的是数据表的DTO 也被称为 失血模型,贫血模型,  从而导致SOA服务内部腐烂堵塞，违背SOA自治和可用性等原则约束<ul>
+<li>我现在使用Java的SpringMVC进行开发的东西, MVC架构, 然后JavaBean, Dao层或者JPA的Repository, Service层, Controller层, 而且还使用了好几年了</li>
+</ul>
+<ol>
+<li>Web层负责处理用户输入，并返回正确的响应返回给用户。 web层与服务层通信。</li>
+<li>服务层作为一个事务边界。它也负责授权和包含我们的应用程序的业务逻辑。服务层管理的域模型对象，并与其他服务和存储库层进行通信。</li>
+<li>存储库/数据访问层负责与所使用的数据的存储进行通信。</li>
+</ol>
+<ul>
+<li>正如这个毕业设计的项目  <a href="https://github.com/Kuangcp/Graduate" target="_blank" rel="noopener">Graduate</a>, 显然的都具有如上提到的各种缺陷, </li>
+<li>每一个 DTO 只具有属性, 而没有方法, 一个DTO就要对应一个服务, 服务之间再相互注入, 就会有很有依赖, 甚至循环依赖</li>
+</ul>
+</li>
+</ul>
+<h3 id="MSA"><a href="#MSA" class="headerlink" title="MSA"></a>MSA</h3><blockquote>
+<p>微服务</p>
+</blockquote>
+<blockquote>
+<p>　<a href="https://blog.csdn.net/ztguang/article/details/52894794" target="_blank" rel="noopener">参考博客: SOA 与 MSA（微服务架构）</a><br><a href="https://mp.weixin.qq.com/s?__biz=MzAxOTc0NzExNg==&amp;mid=2665513674&amp;idx=1&amp;sn=fbc727b7c8ff6d03f5d53478b6d4e585&amp;chksm=80d67a89b7a1f39ff0c3589a4a4076e323fab18379fc8d085c133b88e4db104f87988b29d246&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">码农翻身:从SOA到微服务</a></p>
+</blockquote>
+<ul>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MzAxOTc0NzExNg==&amp;mid=2665513873&amp;idx=1&amp;sn=2383f099fb353e59649167e723575158&amp;chksm=80d67bd2b7a1f2c4ae61704b8a2bd330764d20f0e2fafa6fdff55c99ea68272b3cff851684cc&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">码农翻身:我是一个函数</a> <code>详解了RPC, 也就是RMI(远程过程调用)规范的实现</code></li>
+</ul>
+<blockquote>
+<p><a href="http://www.spring4all.com/article/609" target="_blank" rel="noopener">微服务 MSA</a></p>
+</blockquote>
+<h2 id="Other"><a href="#Other" class="headerlink" title="Other"></a>Other</h2><h3 id="国际化的配置"><a href="#国际化的配置" class="headerlink" title="国际化的配置"></a>国际化的配置</h3><ul>
+<li>将配置文件按语言分别配置</li>
+<li>然后在加载时设定语言的配置, 然后加载对应文件夹下的配置文件</li>
+</ul>
+<hr>
+<h1 id="设计软件的方法"><a href="#设计软件的方法" class="headerlink" title="设计软件的方法"></a>设计软件的方法</h1><h2 id="契约式设计"><a href="#契约式设计" class="headerlink" title="契约式设计"></a>契约式设计</h2><blockquote>
+<p>Design by Contract  (Dbc)</p>
+</blockquote>
+<blockquote>
+<p><a href="https://baike.baidu.com/item/%E5%A5%91%E7%BA%A6%E5%BC%8F%E8%AE%BE%E8%AE%A1" target="_blank" rel="noopener">百度百科解释 </a></p>
+</blockquote>
+<h2 id="精益思想"><a href="#精益思想" class="headerlink" title="精益思想"></a>精益思想</h2><blockquote>
+<p>持续集成、持续交付、持续部署</p>
+</blockquote>
+<hr>
+<h1 id="编程习惯"><a href="#编程习惯" class="headerlink" title="编程习惯"></a>编程习惯</h1><h2 id="晓风轻的经验"><a href="#晓风轻的经验" class="headerlink" title="晓风轻的经验"></a>晓风轻的经验</h2><ul>
+<li><p><a href="https://zhuanlan.zhihu.com/p/28705206" target="_blank" rel="noopener">知乎专栏-程序员你为什么这么累？</a> | <a href="https://github.com/xwjie/PLMCodeTemplate" target="_blank" rel="noopener">该专栏对应的源码</a> | <a href="https://xwjie.github.io/rule/" target="_blank" rel="noopener">个人站点版, 更为方便</a></p>
+<ol>
+<li><a href="https://zhuanlan.zhihu.com/p/28708259" target="_blank" rel="noopener">接口定义</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/28717374" target="_blank" rel="noopener">Controller规范</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/28629319" target="_blank" rel="noopener">日志建议</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/29005176" target="_blank" rel="noopener">异常处理规范</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/29129469" target="_blank" rel="noopener">参数校验和国际化规范</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/29199049" target="_blank" rel="noopener">工具类规范</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/29390147" target="_blank" rel="noopener">函数编写建议</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/29191233" target="_blank" rel="noopener">配置文件的定义</a></li>
+</ol>
+</li>
+<li><p>[ ] 详细的阅读</p>
+</li>
+</ul>
+<h3 id="接口定义"><a href="#接口定义" class="headerlink" title="接口定义"></a>接口定义</h3><ul>
+<li>先有统一的接口定义规范，然后有AOP实现。先有思想再有技术。</li>
+<li>现在知道为什么要返回统一的一个ResultBean了：<ul>
+<li>为了统一格式</li>
+<li>为了应用AOP</li>
+<li>为了包装异常信息</li>
+</ul>
+</li>
+</ul>
+<h3 id="日志建议"><a href="#日志建议" class="headerlink" title="日志建议"></a>日志建议</h3><h3 id="异常处理"><a href="#异常处理" class="headerlink" title="异常处理"></a>异常处理</h3><ul>
+<li>所以，我对开发人员的要求就是，绝大部分场景，不允许捕获异常，不要乱加空判断。只有明显不需要关心的异常，如关闭资源的时候的io异常，可以捕获然后什么都不干，其他时候，不允许捕获异常，都抛出去，到controller处理。空判断大部分时候不需要，你如果写了空判断，你就必须测试为空和不为空二种场景，要么就不要写空判断。</li>
+<li>强调，有些空判断是要的，如：参数是用户输入的情况下。但是，大部分场景是不需要的（我们的IT系统里面，一半以上不需要），如参数是其它系统传过来，或者其他地方获取的传过来的，99.99%都不会为空，你判断来干嘛？就抛一个空指针到前台怎么啦？何况基本上不会出现。</li>
+<li>总结：<ul>
+<li>开发组长定义好异常，异常继承RuntimeException。</li>
+<li>不允许开发人员捕获异常。（异常上对开发人员就这点要求！异常都抛出到controller上用AOP处理）</li>
+<li>后台（如队列等）异常一定要有通知机制，要第一时间知道异常。</li>
+<li>少加空判断，加了空判断就要测试为空的场景！</li>
+</ul>
+</li>
+</ul>
+<h3 id="工具类规范"><a href="#工具类规范" class="headerlink" title="工具类规范"></a>工具类规范</h3><ol>
+<li>方法参数要抽象(尽量往上找到父类和接口), 返回值要具体</li>
+<li>隐藏实现: 不要在业务代码中直接调用三方工具, 应该自己写一个类, 然后调用三方库的方法, 方便以后修改</li>
+<li>多使用重载编写功能齐全的对外接口和方法</li>
+<li>单独存放, 单独维护, </li>
+</ol>
+<hr>
+<blockquote>
+<p>优先使用组合而不是继承, 继承破坏了封装性, 因为父类的很多细节对子类是可见的, 父类的变化可能极大的影响子类<br>面向接口编程, 而不是实现编程 </p>
+</blockquote>
+<h2 id="代码质量分析"><a href="#代码质量分析" class="headerlink" title="代码质量分析"></a>代码质量分析</h2><ul>
+<li>测试对代码的覆盖率</li>
+<li>代码的格式是否清晰，有助于差异比较和可读性</li>
+<li>是否很可能会出现NPE</li>
+<li>是否忘记了域对象中的equals和hashCode方法</li>
+</ul>
+<h3 id="Checkstyle"><a href="#Checkstyle" class="headerlink" title="Checkstyle"></a>Checkstyle</h3><h3 id="FindBugs"><a href="#FindBugs" class="headerlink" title="FindBugs"></a>FindBugs</h3><h3 id="阿里巴巴的代码检查"><a href="#阿里巴巴的代码检查" class="headerlink" title="阿里巴巴的代码检查"></a>阿里巴巴的代码检查</h3><hr>
+<h2 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h2><p>千万业务代码里面不要和读取配置的代码耦合在一起。切记！</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2018-12-21T03:02:53.350Z" itemprop="dateUpdated">2018-12-21 11:02:53</time>
+</span><br>
+
+
+        
+        当前：<a href="/2018/11/21/Memo-Java-AdvancedLearning-ProgramThinking/" target="_blank" rel="external">http://blog.kuangcp.top/2018/11/21/Memo-Java-AdvancedLearning-ProgramThinking/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="http://blog.kuangcp.top">
+            <img src="/img/avatar.jpg" alt="Kuangcp">
+            Kuangcp
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.kuangcp.top/2018/11/21/Memo-Java-AdvancedLearning-ProgramThinking/&title=《ProgramThinking》 — Kuangcp Blog&pic=http://blog.kuangcp.top/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.kuangcp.top/2018/11/21/Memo-Java-AdvancedLearning-ProgramThinking/&title=《ProgramThinking》 — Kuangcp Blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.kuangcp.top/2018/11/21/Memo-Java-AdvancedLearning-ProgramThinking/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《ProgramThinking》 — Kuangcp Blog&url=http://blog.kuangcp.top/2018/11/21/Memo-Java-AdvancedLearning-ProgramThinking/&via=http://blog.kuangcp.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.kuangcp.top/2018/11/21/Memo-Java-AdvancedLearning-ProgramThinking/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/11/21/Memo-Java-AdvancedLearning-MultipleLanguage/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">MultipleLanguage</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/11/21/Memo-Java-Ecosystem-Hibernate/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Hibernate.md</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check" data-wechat="/img/wechat.png" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style="display:none">
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style="display:none">
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Kuangcp &copy; 2015 - 2018</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">赣ICP备17014189号-1</a><br>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.kuangcp.top/2018/11/21/Memo-Java-AdvancedLearning-ProgramThinking/&title=《ProgramThinking》 — Kuangcp Blog&pic=http://blog.kuangcp.top/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.kuangcp.top/2018/11/21/Memo-Java-AdvancedLearning-ProgramThinking/&title=《ProgramThinking》 — Kuangcp Blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.kuangcp.top/2018/11/21/Memo-Java-AdvancedLearning-ProgramThinking/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《ProgramThinking》 — Kuangcp Blog&url=http://blog.kuangcp.top/2018/11/21/Memo-Java-AdvancedLearning-ProgramThinking/&via=http://blog.kuangcp.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.kuangcp.top/2018/11/21/Memo-Java-AdvancedLearning-ProgramThinking/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACt0lEQVR42u3aMZLCMBAEQP7/aS4ho2xmVtKVg3ZEHT5brUBaZvV6xde7vL7/6/7JV5+vvt184eHh4W0d+v099y/On5NMwfA5eHh4eMd4+ZLdLuv3gO+/J5OYPw0PDw/vObyk/M2X+6v7Z1sRHh4e3jN5eal9PzVtGY2Hh4f3HF4eN9wv33l80MYKx7MWPDw8vEle+pq1qf7/85H+Hh4eHt6xAwFt4bvSMJuN8/MEPDw8vAO8lWggxySx7Iwd3YmHh4d3gJc38tuSNx/QLBSuY2I8PDy8Zd6syZQv9LNyeXaI4Uc+jYeHh7eJN/vBv36wIAkvdrXN8PDw8E7z2uU4P0Aw2xLat79mj8DDw8ObJwNRKbxruO09G7YHPDw8vK28fBFvS+qE1C7rdSSBh4eHt4mXHIdaaWvNiuZ22xim1Hh4eHjLvNmAZuX1epQQbVF4eHh4B3iz0KFt7c8y1TyMiMaAh4eHt5W3vg3cl8WzLSQ5jlCnLHh4eHjLvJUf/G3gOxt6fojhMsbFw8PDO8abNajag6ezzaAdz+dbPDw8vAO8HJa3ytrwoj2g0E4ZHh4e3l5e3gBbaZW1k7gSAQ+PDuDh4eEt89oiuy2F26V/GDTj4eHhHePlS+0K/sShrh+Ti4eHh3eAt964ahf6/I3t239MHB4eHt5W3qyYzhf6tnCfxcHFmTI8PDy8Tbx2KMnyneNngW+xMeDh4eEd4N3/4F9ZafOCOA9K8tAEDw8Pby/vXV55yz8Z+t7pwMPDw/sfXnuk6URkkCNnhxXw8PDwTvBmEcNsIlaaXsMSHA8PD+8YL1/Q8/ZV8m1bLrfBBB4eHt4TeLNity2m2+m+nBo8PDy8B/BmBwtmZXq+5TR7BR4eHt4eXl4K54PIhzV7V7Ex4OHh4W3ltT/y8xi3PQpwZOh4eHh4O3l/SkYr8Mh7XKIAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

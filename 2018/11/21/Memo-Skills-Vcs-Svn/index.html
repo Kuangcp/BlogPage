@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>Svn.md | Kuangcp Blog | Javaer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="基础">
+    <meta name="description" content="目录 start  SVN 服务端安装 svnadmin使用 备份和恢复 远程     客户端安装 使用 添加文件 配置忽略文件 提交 查看仓库 处理冲突 树冲突        目录 end|2018-12-14 20:38| 码云 | CSDN | OSChina | cnblogs  SVN 传统的中心化版本控制工具,能够精确控制每个目录的权限, Apache顶级项目SVN 官网 | SVN中">
+<meta name="keywords" content="基础">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Svn.md">
+<meta property="og:url" content="http://blog.kuangcp.top/2018/11/21/Memo-Skills-Vcs-Svn/index.html">
+<meta property="og:site_name" content="Kuangcp Blog">
+<meta property="og:description" content="目录 start  SVN 服务端安装 svnadmin使用 备份和恢复 远程     客户端安装 使用 添加文件 配置忽略文件 提交 查看仓库 处理冲突 树冲突        目录 end|2018-12-14 20:38| 码云 | CSDN | OSChina | cnblogs  SVN 传统的中心化版本控制工具,能够精确控制每个目录的权限, Apache顶级项目SVN 官网 | SVN中">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/Kuangcp/ImageRepos/master/Tech/svn/svn_codes.png">
+<meta property="og:updated_time" content="2018-12-21T03:02:53.238Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Svn.md">
+<meta name="twitter:description" content="目录 start  SVN 服务端安装 svnadmin使用 备份和恢复 远程     客户端安装 使用 添加文件 配置忽略文件 提交 查看仓库 处理冲突 树冲突        目录 end|2018-12-14 20:38| 码云 | CSDN | OSChina | cnblogs  SVN 传统的中心化版本控制工具,能够精确控制每个目录的权限, Apache顶级项目SVN 官网 | SVN中">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Kuangcp/ImageRepos/master/Tech/svn/svn_codes.png">
+    
+        <link rel="alternate" type="application/atom+xml" title="Kuangcp Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Kuangcp</h5>
+          <a href="mailto:kuangcp@aliyun.com" title="kuangcp@aliyun.com" class="mail">kuangcp@aliyun.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/">
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives">
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags">
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories">
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/kuangcp" target="_blank">
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Svn.md</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Svn.md</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-11-21T02:56:52.000Z" itemprop="datePublished" class="page-time">
+  2018-11-21
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Svn/">Svn</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#SVN"><span class="post-toc-number">1.</span> <span class="post-toc-text">SVN</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#服务端安装"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">服务端安装</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#svnadmin使用"><span class="post-toc-number">1.1.1.</span> <span class="post-toc-text">svnadmin使用</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#备份和恢复"><span class="post-toc-number">1.1.2.</span> <span class="post-toc-text">备份和恢复</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#远程"><span class="post-toc-number">1.1.2.1.</span> <span class="post-toc-text">远程</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#客户端安装"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">客户端安装</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#使用"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">使用</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#添加文件"><span class="post-toc-number">1.3.1.</span> <span class="post-toc-text">添加文件</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#配置忽略文件"><span class="post-toc-number">1.3.2.</span> <span class="post-toc-text">配置忽略文件</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#提交"><span class="post-toc-number">1.3.3.</span> <span class="post-toc-text">提交</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#查看仓库"><span class="post-toc-number">1.3.4.</span> <span class="post-toc-text">查看仓库</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#处理冲突"><span class="post-toc-number">1.3.5.</span> <span class="post-toc-text">处理冲突</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#树冲突"><span class="post-toc-number">1.3.5.1.</span> <span class="post-toc-text">树冲突</span></a></li></ol></li></ol></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-Memo-Skills-Vcs-Svn" class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Svn.md</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-11-21 10:56:52" datetime="2018-11-21T02:56:52.000Z" itemprop="datePublished">2018-11-21</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Svn/">Svn</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style="display:none">
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p><strong>目录 start</strong></p>
+<ol>
+<li><a href="#svn">SVN</a><ol>
+<li><a href="#服务端安装">服务端安装</a><ol>
+<li><a href="#svnadmin使用">svnadmin使用</a></li>
+<li><a href="#备份和恢复">备份和恢复</a><ol>
+<li><a href="#远程">远程</a></li>
+</ol>
+</li>
+</ol>
+</li>
+<li><a href="#客户端安装">客户端安装</a></li>
+<li><a href="#使用">使用</a><ol>
+<li><a href="#添加文件">添加文件</a></li>
+<li><a href="#配置忽略文件">配置忽略文件</a></li>
+<li><a href="#提交">提交</a></li>
+<li><a href="#查看仓库">查看仓库</a></li>
+<li><a href="#处理冲突">处理冲突</a><ol>
+<li><a href="#树冲突">树冲突</a></li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<p><strong>目录 end</strong>|<em>2018-12-14 20:38</em>| <a href="https://gitee.com/gin9" target="_blank" rel="noopener">码云</a> | <a href="http://blog.csdn.net/kcp606" target="_blank" rel="noopener">CSDN</a> | <a href="https://my.oschina.net/kcp1104" target="_blank" rel="noopener">OSChina</a> | <a href="http://www.cnblogs.com/kuangcp" target="_blank" rel="noopener">cnblogs</a></p>
+<hr>
+<h1 id="SVN"><a href="#SVN" class="headerlink" title="SVN"></a>SVN</h1><blockquote>
+<p>传统的中心化版本控制工具,能够精确控制每个目录的权限, Apache顶级项目<br><a href="http://subversion.apache.org/" target="_blank" rel="noopener">SVN 官网</a> | <a href="http://www.svn.org.cn" target="_blank" rel="noopener">SVN中文网</a> <a href="http://svnbook.red-bean.com/" target="_blank" rel="noopener">Subversion 与版本控制 书籍</a></p>
+</blockquote>
+<h2 id="服务端安装"><a href="#服务端安装" class="headerlink" title="服务端安装"></a>服务端安装</h2><blockquote>
+<p>安装 svnadmin</p>
+</blockquote>
+<h3 id="svnadmin使用"><a href="#svnadmin使用" class="headerlink" title="svnadmin使用"></a>svnadmin使用</h3><blockquote>
+<p><a href="http://www.cnblogs.com/xkops/p/5457935.html" target="_blank" rel="noopener">参考 建立一个仓库</a><br><code>svnadmin create /yc/svn/rep-ops</code></p>
+</blockquote>
+<h3 id="备份和恢复"><a href="#备份和恢复" class="headerlink" title="备份和恢复"></a>备份和恢复</h3><blockquote>
+<p><a href="https://blog.csdn.net/windone0109/article/details/2908133" target="_blank" rel="noopener">SVN版本库的备份、还原、移植（初级篇、中级篇和高级篇）</a><br><a href="https://blog.csdn.net/beyondlpf/article/details/54138865" target="_blank" rel="noopener">svn备份一般采用三种方式</a></p>
+</blockquote>
+<ol>
+<li>备份 svndump /svn/repos &gt; a.dump</li>
+<li>恢复 svnadmin load /svn/repos &lt; a.dump</li>
+</ol>
+<h4 id="远程"><a href="#远程" class="headerlink" title="远程"></a>远程</h4><blockquote>
+<p><a href="http://svnbook.red-bean.com/en/1.7/svn.ref.svnrdump.html#svn.ref.svnrdump.sw.incremental" target="_blank" rel="noopener">详细文档</a><br>| <a href="https://www.saas-secure.com/svn-hosting/svn-dump-restore.html#svn-remote-backup-restore" target="_blank" rel="noopener">问题的解决</a><br>| <a href="https://www.saas-secure.com/svn-hosting/svn-dump-restore.html" target="_blank" rel="noopener">参考</a></p>
+</blockquote>
+<ol>
+<li>增量备份 <code>svnrdump dump http://192.168.10.200/svn/test/ --username kuangchengping --password 123456 -r 3:4 --incremental &gt; b4.dump</code></li>
+<li>恢复 <code>svnrdump load http://192.168.10.200/svn/test/ --username kuangchengping --password 123456 &lt; b4.dump</code></li>
+</ol>
+<hr>
+<h2 id="客户端安装"><a href="#客户端安装" class="headerlink" title="客户端安装"></a>客户端安装</h2><p><strong>Ubuntu</strong></p>
+<blockquote>
+<p><code>sudo apt install subversion</code> 安装后可使用的命令就是svn</p>
+</blockquote>
+<hr>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><blockquote>
+<p><a href="http://blog.csdn.net/gexiaobaohelloworld/article/details/7752862" target="_blank" rel="noopener">参考博客: linux-svn命令</a> | <a href="http://www.cnblogs.com/SanMaoSpace/p/5102878.html" target="_blank" rel="noopener">SVN常用命令</a><br>| <a href="https://blog.csdn.net/qq_27968607/article/details/55253997" target="_blank" rel="noopener">Linux下SVN客户端使用教程（全）</a>  </p>
+</blockquote>
+<ul>
+<li><em>下拉代码</em> <code>svn co URL</code>  <h3 id="添加文件"><a href="#添加文件" class="headerlink" title="添加文件"></a>添加文件</h3></li>
+<li><code>svn add filename</code> , 或者 <code>*.java</code>是添加当前目录下java文件,</li>
+<li>或者 文件夹, 一般使用文件夹好点,也就是src目录</li>
+<li>强制添加所有文件<code>svn add * --force</code>  </li>
+<li>将改动的文件提交到版本库 <code>svn ci -m &quot;update&quot;</code> <ul>
+<li>因为是中心化的仓库, 所以提交就是推送到总仓库了, 不像Git那样先提到到本地仓库, 然后推送至远程仓库</li>
+</ul>
+</li>
+<li><p><em>更新本地代码</em> <code>svn up</code>  </p>
+<blockquote>
+<p>svn update如果后面没有目录，默认将当前目录以及子目录下的所有文件都更新到最新版本</p>
+</blockquote>
+</li>
+<li><p><em>删除文件</em> <code>svn remove|rm path</code></p>
+</li>
+</ul>
+<blockquote>
+<p><a href="http://blog.sina.com.cn/s/blog_6e165cc101017m0j.html" target="_blank" rel="noopener">参考博客: svn下忽略文件和文件夹</a><br><a href="https://ztgame.shenyu.me/svn/svn-ignore.html" target="_blank" rel="noopener">参考博客: svn 忽略文件、文件夹</a></p>
+</blockquote>
+<h3 id="配置忽略文件"><a href="#配置忽略文件" class="headerlink" title="配置忽略文件"></a>配置忽略文件</h3><ul>
+<li><p><code>svn propedit svn:ignore 项目文件夹</code> 会打开默认配置,  和gitignore一样的配置, 然后保存即可</p>
+<ul>
+<li>文件夹就是项目, 所以要在项目根目录的上级目录执行这条命令</li>
+<li>如果上面没有调起编辑器, 就要在 .bashrc 中 <code>export SVN_EDITOR=vim</code></li>
+</ul>
+</li>
+<li><p>然后提交到仓库( svn co -m “xxx” ), 即可完成 忽略文件的配置, 为了可见性, 一般和.gitignore一样的配置即可</p>
+<ul>
+<li>导入忽略文件 <code>svn propset -F .svnignore .</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="提交"><a href="#提交" class="headerlink" title="提交"></a>提交</h3><blockquote>
+<p><a href="http://www.cnblogs.com/masb/archive/2012/01/12/2320182.html" target="_blank" rel="noopener">参考博客: SVN提交注意点</a> </p>
+</blockquote>
+<blockquote>
+<p>部分提交 <a href="https://blog.mimvp.com/article/15666.html" target="_blank" rel="noopener">参考</a></p>
+</blockquote>
+<ul>
+<li>提交指定文件以及目录 <code>svn ci readme.md src/* -m &quot;1.update readme 2.add src change&quot;</code></li>
+<li><code>svn ci -m &quot;msg&quot;</code> 提交所有已添加到版本库的操作(新建, 修改, 删除)</li>
+</ul>
+<h3 id="查看仓库"><a href="#查看仓库" class="headerlink" title="查看仓库"></a>查看仓库</h3><blockquote>
+<p><a href="https://java-er.com/blog/svn-last-files/" target="_blank" rel="noopener">查看最后修改的文件</a> | <a href="http://www.cnblogs.com/simonote/articles/3086717.html" target="_blank" rel="noopener">svn历史版本对比以及还原到历史版本</a></p>
+</blockquote>
+<ul>
+<li><code>svn log | less</code> 这样能更为方便和干净</li>
+<li><code>svn cat -r 版本号 文件</code> 输出某个版本的某文件(文件必须在本地存在)</li>
+<li><code>svn diff -r 版本号:版本号 文件</code> 对比两个版本的某文件</li>
+</ul>
+<blockquote>
+<p>svn st </p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/Kuangcp/ImageRepos/master/Tech/svn/svn_codes.png" alt="svn code"></p>
+<h3 id="处理冲突"><a href="#处理冲突" class="headerlink" title="处理冲突"></a>处理冲突</h3><blockquote>
+<p>冲突的产生: 因为多个开发人员进行修改了同一个文件夹(修改,删除文件夹), 同一个文件. </p>
+</blockquote>
+<h4 id="树冲突"><a href="#树冲突" class="headerlink" title="树冲突"></a>树冲突</h4><blockquote>
+<p>多个开发人员修改了同一个文件夹, 并且一方修改, 一方做了删除 </p>
+</blockquote>
+<blockquote>
+<p><a href="https://blog.csdn.net/xgf415/article/details/75196714" target="_blank" rel="noopener">参考博客: SVN 树冲突解决详解</a><br><a href="https://www.jianshu.com/p/e3cc83ca512d" target="_blank" rel="noopener">参考博客: 使用SVN命令行解决树冲突(tree conflict)</a></p>
+</blockquote>
+<ol>
+<li>标记冲突已解决(使用本地的状态, 本地该文件的状态是Delete, 提交后服务端对应的文件就会被删除)<ul>
+<li><code>svn resolve --accept=working file/dir</code></li>
+</ul>
+</li>
+</ol>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2018-12-21T03:02:53.238Z" itemprop="dateUpdated">2018-12-21 11:02:53</time>
+</span><br>
+
+
+        
+        当前：<a href="/2018/11/21/Memo-Skills-Vcs-Svn/" target="_blank" rel="external">http://blog.kuangcp.top/2018/11/21/Memo-Skills-Vcs-Svn/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="http://blog.kuangcp.top">
+            <img src="/img/avatar.jpg" alt="Kuangcp">
+            Kuangcp
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/基础/">基础</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.kuangcp.top/2018/11/21/Memo-Skills-Vcs-Svn/&title=《Svn.md》 — Kuangcp Blog&pic=http://blog.kuangcp.top/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.kuangcp.top/2018/11/21/Memo-Skills-Vcs-Svn/&title=《Svn.md》 — Kuangcp Blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.kuangcp.top/2018/11/21/Memo-Skills-Vcs-Svn/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Svn.md》 — Kuangcp Blog&url=http://blog.kuangcp.top/2018/11/21/Memo-Skills-Vcs-Svn/&via=http://blog.kuangcp.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.kuangcp.top/2018/11/21/Memo-Skills-Vcs-Svn/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/11/21/Memo-Java-AdvancedLearning-Java11/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Java11</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/11/21/Memo-Skills-Work-PomodoroTechnique/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">PomodoroTechnique.md</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check" data-wechat="/img/wechat.png" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style="display:none">
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style="display:none">
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Kuangcp &copy; 2015 - 2018</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">赣ICP备17014189号-1</a><br>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.kuangcp.top/2018/11/21/Memo-Skills-Vcs-Svn/&title=《Svn.md》 — Kuangcp Blog&pic=http://blog.kuangcp.top/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.kuangcp.top/2018/11/21/Memo-Skills-Vcs-Svn/&title=《Svn.md》 — Kuangcp Blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.kuangcp.top/2018/11/21/Memo-Skills-Vcs-Svn/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Svn.md》 — Kuangcp Blog&url=http://blog.kuangcp.top/2018/11/21/Memo-Skills-Vcs-Svn/&via=http://blog.kuangcp.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.kuangcp.top/2018/11/21/Memo-Skills-Vcs-Svn/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACJ0lEQVR42u3aUY7CMAxFUfa/aWYBpeE+O4xU5/ar6kCTw0iW7fj1wtf7cqV/vXtyvb9+ftslQ4aMxzLey+tugb1P1sj13mTIkHEO4y6CkeV3hdr1/Zc9y5AhQwZgrEMkf78MGTJk7GWQ5K9WDMuQIUNGrYglW+EYwvtJLS5DhowHMnjX/f/vf3K+IUOGjEcx3qWLU3nS2dmVDBkyZjNqx4r9bZEkMk4QZciQMZTBG1tp+OON/rQ9d/t/kCFDxlAGariXWmxpi782uiFDhowTGMS3NynkxTBPGWXIkHECgyxTG7MIRiVKQx7xryVDhozHMtIw2hnkSldECaIMGTJGM3halpaaQWJX+i4qa2XIkDGCkW40/YV44G69X4YMGaMZaVu/E4hrmLhIliFDxmgGLztrIxRpQCcYGTJknMbolKxpyE6HM4JQK0OGjHGMtOlfHNsKA3E8qCFDhozRjPRgoNM4I0FWhgwZMtYtNv4KntLxDZGUEZ27ypAhYxwjHXRIk0IesjsFrQwZMmYz+PK1o00OqB0wfJgZkSFDxjgGisThkuRJPDBBPilDhoyhjE6ZWgu+fLvBsYQMGTJGM2qv5klkbVvkJyhiZMiQ8VjG3sZ92uLvsGXIkHEagzfd+q18frQQl7IyZMg4nkG+Wwu4KakVcGXIkDGakbb+ayUrGQX78FyGDBkHMGqlJtl6Z0SM71CGDBmzGWnp2C9uSSjvHBvIkCFjEOMPB0dW5DJ51PwAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

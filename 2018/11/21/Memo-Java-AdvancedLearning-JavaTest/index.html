@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>Java的测试 | Kuangcp Blog | Javaer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="测试">
+    <meta name="description" content="目录 start  Java的测试 断言 正式代码 测试代码   单元测试   实现方案 使用Junit Idea上Junit的使用   TestNG Mock框架 Mockito   DBUnit   感悟  目录 end|2018-12-13 12:06| 码云 | CSDN | OSChina | cnblogs  Java的测试 测试的基础理论  断言正式代码参考博客: Java陷阱之as">
+<meta name="keywords" content="测试">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java的测试">
+<meta property="og:url" content="http://blog.kuangcp.top/2018/11/21/Memo-Java-AdvancedLearning-JavaTest/index.html">
+<meta property="og:site_name" content="Kuangcp Blog">
+<meta property="og:description" content="目录 start  Java的测试 断言 正式代码 测试代码   单元测试   实现方案 使用Junit Idea上Junit的使用   TestNG Mock框架 Mockito   DBUnit   感悟  目录 end|2018-12-13 12:06| 码云 | CSDN | OSChina | cnblogs  Java的测试 测试的基础理论  断言正式代码参考博客: Java陷阱之as">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-12-21T03:02:53.350Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java的测试">
+<meta name="twitter:description" content="目录 start  Java的测试 断言 正式代码 测试代码   单元测试   实现方案 使用Junit Idea上Junit的使用   TestNG Mock框架 Mockito   DBUnit   感悟  目录 end|2018-12-13 12:06| 码云 | CSDN | OSChina | cnblogs  Java的测试 测试的基础理论  断言正式代码参考博客: Java陷阱之as">
+    
+        <link rel="alternate" type="application/atom+xml" title="Kuangcp Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Kuangcp</h5>
+          <a href="mailto:kuangcp@aliyun.com" title="kuangcp@aliyun.com" class="mail">kuangcp@aliyun.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/">
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives">
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags">
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories">
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/kuangcp" target="_blank">
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Java的测试</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Java的测试</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-11-21T02:56:52.000Z" itemprop="datePublished" class="page-time">
+  2018-11-21
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Java/">Java</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Java的测试"><span class="post-toc-number">1.</span> <span class="post-toc-text">Java的测试</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#断言"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">断言</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#正式代码"><span class="post-toc-number">1.1.1.</span> <span class="post-toc-text">正式代码</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#测试代码"><span class="post-toc-number">1.1.2.</span> <span class="post-toc-text">测试代码</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#单元测试"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">单元测试</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#实现方案"><span class="post-toc-number">2.</span> <span class="post-toc-text">实现方案</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#使用Junit"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">使用Junit</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Idea上Junit的使用"><span class="post-toc-number">2.1.1.</span> <span class="post-toc-text">Idea上Junit的使用</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#TestNG"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">TestNG</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Mock框架"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">Mock框架</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Mockito"><span class="post-toc-number">2.3.1.</span> <span class="post-toc-text">Mockito</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#DBUnit"><span class="post-toc-number">2.4.</span> <span class="post-toc-text">DBUnit</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#感悟"><span class="post-toc-number">3.</span> <span class="post-toc-text">感悟</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-Memo-Java-AdvancedLearning-JavaTest" class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Java的测试</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-11-21 10:56:52" datetime="2018-11-21T02:56:52.000Z" itemprop="datePublished">2018-11-21</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Java/">Java</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style="display:none">
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p><strong>目录 start</strong></p>
+<ol>
+<li><a href="#java的测试">Java的测试</a><ol>
+<li><a href="#断言">断言</a><ol>
+<li><a href="#正式代码">正式代码</a></li>
+<li><a href="#测试代码">测试代码</a></li>
+</ol>
+</li>
+<li><a href="#单元测试">单元测试</a></li>
+</ol>
+</li>
+<li><a href="#实现方案">实现方案</a><ol>
+<li><a href="#使用junit">使用Junit</a><ol>
+<li><a href="#idea上junit的使用">Idea上Junit的使用</a></li>
+</ol>
+</li>
+<li><a href="#testng">TestNG</a></li>
+<li><a href="#mock框架">Mock框架</a><ol>
+<li><a href="#mockito">Mockito</a></li>
+</ol>
+</li>
+<li><a href="#dbunit">DBUnit</a></li>
+</ol>
+</li>
+<li><a href="#感悟">感悟</a></li>
+</ol>
+<p><strong>目录 end</strong>|<em>2018-12-13 12:06</em>| <a href="https://gitee.com/gin9" target="_blank" rel="noopener">码云</a> | <a href="http://blog.csdn.net/kcp606" target="_blank" rel="noopener">CSDN</a> | <a href="https://my.oschina.net/kcp1104" target="_blank" rel="noopener">OSChina</a> | <a href="http://www.cnblogs.com/kuangcp" target="_blank" rel="noopener">cnblogs</a></p>
+<hr>
+<h1 id="Java的测试"><a href="#Java的测试" class="headerlink" title="Java的测试"></a>Java的测试</h1><blockquote>
+<p><a href="/Skills/Base/Test.md">测试的基础理论</a></p>
+</blockquote>
+<h2 id="断言"><a href="#断言" class="headerlink" title="断言"></a>断言</h2><h3 id="正式代码"><a href="#正式代码" class="headerlink" title="正式代码"></a>正式代码</h3><p><a href="https://yq.aliyun.com/ziliao/131292" target="_blank" rel="noopener">参考博客: Java陷阱之assert关键字详解_java</a><br><a href="http://www.cnblogs.com/mylove7/articles/3457157.html" target="_blank" rel="noopener">java 中assert的使用</a></p>
+<p>首先可以用在单元测试代码中。junit侵入性是很强的，如果整个工程大量的代码都使用了junit，就难以去掉或者是选择另外一个框架。如果单元测试代码 很多，并且想复用这些单元测试案例，应该选择assert而不是junit，便于使用别的单元测试框架，比如TestNG。同理正式的功能代码根本就不应 该出现Junit，应该使用assert.</p>
+<p>assert主要适合在基类，框架类，接口类，核心代码类，工具类中。换言之，当你的代码的调用者是另外一个程序员写得业务代码，或者是另外一个子系统时，就很有必要使用它。比如你做了一个快速排序的算法 </p>
+<p>这种情况下，如果不检查传入参数的正确性，会抛出一个莫名其妙的空指针错误。你的调用者可能并不清楚你代码的细节，在一个系统的深处调试一个空指针错误是很浪费时间的。就应该直接明确的告诉你的调用者是传入的参数有问题。否则他会怀疑你的代码有BUG。使用assert可以避免两个程序员之间互相指责对方写的代码有问题。<br>assert适用那些你知道具体是什么错误，你和你的调用者已经约定应该由你的调用者去排除或检查的错误。你通过一个断言告诉你的调用者。assert不适用那些外部系统造成的错误，比如用户输入数据的错误，某个外部文件格式错误。这些错误不是你的调用者而是用户造成的，甚至于不属于异常，因为出现输入错误和文件格式错误是经常的，这些错误应该由业务代码去检查。</p>
+<p>assert比较适合于被频繁调用的 基类，框架代码，工具类，核心代码，接口代码中，这正是它在运行时被去掉的原因。测试代码应该在测试阶段开启-ea参数，便于对系统深处的核心代码做仔细的测试。</p>
+<p>Java较少使用assert的原因是Java有很完整的OO体系，强制类型转换出现得较少，所以不需要类似c那样需要频繁的检查指针的类型是否正确，指针是否为空。同时Java也很少直接管理内存或缓冲区，所以不需要频繁的检查传入的缓冲区是否为空或者是已经越界。</p>
+<p>但使用好assert有助于提高框架代码的正确性和减少框架代码的使用者的调试时间。</p>
+<p>assert要达到的目的是让程序员方便的发现自己的逻辑错误，并且不影响程序的效率。assert所发现的错误，是完全不应该出现的，是不能用异常代替的。异常，那是系统所允许的，或者是系统不可控的“错误”，它不是程序员的逻辑问题。</p>
+<p>assert应该是开发阶段打开，而在发布后关闭。</p>
+<h3 id="测试代码"><a href="#测试代码" class="headerlink" title="测试代码"></a>测试代码</h3><blockquote>
+<p>测试中必须要通过断言来得知测试是否通过, </p>
+</blockquote>
+<h2 id="单元测试"><a href="#单元测试" class="headerlink" title="单元测试"></a>单元测试</h2><blockquote>
+<p>单元测试(unit testing)，是指对软件中的最小可测试单元进行检查和验证。</p>
+</blockquote>
+<ul>
+<li>Assert.assertEquals(a,b) 断言两个对象是相等的</li>
+<li>assert(expression) 断言表达式为真</li>
+</ul>
+<hr>
+<h1 id="实现方案"><a href="#实现方案" class="headerlink" title="实现方案"></a>实现方案</h1><h2 id="使用Junit"><a href="#使用Junit" class="headerlink" title="使用Junit"></a>使用Junit</h2><blockquote>
+<p><a href="https://junit.org/junit4/" target="_blank" rel="noopener">Junit4官网</a>|<a href="https://junit.org/junit5/" target="_blank" rel="noopener">Junit5官网</a>| <a href="/MyBlog/how-to-use-junit.md">如何上手Junit</a> | <a href="/MyBlog/how-to-use-junit5.md">如何上手Junit5</a></p>
+</blockquote>
+<ul>
+<li><p>Before Test 执行顺序：</p>
+<ul>
+<li>Before在Test之前执行是毋庸置疑的，但是如果有多个Before的话，按定义的先后逆序执行，也就是说AB顺序定义，BA顺序执行</li>
+<li><code>注意</code> Before的执行顺序不是平常想的那样，如果你有一个共享的对象，需要在两个Before中完成初始化，是办不到的，必然空指针</li>
+</ul>
+</li>
+<li><p>遇到的问题:</p>
+<ul>
+<li>如果在加了Test注解的方法中像Main方法一样的去开多个子线程对象并运行起来,并不会得到想要的结果</li>
+<li>这几个线程都是开了就立马关闭了,而且也是正常的退出码 0 </li>
+<li>原因:</li>
+</ul>
+</li>
+</ul>
+<h3 id="Idea上Junit的使用"><a href="#Idea上Junit的使用" class="headerlink" title="Idea上Junit的使用"></a>Idea上Junit的使用</h3><p><em>可以使用TestMe插件</em></p>
+<ul>
+<li>Ctrl Shift T 生成测试类 结合Mockit可以更好的模拟测试环境</li>
+</ul>
+<h2 id="TestNG"><a href="#TestNG" class="headerlink" title="TestNG"></a>TestNG</h2><blockquote>
+<p><a href="https://github.com/chanjarster/spring-test-examples" target="_blank" rel="noopener">Spring、Spring Boot和TestNG测试指南</a></p>
+</blockquote>
+<hr>
+<h2 id="Mock框架"><a href="#Mock框架" class="headerlink" title="Mock框架"></a>Mock框架</h2><blockquote>
+<p>mock 模拟 , 也就是说对需要测试的模块, 将该模块依赖的相关对象给修改成自己期望的行为方式(伪造一个假对象), 以移除依赖性, 从而针对性的测试该模块<br>但主要还是适用于单元测试，在集成测试，性能测试，自动化测试等其他测试领域使用并不多</p>
+</blockquote>
+<blockquote>
+<p><a href="http://www.vogella.com/tutorials/Mockito/article.html#testing-with-mock-objects" target="_blank" rel="noopener">JMockit官方文档</a></p>
+<ul>
+<li><a href="http://blog.csdn.net/chjttony/article/details/17838693" target="_blank" rel="noopener">入门博客</a><br><a href="http://www.baeldung.com/mockito-void-methods" target="_blank" rel="noopener">http://www.baeldung.com/mockito-void-methods</a><br><a href="https://www.tutorialspoint.com/mockito/mockito_quick_guide.htm" target="_blank" rel="noopener">https://www.tutorialspoint.com/mockito/mockito_quick_guide.htm</a><br><a href="http://static.javadoc.io/org.mockito/mockito-core/2.19.0/org/mockito/Mockito.html#1" target="_blank" rel="noopener">http://static.javadoc.io/org.mockito/mockito-core/2.19.0/org/mockito/Mockito.html#1</a></li>
+</ul>
+</blockquote>
+<h3 id="Mockito"><a href="#Mockito" class="headerlink" title="Mockito"></a>Mockito</h3><blockquote>
+<p><a href="http://site.mockito.org/" target="_blank" rel="noopener">Officail Site</a> | <a href="https://github.com/mockito/mockito" target="_blank" rel="noopener">Github:mockito</a><br><a href="https://www.tutorialspoint.com/mockito/index.htm" target="_blank" rel="noopener">Mockito Tutorial</a><br><a href="http://www.vogella.com/tutorials/Mockito/article.html" target="_blank" rel="noopener">Unit tests with Mockito - Tutorial</a></p>
+</blockquote>
+<blockquote>
+<p><a href="http://www.cnblogs.com/happyframework/p/3595547.html" target="_blank" rel="noopener">参考博客: TDD：什么是桩（stub）和模拟（mock）？</a><br><a href="http://www.testclass.net/mockito/" target="_blank" rel="noopener">参考博客: mockito</a><br><a href="http://static.javadoc.io/org.mockito/mockito-core/2.19.0/org/mockito/Mockito.html#1" target="_blank" rel="noopener">mockito</a></p>
+</blockquote>
+<blockquote>
+<p>官网提示:</p>
+<ol>
+<li>Do not mock types you don’t own</li>
+<li>Don’t mock value objects</li>
+<li>Don’t mock everything</li>
+<li>Show love with your tests!</li>
+</ol>
+</blockquote>
+<ol>
+<li><strong>常规使用</strong> when(mock.get(anyInt())).thenReturn(null);</li>
+<li><strong>对void方法的mock</strong> doThrow(new RuntimeException()).when(mock).someVoidMethod(anyObject());</li>
+<li><strong>使用规则去校验</strong> verify(mock).someMethod(contains(“foo”));</li>
+</ol>
+<blockquote>
+<p>切忌 不可对非Mock对象使用 mock 的系列方法, 不然会报出南辕北辙的错误,这是首先要排查的一点</p>
+</blockquote>
+<p>一般不用对 void 方法打桩, 事后 verify 就行<br>测试代码针对 mock  对象的 void 方法调用本来就没有什么效果，所以一般也无须用 doNothing(), 况且 void 提供不了返回值作进一步 mock，只需要在事后用 verify() 进行验证一下。</p>
+<h2 id="DBUnit"><a href="#DBUnit" class="headerlink" title="DBUnit"></a>DBUnit</h2><blockquote>
+<p>基于Junit的一个数据库测试框架, 方便测试dao层</p>
+</blockquote>
+<hr>
+<h1 id="感悟"><a href="#感悟" class="headerlink" title="感悟"></a>感悟</h1><blockquote>
+<ol>
+<li>好的测试能大大节省时间, 坏的测试大量延误时间</li>
+<li>应该在项目主体架构明确后, 才大量书写测试, 验证程序, 避免编写大量无用测试代码</li>
+<li>单元测试有多难写, 你的代码就有多高的耦合度</li>
+</ol>
+</blockquote>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2018-12-21T03:02:53.350Z" itemprop="dateUpdated">2018-12-21 11:02:53</time>
+</span><br>
+
+
+        
+        当前：<a href="/2018/11/21/Memo-Java-AdvancedLearning-JavaTest/" target="_blank" rel="external">http://blog.kuangcp.top/2018/11/21/Memo-Java-AdvancedLearning-JavaTest/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="http://blog.kuangcp.top">
+            <img src="/img/avatar.jpg" alt="Kuangcp">
+            Kuangcp
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/测试/">测试</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.kuangcp.top/2018/11/21/Memo-Java-AdvancedLearning-JavaTest/&title=《Java的测试》 — Kuangcp Blog&pic=http://blog.kuangcp.top/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.kuangcp.top/2018/11/21/Memo-Java-AdvancedLearning-JavaTest/&title=《Java的测试》 — Kuangcp Blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.kuangcp.top/2018/11/21/Memo-Java-AdvancedLearning-JavaTest/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Java的测试》 — Kuangcp Blog&url=http://blog.kuangcp.top/2018/11/21/Memo-Java-AdvancedLearning-JavaTest/&via=http://blog.kuangcp.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.kuangcp.top/2018/11/21/Memo-Java-AdvancedLearning-JavaTest/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/11/21/Memo-Java-AdvancedLearning-JavaReleaseVersion/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Java主要发行版</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/11/21/Memo-Database-GraphQL/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">GraphQL</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check" data-wechat="/img/wechat.png" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style="display:none">
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style="display:none">
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Kuangcp &copy; 2015 - 2018</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">赣ICP备17014189号-1</a><br>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.kuangcp.top/2018/11/21/Memo-Java-AdvancedLearning-JavaTest/&title=《Java的测试》 — Kuangcp Blog&pic=http://blog.kuangcp.top/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.kuangcp.top/2018/11/21/Memo-Java-AdvancedLearning-JavaTest/&title=《Java的测试》 — Kuangcp Blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.kuangcp.top/2018/11/21/Memo-Java-AdvancedLearning-JavaTest/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Java的测试》 — Kuangcp Blog&url=http://blog.kuangcp.top/2018/11/21/Memo-Java-AdvancedLearning-JavaTest/&via=http://blog.kuangcp.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.kuangcp.top/2018/11/21/Memo-Java-AdvancedLearning-JavaTest/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACsElEQVR42u3aQW7jQAwEwPz/08k1h8jbTc4AWqB0MuJYnpIBkerh11d8fD8cv999ev307v6zxw48PDy8Q0t/+rKc9/kvT2f7vMJ8zXh4eHi3eU8nTQD5Itr79mwNeHh4eG/jRSddt+mfLxAeHh7e/8XbxA355XhF3cPDw8P7yGvb2fwLks/mReJi1oKHh4cX8/L29z2vr+zv4eHh4a131Wch7GYIoC0b/1gtHh4e3gXe2Whgv4nVsqP/xMPDw7vAayPXZDArLyFtIJJHG3h4eHi3ebMwNCkPbbvcDjFEa8bDw8M7xNuUgVkYkd/u8yJUxBB4eHh4a15+801iizZgzUtR/jPUO3h4eHh4Ja9tYds4dfZuHj1E+3t4eHh4F3jtiMBmZGpWGPJS8ccTAx4eHt5l3uxRf7/otvxEa8PDw8O7xsvD1nZTqm2OZ4Xh8Tx4eHh413g5Mtmwz9nt7b5u6/Hw8PCu8WaLjm7N5XBAvnsVteB4eHh4F3g5bLbN3wYTm2ITDV3h4eHhrXl5KDALJpJisI99Hy8QHh4e3gVe8mWzQKH9y6z5jooQHh4e3gVe3n23QUNSVIpAYVQq8PDw8M7yEkw7BDDb1sr3+osfBg8PD+8yb/bA3w4fnGqRo4EtPDw8vAu8PIqdRbdt2JFfmjoOxsPDwzvKawet2sXljfts1GBY/fDw8PDWvLypzS9E24LnjX5RQvDw8PCu8VaBaYmcbbYNd/bw8PDwjvK+y2PTcM8uUD4J8Mfa8PDw8C7w2pGmvFHOz7B/feDAw8PDK3n1433wBUlJ2LTpxXrw8PDwrvE2c0o3YtxNAcPDw8N7Gy8JCzZbZflno5ACDw8P7wW8NiDYFINN/IGHh4d3m9c2vm173Y4CJOCiMODh4eEd5Q0f8o+OAlxcOh4eHt5J3g+MmAMnyqHtvAAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

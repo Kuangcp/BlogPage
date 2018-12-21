@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>AppManual.md | Kuangcp Blog | Javaer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="目录 start  软件使用记事 【包管理】 使用sdkman   【服务管理】 oneinstack     【常用工具】 网络工具 nmap apache benchmark   日常工具 百度网盘 输入法 搜狗输入法 rime 小小输入法   qgit convert todo.txt todo.txt-cli     【IDE】 Idea eclipse   绘图工具 在线版 安装版">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AppManual.md">
+<meta property="og:url" content="http://blog.kuangcp.top/2018/11/21/Memo-Skills-AppManual/index.html">
+<meta property="og:site_name" content="Kuangcp Blog">
+<meta property="og:description" content="目录 start  软件使用记事 【包管理】 使用sdkman   【服务管理】 oneinstack     【常用工具】 网络工具 nmap apache benchmark   日常工具 百度网盘 输入法 搜狗输入法 rime 小小输入法   qgit convert todo.txt todo.txt-cli     【IDE】 Idea eclipse   绘图工具 在线版 安装版">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/Kuangcp/ImageRepos/master/Tech/Linux/install_oneinstack.png">
+<meta property="og:updated_time" content="2018-12-21T03:02:53.238Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="AppManual.md">
+<meta name="twitter:description" content="目录 start  软件使用记事 【包管理】 使用sdkman   【服务管理】 oneinstack     【常用工具】 网络工具 nmap apache benchmark   日常工具 百度网盘 输入法 搜狗输入法 rime 小小输入法   qgit convert todo.txt todo.txt-cli     【IDE】 Idea eclipse   绘图工具 在线版 安装版">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Kuangcp/ImageRepos/master/Tech/Linux/install_oneinstack.png">
+    
+        <link rel="alternate" type="application/atom+xml" title="Kuangcp Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Kuangcp</h5>
+          <a href="mailto:kuangcp@aliyun.com" title="kuangcp@aliyun.com" class="mail">kuangcp@aliyun.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/">
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives">
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags">
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories">
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/kuangcp" target="_blank">
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">AppManual.md</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">AppManual.md</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-11-21T02:56:52.000Z" itemprop="datePublished" class="page-time">
+  2018-11-21
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#软件使用记事"><span class="post-toc-number">1.</span> <span class="post-toc-text">软件使用记事</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#【包管理】"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">【包管理】</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#使用sdkman"><span class="post-toc-number">1.1.1.</span> <span class="post-toc-text">使用sdkman</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#【服务管理】"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">【服务管理】</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#oneinstack"><span class="post-toc-number">1.2.1.</span> <span class="post-toc-text">oneinstack</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#【常用工具】"><span class="post-toc-number">2.</span> <span class="post-toc-text">【常用工具】</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#网络工具"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">网络工具</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#nmap"><span class="post-toc-number">2.1.1.</span> <span class="post-toc-text">nmap</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#apache-benchmark"><span class="post-toc-number">2.1.2.</span> <span class="post-toc-text">apache benchmark</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#日常工具"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">日常工具</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#百度网盘"><span class="post-toc-number">2.2.1.</span> <span class="post-toc-text">百度网盘</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#输入法"><span class="post-toc-number">2.2.2.</span> <span class="post-toc-text">输入法</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#搜狗输入法"><span class="post-toc-number">2.2.2.1.</span> <span class="post-toc-text">搜狗输入法</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#rime"><span class="post-toc-number">2.2.2.2.</span> <span class="post-toc-text">rime</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#小小输入法"><span class="post-toc-number">2.2.2.3.</span> <span class="post-toc-text">小小输入法</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#qgit"><span class="post-toc-number">2.2.3.</span> <span class="post-toc-text">qgit</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#convert"><span class="post-toc-number">2.2.4.</span> <span class="post-toc-text">convert</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#todo-txt"><span class="post-toc-number">2.2.5.</span> <span class="post-toc-text">todo.txt</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#todo-txt-cli"><span class="post-toc-number">2.2.5.1.</span> <span class="post-toc-text">todo.txt-cli</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#【IDE】"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">【IDE】</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Idea"><span class="post-toc-number">2.3.1.</span> <span class="post-toc-text">Idea</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#eclipse"><span class="post-toc-number">2.3.2.</span> <span class="post-toc-text">eclipse</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#绘图工具"><span class="post-toc-number">2.4.</span> <span class="post-toc-text">绘图工具</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#在线版"><span class="post-toc-number">2.4.1.</span> <span class="post-toc-text">在线版</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#安装版"><span class="post-toc-number">2.4.2.</span> <span class="post-toc-text">安装版</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#安全工具"><span class="post-toc-number">2.5.</span> <span class="post-toc-text">安全工具</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#gpg"><span class="post-toc-number">2.5.1.</span> <span class="post-toc-text">gpg</span></a></li></ol></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-Memo-Skills-AppManual" class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">AppManual.md</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-11-21 10:56:52" datetime="2018-11-21T02:56:52.000Z" itemprop="datePublished">2018-11-21</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style="display:none">
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p><strong>目录 start</strong></p>
+<ol>
+<li><a href="#软件使用记事">软件使用记事</a><ol>
+<li><a href="#包管理">【包管理】</a><ol>
+<li><a href="#使用sdkman">使用sdkman</a></li>
+</ol>
+</li>
+<li><a href="#服务管理">【服务管理】</a><ol>
+<li><a href="#oneinstack">oneinstack</a></li>
+</ol>
+</li>
+</ol>
+</li>
+<li><a href="#常用工具">【常用工具】</a><ol>
+<li><a href="#网络工具">网络工具</a><ol>
+<li><a href="#nmap">nmap</a></li>
+<li><a href="#apache-benchmark">apache benchmark</a></li>
+</ol>
+</li>
+<li><a href="#日常工具">日常工具</a><ol>
+<li><a href="#百度网盘">百度网盘</a></li>
+<li><a href="#输入法">输入法</a><ol>
+<li><a href="#搜狗输入法">搜狗输入法</a></li>
+<li><a href="#rime">rime</a></li>
+<li><a href="#小小输入法">小小输入法</a></li>
+</ol>
+</li>
+<li><a href="#qgit">qgit</a></li>
+<li><a href="#convert">convert</a></li>
+<li><a href="#todotxt">todo.txt</a><ol>
+<li><a href="#todotxt-cli">todo.txt-cli</a></li>
+</ol>
+</li>
+</ol>
+</li>
+<li><a href="#ide">【IDE】</a><ol>
+<li><a href="#idea">Idea</a></li>
+<li><a href="#eclipse">eclipse</a></li>
+</ol>
+</li>
+<li><a href="#绘图工具">绘图工具</a><ol>
+<li><a href="#在线版">在线版</a></li>
+<li><a href="#安装版">安装版</a></li>
+</ol>
+</li>
+<li><a href="#安全工具">安全工具</a><ol>
+<li><a href="#gpg">gpg</a></li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<p><strong>目录 end</strong>|<em>2018-12-13 12:06</em>| <a href="https://gitee.com/gin9" target="_blank" rel="noopener">码云</a> | <a href="http://blog.csdn.net/kcp606" target="_blank" rel="noopener">CSDN</a> | <a href="https://my.oschina.net/kcp1104" target="_blank" rel="noopener">OSChina</a> | <a href="http://www.cnblogs.com/kuangcp" target="_blank" rel="noopener">cnblogs</a></p>
+<hr>
+<h1 id="软件使用记事"><a href="#软件使用记事" class="headerlink" title="软件使用记事"></a>软件使用记事</h1><h2 id="【包管理】"><a href="#【包管理】" class="headerlink" title="【包管理】"></a>【包管理】</h2><h3 id="使用sdkman"><a href="#使用sdkman" class="headerlink" title="使用sdkman"></a>使用sdkman</h3><blockquote>
+<p>但是总会莫名其妙的冒出问题，sdk命令掉线始终连不上网，终端打开巨慢</p>
+</blockquote>
+<p><code>安装</code></p>
+<ul>
+<li>安装sdkman <code>curl -s &quot;https://get.sdkman.io&quot; | bash</code> 遇到提示zip 就是需要安装zip <code>sudo apt install zip</code> 然后重新执行命令</li>
+<li>执行脚本：<code>source &quot;/home/kuang/.sdkman/bin/sdkman-init.sh&quot;</code> 或者重启终端就可以使用了，查看sdkman 版本:<code>sdk version</code><br><code>使用</code></li>
+<li><a href="http://sdkman.io/usage.html" target="_blank" rel="noopener">官网文档</a></li>
+<li>查看所有 <code>sdk list</code><ul>
+<li>查看某sdk的版本 <code>sdk list java</code> </li>
+</ul>
+</li>
+<li>不指定版本则默认安装最新版 <code>sdk install java</code> 安装指定版本 <code>sdk default java 8u131-zulu</code></li>
+<li>开始使用指定版本(for the current shell only) <code>sdk use scala 2.12.1</code></li>
+<li>查看当前版本 <code>sdk current java</code></li>
+<li>验证是否成功：<code>java -version</code></li>
+<li>移除 <code>sdk uninstall scala 2.11.6</code></li>
+</ul>
+<hr>
+<h2 id="【服务管理】"><a href="#【服务管理】" class="headerlink" title="【服务管理】"></a>【服务管理】</h2><h3 id="oneinstack"><a href="#oneinstack" class="headerlink" title="oneinstack"></a>oneinstack</h3><blockquote>
+<p>一键配置环境 <a href="https://oneinstack.com/install/" target="_blank" rel="noopener">官方文档</a></p>
+</blockquote>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/Kuangcp/ImageRepos/master/Tech/Linux/install_oneinstack.png" alt="配图" title="">
+                </div>
+                <div class="image-caption">配图</div>
+            </figure>
+<ul>
+<li><code>apt -y install wget screen curl python</code></li>
+<li>下载源码：<ul>
+<li><code>wget http://aliyun-oss.linuxeye.com/oneinstack-full.tar.gz</code> #阿里云经典网络下载</li>
+<li><code>wget http://mirrors.linuxeye.com/oneinstack-full.tar.gz</code> #包含源码，国内外均可下载</li>
+<li><code>wget http://mirrors.linuxeye.com/oneinstack.tar.gz</code> #不包含源码，建议仅国外主机下载</li>
+</ul>
+</li>
+<li><code>tar xzf oneinstack-full.tar.gz</code></li>
+<li><code>cd oneinstack</code> #如果需要修改目录(安装、数据存储、Nginx日志)，请修改options.conf文件</li>
+<li><code>screen -S oneinstack</code> #如果网路出现中断，可以执行命令<code>screen -R oneinstack</code>重新连接安装窗口</li>
+<li><code>sudo ./install.sh</code> #注：请勿sh install.sh或者bash install.sh这样执行</li>
+</ul>
+<hr>
+<h1 id="【常用工具】"><a href="#【常用工具】" class="headerlink" title="【常用工具】"></a>【常用工具】</h1><blockquote>
+<p>基本是Linux工具，因为主力是用Linux</p>
+</blockquote>
+<h2 id="网络工具"><a href="#网络工具" class="headerlink" title="网络工具"></a>网络工具</h2><h3 id="nmap"><a href="#nmap" class="headerlink" title="nmap"></a>nmap</h3><blockquote>
+<p>端口扫描 <a href="http://aaaxiang000.blog.163.com/blog/static/2063491220113284325531/" target="_blank" rel="noopener">参考博客</a></p>
+</blockquote>
+<ul>
+<li>扫描<code>nmap &lt;param&gt; IP</code><ul>
+<li>-sP</li>
+<li>-sT</li>
+<li>-sR</li>
+<li>-n <code>最简单直接的参数</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="apache-benchmark"><a href="#apache-benchmark" class="headerlink" title="apache benchmark"></a>apache benchmark</h3><blockquote>
+<p>压力测试工具</p>
+</blockquote>
+<ul>
+<li>测试本机超过100连接报错 104: <ul>
+<li><a href="http://www.cnblogs.com/archoncap/p/5883723.html" target="_blank" rel="noopener">Blog:解决问题</a></li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="日常工具"><a href="#日常工具" class="headerlink" title="日常工具"></a>日常工具</h2><h3 id="百度网盘"><a href="#百度网盘" class="headerlink" title="百度网盘"></a>百度网盘</h3><ul>
+<li><a href="https://github.com/iikira/BaiduPCS-Go" target="_blank" rel="noopener">百度网盘命令客户端</a> <code>Go语言实现</code></li>
+</ul>
+<h3 id="输入法"><a href="#输入法" class="headerlink" title="输入法"></a>输入法</h3><h4 id="搜狗输入法"><a href="#搜狗输入法" class="headerlink" title="搜狗输入法"></a>搜狗输入法</h4><blockquote>
+<p>唯一一个大厂支持Linux </p>
+</blockquote>
+<ul>
+<li>Ctrl Alt B 显示/关闭 特殊字符面板</li>
+</ul>
+<h4 id="rime"><a href="#rime" class="headerlink" title="rime"></a>rime</h4><ul>
+<li><a href="http://rime.im/" target="_blank" rel="noopener">rime</a> <code>用过一下子有莫名其妙的bug就卸载了</code></li>
+</ul>
+<h4 id="小小输入法"><a href="#小小输入法" class="headerlink" title="小小输入法"></a>小小输入法</h4><p><a href="https://bbs.deepin.org/forum.php?mod=viewthread&amp;tid=138500&amp;highlight=%E5%B0%8F%E5%B0%8F%E8%BE%93%E5%85%A5%E6%B3%95" target="_blank" rel="noopener">小小输入法在Deepin上的使用</a></p>
+<h3 id="qgit"><a href="#qgit" class="headerlink" title="qgit"></a>qgit</h3><ul>
+<li>git查看仓库的命令行式图形化界面</li>
+</ul>
+<hr>
+<h3 id="convert"><a href="#convert" class="headerlink" title="convert"></a>convert</h3><blockquote>
+<p>注意 该软件是按后缀来识别图像文件格式的… 所以 jpeg 可以直接改成 jpg 用</p>
+</blockquote>
+<ul>
+<li><p><a href="http://blog.csdn.net/mybelief321/article/details/9969949" target="_blank" rel="noopener">参考博客</a></p>
+</li>
+<li><p>将图片转换成指定大小 这是保持比例的 <code>convert -resize 600X600 src.jpg dst.jpg</code> 中间是字母X</p>
+<ul>
+<li>如果不保持比例，就在宽高后加上感叹号 </li>
+<li>可以只指定高度，那么宽度会等比例缩放 <code>convert -resize 400 src.jpg dst.jpg</code></li>
+<li>还可以按百分比缩放</li>
+</ul>
+</li>
+</ul>
+<p><em>批量修改</em></p>
+<blockquote>
+<p>如果没有 -path 语句，新生成的 png 文件将会覆盖原始文件 <a href="http://www.cnblogs.com/jkmiao/p/6756929.html" target="_blank" rel="noopener">参考博客</a></p>
+</blockquote>
+<ul>
+<li><code>mogrify -path newdir -resize 40X40 *.png</code> 把png图片全部转成40X40大小并放在新文件夹下</li>
+<li><code>mogrify -path newdir -format png  *.gif</code> 将所有gif转成png放在新目录下</li>
+</ul>
+<blockquote>
+<p>将原有大小图片转换成其他指定大小的图片(保持比例)  </p>
+<ol>
+<li>原图片 a <em> b -&gt; x </em> y </li>
+<li>x/y 得到比例 在 原图中裁剪出同样比例的图片 (Viewnior就很好用)</li>
+<li>将裁剪出来的图片转换指定大小 <code>convert -resize xXy src.jpg dst.jpg</code></li>
+</ol>
+</blockquote>
+<hr>
+<h3 id="todo-txt"><a href="#todo-txt" class="headerlink" title="todo.txt"></a>todo.txt</h3><blockquote>
+<p><a href="http://todotxt.org/" target="_blank" rel="noopener">官网</a> 一个简约的 TODO 软件</p>
+</blockquote>
+<h4 id="todo-txt-cli"><a href="#todo-txt-cli" class="headerlink" title="todo.txt-cli"></a>todo.txt-cli</h4><blockquote>
+<p>终端中的TODO </p>
+</blockquote>
+<ul>
+<li><a href="https://github.com/todotxt/todo.txt-cli" target="_blank" rel="noopener">todo.txt-cli</a></li>
+</ul>
+<hr>
+<h2 id="【IDE】"><a href="#【IDE】" class="headerlink" title="【IDE】"></a>【IDE】</h2><h3 id="Idea"><a href="#Idea" class="headerlink" title="Idea"></a>Idea</h3><blockquote>
+<p><a href="/Java/Tool/IDEA.md">更多</a></p>
+</blockquote>
+<h3 id="eclipse"><a href="#eclipse" class="headerlink" title="eclipse"></a>eclipse</h3><p>【eclipse EE Mars】</p>
+<ul>
+<li>这里的Tomcat是使用了你所导入的必要执行文件，但是运行的必要配置文件在eclipse Server项目里另有一份</li>
+<li>而且运行时也是使用这份配置文件，这样的结果是可以使用一份Tomcat目录，在eclipse配置运行多个Tomcat</li>
+<li>但是奇怪的是 访问不了Tomcat主页即：localhost:8080 所以也就不能管理Tomcat 查看运行状态</li>
+</ul>
+<p>资源下载 archive.eclipse.org/eclipse/downloads/ </p>
+<hr>
+<h2 id="绘图工具"><a href="#绘图工具" class="headerlink" title="绘图工具"></a>绘图工具</h2><h3 id="在线版"><a href="#在线版" class="headerlink" title="在线版"></a>在线版</h3><ul>
+<li><a href="https://www.processon.com/" target="_blank" rel="noopener">processon</a></li>
+</ul>
+<h3 id="安装版"><a href="#安装版" class="headerlink" title="安装版"></a>安装版</h3><hr>
+<h2 id="安全工具"><a href="#安全工具" class="headerlink" title="安全工具"></a>安全工具</h2><h3 id="gpg"><a href="#gpg" class="headerlink" title="gpg"></a>gpg</h3><blockquote>
+<p><a href="http://www.ruanyifeng.com/blog/2013/07/gpg.html" target="_blank" rel="noopener">参考博客</a></p>
+</blockquote>
+<p>常用参数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">gpg --list-key</span><br><span class="line">    --gen-key</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>生成的过程, 输入相关的提示信息, 最后输完密码后需要输入随机字符, 就也是按照提示, 但是1.4是正常的, 其他的直接假死,不是很理解这种操作</li>
+</ul>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2018-12-21T03:02:53.238Z" itemprop="dateUpdated">2018-12-21 11:02:53</time>
+</span><br>
+
+
+        
+        当前：<a href="/2018/11/21/Memo-Skills-AppManual/" target="_blank" rel="external">http://blog.kuangcp.top/2018/11/21/Memo-Skills-AppManual/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="http://blog.kuangcp.top">
+            <img src="/img/avatar.jpg" alt="Kuangcp">
+            Kuangcp
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.kuangcp.top/2018/11/21/Memo-Skills-AppManual/&title=《AppManual.md》 — Kuangcp Blog&pic=http://blog.kuangcp.top/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.kuangcp.top/2018/11/21/Memo-Skills-AppManual/&title=《AppManual.md》 — Kuangcp Blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.kuangcp.top/2018/11/21/Memo-Skills-AppManual/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《AppManual.md》 — Kuangcp Blog&url=http://blog.kuangcp.top/2018/11/21/Memo-Skills-AppManual/&via=http://blog.kuangcp.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.kuangcp.top/2018/11/21/Memo-Skills-AppManual/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/11/21/Memo-Functional-Clojure/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Clojure.md</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/11/21/Memo-Skills-CelebrityQuotes/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">CelebrityQuotes.md</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check" data-wechat="/img/wechat.png" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style="display:none">
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style="display:none">
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Kuangcp &copy; 2015 - 2018</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">赣ICP备17014189号-1</a><br>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.kuangcp.top/2018/11/21/Memo-Skills-AppManual/&title=《AppManual.md》 — Kuangcp Blog&pic=http://blog.kuangcp.top/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.kuangcp.top/2018/11/21/Memo-Skills-AppManual/&title=《AppManual.md》 — Kuangcp Blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.kuangcp.top/2018/11/21/Memo-Skills-AppManual/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《AppManual.md》 — Kuangcp Blog&url=http://blog.kuangcp.top/2018/11/21/Memo-Skills-AppManual/&via=http://blog.kuangcp.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.kuangcp.top/2018/11/21/Memo-Skills-AppManual/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACKUlEQVR42u3ay26DQAwF0Pz/T6fbVhXDtaepxPiwikIgHBaWX69XfLy/Hb+/WZ9d33P9L398YGBgPJbxXh7Vx7r6zdWd12eTZ8PAwJjDWAfE6q2Tz8k3ybNhYGBg7JDyVBIDAwPjc4zkPsnZdamMgYGB0Uv1esniJ9JQDAyMCYy86/7/nz8y38DAwHgU41081qGzGjR3nuTHfTAwMI5m9MrLpNGf4HvF8OWrxMDAOJSRL0YkQTa5Q5J0Vpc8MDAwzmbkhWv14Xaqy2q6iYGBcTaj2u6/yTGD8rX34m5+iYGBMYxRHVLmBer+C7q8FgMD42hGNeRVy9o8fewF/WbkxsDAeBQjb6Llf5CPNquF7uUrwMDAGMPolanVeWmvrRa12zAwMA5l9Nr9vQZZXqZW1zgwMDAmMKolaG94WT3bC/EYGBjnMfLSMf++14DLr40yXAwMjEMZ1WHA/rW9cN8cDGBgYDyW0SsRd0YC++lgOU3EwMA4iJG3vXaCY75Mlq+gYWBgTGBU21t/tZzRK24vQzwGBsYYxrt49EJnb1Hs5oViYGAMY1T/oFeCVrPUm2sxMDAOZfTCa/KgSWDNk0gMDIzJjN5ksDoK3RkJRMsWGBgYAxh5mdorUHvtvOqIFAMDYwIjLxqraV+vYC4vhWBgYGAUVyJ6eWjv1WBgYGDkoTNfC6uyo19iYGAMYOysU+x3+/IFCwwMjJmMnaQtb7ElAbc6nMDAwBjA+ALqZfoIfjaExgAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

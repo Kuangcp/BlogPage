@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>GitBase.md | Kuangcp Blog | Javaer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="基础">
+    <meta name="description" content="目录 start  Git基础 Git常用命令 fork相关操作 仓库基本命令 config status rm commit remote submodule show push log 对比两个分支的差异 查看文件的修改记录   diff tag   分支操作 stash clone branch checkout fetch pull merge rebase grep     常用文件 .">
+<meta name="keywords" content="基础">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GitBase.md">
+<meta property="og:url" content="http://blog.kuangcp.top/2018/11/21/Memo-Skills-Vcs-GitBase/index.html">
+<meta property="og:site_name" content="Kuangcp Blog">
+<meta property="og:description" content="目录 start  Git基础 Git常用命令 fork相关操作 仓库基本命令 config status rm commit remote submodule show push log 对比两个分支的差异 查看文件的修改记录   diff tag   分支操作 stash clone branch checkout fetch pull merge rebase grep     常用文件 .">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-12-21T03:02:53.238Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="GitBase.md">
+<meta name="twitter:description" content="目录 start  Git基础 Git常用命令 fork相关操作 仓库基本命令 config status rm commit remote submodule show push log 对比两个分支的差异 查看文件的修改记录   diff tag   分支操作 stash clone branch checkout fetch pull merge rebase grep     常用文件 .">
+    
+        <link rel="alternate" type="application/atom+xml" title="Kuangcp Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Kuangcp</h5>
+          <a href="mailto:kuangcp@aliyun.com" title="kuangcp@aliyun.com" class="mail">kuangcp@aliyun.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/">
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives">
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags">
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories">
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/kuangcp" target="_blank">
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">GitBase.md</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">GitBase.md</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-11-21T02:56:52.000Z" itemprop="datePublished" class="page-time">
+  2018-11-21
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Git/">Git</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Git基础"><span class="post-toc-number">1.</span> <span class="post-toc-text">Git基础</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Git常用命令"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">Git常用命令</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#fork相关操作"><span class="post-toc-number">1.1.1.</span> <span class="post-toc-text">fork相关操作</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#仓库基本命令"><span class="post-toc-number">1.1.2.</span> <span class="post-toc-text">仓库基本命令</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#config"><span class="post-toc-number">1.1.2.1.</span> <span class="post-toc-text">config</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#status"><span class="post-toc-number">1.1.2.2.</span> <span class="post-toc-text">status</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#rm"><span class="post-toc-number">1.1.2.3.</span> <span class="post-toc-text">rm</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#commit"><span class="post-toc-number">1.1.2.4.</span> <span class="post-toc-text">commit</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#remote"><span class="post-toc-number">1.1.2.5.</span> <span class="post-toc-text">remote</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#submodule"><span class="post-toc-number">1.1.2.6.</span> <span class="post-toc-text">submodule</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#show"><span class="post-toc-number">1.1.2.7.</span> <span class="post-toc-text">show</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#push"><span class="post-toc-number">1.1.2.8.</span> <span class="post-toc-text">push</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#log"><span class="post-toc-number">1.1.2.9.</span> <span class="post-toc-text">log</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#对比两个分支的差异"><span class="post-toc-number">1.1.2.9.1.</span> <span class="post-toc-text">对比两个分支的差异</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#查看文件的修改记录"><span class="post-toc-number">1.1.2.9.2.</span> <span class="post-toc-text">查看文件的修改记录</span></a></li></ol></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#diff"><span class="post-toc-number">1.1.2.10.</span> <span class="post-toc-text">diff</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#tag"><span class="post-toc-number">1.1.2.11.</span> <span class="post-toc-text">tag</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#分支操作"><span class="post-toc-number">1.1.3.</span> <span class="post-toc-text">分支操作</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#stash"><span class="post-toc-number">1.1.3.1.</span> <span class="post-toc-text">stash</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#clone"><span class="post-toc-number">1.1.3.2.</span> <span class="post-toc-text">clone</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#branch"><span class="post-toc-number">1.1.3.3.</span> <span class="post-toc-text">branch</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#checkout"><span class="post-toc-number">1.1.3.4.</span> <span class="post-toc-text">checkout</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#fetch"><span class="post-toc-number">1.1.3.5.</span> <span class="post-toc-text">fetch</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#pull"><span class="post-toc-number">1.1.3.6.</span> <span class="post-toc-text">pull</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#merge"><span class="post-toc-number">1.1.3.7.</span> <span class="post-toc-text">merge</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#rebase"><span class="post-toc-number">1.1.3.8.</span> <span class="post-toc-text">rebase</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#grep"><span class="post-toc-number">1.1.3.9.</span> <span class="post-toc-text">grep</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#常用文件"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">常用文件</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#gitignore"><span class="post-toc-number">1.2.1.</span> <span class="post-toc-text">.gitignore</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#gitattributes"><span class="post-toc-number">1.2.2.</span> <span class="post-toc-text">gitattributes</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Tools"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">Tools</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#git-svn"><span class="post-toc-number">1.3.1.</span> <span class="post-toc-text">git-svn</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Submodules"><span class="post-toc-number">1.3.2.</span> <span class="post-toc-text">Submodules</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#各个VCS工具的区别以及优缺点"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">各个VCS工具的区别以及优缺点</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Git"><span class="post-toc-number">1.4.1.</span> <span class="post-toc-text">Git</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#SVN"><span class="post-toc-number">1.4.2.</span> <span class="post-toc-text">SVN</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#repos的使用"><span class="post-toc-number">1.5.</span> <span class="post-toc-text">repos的使用</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-Memo-Skills-Vcs-GitBase" class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">GitBase.md</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-11-21 10:56:52" datetime="2018-11-21T02:56:52.000Z" itemprop="datePublished">2018-11-21</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Git/">Git</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style="display:none">
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p><strong>目录 start</strong></p>
+<ol>
+<li><a href="#git基础">Git基础</a><ol>
+<li><a href="#git常用命令">Git常用命令</a><ol>
+<li><a href="#fork相关操作">fork相关操作</a></li>
+<li><a href="#仓库基本命令">仓库基本命令</a><ol>
+<li><a href="#config">config</a></li>
+<li><a href="#status">status</a></li>
+<li><a href="#rm">rm</a></li>
+<li><a href="#commit">commit</a></li>
+<li><a href="#remote">remote</a></li>
+<li><a href="#submodule">submodule</a></li>
+<li><a href="#show">show</a></li>
+<li><a href="#push">push</a></li>
+<li><a href="#log">log</a><ol>
+<li><a href="#对比两个分支的差异">对比两个分支的差异</a></li>
+<li><a href="#查看文件的修改记录">查看文件的修改记录</a></li>
+</ol>
+</li>
+<li><a href="#diff">diff</a></li>
+<li><a href="#tag">tag</a></li>
+</ol>
+</li>
+<li><a href="#分支操作">分支操作</a><ol>
+<li><a href="#stash">stash</a></li>
+<li><a href="#clone">clone</a></li>
+<li><a href="#branch">branch</a></li>
+<li><a href="#checkout">checkout</a></li>
+<li><a href="#fetch">fetch</a></li>
+<li><a href="#pull">pull</a></li>
+<li><a href="#merge">merge</a></li>
+<li><a href="#rebase">rebase</a></li>
+<li><a href="#grep">grep</a></li>
+</ol>
+</li>
+</ol>
+</li>
+<li><a href="#常用文件">常用文件</a><ol>
+<li><a href="#gitignore">.gitignore</a></li>
+<li><a href="#gitattributes">gitattributes</a></li>
+</ol>
+</li>
+<li><a href="#tools">Tools</a><ol>
+<li><a href="#git-svn">git-svn</a></li>
+<li><a href="#submodules">Submodules</a></li>
+</ol>
+</li>
+<li><a href="#各个vcs工具的区别以及优缺点">各个VCS工具的区别以及优缺点</a><ol>
+<li><a href="#git">Git</a></li>
+<li><a href="#svn">SVN</a></li>
+</ol>
+</li>
+<li><a href="#repos的使用">repos的使用</a></li>
+</ol>
+</li>
+</ol>
+<p><strong>目录 end</strong>|<em>2018-12-14 20:38</em>| <a href="https://gitee.com/gin9" target="_blank" rel="noopener">码云</a> | <a href="http://blog.csdn.net/kcp606" target="_blank" rel="noopener">CSDN</a> | <a href="https://my.oschina.net/kcp1104" target="_blank" rel="noopener">OSChina</a> | <a href="http://www.cnblogs.com/kuangcp" target="_blank" rel="noopener">cnblogs</a></p>
+<hr>
+<h1 id="Git基础"><a href="#Git基础" class="headerlink" title="Git基础"></a>Git基础</h1><blockquote>
+<p>Git is a free and open source distributed version control system designed to handle everything from small to very large projects with speed and efficiency. – <a href="https://git-scm.com/" target="_blank" rel="noopener">git-scm.com</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://github.com/git/git" target="_blank" rel="noopener">Github:git</a><br><a href="https://git-scm.com/docs" target="_blank" rel="noopener">official doc: git</a><br><a href="https://gitee.com/all-about-git" target="_blank" rel="noopener">Gitee: about git</a><br><a href="https://git-scm.com/book/zh/v2" target="_blank" rel="noopener">Git官网中文教程</a> | <a href="https://github.com/progit/progit2" target="_blank" rel="noopener">对应的仓库</a>  </p>
+</blockquote>
+<ul>
+<li>index stage work 三个概念上的区域<ul>
+<li>index 已经 commit 的内容, 不可更改历史commit </li>
+<li>stage 执行 add 命令, 将文件缓存到该区</li>
+<li>work 默认目录, 修改的就是该分区</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="Git常用命令"><a href="#Git常用命令" class="headerlink" title="Git常用命令"></a>Git常用命令</h2><blockquote>
+<p><a href="https://github.com/521xueweihan/git-tips" target="_blank" rel="noopener">git-tips</a><code>学习Git的仓库</code><br><a href="https://github.com/gotgit" target="_blank" rel="noopener">git权威指南的组织</a><code>完整书籍,以及相关测试题</code></p>
+</blockquote>
+<blockquote>
+<p><a href="https://coding.net/help/doc/practice/git-principle.html" target="_blank" rel="noopener">使用原理视角看 Git</a><br><a href="https://zhuanlan.zhihu.com/p/30561653" target="_blank" rel="noopener">如何高效地使用 Git</a></p>
+</blockquote>
+<blockquote>
+<p><a href="http://www.techug.com/post/review-of-linus-torvalds-on-git.html" target="_blank" rel="noopener">参考博客: 重看”Linus Torvalds on Git”视频</a><br><a href="https://git-scm.com/downloads/guisQ" target="_blank" rel="noopener">GUI客户端</a></p>
+</blockquote>
+<ul>
+<li><a href="http://jonas.nitro.dk/tig/manual.html" target="_blank" rel="noopener">tig</a> <code>tig命令，git的加强版</code></li>
+</ul>
+<h3 id="fork相关操作"><a href="#fork相关操作" class="headerlink" title="fork相关操作"></a>fork相关操作</h3><blockquote>
+<p>在 Github Gitee Gitlab 等平台, 命令的方式管理fork的仓库</p>
+</blockquote>
+<ul>
+<li>其实可以把别人的fork或者原仓库, 当成一个分支就行了, 将分支关联远程URL即可: –set-upstream 参数<ul>
+<li>然后就能下拉 合并别人的仓库了</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>如果没有一个Github 码云这样的平台, 而只是单独的两个点, 两个用户或者IP之间要使用同一个仓库进行开发<br>两个人互为对方的远程库, 互为服务器即可完成, 即使使用的是动态IP, 应该也不会受太大影响???</p>
+</blockquote>
+<hr>
+<h3 id="仓库基本命令"><a href="#仓库基本命令" class="headerlink" title="仓库基本命令"></a>仓库基本命令</h3><blockquote>
+<p>使用 <code>git help 加上命令</code>, 就能看到命令对应的文档</p>
+</blockquote>
+<h4 id="config"><a href="#config" class="headerlink" title="config"></a>config</h4><ul>
+<li><code>git config user.email ***</code>  和   <code>git config user.name ***</code> 这两个是必须的，<ul>
+<li>如果想统一配置不想每个仓库单独配置就 <code>git config --global user.name</code> email同理</li>
+</ul>
+</li>
+<li><code>git config http.postBuffer 524288000</code> 设置缓存区大小为 500m</li>
+<li><p><code>git config core.fileMode false</code> 忽略文件的mode变化，一般发生在文件放在挂载盘的时(默认755)</p>
+</li>
+<li><p>[ ] 自己整理下配置项</p>
+<blockquote>
+<p><a href="https://www.tuicool.com/articles/IJjQVb" target="_blank" rel="noopener">参考博客: CRLF和LF</a><br><a href="https://www.cnblogs.com/sdgf/p/6237847.html" target="_blank" rel="noopener">参考博客: git 换行符LF与CRLF转换问题</a></p>
+</blockquote>
+</li>
+</ul>
+<h4 id="status"><a href="#status" class="headerlink" title="status"></a>status</h4><blockquote>
+<p>git status –help 查看详细介绍</p>
+</blockquote>
+<ul>
+<li><code>-s --short</code> 简化输出<ul>
+<li>?? 表示新添加未跟踪</li>
+<li>A 新添加到暂存区</li>
+<li>M 修改过的文件</li>
+<li>MM 修改了但是没有暂存</li>
+</ul>
+</li>
+</ul>
+<h4 id="rm"><a href="#rm" class="headerlink" title="rm"></a>rm</h4><ul>
+<li>删除文件 <code>git rm 文件</code></li>
+<li>从git仓库中删除文件, 但是文件系统中保留文件 <code>git rm --cached 文件</code><ul>
+<li>如果仅仅是想从仓库中剔除, 那么执行完命令还要在 <code>.gitignore</code> 文件中注明, 不然又add回去了</li>
+</ul>
+</li>
+</ul>
+<h4 id="commit"><a href="#commit" class="headerlink" title="commit"></a>commit</h4><ul>
+<li><a href="https://git-scm.com/docs/git-commit" target="_blank" rel="noopener">官方文档</a></li>
+<li><p><code>git commit -am &quot;init&quot;</code>: a git库已有文件的修改进行添加, m 注释</p>
+<ul>
+<li><code>git add *</code> 如果有新建立文件就要add 再之后commit就不要a参数了 <code>git commit -m &quot;&quot;</code></li>
+<li>如果只是修改文件没有新建 <code>git commit -am &quot;&quot;</code></li>
+</ul>
+</li>
+<li><p><code>git commit</code> 会自动进入VI编辑器</p>
+<ul>
+<li>第一行：用一行文字简述提交的更改内容</li>
+<li>第二行：空行</li>
+<li>第三行：记述更改的原因和详细内容</li>
+<li>使用下面方法关闭退出</li>
+</ul>
+</li>
+<li><p><code>--amend</code> 追加文件到上次commit <a href="https://git-scm.com/book/zh/v2/Git-%E5%B7%A5%E5%85%B7-%E9%87%8D%E5%86%99%E5%8E%86%E5%8F%B2" target="_blank" rel="noopener">Official Doc</a></p>
+<ul>
+<li>如果上次提交漏了文件, 只需把漏的文件加入到 index区中, 然后执行 git commit –amend 即可</li>
+</ul>
+</li>
+</ul>
+<h4 id="remote"><a href="#remote" class="headerlink" title="remote"></a>remote</h4><blockquote>
+<p><a href="https://git-scm.com/docs/git-remote" target="_blank" rel="noopener">官方文档</a></p>
+</blockquote>
+<ol>
+<li><p><strong>常用参数</strong></p>
+<ul>
+<li><code>add name URL地址</code> 添加远程关联仓库 不唯一，可以关联多个, 一般默认是origin</li>
+<li><code>set-url name URL地址</code> 修改关联仓库的URL</li>
+<li><code>rm URL</code> 删除和远程文档库的关系</li>
+<li><code>rename origin myth</code> 更改远程文档库的名称</li>
+<li><code>show origin</code> 查看远程分支的状态和信息</li>
+</ul>
+</li>
+<li><p>删除远程库某分支<code>git push 远程名称 --delete 分支名称</code> </p>
+</li>
+<li><code>git ls-remote</code> 显示本地仓库跟踪的那个远程仓库</li>
+<li><code>git remote -v</code> 查看关联远程仓库的详情(push和pull的地址)</li>
+</ol>
+<ul>
+<li><a href="http://zengrong.net/post/1746.htm" target="_blank" rel="noopener">删除，重命名远程分支</a></li>
+</ul>
+<h4 id="submodule"><a href="#submodule" class="headerlink" title="submodule"></a>submodule</h4><blockquote>
+<p>子模块</p>
+</blockquote>
+<ul>
+<li style="list-style: none"><input type="checkbox"> 学习</li>
+</ul>
+<h4 id="show"><a href="#show" class="headerlink" title="show"></a>show</h4><blockquote>
+<p>展示提交信息</p>
+</blockquote>
+<ul>
+<li>显示当前提交的差异 <code>git show HEAD</code> HEAD替换成commit的sha值就是显示指定提交的修改</li>
+<li><code>git show -h</code> 查看更多</li>
+</ul>
+<h4 id="push"><a href="#push" class="headerlink" title="push"></a>push</h4><ul>
+<li><p><em>常用参数</em></p>
+<ul>
+<li><code>-h</code> 查看所有参数和说明</li>
+<li><code>-q</code> 控制台不输出任何信息</li>
+<li><code>-f</code> 强制 <strong>使用这个参数时要再三考虑清楚</strong></li>
+<li><code>--all</code> 推送所有引用</li>
+<li><code>-u</code> upstream 设置 git pull/status 的上游<ul>
+<li><code>git push origin master</code>和<code>git push -u origin master</code> 区别在于 前者是使用该远程和分支进行推送</li>
+<li>后者也是推送, 并设置origin为默认推送的远程, 以后push就不用注明远程名了(多远程的情况下要注意)</li>
+</ul>
+</li>
+<li><code>-d</code> 删除引用</li>
+<li><code>--tags</code> 推送标签（不能使用 –all or –mirror）</li>
+</ul>
+</li>
+<li><p>出现 <code>RPC failed; result=22, HTTP code = 411</code> 的错误</p>
+<ul>
+<li>就是因为一次提交的文件太大，需要改大缓冲区 </li>
+<li><blockquote>
+<p>例如改成500m  <code>git config http.postBuffer 524288000</code></p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>提交本地所有分支 <code>git push --all</code> pull时同理</p>
+</li>
+<li><p>删除远程分支 <code>git push 远程名称 --delete 分支名称</code></p>
+</li>
+<li><p><em>第一次与远程建立连接</em></p>
+<ul>
+<li><code>git push -u origin master</code> | <code>git push --set-uptream master</code> | <code>git push -all</code> </li>
+<li>这几个都是可以的,最后那个简单, 还能将别的分支一起推上去</li>
+</ul>
+</li>
+</ul>
+<h4 id="log"><a href="#log" class="headerlink" title="log"></a>log</h4><blockquote>
+<p>更多说明 查看 <code>git help log</code> | <a href="https://www.git-scm.com/docs/git-log" target="_blank" rel="noopener">Official Doc</a></p>
+</blockquote>
+<ul>
+<li><code>-p</code> 显示每次提交的内容差异 <code>git log -p -2</code> 仅显示最近两次提交的差异</li>
+<li>查看每一次提交的修改内容 <code>--stat</code> </li>
+<li><code>---pretty=[online/short/full/fuller/format]</code> 使用预定义格式显示<ul>
+<li>format 是可以自定义格式和占位符</li>
+</ul>
+</li>
+<li>图形的样子显示分支图 <code>--graph</code> </li>
+<li><p>显示每个分支最近的提交 <code>--simplify-by-decoration</code></p>
+</li>
+<li><p><code>git log --author=&#39;A&#39;</code>输出所有A开头的作者日志</p>
+</li>
+<li><code>git log 文件名 文件名</code> 输出更改指定文件的所有commit 要文件在当前路径才可</li>
+<li><p><code>git log --after=&#39;2016-03-23 9:20&#39; --before=&#39;2017-05-10 12:00&#39;</code> 输出指定日期的日志</p>
+</li>
+<li><p><code>git shortlog</code> 按字母顺序输出每个人的日志 </p>
+<ul>
+<li><code>--numbered</code> 按提交数排序</li>
+<li><code>-s</code> 只显示每个提交者以及提交数量</li>
+</ul>
+</li>
+</ul>
+<p><strong><code>彩色输出Log</code></strong><br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">alias</span> glogc=<span class="string">"git log --graph --pretty=format:'%Cred%h%Creset %Cgreen%ad%Creset | %C(bold cyan)&lt;%an&gt;%Creset %C(yellow)%d%Creset %s ' --abbrev-commit --date=short"</span> <span class="comment"># 彩色输出</span></span><br><span class="line"><span class="built_in">alias</span> gloga=<span class="string">'git log --oneline --decorate --graph --all'</span> <span class="comment"># 简短彩色输出</span></span><br><span class="line"><span class="built_in">alias</span> glo=<span class="string">'git log --oneline --decorate'</span> <span class="comment"># 最简单</span></span><br><span class="line"><span class="built_in">alias</span> glol=<span class="string">'git log --graph --pretty='</span>\<span class="string">''</span>%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset<span class="string">'\'</span></span><br><span class="line"><span class="built_in">alias</span> glola=<span class="string">'git log --graph --pretty='</span>\<span class="string">''</span>%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset<span class="string">'\'</span><span class="string">' --all'</span></span><br></pre></td></tr></table></figure></p>
+<h5 id="对比两个分支的差异"><a href="#对比两个分支的差异" class="headerlink" title="对比两个分支的差异"></a>对比两个分支的差异</h5><blockquote>
+<p><a href="http://blog.csdn.net/u011240877/article/details/52586664" target="_blank" rel="noopener">参考博客</a></p>
+</blockquote>
+<ul>
+<li>查看 dev 有，而 master 中没有的 <code>git log dev ^master</code> 反之 <code>git log master ^dev</code></li>
+<li>查看 dev 中比 master 中多提交了哪些内容：<code>git log master..dev</code></li>
+<li>不知道谁提交的多谁提交的少，单纯想知道有什么不一样：<code>git log dev...master</code></li>
+<li>在上述情况下，再显示出每个提交是在哪个分支上:<code>git log --left-right dev...master</code><ul>
+<li>注意 commit 后面的箭头，根据我们在 –left-right dev…master 的顺序，左箭头 &lt; 表示是 dev 的，右箭头 &gt; 表示是 master的。</li>
+</ul>
+</li>
+</ul>
+<h5 id="查看文件的修改记录"><a href="#查看文件的修改记录" class="headerlink" title="查看文件的修改记录"></a>查看文件的修改记录</h5><ol>
+<li>git log fileName 或者 git log –pretty=oneline fileName 更容易看到 sha-1 值</li>
+<li>git show sha-1的值 就能看到该次提交的所有修改</li>
+</ol>
+<h4 id="diff"><a href="#diff" class="headerlink" title="diff"></a>diff</h4><ul>
+<li>默认是将 work 区 和 index 区 进行比较</li>
+<li><code>--cached</code> stage 区 和 index 区 进行比较, 等同于<code>--staged</code></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git diff [options] [&lt;commit&gt;] [--] [&lt;path&gt;...]</span><br><span class="line">git diff [options] --cached [&lt;commit&gt;] [--] [&lt;path&gt;...]</span><br><span class="line">git diff [options] &lt;commit&gt; &lt;commit&gt; [--] [&lt;path&gt;...]</span><br><span class="line">git diff [options] &lt;blob&gt; &lt;blob&gt;</span><br><span class="line">git diff [options] [--no-index] [--] &lt;path&gt; &lt;path&gt;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><a href="https://github.com/so-fancy/diff-so-fancy" target="_blank" rel="noopener">Github:diff-so-fancy</a><code>一个更方便查看diff的工具</code></p>
+<ul>
+<li>最简单的就是 <code>npm install -g diff-so-fancy</code> 安装 </li>
+</ul>
+</blockquote>
+<h4 id="tag"><a href="#tag" class="headerlink" title="tag"></a>tag</h4><blockquote>
+<p><a href="https://git-scm.com/docs/git-tag/2.10.2" target="_blank" rel="noopener">Official Doc</a></p>
+</blockquote>
+<ul>
+<li>查看所有标签 <code>git tag</code> <ul>
+<li><code>-l &#39;v1.0.*&#39;</code> 列出v1.0.*</li>
+<li>展示标签注释信息 <code>git show tagname</code></li>
+</ul>
+</li>
+<li>新建一个标签并打上注释 <code>git tag -a v1.0.0 -m &quot;初始版本&quot;</code> <ul>
+<li>由指定的commit打标签  <code>git tag -a v1.2.4 commit-id</code> </li>
+</ul>
+</li>
+<li>切换标签 <code>git checkout tagname</code> 和切换分支一样的，但是标签只是一个镜像，不能修改</li>
+<li>如果要在某tag上新建一个分支， <code>git checkout -b branchname tagname</code></li>
+<li><p>提交指定的tag <code>git push origin tagname</code> （默认不会自动提交标签）</p>
+<ul>
+<li>提交所有的tag <code>git push --tags</code> </li>
+</ul>
+</li>
+<li><p>删除本地标签 <code>git tag -d tagname</code> </p>
+</li>
+<li>删除远程的tag <code>git push origin --delete tag &lt;tagname&gt;</code> </li>
+</ul>
+<hr>
+<h3 id="分支操作"><a href="#分支操作" class="headerlink" title="分支操作"></a>分支操作</h3><ul>
+<li><code>git checkout -b feature-x develop</code> 从develop的分支生成一个功能分支，并切换过去</li>
+<li>完成功能后：<code>git checkout develop</code><ul>
+<li>合并： <code>git merge --no-ff feature-x</code></li>
+<li>删除： <code>git branch -d feature-x</code></li>
+</ul>
+</li>
+</ul>
+<hr>
+<ul>
+<li><code>git checkout -b release-1.2 develop</code> 新建一个预发布分支<ul>
+<li><code>git checkout master</code> 确认没有问题后 <code>git merge --no-ff release-1.2</code> 合并到master分支</li>
+<li><code>git tag -a 1.2</code> 打标签，这就是github上软件的版本控制</li>
+<li>没有问题后 合并到develop分支<code>git checkout develop</code> <code>git merge --no-ff release-1.2</code></li>
+<li>删除预发布分支 <code>git branch -d release-1.2</code></li>
+</ul>
+</li>
+</ul>
+<hr>
+<ul>
+<li><code>git checkout -b fixbug-0.1 master</code> 新建修复bug的分支 </li>
+<li><code>git checkout master `</code>git merge –no-ff fixbug-0.1 <code></code>git tag -a 0.1.1` 修补结束后合并到master分支</li>
+<li><code>git checkout develop</code> <code>git merge --no-ff fixbug-0.1</code> 再合并到develop分支</li>
+<li>删除分支 <code>git branch -d fixbug-0.1</code> </li>
+<li>删除远程没有本地有的分支<code>git fetch -p</code></li>
+</ul>
+<hr>
+<h4 id="stash"><a href="#stash" class="headerlink" title="stash"></a>stash</h4><blockquote>
+<p><a href="https://git-scm.com/docs/git-stash" target="_blank" rel="noopener">Official Doc</a><br>将当前修改缓存起来, 减少不必要的残缺提交  stash命令的缓存都是基于某个提交上的修改, 是一个栈的形式 </p>
+</blockquote>
+<blockquote>
+<p><a href="http://www.cppblog.com/deercoder/archive/2011/11/13/160007.html" target="_blank" rel="noopener">参考博客: Git Stash的用法</a><code>底下的评论也很有价值, 值得思考</code><br><a href="https://www.cnblogs.com/tocy/p/git-stash-reference.html" target="_blank" rel="noopener">参考博客: git-stash用法小结</a></p>
+</blockquote>
+<blockquote>
+<p>git stash –help 查看完整的使用说明</p>
+</blockquote>
+<ul>
+<li>list<ul>
+<li>输出大致为: <code>stash@{num}: On branchName : comment</code></li>
+</ul>
+</li>
+<li>save<ul>
+<li>save comment </li>
+</ul>
+</li>
+<li>pop <ul>
+<li>将最近的stash pop出来, 应用到工作目录中, 原有的 stash 就丢弃了</li>
+</ul>
+</li>
+<li>apply <ul>
+<li>将指定的stash 应用到工作目录, 不丢弃原有的stash</li>
+</ul>
+</li>
+<li>drop<ul>
+<li>丢弃指定的stash, 如果想丢弃当前项目所有更改就可以将所有更改 save stash 然后 drop</li>
+</ul>
+</li>
+<li>clear <ul>
+<li>清除所有 stash </li>
+</ul>
+</li>
+</ul>
+<ol>
+<li>如果需要恢复 <code>stash@{0}: On feature-test: test</code> <ul>
+<li>就在 feature-test 分支上建立新分支, 然后 apply stash@{0}</li>
+<li>不推荐用 pop, 当stash多了以后 人不一定都记得每个stash都改了啥, 可能会有冲突以及修改覆盖的问题</li>
+<li>最好用新分支装起来, 然后合并分支, 或者是 cherry-pick, 修改也不会丢失</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h4 id="clone"><a href="#clone" class="headerlink" title="clone"></a>clone</h4><ul>
+<li><code>git clone branchname URL</code> 克隆远程仓库的指定分支</li>
+<li><code>git clone URL 目录</code> 克隆下来后更名为指定目录</li>
+<li><code>git clone --depth 1 URL</code> 只克隆最近一次提交的历史, 能大大减小拉取的大小 (Shallow Clone)<ul>
+<li>但是如果要用到之前的提交历史就还是要下拉下来的 类似于懒加载</li>
+<li>且在新建一个远程仓库后, 推送时会报错:<code>shallow update not allowed</code> 因为本地库是残缺的</li>
+<li>所以需要新建一个目录, 把原仓库全拉下来, 再添加远程进行推送, 然后删除该目录, 残缺版的仓库也能正常向新远程推送提交了</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>克隆在指定tag状态的仓库 <code>git clone URL --branch=name</code> 然后 Git会提示<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">您正处于分离头指针状态。您可以查看、做试验性的修改及提交，并且您可以通过另外的检出分支操作丢弃在这个状态下所做的任何提交。</span><br><span class="line">如果您想要通过创建分支来保留在此状态下所做的提交，您可以通过在检出命令添加参数 -b 来实现（现在或稍后）。例如：</span><br><span class="line">git checkout -b &lt;new-branch-name&gt;</span><br><span class="line">按提示执行命令即可解决</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<h4 id="branch"><a href="#branch" class="headerlink" title="branch"></a>branch</h4><ul>
+<li>列出远程分支 -r / –remote</li>
+<li>创建分支 <code>git branch name</code></li>
+<li>删除分支 -d</li>
+</ul>
+<h4 id="checkout"><a href="#checkout" class="headerlink" title="checkout"></a>checkout</h4><blockquote>
+<p><a href="https://git-scm.com/docs/git-checkout" target="_blank" rel="noopener">Official Doc: git checkout</a></p>
+</blockquote>
+<blockquote>
+<p>alias gch=’git checkout’</p>
+</blockquote>
+<ul>
+<li><p><code>gch .</code> 取出最近的一次提交, 覆盖掉 work 区下当前目录(递归)下所有已更改(包括删除操作), 且未进入 stage 的内容, 已经进入 stage 区的文件内容则不受影响</p>
+<ul>
+<li><code>gch 文件1 文件2...</code> 同上, 但是只操作指定的文件</li>
+</ul>
+</li>
+<li><p><code>gch [commit-hash] 文件1 文件2...</code> 根据指定的 commit 对应hash值, 作如上操作, 但是区别在于 从 index 直接覆盖掉 stage 区, 并丢弃 work 区</p>
+<ul>
+<li><code>gch [commit-hash] .</code> <strong><code>如在项目根目录执行该命令, 会将当前项目的所有未提交修改全部丢失, 不可恢复!!!!</code></strong></li>
+</ul>
+</li>
+<li><p>[ ] 验证</p>
+</li>
+<li><code>git checkout [commit-hash] 节点标识符或者标签 文件名 文件名 ...</code> <ul>
+<li>取出指定节点状态的某文件，而且执行完命令后，取出的那个状态会成为head状态，</li>
+<li>需要执行  <code>git reset HEAD</code> 来清除这种状态</li>
+</ul>
+</li>
+</ul>
+<h4 id="fetch"><a href="#fetch" class="headerlink" title="fetch"></a>fetch</h4><blockquote>
+<p>访问远程仓库, 拉取本地没有的数据</p>
+<ul>
+<li><code>git fetch origin dev-test</code> 下拉指定远程的指定分支到本地, 本地没有就会自动新建</li>
+<li><code>git fetch --all</code> 下拉默认远程的所有分支的代码</li>
+</ul>
+</blockquote>
+<h4 id="pull"><a href="#pull" class="headerlink" title="pull"></a>pull</h4><blockquote>
+<p>不仅仅是下拉代码, 还会进行merge合并, 所以安全起见, 是先fetch然后再进行合并操作  </p>
+<ul>
+<li><code>git pull origin dev</code> 下拉指定远程的指定分支</li>
+<li><code>git pull --all</code> 下拉默认远程的所有分支代码并自动合并</li>
+</ul>
+</blockquote>
+<h4 id="merge"><a href="#merge" class="headerlink" title="merge"></a>merge</h4><ul>
+<li><a href="https://git-scm.com/docs/git-merge" target="_blank" rel="noopener">官方文档</a></li>
+</ul>
+<blockquote>
+<p><a href="https://git-scm.com/book/zh/v2/Git-%E5%B7%A5%E5%85%B7-%E9%AB%98%E7%BA%A7%E5%90%88%E5%B9%B6" target="_blank" rel="noopener">Official Doc: 高级合并</a><br><a href="http://blog.jobbole.com/97911/" target="_blank" rel="noopener">参考博客: 解决 Git 冲突的 14 个建议和工具</a></p>
+</blockquote>
+<ul>
+<li><code>git merge develop</code>默认会直接将当前分支指向Develop分支。(一条拐弯的分支线)</li>
+<li>推荐: <code>git merge --no-ff develop</code> 在当前分支<code>主动合并</code>分支Develop，在当前分支上生成一个新节点(有一个环的线)</li>
+</ul>
+<ol>
+<li>merge 就是获取对方的修改, 与自己这一份进行合并(对 对方没有任何影响)<ul>
+<li><code>master merge dev</code> 就是 master 下载 dev 的那一份代码, 与自己的这份代码合并为一份</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li>如果遇到冲突：<ul>
+<li><code>git mergetool</code> 使用工具进行分析冲突文件方便修改</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>配置mergetool工具：</p>
+<ul>
+<li><code>git config --global merge.tool kdiff3</code></li>
+<li><code>git config --global mergetool.kdiff3.cmd &quot;&#39;D:/kdiff3.exe&#39; \&quot;\$BASE\&quot; \&quot;\$LOCAL\&quot; \&quot;\$REMOTE\&quot; -o \&quot;\$MERGED\&quot;&quot;</code></li>
+<li><code>git config --global mergetool.prompt false</code></li>
+<li><code>git config --global mergetool.kdiff3.trustExitCode true</code></li>
+<li><code>git config --global mergetool.keepBackup false</code></li>
+</ul>
+</blockquote>
+<h4 id="rebase"><a href="#rebase" class="headerlink" title="rebase"></a>rebase</h4><blockquote>
+<p>衍和操作 <a href="http://blog.csdn.net/endlu/article/details/51605861" target="_blank" rel="noopener">参考博客</a> |<br><a href="http://blog.csdn.net/zwlove5280/article/details/46649799" target="_blank" rel="noopener">Git rebase -i 交互变基</a> |<br><a href="http://blog.csdn.net/zwlove5280/article/details/46708969" target="_blank" rel="noopener">git rebase的原理之多人合作分支管理</a><br>他会将分支中的圈, 消除掉, 成为线性结构</p>
+</blockquote>
+<ul>
+<li>效果和merge差不多，但是分支图更清晰?TODO 有待详细学习</li>
+<li>与master合并：<code>git merge master</code> 换成 <code>git rebase master</code></li>
+<li>当遇到冲突：<ul>
+<li><code>git rebase --abort</code> 放弃rebase</li>
+<li><code>git rebase --continue</code> 修改好冲突后继续</li>
+</ul>
+</li>
+</ul>
+<h4 id="grep"><a href="#grep" class="headerlink" title="grep"></a>grep</h4><ul>
+<li>搜索文字 <code>git grep docker</code><ul>
+<li><code>-n</code>搜索并显示行号 </li>
+<li><code>--name-only</code> 只显示文件名，不显示内容</li>
+<li><code>-c</code> 查看每个文件里有多少行匹配内容(line matches):</li>
+<li>查找git仓库里某个特定版本里的内容, 在命令行末尾加上标签名(tag reference):  <code>git grep xmmap v1.5.0</code></li>
+<li><code>git grep --all-match -e &#39;#define&#39; -e SORT_DIRENT</code> 匹配两个字符串</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="常用文件"><a href="#常用文件" class="headerlink" title="常用文件"></a>常用文件</h2><h3 id="gitignore"><a href="#gitignore" class="headerlink" title=".gitignore"></a>.gitignore</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># 注释</span><br><span class="line">*/ 忽略所有文件</span><br><span class="line">build/ 所有build目录</span><br><span class="line">/build 只忽略当前目录的build, 子目录的不忽略</span><br><span class="line">*.iml 所有iml文件</span><br><span class="line">?.log 忽略所有 后缀为log, 文件名字只有一个字母</span><br><span class="line">!*.java 不忽略所有java文件</span><br><span class="line">a.[abc] 忽略 后缀为 a或者b或者c 的文件</span><br><span class="line">doc/*.txt 忽略 doc一级子目录的txt文件, 不忽略多级子目录中txt</span><br></pre></td></tr></table></figure>
+<h3 id="gitattributes"><a href="#gitattributes" class="headerlink" title="gitattributes"></a>gitattributes</h3><blockquote>
+<p><a href="http://schacon.github.io/git/gitattributes.html" target="_blank" rel="noopener">gitattributes</a></p>
+</blockquote>
+<ol>
+<li>配置文件的换行符 eol</li>
+<li>working-tree-encoding</li>
+<li>ident</li>
+<li>filter</li>
+<li>merge</li>
+<li>whitespace</li>
+<li>export-ignore</li>
+<li>delta </li>
+<li>encoding</li>
+</ol>
+<hr>
+<h2 id="Tools"><a href="#Tools" class="headerlink" title="Tools"></a>Tools</h2><h3 id="git-svn"><a href="#git-svn" class="headerlink" title="git-svn"></a>git-svn</h3><blockquote>
+<p><a href="https://git-scm.com/docs/git-svn" target="_blank" rel="noopener">git-svn 文档</a></p>
+</blockquote>
+<h3 id="Submodules"><a href="#Submodules" class="headerlink" title="Submodules"></a>Submodules</h3><blockquote>
+<p><a href="https://git-scm.com/book/en/v2/Git-Tools-Submodules" target="_blank" rel="noopener">官方文档</a><br><a href="https://blog.csdn.net/wangjia55/article/details/24400501" target="_blank" rel="noopener">git submodule的使用</a><br><a href="http://www.kafeitu.me/git/2012/03/27/git-submodule.html" target="_blank" rel="noopener">参考博客: Git Submodule使用完整教程</a></p>
+<ul>
+<li>能够在一个git仓库中将一个文件夹作为一些独立的子仓库进行管理</li>
+</ul>
+</blockquote>
+<hr>
+<h2 id="各个VCS工具的区别以及优缺点"><a href="#各个VCS工具的区别以及优缺点" class="headerlink" title="各个VCS工具的区别以及优缺点"></a>各个VCS工具的区别以及优缺点</h2><h3 id="Git"><a href="#Git" class="headerlink" title="Git"></a>Git</h3><blockquote>
+<p>分布式的去中心化的, 大多数操作是本地化操作, 速度快, 更方便</p>
+<ul>
+<li>最大的区别是其他的 VCS 都是 一个增量式的文件集合, git 是文件的一系列快照, 类似于 AUFS 文件系统一层一层那样</li>
+</ul>
+</blockquote>
+<h3 id="SVN"><a href="#SVN" class="headerlink" title="SVN"></a>SVN</h3><blockquote>
+<p><a href="/Linux/Svn.md">Svn笔记</a></p>
+</blockquote>
+<ol>
+<li>中心化的, 代码统一保存, 如果中心发生错误, 代码会全部毁掉, 提交是必须要和服务端通信才能完成</li>
+<li>允许部分的进行修改, 下拉, 提交. 而对于Git来说一个仓库就是一个整体(Git submodule 目前也能完成, 但是还是没有SVN灵活)</li>
+<li>优点: 能够精确控制每个目录的每个人的访问权限</li>
+</ol>
+<p><strong><code>git和SVN一起用</code></strong><br>可以通过 git-svn 使用Git的命令与SVN服务器进行交互</p>
+<blockquote>
+<p><a href="https://git-scm.com/docs/git-svn" target="_blank" rel="noopener">Official doc: git-svn</a></p>
+</blockquote>
+<blockquote>
+<p>但是个人目前在用的方式是直接 git 和 svn 一起用<br><a href="https://www.cnblogs.com/dasusu/p/7774469.html" target="_blank" rel="noopener">参考博客: 为啥要同时用 SVN 和 Git 管理项目</a></p>
+</blockquote>
+<ol>
+<li>IDEA中移除git相关插件, 防止混乱, 而且最好是先把SVN项目拉下来,<ul>
+<li>达到 先让IDEA使用SVN管理项目 的目的 然后 git init </li>
+</ul>
+</li>
+<li><p>避免LRLF LF 问题</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global core.autocrlf <span class="literal">false</span></span><br><span class="line">git config --global core.safecrlf <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>互相忽略各自配置目录 .svn .git</p>
+</li>
+</ol>
+<ul>
+<li>至此, 就能和团队保持一致的使用SVN, 然后自己多任务开发时, 又能使用git优秀的分支模型</li>
+<li>当然该场景是有限的, 也就是说只有你一个人在用git 而且团队中使用SVN时没有使用SVN的分支模型, 这个是没有问题的<ul>
+<li>如果SVN也用了分支, 那么就要命了, 这么多分支和状态, 要靠大脑记住实时的状态就….</li>
+</ul>
+</li>
+</ul>
+<h2 id="repos的使用"><a href="#repos的使用" class="headerlink" title="repos的使用"></a>repos的使用</h2><blockquote>
+<p>综合各个VCS的管理方式</p>
+</blockquote>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2018-12-21T03:02:53.238Z" itemprop="dateUpdated">2018-12-21 11:02:53</time>
+</span><br>
+
+
+        
+        当前：<a href="/2018/11/21/Memo-Skills-Vcs-GitBase/" target="_blank" rel="external">http://blog.kuangcp.top/2018/11/21/Memo-Skills-Vcs-GitBase/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="http://blog.kuangcp.top">
+            <img src="/img/avatar.jpg" alt="Kuangcp">
+            Kuangcp
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/基础/">基础</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.kuangcp.top/2018/11/21/Memo-Skills-Vcs-GitBase/&title=《GitBase.md》 — Kuangcp Blog&pic=http://blog.kuangcp.top/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.kuangcp.top/2018/11/21/Memo-Skills-Vcs-GitBase/&title=《GitBase.md》 — Kuangcp Blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.kuangcp.top/2018/11/21/Memo-Skills-Vcs-GitBase/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《GitBase.md》 — Kuangcp Blog&url=http://blog.kuangcp.top/2018/11/21/Memo-Skills-Vcs-GitBase/&via=http://blog.kuangcp.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.kuangcp.top/2018/11/21/Memo-Skills-Vcs-GitBase/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/11/21/Memo-Skills-Vcs-GitAction/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Git实践</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/11/21/Memo-Java-AdvancedLearning-Concurrents/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Java并发</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check" data-wechat="/img/wechat.png" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style="display:none">
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style="display:none">
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Kuangcp &copy; 2015 - 2018</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">赣ICP备17014189号-1</a><br>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.kuangcp.top/2018/11/21/Memo-Skills-Vcs-GitBase/&title=《GitBase.md》 — Kuangcp Blog&pic=http://blog.kuangcp.top/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.kuangcp.top/2018/11/21/Memo-Skills-Vcs-GitBase/&title=《GitBase.md》 — Kuangcp Blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.kuangcp.top/2018/11/21/Memo-Skills-Vcs-GitBase/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《GitBase.md》 — Kuangcp Blog&url=http://blog.kuangcp.top/2018/11/21/Memo-Skills-Vcs-GitBase/&via=http://blog.kuangcp.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.kuangcp.top/2018/11/21/Memo-Skills-Vcs-GitBase/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACMUlEQVR42u3aQW7DMAxE0dz/0u42QGvnD6kGkPi9ChrX8tNiIop6vfB1vV3vf/l9z939d898HmXxJUOGjG0Z1+N1dw+hch4f9/YdZMiQMYDxHIjk1e/ufx6esElYy5AhQwYPwTQ6O9MnQ4YMGaRkJUOSb9NnypAhYyaDxGW6TOQbcLVwlyFDxhwG33X//ud/6W/IkCFjK0anHE0/k4Vj7ZIhQ8bZjFp5mb7QggKVtEtlyJBxNKOz4cUPT/DyNQ1rGTJknM1IDzqQ9kC/uky34WTIkHE2I13M8aitpT6ZuKCFKUOGjOMYtVZB2npMl5XBklSGDBljGPyhvIXAl5spGK0iZciQcQSjVsTWFnzpdPASV4YMGZMZ6SP44Qy+rRaXxzJkyDiawTfC0mANjkrgaE4LbxkyZOzO6MQc32hLWwvxhqAMGTIOZXTKxXTItBmw4LCFDBkyNmd0trpqc9Y5zBpErQwZMg5i8LYlR/LjF7XgRuWrDBkyDmXUDkyk5WunGP4QxDJkyBjM6ByzSFubPPr/eBMZMmQMY/AFIl/28eMXtUJahgwZcxhk4E4Qd4L7w//KkCHjUMYVXmlM1wra5yfLkCFjGmNtCcpbmLUQbzU4ZciQsTmDRCQpO9PymBexaFwZMmQMYKw67LU2fPnUyJAhQwYP2XQ12lk4vnjqy5AhYxgjJaVTQ56/7HdDhgwZWzFIEVtrBqSvRXYEZciQMY2RBmUajqgEbTcnZMiQcSjjB9AodHKzFQdpAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>
